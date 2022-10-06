@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+
+@import "/src/public/assets/css/reset.css";
+@import "/src/public/assets/css/variable.css";
+
+/* components */
+@import "/src/public/assets/css/components/header.css";
+@import "/src/public/assets/css/components/footer.css";
+
+/* screens */
+@import "/src/public/assets/css/screens/find.css";
+
+body {
+  background-color: #f3f3f3;
+  width: 100%;
+}
