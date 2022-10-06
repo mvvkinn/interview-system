@@ -6,6 +6,7 @@
 /* components */
 @import "/src/public/assets/css/components/header.css";
 @import "/src/public/assets/css/components/footer.css";
+@import "/src/public/assets/css/components/authentication.css";
 
 /* screens */
 @import "/src/public/assets/css/screens/find.css";

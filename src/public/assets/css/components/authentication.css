@@ -1,0 +1,34 @@
+.authentication {
+  display: flex;
+  /* padding: 56px 16px; */
+  /* flex-direction: row; */
+  /* justify-content: center; */
+}
+
+.authentication__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin: 56px 0px;
+}
+
+.authentication__form > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.authentication__form h1 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.authentication__form--contour {
+  height: 200px;
+  border: 1px solid #c6c6c6;
+  margin: 56px 80px;
+}

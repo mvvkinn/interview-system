@@ -42,7 +42,7 @@
   align-items: center;
 }
 
-.find__password h1 {
+.find__password > h1 {
   width: 45%;
   display: flex;
   justify-content: center;
@@ -53,6 +53,7 @@
 
 .find__password hr {
   width: 62.5%;
+  margin: 0px;
 }
 
 .find__password-form {
