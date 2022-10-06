@@ -11,7 +11,25 @@
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  margin: 56px 0px;
+  padding: 56px 16px;
+  margin: 10px 0px;
+}
+
+.authentication__form--blue {
+  display: none;
+}
+
+.authentication__form:hover {
+  border: 1px solid #3c62e5;
+  color: #3c62e5;
+}
+
+.authentication__form:hover > .authentication__form--blue {
+  display: block;
+}
+
+.authentication__form:hover > .authentication__form--black {
+  display: none;
 }
 
 .authentication__form > div {
