@@ -65,6 +65,13 @@
   padding: 50px 393px 50px 423px;
 }
 
+.find__password-form h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
 .find__password-form p {
   white-space: nowrap;
   font-size: 18px;
@@ -89,4 +96,8 @@
   font-weight: 700;
   border-style: none;
   margin-top: 30px;
+}
+
+.success {
+  padding: 30px 0px;
 }
