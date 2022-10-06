@@ -13,8 +13,8 @@
   justify-content: center;
   align-items: center;
   width: 50%;
-  height: 105px;
-  font-size: 24px;
+  height: 85px;
+  font-size: 20px;
   font-weight: 700;
   border-radius: 15px 15px 0px 0px;
   border-bottom: 1px solid #c6c6c6;
@@ -28,7 +28,7 @@
 }
 
 .find__password {
-  padding: 102px 0 220px;
+  padding: 126px 0px;
   background-color: white;
   border-radius: 0px 0px 15px 15px;
   border: 1px solid #c6c6c6;
@@ -81,7 +81,7 @@
 }
 
 .find__password-form button {
-  padding: 20px 71px;
+  padding: 16px 60px;
   background-color: #3c62e5;
   color: white;
   font-size: 20px;
