@@ -43,6 +43,7 @@ header {
 .header__menu {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: #333333;
   font-size: 16px;
   /* width: 412px; */
@@ -51,4 +52,14 @@ header {
 .header__menu > li {
   text-align: center;
   margin-left: 18px;
+}
+
+.header__menu-logout button {
+  width: 120px;
+  height: 35px;
+  background-color: #ff776d;
+  color: #ffffff;
+  font-size: 16px;
+  border-style: none;
+  cursor: pointer;
 }

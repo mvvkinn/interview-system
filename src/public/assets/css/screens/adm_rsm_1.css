@@ -1,0 +1,131 @@
+.container {
+    margin: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar {
+    padding: 126px 0px;
+    background-color: white;
+    border-radius: 0px 0px 15px 15px;
+    border: 1px solid #c6c6c6;
+    border-top: none;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+
+.nav_menu {
+    display: flex;
+    padding-right: 30px;
+    flex-direction:column;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+.nav__menu li {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.nav__menu img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.adm {
+    position: relative;
+    width: 88.5%;
+  }
+  
+  .adm__menu {
+    display: flex;
+    position: relative;
+  }
+  
+  .adm__menu li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 85px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 15px 15px 0px 0px;
+    border-bottom: 1px solid #c6c6c6;
+  }
+  
+  .adm__menu .active {
+    background-color: white;
+    border: 1px solid #c6c6c6;
+    border-bottom: none;
+    color: #3c62e5;
+  }
+  
+  .adm__rsm {
+    padding: 126px 0px;
+    background-color: white;
+    border-radius: 0px 0px 15px 15px;
+    border: 1px solid #c6c6c6;
+    border-top: none;
+  }
+  
+  .adm__rsm > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .adm__rsm h1 {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 23px;
+  }
+  
+  .adm__rsm hr {
+    width: 62.5%;
+  }
+  
+  .adm__rsm-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* height: 198px; */
+    padding: 50px 393px 50px 423px;
+  }
+  
+  .adm__rsm-form p {
+    white-space: nowrap;
+    font-size: 18px;
+  }
+  
+  .adm__rsm-form select {
+    padding: 19px 169px 10px 20px;
+    margin-top: 30px;
+    border-style: none;
+    border: 1px solid #c6c6c6;
+    font-size: 18px;
+    background: url('/src/public/assets/images/arrowDown.png') no-repeat right 20px center;
+    background-size: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  .adm__rsm-form button {
+    padding: 16px 60px;
+    background-color: #3c62e5;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    border-style: none;
+    margin-top: 30px;
+  }
+  

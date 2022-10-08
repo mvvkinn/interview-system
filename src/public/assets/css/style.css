@@ -10,6 +10,7 @@
 
 /* screens */
 @import "/src/public/assets/css/screens/find.css";
+@import "/src/public/assets/css/screens/adm_rsm_1.css";
 
 body {
   background-color: #f3f3f3;
