@@ -11,6 +11,7 @@
 /* screens */
 @import "/src/public/assets/css/screens/find.css";
 @import "/src/public/assets/css/screens/adm.css";
+@import "/src/public/assets/css/screens/mysuccess.css";
 
 body {
   background-color: #f3f3f3;
