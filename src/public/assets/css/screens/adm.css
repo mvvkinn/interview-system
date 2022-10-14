@@ -260,6 +260,10 @@
     margin: 22px 14.74% ;
   }
 
+  .tb-th-01, .tb-th-02, .tb-th-03, .tb-th-04 {
+    border-bottom: 1px solid #444444;
+  }
+
   .tb-th-01, .tb-th-03 {
     font-weight: 700;
   }
@@ -268,9 +272,17 @@
     width: 744px;
   }
 
-
-  .tb-td-01, .tb-td-03, .tb-td-001, .tb-td-002, .tb-td-003, .tb-td-004, .tb-td-005 {
+  .tb-th-pd-001, .tb-th-pd-002, .tb-th-pd-003, .tb-th-pd-004, .tb-td-pd-001, .tb-td-pd-002, .tb-td-pd-003, .tb-td-pd-004, .tb-td-pd-005,
+  .tb-th-ei-001, .tb-th-ei-002, .tb-th-ei-003, .tb-td-001, .tb-td-002, .tb-td-003,
+  .tb-th-et-001, .tb-th-et-002, .tb-th-et-003, .tb-th-et-004, .tb-td-001, .tb-td-002, .tb-td-003, .tb-td-004 {
     text-align: center;
+    border: 1px solid #444444;
+  }
+
+  .tb-td-pd-006 {
+    text-align: center;
+    border-left: 1px solid #444444;
+    border-bottom:  1px solid #444444;
   }
 
   .adm__rsm-content-btn button {
@@ -338,6 +350,7 @@
   .tb-th-et-003 {
     width: 200px;
   }
+  
 
   .tb-td-001, .tb-td-002, .tb-td-003, .tb-td-004 {
     border: 1px solid #444444;
@@ -348,6 +361,6 @@
     color: white;
   }
 
-  .hr {
-    width: 100%;
+ .adm__rsm-content-hr {
+    width: -webkit-fill-available;
   }
