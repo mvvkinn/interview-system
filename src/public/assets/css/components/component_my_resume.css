@@ -132,6 +132,9 @@
 
 .component__form {
   display: flex;
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */
   width: 16.68%;
   height: 60.6%;
 }
@@ -164,6 +167,63 @@
   margin-bottom: 30px;
 }
 
+.component__list {
+  width: 100%;
+}
+
+.component__list-div {
+  width: 100%;
+  height: 32.89vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.component__list-column {
+  width: 100%;
+  border: 1px solid #8e8e8e;
+  border-radius: 15px;
+}
+
+.component__list-column--text {
+  width: 94.38%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: #8e8e8e;
+  margin: 36px auto;
+}
+
+.component__list-column--text h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: black;
+}
+
+.component__list-column:hover {
+  border-style: none;
+  background-color: #8e8e8e;
+  color: white;
+}
+
+.component__list-column:hover .component__list-column--text {
+  color: white;
+}
+
+.component__list-column:hover .component__list-column--text h1 {
+  color: white;
+}
+
+.component__list-div button {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 20px 71px;
+  border-style: none;
+  background-color: #3c62e5;
+  color: white;
+}
 /* header-menu button */
 
 .component__header-menu--button {
