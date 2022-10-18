@@ -8,6 +8,7 @@
 @import "/src/public/assets/css/components/footer.css";
 @import "/src/public/assets/css/components/authentication.css";
 @import "/src/public/assets/css/components/component_my_resume.css";
+@import "/src/public/assets/css/components/adm.css";
 
 /* screens */
 @import "/src/public/assets/css/screens/find.css";
