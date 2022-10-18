@@ -173,10 +173,8 @@
 
 .component__list-div {
   width: 100%;
-  height: 32.89vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -184,6 +182,7 @@
   width: 100%;
   border: 1px solid #8e8e8e;
   border-radius: 15px;
+  margin-bottom: 20px;
 }
 
 .component__list-column--text {
@@ -217,9 +216,10 @@
 }
 
 .component__list-div button {
+  width: 20.66%;
   font-size: 20px;
   font-weight: 700;
-  padding: 20px 71px;
+  padding: 20px 0px;
   border-style: none;
   background-color: #3c62e5;
   color: white;
