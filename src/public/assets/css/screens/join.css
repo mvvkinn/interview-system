@@ -212,3 +212,23 @@ input[type="radio"]:checked {
   font-size: 12px;
   color: #3c62e5;
 }
+
+.join_us_finish_area {
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  margin: 40px 0 0 0;
+}
+
+.join_us_finish_text_1 {
+  font-size: 40px;
+  font-family: "noto sans kr";
+  font-weight: 700;
+  margin: 0 0 5px 0;
+}
+
+.join_us_finish_text_2 {
+  font-size: 16px;
+  font-family: "noto sans kr";
+  margin: 0 0 20px 0;
+}
