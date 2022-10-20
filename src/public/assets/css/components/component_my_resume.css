@@ -468,6 +468,7 @@
   background-color: #3c62e5;
   color: white;
 }
+
 /* header-menu button */
 
 .component__header-menu--button {
@@ -475,4 +476,53 @@
   color: white;
   text-align: center;
   padding: 0.72vh 1.45vw;
+}
+
+/* my_interview */
+
+.component__content-info {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  margin-top: -50px;
+  margin-bottom: 50px;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 0px 30px; */
+  font-size: 18px;
+  border-bottom: 1px solid #333333;
+}
+
+.component__content-info hr {
+  width: 0px;
+  height: 30px;
+}
+
+.component__content-info--div {
+  width: 25.83%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.component__content-info--div:last-child {
+  width: 50%;
+  justify-content: space-around;
+}
+
+.component__content-info--button {
+  width: 100%;
+  display: flex;
+  margin-top: 50px;
+}
+
+.component__content-info--button button {
+  width: 20.66%;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 20px 0px;
+  border-style: none;
+  background-color: #8e8e8e;
+  color: white;
+  margin: 0 auto;
 }
