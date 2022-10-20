@@ -12,6 +12,7 @@
 @import "screens/find.css";
 @import "screens/adm.css";
 @import "screens/mysuccess.css";
+@import "screens/join.css";
 
 body {
   background-color: #f3f3f3;
