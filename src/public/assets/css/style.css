@@ -4,9 +4,9 @@
 @import "variable.css"; /*@import "/src/public/assets/css/variable.css";*/
 
 /* components */
-@import "components/header.css"; /*@import "/src/public/assets/css/components/header.css";*/
-@import "components/footer.css"; /*@import "/src/public/assets/css/components/footer.css";*/
-@import "components/authentication.css"; /*@import "/src/public/assets/css/components/authentication.css";*/
+@import "components/header.css";
+@import "components/footer.css";
+@import "components/authentication.css";
 
 /* screens */
 @import "screens/find.css";
