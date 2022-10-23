@@ -7,6 +7,7 @@
 @import "components/header.css";
 @import "components/footer.css";
 @import "components/authentication.css";
+@import "components/component_my_resume.css";
 
 /* screens */
 @import "screens/find.css";
