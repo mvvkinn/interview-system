@@ -534,8 +534,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   /* height: 198px; */
-  padding: 50px 0;
+}
+
+.change {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding-left: 4.2%;
 }
 
 .component__content-form h1 {
@@ -550,7 +558,7 @@
   font-size: 18px;
 }
 
-.component__content-form input {
+.component__content-form > input {
   /* padding: 19px 169px 10px 20px; */
   height: 46px;
   width: 30.1%;
@@ -560,7 +568,7 @@
   border: 1px solid #c6c6c6;
 }
 
-.component__content-form input::placeholder {
+.component__content-form > input::placeholder {
   font-size: 18px;
   padding-left: 10px;
 }
@@ -568,7 +576,7 @@
 .component__content-form button {
   /* padding: 16px 60px; */
   height: 60px;
-  width: 20.7%;
+  width: calc(248 / 1198 * 100%);
   min-width: 138px;
   background-color: #3c62e5;
   color: white;
@@ -576,4 +584,138 @@
   font-weight: 700;
   border-style: none;
   margin-top: 30px;
+}
+
+.component__content-form--div button {
+  /* padding: 16px 60px; */
+  height: 60px;
+  width: calc(248 / 526 * 100%);
+  min-width: 138px;
+  background-color: #3c62e5;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  border-style: none;
+  margin-top: 10px;
+}
+
+.component__content-form--div > button:last-child {
+  /* padding: 16px 60px; */
+  height: 60px;
+  width: calc(248 / 526 * 100%);
+  min-width: 138px;
+  background-color: #333333;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  border-style: none;
+}
+
+.component__content-form--div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.component__content-form--div:last-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: calc(526 / 1137 * 100%);
+  margin: 0 auto;
+}
+
+.component__content-form--div label {
+  width: calc(170 / 1137 * 100%);
+}
+
+.component__content-form--div input {
+  /* padding: 19px 169px 10px 20px; */
+  height: 46px;
+  width: calc(360 / 1137 * 100%);
+  min-width: 130px;
+  border-style: none;
+  border: 1px solid #c6c6c6;
+}
+
+.component__content-form--div > span {
+  width: calc(360 / 1137 * 100%);
+  display: flex;
+  align-items: center;
+}
+
+.component__content-form--div > span > input,
+.component__content-form--div > div > span > input {
+  width: calc(250 / 967.7 * 100%);
+  min-width: 65px;
+}
+
+.component__content-form--div > span > p {
+  margin: 0 10px;
+  color: #c6c6c6;
+}
+
+.component__content-form--div:nth-child(5) > span,
+.component__content-form--div:nth-child(6) > div {
+  width: calc(100% - (170 / 1137 * 100%));
+}
+
+.component__content-form--div:nth-child(6) > label {
+  align-self: flex-start;
+  margin-top: 14px;
+}
+
+/* .component__content-form--div:nth-child(5) label,
+.component__content-form--div:nth-child(6) label {
+  width: calc(170 / 1137.8 * 100%);
+} */
+
+.component__content-form--div span > div {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.component__content-form--div > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.component__content-form--div > div > span {
+  display: flex;
+  align-items: center;
+}
+
+.component__content-form--div > div > input {
+  width: calc(540 / 967 * 100%);
+  margin-top: 20px;
+}
+
+.component__content-form--div > div button {
+  width: calc(150 / 967.7 * 100%);
+  background-color: #333333;
+  color: white;
+  height: 46px;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+  margin-left: 30px;
+}
+
+.component__content-form--div span > div label {
+  width: 75%;
+  margin-left: 10px;
+}
+
+.component__content-form--div input[type="radio"] {
+  width: 26px;
+  min-width: 26px;
+  min-height: 26px;
+}
+
+.component__content-form--div input::placeholder {
+  font-size: 18px;
+  padding-left: 10px;
 }
