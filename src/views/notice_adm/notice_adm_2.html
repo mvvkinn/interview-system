@@ -84,7 +84,28 @@
           </nav>
         </div>
         <section class="notice_adm">
-          <article class="notice_adm__write"></article>
+          <article class="notice_adm__write">
+            <div class="notice_adm__write-title">
+              <h1>글쓰기</h1>
+              <button>불러오기</button>
+            </div>
+            <hr />
+            <div class="notice_adm_write-content">
+              <input id="title" type="text" placeholder="글제목" />
+              <input id="interview_title" type="text" placeholder="면접명" />
+              <input id="content" type="text" placeholder="내용" />
+            </div>
+            <div class="notice_adm_write-filebutton">
+              <label for="input-file">파일 첨부</label>
+              <input type="file" id="input-file" style="display: none" />
+            </div>
+            <div class="notice_adm_write-button">
+              <button>업로드</button>
+              <button>임시저장</button>
+              <button>취소</button>
+            </div>
+            <hr />
+          </article>
         </section>
       </div>
     </main>
