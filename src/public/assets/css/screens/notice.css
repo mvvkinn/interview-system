@@ -68,3 +68,71 @@
 .notice__interview {
   width: 72.9%;
 }
+
+/* 면접지원 */
+.notice__apply {
+  width: 30%;
+  margin-top: 5.8%;
+}
+
+.notice__apply-image {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.notice__apply-title {
+  margin-top: -2%;
+  font-size: 40px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+}
+
+.notice__apply-subtitle {
+  margin-top: 10px;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+}
+.notice__apply-button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.notice__apply-button-1 {
+  /* display: flex;
+  justify-content: center; */
+  width: 47%;
+}
+
+.notice__apply-button-1 button {
+  background-color: #3c62e5;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  border: 0;
+  text-align: center;
+  cursor: pointer;
+  border: 0;
+  width: 100%;
+  height: 67px;
+}
+
+.notice__apply-button-2 {
+  width: 47%;
+}
+
+.notice__apply-button-2 button {
+  background-color: #333333;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  border: 0;
+  padding: 1.5%;
+  cursor: pointer;
+  width: 100%;
+  height: 67px;
+}
