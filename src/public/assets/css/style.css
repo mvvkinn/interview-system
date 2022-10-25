@@ -13,7 +13,7 @@
 @import "screens/find.css";
 @import "screens/adm.css";
 @import "screens/mysuccess.css";
-
+@import "screens/notice.css";
 body {
   background-color: #f3f3f3;
   width: 100%;
