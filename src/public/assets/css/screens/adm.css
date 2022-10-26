@@ -145,7 +145,6 @@
   .adm th, .adm td {
     border-bottom: 1px solid #C6C6C6;
     border-left: 1px solid #444444;
-    padding: 19px;
     height: 60px;
     vertical-align:middle;
   }
@@ -166,14 +165,33 @@
     margin: 0px 14.28%;
   }
 
-  .tb-td-1 {
+  .tb-td-1, .tb-td-3  {
     text-align: center;
     width: 11.08%;
   }
 
-  .tb-td-3 {
+  .tb-td-01, .tb-td-02, .tb-td-03, .tb-td-04, .tb-td-05 {
     text-align: center;
+  }
+
+  .tb-td-01 {
     width: 11.08%;
+  }
+
+  .tb-td-02 {
+    width: 40.5%;
+  }
+
+  .tb-td-03 {
+    width: 10.83%;
+  }
+
+  .tb-td-04 {
+    width: 15.66%;
+  }
+
+  .tb-td-05 {
+    width: 21.91%;
   }
 
   .adm__rsm-tb button {
@@ -208,7 +226,7 @@
     background-color: silver;
   }
 
-  .adm__rsm-list, .adm__rsm-content  {
+  .adm__rsm-list, .adm__rsm-content, .adm__rsm-itv  {
     padding: 126px 0px;
     background-color: white;
     border-radius: 0px 15px 15px 15px;
@@ -216,21 +234,21 @@
     border-top: none;
   }
 
-  .adm__rsm-list > div, .adm__rsm-content > div {
+  .adm__rsm-list > div, .adm__rsm-content > div, .adm__rsm-itv > div {
     display: flex;
     flex-direction: column;
     margin: 0 14.74%;
     justify-content: center;
   }
   
-  .adm__rsm-list > div.adm__rsm-content-btn, .adm__rsm-content > div.adm__rsm-content-btn {
+  .adm__rsm-list > div.adm__rsm-content-btn, .adm__rsm-content > div.adm__rsm-content-btn, .adm__rsm-content > div.adm__rsm-itv-btn {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   
-  .adm__rsm-content h1, .adm__rsm-list h1 {
+  .adm__rsm-content h1, .adm__rsm-list h1, .adm__rsm-itv h1 {
     width: 100%;
     display: flex;
     font-size: 24px;
@@ -238,7 +256,7 @@
     margin-bottom: 22px;
   }
 
-  .adm__rsm-list-info{
+  .adm__rsm-list-info, .adm__rsm-content-info, .adm__rsm-itv-info{
     width: 100%;
     display: flex;
     justify-content:space-between;
@@ -248,13 +266,7 @@
   }
 
   .adm__rsm-content-info{
-    width: 100%;
     padding: 22px 0;
-    display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-    border-top: 1px solid #333333;
-    border-bottom: 1px solid #333333;
   }
 
   .adm__rsm-content-info hr {
@@ -272,6 +284,7 @@
     align-items: center;
     text-align: center;
     justify-content: space-evenly;
+    font-weight: 600;
   }
 
   .adm__rsm-list-info--div-1 {
@@ -298,6 +311,10 @@
     margin: 0 5.83% ;
   }
 
+  .adm__rsm-content-info--div-1 p.default, .adm__rsm-content-info--div-2 p.default {
+    font-weight: 600;
+  }
+
   .adm__rsm-content-info--div-2 {
     width: 30%;
   }
@@ -306,7 +323,36 @@
     margin: 0 9.72% ;
   }
 
+  /* adm__rsm-itv-info--div */
+
+  .adm__rsm-itv-info--div-1, .adm__rsm-itv-info--div-2, .adm__rsm-itv-info--div-3, .adm__rsm-itv-info--div-4, .adm__rsm-itv-info--div-5 {
+    display: flex;
+    padding: 19px;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+    font-weight: 600;
+  }
+
+  .adm__rsm-itv-info--div-1{
+    width: 11.08%;
+  }
+
+  .adm__rsm-itv-info--div-2 {
+    width: 40.5%;
+  }
   
+  .adm__rsm-itv-info--div-3{
+    width: 10.83%;
+  }
+
+  .adm__rsm-itv-info--div-4{
+    width: 15.66%;
+  }
+
+  .adm__rsm-itv-info--div-5{
+    width:  21.91%;
+  }
 
   
   /* table*/
@@ -393,6 +439,8 @@
     width: 16.66%;
   }
 
+  /* btn */
+
   .adm__rsm-content-btn button {
     padding: 16px 60px;
     background-color: #333333;
@@ -402,6 +450,19 @@
     border-style: none;
     margin-top: 30px;
     margin-bottom: 50px;
+  }
+
+  button.active, button.deactive {
+    padding: 10px 30px;
+    background-color: #3C62E5;
+    color: white;
+    font-size: 16px;
+    font-weight:initial;
+    margin-top: 0;
+  }
+
+  button.deactive{
+    background-color: #C6C6C6;
   }
 
   .adm__rsm-content-img {
