@@ -37,8 +37,55 @@
     </header>
 
     <main>
-    <div class="container">
-        <nav class="navbar">
+    <div class="adm_container">
+      <div class="adm_navbar">
+        <div class="adm_nav__menu">
+          <ul>
+            <li>
+              <!-- <img
+                src="/src/public/assets/images/icons/menuIcon_user.png"
+                alt=""
+                class="component-column--img-black"
+              /> -->
+              <img
+                src="/src/public/assets/images/icons/menuIcon_user_hover.png"
+                alt=""
+                class="component-column--img-blue"
+                onclick="location.href='/src/views/adm_rsm/adm_rsm_1.html';"
+              />
+              <p>관리자 페이지</p>
+            </li>
+            <li class="adm_nav__menu-search">
+              <img
+                src="/src/public/assets/images/icons/menuIcon_search.png"
+                alt=""
+                class="component-column--img-black"
+              />
+              <img
+                src="/src/public/assets/images/icons/menuIcon_search_hover.png"
+                alt=""
+                class="component-column--img-blue"
+              />
+              <p>합격자 조회</p>
+            </li>
+            <li class="adm_nav__menu-notice">
+              <img
+                src="/src/public/assets/images/icons/menuIcon_notice.png"
+                alt=""
+                class="component-column--img-black"
+              />
+              <img
+                src="/src/public/assets/images/icons/menuIcon_notice_hover.png"
+                alt=""
+                class="component-column--img-blue"
+              />
+              <p>면접 공지</p>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+        <!-- <nav class="navbar">
             <ul class="nav__menu">
                 <img src="/src/public/assets/images/icons/menuIcon_user_hover.png"/>
                 <li class="nav__menu-adm">관리자 페이지</li>
@@ -47,7 +94,8 @@
                 <img src="/src/public/assets/images/icons/menuIcon_notice.png"/>
                 <li class="nav__menu-itvNotice">면접 공지</LI>
               </ul>
-        </nav>
+        </nav> -->
+
         <section class="adm">
             <nav>
               <ul class="adm__menu">
@@ -65,15 +113,21 @@
               <div class="adm__rsm-content--hr">
                 <div class="adm__rsm-content-info">
                   <div class="adm__rsm-content-info--div-1">
-                    <p class="default">지원면접</p>
-                    <hr>
+                    <p>지원 면접</p>
+                  </div>
+                  <hr>
+                  <div class="adm__rsm-content-info--div-2">
                     <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p>
                   </div>
-                  <div class="adm__rsm-content-info--div-2">
-                    <p class="default">지원자</p>
-                    <hr>
+                  <hr>
+                  <div class="adm__rsm-content-info--div-3">
+                    <p>지원자</p>
+                  </div>
+                  <hr>
+                  <div class="adm__rsm-content-info--div-4">
                     <p>김명지</p>
                   </div>
+                  <!-- <hr> -->
                 </div>
               </div>
               <div class="adm__rsm-content-img">
@@ -84,13 +138,13 @@
               <p class="adm__rsm-content-pd--title">인적사항</p>
               <table class="adm__rsm-content-pd--table">
                 <tbody>
-                  <tr>
+                  <tr class="adm__rsm-content-pd--table-top">
                     <th class="adm__rsm-content-pd--table--section-1">이름</th>
                     <td class="adm__rsm-content-pd--table--section-2">김명지</td>
                     <th class="adm__rsm-content-pd--table--section-3">생년월일</th>
                     <td class="adm__rsm-content-pd--table--section-4">20010101</td>
                   </tr>
-                  <tr>
+                  <tr class="adm__rsm-content-pd--table-middle">
                     <th class="adm__rsm-content-pd--table--section-1">휴대폰</th>
                     <td class="adm__rsm-content-pd--table--section-2">01012345678</td>
                     <th class="adm__rsm-content-pd--table--section-3">E-mail</th>

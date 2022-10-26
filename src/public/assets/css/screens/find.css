@@ -78,9 +78,13 @@
 }
 
 .find__password-form input {
-  padding: 19px 169px 10px 20px;
+  padding-left: 18px;
+  width: 360px;
+  height: 46px;
   margin-top: 30px;
   border-style: none;
+  font-size: 20px;
+  vertical-align: middle;
   border: 1px solid #c6c6c6;
 }
 
@@ -98,8 +102,11 @@
   margin-top: 30px;
 }
 
-.success {
+.find__success {
   padding: 30px 0px;
+  background-color: #ffffff;
+  border: 1px solid #c6c6c6;
+  border-top: none;
 }
 
 .new {
