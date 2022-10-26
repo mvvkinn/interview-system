@@ -243,6 +243,19 @@
   height: 35px;
 }
 
+.input_info {
+  width: 400px;
+  height: 35px;
+  font-family: "noto sans kr";
+  padding: 0 0 0 20px;
+}
+
+.input_info::-webkit-input-placeholder {
+  color: #c6c6c6;
+  font-weight: 300;
+  font-family: "noto sans kr";
+}
+
 .input_value_btn {
   font-size: 14px;
   text-align: center;
