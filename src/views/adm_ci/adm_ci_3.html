@@ -8,6 +8,45 @@
     <link rel="stylesheet" href="/src/public/assets/css/style.css" />
     <title>interview</title>
   </head>
+  <script>
+    var time=600;
+    var min="";
+    var sec="";
+
+    var x = setInterval(function(){
+        min = parseInt(time/60);
+        sec = time%60;
+
+        if (min<10){
+            min = "0"+min;
+        }
+        if (sec<10){
+            sec = "0"+sec;
+        }
+
+        document.getElementById("timer").innerHTML = min + ":" + sec;
+        time--;
+
+        if (time<0){
+            clearInterval(x);
+            timer.style.color="#ff776d";
+            document.getElementById("input1").readOnly=true;
+            document.getElementById("input01").readOnly=true;
+            document.getElementById("input02").readOnly=true;
+            document.getElementById("input03").readOnly=true;
+            document.getElementById("input04").readOnly=true;
+            document.getElementById("input05").readOnly=true;
+            document.getElementById("input06").readOnly=true;
+            document.getElementById("input07").readOnly=true;
+            document.getElementById("input08").readOnly=true;
+            document.getElementById("input09").readOnly=true;
+            document.getElementById("score01").readOnly=true;
+            document.getElementById("score02").readOnly=true;
+            document.getElementById("score03").readOnly=true;
+            document.getElementById("score04").readOnly=true;
+        }
+    },1000);
+  </script>
   <body>
     <header>
       <div class="header__column">
@@ -25,7 +64,9 @@
       <div class="header__column">
         <nav>
           <ul class="header__menu">
-            <li>안녕하세요, 관리자 김관리님.</li>
+            <li class="header__menu-timer">
+                <div id="timer"></div>
+            </li>
             <li>
                 <div class="header__menu-logout">
                     <button>로그아웃</button>
@@ -52,8 +93,8 @@
             <nav>
               <ul class="adm__menu">
                 <li class="adm__menu-rsm"><a href="/src/views/adm_rsm/adm_rsm_1.html">지원자 및 이력서 조회</a></li>
-                <li class="adm__menu-id active"><a href="/src/views/adm_id/adm_id_1.html">면접 내용 조회</a></li>
-                <li class="adm__menu-ci"><a href="/src/views/adm_ci/adm_ci_1.html">면접 진행</a></li>
+                <li class="adm__menu-id"><a href="/src/views/adm_id/adm_id_1.html">면접 내용 조회</a></li>
+                <li class="adm__menu-ci active"><a href="/src/views/adm_ci/adm_ci_1.html">면접 진행</a></li>
                 <li class="adm__menu-empty"></li>
                 <li class="adm__menu-empty"></li>
                 <li class="adm__menu-empty"></li>
@@ -78,6 +119,16 @@
               </div>
             </div>
             <div class="adm__rsm-content-checklist">
+                <table class="adm__rsm-content-info--table">
+                    <tbody>
+                        <tr>
+                            <th class="adm__rsm-content-info--table--section-1">면접명</th>
+                            <td class="adm__rsm-content-info--table--section-2">2022년도 하반기 OOOOO 프론트엔드 개발자 모집</td>
+                            <th class="adm__rsm-content-info--table--section-3">지원자</th>
+                            <td class="adm__rsm-content-info--table--section-4">김명지</td>
+                        </tr>
+                    </tbody>
+                </table>
                 <table class="adm__rsm-content-criteria--table">
                     <tbody>
                         <tr>
@@ -96,21 +147,23 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="adm__rsm-content-checklist--table--section-1">주 질문 1</td>
-                            <td class="adm__rsm-content-checklist--table--section-2" rowspan="4">추가 질문 내용</td>
+                            <!-- <td class="adm__rsm-content-checklist--table--section-1">주 질문 1</td> -->
+                            <td class="adm__rsm-content-checklist--table--section-1"><textarea id="input01" placeholder="주 질문 1"></textarea></td>
+                            <td class="adm__rsm-content-checklist--table--section-2" rowspan="4"><textarea id="input1" placeholder="추가 질문 내용"></textarea></td>
                         </tr>
                         <tr>
-                            <td class="adm__rsm-content-checklist--table--section-1">주 질문 2</td>
+                            <td class="adm__rsm-content-checklist--table--section-1"><textarea id="input02" placeholder="주 질문 2"></textarea></td>
                         </tr>
                         <tr>
-                            <td class="adm__rsm-content-checklist--table--section-1">주 질문 3</td>
+                            <td class="adm__rsm-content-checklist--table--section-1"><textarea id="input03" placeholder="주 질문 3"></textarea></td>
                         </tr>
                         <tr>
-                            <td class="adm__rsm-content-checklist--table--section-1">주 질문 4</td>
+                            <td class="adm__rsm-content-checklist--table--section-1"><textarea id="input04" placeholder="주 질문 4"></textarea></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <p class="adm__rsm-content-checklist--title">평가준거</p>
             <div class="adm__rsm-content-checklist">
                 <table class="adm__rsm-content-score--table">
                     <thead>
@@ -121,20 +174,21 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="adm__rsm-content-score--table--section-1">주 질문 1</td>
-                            <td class="adm__rsm-content-score--table--section-2"><text class="score">00</text>점</td>
+                            <td class="adm__rsm-content-score--table--section-1"><textarea id="input05" placeholder="주 질문 1"></textarea></td>
+                            <!-- <td class="adm__rsm-content-score--table--section-2"><text class="score">00</text>점</td> -->
+                            <td class="adm__rsm-content-score--table--section-2"><input id="score01" type="number" min="0" max="100" placeholder="00"/> 점</td>
                         </tr>
                         <tr>
-                            <td class="adm__rsm-content-score--table--section-1">주 질문 2</td>
-                            <td class="adm__rsm-content-score--table--section-2"><text class="score">00</text>점</td>
+                            <td class="adm__rsm-content-score--table--section-1"><textarea id="input06" placeholder="주 질문 2"></textarea></td>
+                            <td class="adm__rsm-content-score--table--section-2"><input id="score02" type="number" min="0" max="100" placeholder="00"/>점</td>
                         </tr>
                         <tr>
-                            <td class="adm__rsm-content-score--table--section-1">주 질문 3</td>
-                            <td class="adm__rsm-content-score--table--section-2"><text class="score">00</text>점</td>
+                            <td class="adm__rsm-content-score--table--section-1"><textarea id="input07" placeholder="주 질문 3"></textarea></td>
+                            <td class="adm__rsm-content-score--table--section-2"><input id="score03" type="number" min="0" max="100" placeholder="00"/>점</td>
                         </tr>
                         <tr>
-                            <td class="adm__rsm-content-score--table--section-1">주 질문 4</td>
-                            <td class="adm__rsm-content-score--table--section-2"><text class="score">00</text>점</td>
+                            <td class="adm__rsm-content-score--table--section-1"><textarea id="input08" placeholder="주 질문 4"></textarea></td>
+                            <td class="adm__rsm-content-score--table--section-2"><input id="score04" type="number" min="0" max="100" placeholder="00"/>점</td>
                         </tr>
                     </tbody>
                 </table>
@@ -142,13 +196,13 @@
                     <tbody>
                         <tr>
                             <th class="adm__rsm-content-opinion--table--section-1">기타 의견</th>
-                            <td class="adm__rsm-content-opinion--table--section-2"></td>
+                            <td class="adm__rsm-content-opinion--table--section-2"><textarea id="input09"></textarea></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="adm__rsm-content-btn">
-                <button onclick="location.href='/src/views/adm_id/adm_id_2.html';">목록으로</button>
+                <button class="submit" onclick="location.href='/src/views/adm_ci/adm_ci_2.html';">제출하기</button>
                 <hr class="adm__rsm-content-hr"/>
             </div>
             
