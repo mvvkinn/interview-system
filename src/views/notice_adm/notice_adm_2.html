@@ -37,9 +37,9 @@
       </div>
     </header>
     <main>
-      <div class="container">
-        <div class="component-column">
-          <nav class="component-column--nav">
+      <div class="notice_adm_container">
+        <div class="notice_adm_navbar">
+          <div class="notice_adm_nav__menu">
             <ul>
               <li>
                 <img
@@ -52,7 +52,7 @@
                   alt=""
                   class="component-column--img-blue"
                 />
-                마이페이지
+                <p>마이페이지</p>
               </li>
               <li>
                 <img
@@ -65,7 +65,7 @@
                   alt=""
                   class="component-column--img-blue"
                 />
-                합격자조회
+                <p>합격자 조회</p>
               </li>
               <li>
                 <img
@@ -78,10 +78,11 @@
                   alt=""
                   class="component-column--img-blue"
                 />
-                면접 공지
+                <p>면접 공지</p>
               </li>
             </ul>
-          </nav>
+          </div>
+        </nav>
         </div>
         <section class="notice_adm">
           <article class="notice_adm__write">
@@ -91,9 +92,13 @@
             </div>
             <hr />
             <div class="notice_adm_write-content">
-              <input id="title" type="text" placeholder="글제목" />
-              <input id="interview_title" type="text" placeholder="면접명" />
-              <input id="content" type="text" placeholder="내용" />
+              <textarea id="title" type="text" placeholder="글제목"></textarea>
+              <textarea
+                id="interview_title"
+                type="text"
+                placeholder="면접명"
+              ></textarea>
+              <textarea id="content" type="text" placeholder="내용"></textarea>
             </div>
             <div class="notice_adm_write-filebutton">
               <label for="input-file">파일 첨부</label>
