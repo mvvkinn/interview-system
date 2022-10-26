@@ -54,6 +54,7 @@
   height: 68.2%;
 }
 
+/* notice_1.html */
 .notice {
   position: relative;
   width: 88.5%;
@@ -63,6 +64,154 @@
   display: flex;
   justify-content: center;
 }
+
+.notice__interview {
+  width: 72.9%;
+}
+
+.notice__interview hr {
+  width: 100%;
+  border-color: #c6c6c6;
+}
+
+.notice__interview hr:nth-child(2),
+.notice__interview hr:nth-child(4),
+.notice__interview hr:nth-child(26) {
+  border-color: #707070;
+}
+
+.notice__interview-title h1 {
+  font-weight: 700;
+  font-size: 24px;
+  margin-top: 102px;
+  margin-bottom: 23px;
+}
+
+.notice__interview-tab-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.notice__interview-tab-header p {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.notice__interview-tab-header hr {
+  width: 1px;
+  height: 30px;
+  margin: 0;
+}
+
+.notice__interview-tab-header-div {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  align-items: center;
+  text-align: center;
+  height: 30px;
+}
+
+.notice__interview-tab-header-div:first-child,
+.notice__interview-tab-header-div:last-child {
+  width: 11.1%;
+}
+.notice__interview-tab-header-div:nth-child(3) {
+  width: 61.2%;
+}
+.notice__interview-tab-header-div:nth-child(5) {
+  width: 16.7%;
+}
+
+.notice__interview-table-notice {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 18px;
+  height: 30px;
+  align-items: center;
+}
+.notice__interview-table-notice-no,
+.notice__interview-table-notice-views,
+.notice__interview-table-notice-date {
+  align-items: center;
+  text-align: center;
+}
+
+.notice__interview-table-notice-no,
+.notice__interview-table-notice-views {
+  width: 11.1%;
+}
+
+.notice__interview-table-notice-title {
+  padding-left: 4.17%;
+  width: 61.2%;
+  color: #3c62e5;
+}
+
+.notice__interview-table-notice-date {
+  width: 16.7%;
+}
+
+.notice__interview-table-text {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 18px;
+  height: 30px;
+  align-items: center;
+}
+
+.notice__interview-table-text-no,
+.notice__interview-table-text-views {
+  width: 11.1%;
+  text-align: center;
+}
+
+.notice__interview-table-text-title {
+  padding-left: 4.17%;
+  width: 61.2%;
+}
+
+.notice__interview-table-text-date {
+  width: 16.7%;
+  text-align: center;
+}
+
+.notice__interview-page {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 151px;
+}
+
+.notice__interview-pagination {
+  display: inline-block;
+  padding: 58px 0px 21px 0px;
+}
+
+.notice__interview-pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.notice__interview-pagination a.active {
+  color: #3c62e5;
+  font-weight: 700;
+}
+
+.notice__interview-pagination a:hover:not(.active) {
+  background-color: silver;
+}
+
+/* notice_3.html */
 .notice-button {
   display: flex;
   justify-content: end;
@@ -111,11 +260,8 @@
   background-color: #3c62e5;
   margin-right: 30px;
 }
-.notice__interview {
-  width: 72.9%;
-}
 
-/* 면접지원 */
+/* notice_apply_1 */
 .notice__apply {
   width: 30%;
   margin-top: 5.8%;
