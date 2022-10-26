@@ -550,6 +550,11 @@
   .adm__rsm-content-score--table--section-1 {
     width: 66.66%;
   }
+
+  text.score {
+    font-weight: 700;
+    font-size: 50px;
+  }
   
   /* adm__rsm-content-opinion--table--section */
 
