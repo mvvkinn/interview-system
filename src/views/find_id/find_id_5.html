@@ -49,29 +49,41 @@
         <section class="find_id">
           <article class="find_id_title">
             <div class="find_id_title-select">
-              <h1>이메일 인증</h1>
+              <h1>아이디(학번)찾기 결과</h1>
             </div>
             <hr />
-            <div class="email_area">
-              <p>이메일 입력 후 인증번호를 입력하세요.</p>
-              <div class="input_area" id="input_area_top">
-                <input type="text" class="input_email" />
-                <div class="input_value_btn">인증번호 발송</div>
+            <div class="result_area">
+              <p>아이디(학번) 조회 결과입니다.</p>
+              <div class="table_line_area">
+                <div class="table_line" id="table_top">
+                  <div class="table_value_top" id="table_num">순서</div>
+                  <div class="table_value_top" id="table_date">가입일</div>
+                  <div class="table_value_top" id="table_id">아이디(학번)</div>
+                  <div class="table_value_top" id="table_name">이름</div>
+                  <div class="table_value_top" id="table_birth">생년월일</div>
+                </div>
               </div>
-              <div class="input_area">
-                <input type="text" class="input_prove_number" />
-                <input type="text" class="input_prove_number" />
-                <input type="text" class="input_prove_number" />
-                <input type="text" class="input_prove_number" />
-                <input type="text" class="input_prove_number" />
-                <input type="text" class="input_prove_number" />
+              <div class="table_line_area">
+                <div class="table_line">
+                  <div class="table_value" id="table_num">-</div>
+                  <div class="table_value" id="table_date">-</div>
+                  <div class="table_value" id="table_id">-</div>
+                  <div class="table_value" id="table_name">-</div>
+                  <div class="table_value" id="table_birth">-</div>
+                </div>
               </div>
               <div class="find_menu_btn_area">
                 <div
                   class="btn_normal"
-                  onclick="location.href='find_id_5.html'"
+                  onclick="location.href='../main_page/main_page_1.html'"
                 >
-                  <p>인증하기</p>
+                  <p>로그인</p>
+                </div>
+                <div
+                  class="btn_reverse"
+                  onclick="location.href='../find_pw/find_pw_1.html'"
+                >
+                  <p>비밀번호 찾기</p>
                 </div>
               </div>
             </div>
