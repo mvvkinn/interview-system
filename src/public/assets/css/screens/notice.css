@@ -57,14 +57,60 @@
 .notice {
   position: relative;
   width: 88.5%;
-  height: 71.3vh;
   background-color: white;
   border: 1px solid #c6c6c6;
   border-radius: 15px;
   display: flex;
   justify-content: center;
 }
+.notice-button {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
 
+.notice-button button {
+  background-color: #3c62e5;
+  font-size: 16px;
+  border: 0;
+  color: white;
+  width: 12.9%;
+  height: 40px;
+  margin-bottom: 50px;
+  min-width: 150px;
+  cursor: pointer;
+}
+
+.component__content-column-notice > button {
+  background-color: #dbdbdb;
+  border: 1px solid #dbdbdb;
+  color: white;
+  height: 50px;
+  width: 100%;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.component__content-column--button-notice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.component__content-column--button-notice button {
+  width: 248px;
+  height: 67px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  background-color: #333333;
+}
+
+.component__content-column--button-notice button:first-child {
+  background-color: #3c62e5;
+  margin-right: 30px;
+}
 .notice__interview {
   width: 72.9%;
 }

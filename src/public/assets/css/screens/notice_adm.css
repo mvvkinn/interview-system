@@ -65,6 +65,12 @@
   justify-content: center;
 }
 
+.component__content-notice {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .notice_adm__write {
   width: 73%;
   margin-top: 5%;
