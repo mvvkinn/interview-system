@@ -34,6 +34,7 @@ input[type="checkbox"] {
   flex-direction: column;
   justify-content: space-between;
 }
+
 .joinUs_title hr {
   width: 100%;
   margin: 0px;
