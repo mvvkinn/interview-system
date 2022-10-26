@@ -211,6 +211,113 @@
   background-color: silver;
 }
 
+/* notice_2.html */
+
+.notice__details {
+  width: 72.9%;
+  margin: 102px 0 150px;
+}
+
+.notice__details hr {
+  width: 100%;
+  border-color: #c6c6c6;
+}
+
+.notice__details hr:nth-child(2),
+.notice__details hr:nth-child(4) {
+  border-color: #707070;
+}
+
+.notice__details-h1 h1 {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 23px;
+}
+
+.notice__details-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.notice__details-header p {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+}
+
+.notice__details-header hr {
+  width: 1px;
+  height: 30px;
+  margin: 0;
+}
+
+.notice__details-header-div {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  align-items: center;
+  text-align: center;
+  height: 30px;
+}
+
+.notice__details-header-div:first-child {
+  width: calc(133 / 1200 * 100%);
+}
+.notice__details-header-div:nth-child(3) {
+  width: calc(516 / 1200 * 100%);
+}
+.notice__details-header-div:nth-child(4) {
+  width: calc(132 / 1200 * 100%);
+}
+.notice__details-header-div:nth-child(6) {
+  width: calc(208 / 1200 * 100%);
+}
+.notice__details-header-div:nth-child(8) {
+  width: calc(132 / 1200 * 100%);
+}
+.notice__details-header-div:last-child {
+  width: calc(79 / 1200 * 100%);
+}
+
+.notice__details-text p {
+  margin: 50px 0;
+  font-size: 20px;
+}
+
+.notice__details-button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  width: calc(525 / 1200 * 100%);
+  margin: 0 auto 50px;
+}
+
+.notice__details-button button:first-child {
+  background-color: #3c62e5;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  border: 0;
+  cursor: pointer;
+  width: 47%;
+  height: 67px;
+}
+
+.notice__details-button button:last-child {
+  background-color: #333333;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  border: 0;
+  padding: 1.5%;
+  cursor: pointer;
+  width: 47%;
+  height: 67px;
+}
+
 /* notice_3.html */
 .notice-button {
   display: flex;
@@ -287,6 +394,7 @@
   display: flex;
   justify-content: center;
 }
+
 .notice__apply-button {
   display: flex;
   justify-content: space-between;
@@ -295,8 +403,6 @@
 }
 
 .notice__apply-button-1 {
-  /* display: flex;
-  justify-content: center; */
   width: 47%;
 }
 
