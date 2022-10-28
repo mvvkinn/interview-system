@@ -99,3 +99,134 @@ html {
   font-weight: 300;
   cursor: pointer;
 }
+
+/* main_2 */
+
+.main-view {
+  width: 1420px;
+  height: 670px;
+  background-color: white;
+  margin: auto;
+}
+
+.main-view__notice {
+  position: relative;
+  width: 420px;
+  height: 670px;
+}
+
+.main-view__notice-out-1 {
+  width: 380px;
+  height: 630px;
+  /* background-color: #3c62e5; */
+  border-left: 1.5px solid #333333;
+  border-top: 1.5px solid #333333;
+  position: absolute;
+  /* z-index: 2; */
+  margin: 10px 0 0 10px;
+}
+
+.main-view__notice-out-2 {
+  width: 380px;
+  height: 630px;
+  /* background-color: #3c62e5; */
+  border-right: 1.5px solid #333333;
+  border-bottom: 1.5px solid #333333;
+  position: absolute;
+  /* z-index: 2; */
+  top: 30px;
+  left: 30px;
+  /* margin: 20px 10px 10px 20px; */
+}
+
+.main-view__notice-in-1 {
+  width: 340px;
+  height: 590px;
+  border-right: 1.5px solid #333333;
+  border-top: 1.5px solid #333333;
+  position: absolute;
+  /* z-index: 1; */
+  top: 20px;
+  left: 60px;
+  /* margin: 10px 10px 0px 0px; */
+}
+
+.main-view__notice-in-2 {
+  width: 340px;
+  height: 590px;
+  border-left: 1.5px solid #333333;
+  border-bottom: 1.5px solid #333333;
+  position: absolute;
+  /* z-index: 1; */
+  left: 20px;
+  top: 60px;
+  /* background-color: #3c62e5; */
+}
+
+.main-view__notice-left-corner-1 {
+  width: 30px;
+  height: 30px;
+  border-right: 1.5px solid #333333;
+  border-bottom: 1.5px solid #333333;
+  /* z-index: 4; */
+}
+
+.main-view__notice-left-corner-2 {
+  width: 30px;
+  height: 30px;
+  border-left: 1.5px solid #333333;
+  border-top: 1.5px solid #333333;
+  /* z-index: 4; */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.main-view__notice-right-corner-1 {
+  width: 30px;
+  height: 30px;
+  border-left: 1.5px solid #333333;
+  border-top: 1.5px solid #333333;
+  /* z-index: 4; */
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+.main-view__notice-right-corner-2 {
+  width: 30px;
+  height: 30px;
+  border-right: 1.5px solid #333333;
+  border-bottom: 1.5px solid #333333;
+  /* z-index: 4; */
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.main-view__notice-left-box {
+  width: 10px;
+  height: 10px;
+  background-color: #333333;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.main-view__notice-right-box {
+  width: 10px;
+  height: 10px;
+  background-color: #333333;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.main-view__notice-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 235px;
+  height: 250px;
+  margin: 0 auto;
+}
