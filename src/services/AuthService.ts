@@ -36,11 +36,12 @@ export default class AuthService {
     const isPasswordValid = await argon2.verify(userDTO.password, password);
 
     if (isPasswordValid) {
+      console.log(userDTO);
       const token = this.generateToken(userDTO);
 
-      const user = userDTO.toObject();
-      Reflect.deleteProperty(userDTO, "password");
-      Reflect.deleteProperty(userDTO, "salt");
+      const user = Object(userDTO);
+      Reflect.deleteProperty(user, "password");
+      Reflect.deleteProperty(user, "salt");
 
       return { user, token };
     } else {
@@ -53,10 +54,11 @@ export default class AuthService {
     const tokenExpiration = new Date(today);
     tokenExpiration.setDate(today.getDate() + 60);
 
-    console.log(config.jwtSecret);
+    console.log(`Sign JWT for username ${user.username}`);
+
     return jwt.sign(
       {
-        _id: user.id,
+        _id: user.username,
         username: user.username,
         exp: tokenExpiration.getTime() / 1000,
       },
