@@ -31,7 +31,11 @@ export default (app: Router) => {
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const authServiceInstance = new AuthService();
-        await authServiceInstance.SignIn(req.body.username, req.body.password);
+        const { user, token } = await authServiceInstance.SignIn(
+          req.body.username,
+          req.body.password
+        );
+        return res.json({ user, token }).status(200);
       } catch (e) {
         console.log(e);
         next(e);
