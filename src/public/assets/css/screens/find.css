@@ -1,0 +1,114 @@
+.find {
+  margin: 30px;
+  position: relative;
+}
+
+.find__menu {
+  display: flex;
+  position: relative;
+}
+
+.find__menu li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 85px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 15px 15px 0px 0px;
+  border-bottom: 1px solid #c6c6c6;
+}
+
+.find__menu .active {
+  background-color: white;
+  border: 1px solid #c6c6c6;
+  border-bottom: none;
+  color: #3c62e5;
+}
+
+.find__password {
+  padding: 126px 0px;
+  background-color: white;
+  border-radius: 0px 0px 15px 15px;
+  border: 1px solid #c6c6c6;
+  border-top: none;
+}
+
+.find__password > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.find__password > h1 {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 23px;
+}
+
+.find__password hr {
+  width: 62.5%;
+  margin: 0px;
+}
+
+.find__password-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* height: 198px; */
+  padding: 50px 393px 50px 423px;
+}
+
+.find__password-form h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+.find__password-form p {
+  white-space: nowrap;
+  font-size: 18px;
+}
+
+.find__password-form input {
+  padding-left: 18px;
+  width: 360px;
+  height: 46px;
+  margin-top: 30px;
+  border-style: none;
+  font-size: 20px;
+  vertical-align: middle;
+  border: 1px solid #c6c6c6;
+}
+
+.find__password-form input::placeholder {
+  font-size: 18px;
+}
+
+.find__password-form button {
+  padding: 16px 60px;
+  background-color: #3c62e5;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  border-style: none;
+  margin-top: 30px;
+}
+
+.find__success {
+  padding: 30px 0px;
+  background-color: #ffffff;
+  border: 1px solid #c6c6c6;
+  border-top: none;
+}
+
+.new {
+  padding: 104px 0px;
+}
