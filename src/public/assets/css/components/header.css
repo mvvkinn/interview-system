@@ -8,6 +8,9 @@ header {
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #c6c6c6;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
 }
 
 .header__column {
@@ -43,6 +46,7 @@ header {
 .header__menu {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: #333333;
   font-size: 16px;
   /* width: 412px; */
