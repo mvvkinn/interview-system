@@ -56,3 +56,13 @@ header {
   text-align: center;
   margin-left: 18px;
 }
+
+.header__menu-logout button {
+  width: 120px;
+  height: 35px;
+  background-color: #ff776d;
+  color: #ffffff;
+  font-size: 16px;
+  border-style: none;
+  cursor: pointer;
+}

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
 
-@import "reset.css";
-@import "variable.css";
+@import "reset.css"; /*@import "/src/public/assets/css/reset.css";*/
+@import "variable.css"; /*@import "/src/public/assets/css/variable.css";*/
 
 /* components */
 @import "components/header.css";
@@ -11,7 +11,10 @@
 
 /* screens */
 @import "screens/find.css";
-
+@import "screens/adm.css";
+@import "screens/mysuccess.css";
+@import "screens/notice.css";
+@import "screens/notice_adm.css";
 body {
   background-color: #f3f3f3;
   width: 100%;
