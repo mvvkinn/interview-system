@@ -185,7 +185,9 @@
   display: flex;
   width: 100%;
   font-size: 18px;
-  color: white;
+  /* color: white; */
+  /* color: #333333; */
+  border: 1px solid #333333;
 }
 
 .component__table-column {
@@ -198,18 +200,42 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #333333;
+  background-color: #c6c6c6;
   width: 100%;
   height: 50px;
+
+  /* border: 1px solid #c6c6c6; */
 }
 
 .component__content-column:nth-child(5) .component__table:nth-child(2) {
-  opacity: 0.3;
+  /* opacity: 0.3; */
 }
 
 .component__table-column input {
   width: 100%;
   height: 50px;
+  border: none;
+  border-top: 1px solid #333333;
+  border-right: 1px solid #333333;
+  text-align: center;
+}
+
+.component__content-column:nth-child(3) input:nth-child(3) {
+  /* border: none; */
+  border-top: 1px solid #333333;
+  /* border-bottom: 1px solid #333333; */
+}
+
+.component__content-column:nth-child(3)
+  .component__table-column:last-child
+  input,
+.component__content-column:nth-child(4)
+  .component__table-column:last-child
+  input,
+.component__content-column:nth-child(5)
+  .component__table-column:last-child
+  input {
+  border-right: none;
 }
 
 .component__content-column:nth-child(3)
@@ -236,51 +262,36 @@
   width: 18.24%;
 }
 
+.component__content-column:nth-child(3) .component__table:nth-child(2) label,
+.component__content-column:nth-child(4) .component__table:nth-child(2) label,
+.component__content-column:nth-child(5) .component__table:nth-child(2) label {
+  border-right: 1px solid #333333;
+}
+
 .component__content-column:nth-child(3)
   .component__table:nth-child(2)
-  .component__table-column:nth-child(2)
-  label {
-  border-left: 1px solid white;
-  border-right: 1px solid white;
-}
-
+  .component__table-column:last-child
+  label,
 .component__content-column:nth-child(4)
   .component__table:nth-child(2)
-  .component__table-column:nth-child(2)
+  .component__table-column:last-child
   label,
 .component__content-column:nth-child(5)
   .component__table:nth-child(2)
-  .component__table-column:nth-child(2)
+  .component__table-column:last-child
   label {
-  border-left: 1px solid white;
-}
-
-.component__content-column:nth-child(4)
-  .component__table:nth-child(2)
-  .component__table-column:nth-child(3)
-  label,
-.component__content-column:nth-child(5)
-  .component__table:nth-child(2)
-  .component__table-column:nth-child(3)
-  label {
-  border-left: 1px solid white;
-  border-right: 1px solid white;
+  border-right: none;
 }
 
 .component__content-column:nth-child(3)
   .component__table-column
-  input::placeholder {
-  text-align: center;
-  color: #c6c6c6;
-}
-
+  input::placeholder,
 .component__content-column:nth-child(4)
   .component__table-column
   input::placeholder,
 .component__content-column:nth-child(5)
   .component__table-column
   input::placeholder {
-  text-align: center;
   color: #c6c6c6;
 }
 
@@ -288,7 +299,10 @@
   display: block;
   width: 100%;
   font-size: 18px;
-  color: white;
+  color: #333333;
+  border: 1px solid #333333;
+  border-right: none;
+  /* border-top: none; */
 }
 
 .component__content-column:nth-child(2) .component__table-column {
@@ -301,19 +315,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #333333;
+  background-color: #c6c6c6;
   width: 12.63%;
   height: 50px;
 }
 
 .component__content-column:nth-child(2) .component__table-column input {
   width: 37.37%;
+  border: none;
+  border: 1px solid #333333;
+  border-bottom: none;
+  padding-left: 10px;
+  text-align: left;
+}
+
+.component__content-column:nth-child(2)
+  .component__table-column:first-child
+  input {
+  border-top: none;
 }
 
 .component__content-column:nth-child(2)
   .component__table-column
   input::placeholder {
-  padding-left: 0.5vw;
   color: #c6c6c6;
 }
 
@@ -321,7 +345,7 @@
   .component__table:nth-child(2)
   .component__table-column:nth-child(n + 2)
   label {
-  border-top: 1px solid white;
+  border-top: 1px solid #333333;
 }
 
 .component__content-column:nth-child(2)
@@ -378,7 +402,8 @@
   /* flex-direction: column; */
   /* justify-content: center; */
   /* align-items: center; */
-  width: 16.68%;
+  width: 200px;
+  height: 300px;
   margin: 0 auto;
 }
 
@@ -390,7 +415,7 @@
   text-align: center;
   border: 1px solid #8e8e8e;
   width: 100%;
-  height: 30.8vh;
+  height: 100%;
 }
 
 .component__form-div img {
@@ -446,7 +471,6 @@
 }
 
 .component__list-column:hover {
-  border-style: none;
   background-color: #8e8e8e;
   color: white;
 }
