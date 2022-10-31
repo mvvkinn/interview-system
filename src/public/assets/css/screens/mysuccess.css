@@ -1,58 +1,69 @@
-.container {
+.success_container {
   margin: 30px;
   display: flex;
-  justify-content: space-between;
-}
-.component-column--nav {
-  height: 100%;
-  display: flex;
-  justify-content: center;
+
+  /* justify-content: space-between; */
 }
 
-.component-column--nav ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  font-size: 16px;
-  margin-top: 16px;
-  height: 350px;
+.success_navbar {
+  padding-top: 38px;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid #c6c6c6;
+  width: 8.14%;
+
+  margin-right: 30px;
+}
+
+.success_nav__menu {
+  position: relative;
+  height: 100%;
+}
+
+.success_nav__menu ul {
   position: sticky;
   top: 100px;
 }
 
-.component-column--nav li {
+.success_nav__menu li {
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 8.22vh;
+}
+
+.success_nav__menu img {
+  margin: 0 auto 0;
+  width: 40.5%;
+  height: 40.5%;
+}
+.success_nav__menu p {
+  padding-top: 7px;
 }
 
 .component-column--img-blue {
   display: none;
 }
 
-.component-column--nav li:hover {
+.success_nav__menu li:nth-child(2) p {
   color: #3c62e5;
 }
 
-.component-column--nav li:hover > .component-column--img-blue {
+.success_nav__menu li:hover {
+  color: #3c62e5;
+}
+
+.success_nav__menu li:hover > .component-column--img-blue {
   display: block;
 }
 
-.component-column--nav li:hover > .component-column--img-black {
+.success_nav__menu li:hover > .component-column--img-black {
   display: none;
 }
 
-.component-column li {
-  display: flex;
-  flex-direction: column;
-}
-
-.component-column--nav img {
-  width: 75%;
-  height: 68.2%;
-}
+/* my_success_1.html */
 
 .success {
   position: relative;
@@ -98,12 +109,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #8e8e8e;
 }
 
 .success__search-select-interview-group-1 span:nth-child(1) {
   font-size: 20px;
   font-weight: 700;
   color: #333333;
+  margin: 10px;
 }
 .success__search-select-interview-group-1 span:nth-child(2) {
   font-size: 18px;
@@ -112,8 +125,16 @@
 }
 
 .success__search-select-interview button:hover {
-  background-color: #8e8e8e;
+  background-color: #aaaaaa;
+}
+
+.success__search-select-interview button:hover span {
   color: white;
+}
+
+.success__search-select-interview button:hover span:nth-child(2) {
+  color: #d83529;
+  /* font-weight: 700; */
 }
 
 .interview {
