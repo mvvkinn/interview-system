@@ -1,19 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
 
-@import "../css/reset.css";
-@import "../css/variable.css";
+@import "reset.css";
+@import "variable.css";
 
 /* components */
-@import "../css/components/header.css";
-@import "../css/components/footer.css";
-@import "../css/components/authentication.css";
-/* @import "../css/components/component_my_resume.css";
-@import "../css/components/adm.css"; */
+@import "components/header.css";
+@import "components/footer.css";
+@import "components/authentication.css";
+/* @import "components/component_my_resume.css";
+@import "components/adm.css"; */
 
 /* screens */
-@import "../css/screens/main.css";
+@import "screens/main.css";
 
-body {
+/* body {
   background-color: #f3f3f3;
   width: 100%;
-}
+} */
