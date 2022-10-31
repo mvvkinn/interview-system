@@ -517,6 +517,10 @@
   border-bottom: 1px solid #333333;
 }
 
+.component__content-info + img {
+  width: 100%;
+}
+
 .component__content-info hr {
   width: 0px;
   height: 30px;
