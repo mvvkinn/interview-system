@@ -38,19 +38,53 @@
     </header>
 
     <main>
-      <div class="container">
-        <nav class="navbar">
-          <ul class="nav__menu">
-            <img src="/src/public/assets/images/icons/menuIcon_user.png" />
-            <li class="nav__menu-adm">마이페이지</li>
-            <img
-              src="/src/public/assets/images/icons/menuIcon_search_hover.png"
-            />
-            <li class="nav__menu-sucSearch">합격자 조회</li>
-            <img src="/src/public/assets/images/icons/menuIcon_notice.png" />
-            <li class="nav__menu-itvNotice">면접 공지</li>
-          </ul>
+      <div class="success_container">
+        <div class="success_navbar">
+          <div class="success_nav__menu">
+            <ul>
+              <li>
+                <img
+                  src="/src/public/assets/images/icons/menuIcon_user.png"
+                  alt=""
+                  class="component-column--img-black"
+                />
+                <img
+                  src="/src/public/assets/images/icons/menuIcon_user_hover.png"
+                  alt=""
+                  class="component-column--img-blue"
+                />
+                <p>마이페이지</p>
+              </li>
+              <li>
+                <img
+                  src="/src/public/assets/images/icons/menuIcon_search_hover.png"
+                  alt=""
+                  class="component-column--img-black"
+                />
+                <img
+                  src="/src/public/assets/images/icons/menuIcon_search_hover.png"
+                  alt=""
+                  class="component-column--img-blue"
+                />
+                <p>합격자 조회</p>
+              </li>
+              <li>
+                <img
+                  src="/src/public/assets/images/icons/menuIcon_notice.png"
+                  alt=""
+                  class="component-column--img-black"
+                />
+                <img
+                  src="/src/public/assets/images/icons/menuIcon_notice_hover.png"
+                  alt=""
+                  class="component-column--img-blue"
+                />
+                <p>면접 공지</p>
+              </li>
+            </ul>
+          </div>
         </nav>
+        </div>
         <section class="interview">
           <article class="interview__result">
             <div class="interview__result-title">
@@ -59,32 +93,31 @@
             <hr />
             <div class="interview__result-content">
               <p>면접 조회 결과입니다.</p>
-              <table class="interview__result-content-table">
-                <thead>
-                  <tr class="tb-th-ei">
-                    <th class="tb-th-001">기간</th>
-                    <th class="tb-th-002">학교명</th>
-                    <th class="tb-th-003">전공</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="tb-td-001">08/03/01 - 15/02/01</td>
-                    <td class="tb-td-002"><a href="#!">명지초등학교</a></td>
-                    <td class="tb-td-003">-</td>
-                  </tr>
-                  <tr>
-                    <td class="tb-td-001">15/03/01 - 18/02/01</td>
-                    <td class="tb-td-002"><a href="#!">명지중학교</a></td>
-                    <td class="tb-td-003">-</td>
-                  </tr>
-                  <tr>
-                    <td class="tb-td-001">18/03/01 - 21/02/01</td>
-                    <td class="tb-td-002"><a href="#!">명지고등학교</a></td>
-                    <td class="tb-td-003">-</td>
-                  </tr>
-                </tbody>
-              </table>
+            </div>
+            <table class="interview__result-table">
+              <thead>
+                <tr class="interview__result-table_tb-th-ei">
+                  <th class="interview__result-table_tb-th-001">지원 면접</th>
+                  <th class="interview__result-table_tb-th-002">면접 결과</th>
+                  <th class="interview__result-table_tb-th-003">지원일</th>
+                  <th class="interview__result-table_tb-th-004">이름</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="interview__result-table_tb-td-ei">
+                  <td class="interview__result-table_tb-td-001">
+                    2022 명지전문대 입시 면접
+                  </td>
+                  <td class="interview__result-table_tb-td-002">합격</td>
+                  <td class="interview__result-table_tb-td-003">
+                    2022 / 01 / 01
+                  </td>
+                  <td class="interview__result-table_tb-td-004">김명지</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="interview__result-button">
+              <button>뒤로가기</button>
             </div>
             <hr />
           </article>
