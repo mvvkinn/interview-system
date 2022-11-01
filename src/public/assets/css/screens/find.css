@@ -239,8 +239,8 @@
 
 .input_email {
   margin: 0 30px 0 0;
-  width: 250px;
-  height: 35px;
+  width: 360px;
+  height: 46px;
 }
 
 .input_info {
@@ -258,24 +258,31 @@
 
 .input_value_btn {
   font-size: 14px;
-  text-align: center;
   font-family: "noto sans kr";
-  width: 120px;
-  height: 35px;
+  width: 184px;
+  height: 46px;
   line-height: 35px;
   background-color: #333333;
   color: white;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .input_prove_number {
-  width: 400px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   font-size: 18px;
+  margin-right: 30px;
   color: #333333;
   text-align: center;
   font-weight: 300;
   font-family: "noto sans kr";
+}
+
+.input_prove_number:last-child {
+  margin: 0;
 }
 
 .input_prove_number::-webkit-input-placeholder {
@@ -335,8 +342,8 @@
   width: 80%;
   height: 40px;
   display: flex;
-  border-left: white 1px solid;
-  border-right: white 1px solid;
+  border-left: #c6c6c6 1px solid;
+  border-right: #c6c6c6 1px solid;
   border-bottom: black 1.5px solid;
   justify-content: center;
   line-height: 40px;
@@ -345,7 +352,7 @@
 #table_top {
   background-color: #8e8e8e;
   border-top: black 1.5px solid;
-  border-bottom: #8e8e8e 1px solid;
+  border-bottom: #c6c6c6 1px solid;
   color: white;
   font-weight: 700;
   margin: 20px 0 0 0;
@@ -355,14 +362,14 @@
   text-align: center;
   font-size: 16px;
   font-family: "noto sans kr";
-  border-right: white 1px solid;
+  border-right: #c6c6c6 1px solid;
 }
 
 .table_value {
   text-align: center;
   font-size: 16px;
   font-family: "noto sans kr";
-  border-right: #8e8e8e 1px solid;
+  border-right: #c6c6c6 1px solid;
 }
 
 #table_num {
