@@ -62,7 +62,7 @@
   align-items: center;
   justify-content: space-between;
   /* height: 198px; */
-  padding: 50px 393px 50px 423px;
+  padding: 50px 0;
 }
 
 .find__password-form h1 {
