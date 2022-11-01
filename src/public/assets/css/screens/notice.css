@@ -59,6 +59,18 @@
   display: none;
 }
 
+.notice_nav__menu li.active {
+  color: #3c62e5;
+}
+
+.notice_nav__menu li.active > .component-column--img-blue {
+  display: block;
+}
+
+.notice_nav__menu li.active > .component-column--img-black {
+  display: none;
+}
+
 /* notice_1.html */
 .notice {
   position: relative;

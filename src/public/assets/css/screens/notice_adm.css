@@ -47,15 +47,27 @@
   display: none;
 }
 
-.notice__admnav__menu li:hover {
+.notice_adm_nav__menu li:hover {
   color: #3c62e5;
 }
 
-.notice_nav_adm__menu li:hover > .component-column--img-blue {
+.notice_adm_nav__menu li:hover > .component-column--img-blue {
   display: block;
 }
 
-.notice_nav_adm__menu li:hover > .component-column--img-black {
+.notice_adm_nav__menu li:hover > .component-column--img-black {
+  display: none;
+}
+
+.notice_adm_nav__menu li.active {
+  color: #3c62e5;
+}
+
+.notice_adm_nav__menu li.active > .component-column--img-blue {
+  display: block;
+}
+
+.notice_adm_nav__menu li.active > .component-column--img-black {
   display: none;
 }
 
