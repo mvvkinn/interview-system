@@ -89,68 +89,76 @@
         <section class="adm">
             <nav>
               <ul class="adm__menu">
-                <li class="adm__menu-rsm active"><a href="/src/views/adm_rsm/adm_rsm_1.html">지원자 및 이력서 조회</a></li>
+                <li class="adm__menu-rsm"><a href="/src/views/adm_rsm/adm_rsm_1.html">지원자 및 이력서 조회</a></li>
                 <li class="adm__menu-id"><a href="/src/views/adm_id/adm_id_1.html">면접 내용 조회</a></li>
-                <li class="adm__menu-ci"><a href="/src/views/adm_ci/adm_ci_1.html">면접 진행</a></li>
+                <li class="adm__menu-ci active"><a href="/src/views/adm_ci/adm_ci_1.html">면접 진행</a></li>
                 <li class="adm__menu-empty"></li>
                 <li class="adm__menu-empty"></li>
                 <li class="adm__menu-empty"></li>
               </ul>
             </nav>
-            <article class="adm__rsm-list">
-              <div class="adm__rsm-list-div">
-                <h1>지원자 및 이력서 목록 - 2022년도 하반기 OOOOO 프론트엔드 개발자 모집</h1>
-                <div class="adm__rsm-list--hr">
-                  <div class="adm__rsm-list-info">
-                    <div class="adm__rsm-list-info--div-1">
-                      <p>번호</p>
+            <article class="adm__rsm-itv">
+              <div class="adm__rsm-itv-div">
+                <h1>면접 진행 - 2022년도 하반기 OOOOO 프론트엔드 개발자 모집</h1>
+                <div class="adm__rsm-itv--hr">
+                    <div class="adm__rsm-itv-info">
+                        <div class="adm__rsm-itv-info--div-1">
+                            <p>번호</p>
+                        </div>
+                        <hr>
+                        <div class="adm__rsm-itv-info--div-2">
+                            <p>이력서 제목</p>
+                        </div>
+                        <hr>
+                        <div class="adm__rsm-itv-info--div-3">
+                            <p>지원자</p>
+                        </div>
+                        <hr>
+                        <div class="adm__rsm-itv-info--div-4">
+                            <p>면접 가능 여부</p>
+                        </div>
+                        <hr>
+                        <div class="adm__rsm-itv-info--div-5">
+                            <p>면접 진행</p>
+                        </div>
                     </div>
-                    <hr>
-                    <div class="adm__rsm-list-info--div-2">
-                      <p>이력서 제목</p>
-                    </div>
-                    <hr>
-                    <div class="adm__rsm-list-info--div-3">
-                      <p>지원자</p>
-                    </div>
-                  </div>
                 </div>
               </div>
-             <div class="adm__rsm-tb">
+              <div class="adm__rsm-tb">
                 <table>
                     <tbody>
                       <tr class>
-                        <td class="tb-td-1">1</td><td class="tb-td-2"><a href="#!">이력서 제목</a></td><td class="tb-td-3">김명지</td>
+                        <td class="tb-td-01">1</td><td class="tb-td-02"><a href="#!">이력서 제목</a></td><td class="tb-td-03">김명지</td><td class="tb-td-04" id="possible">가능</td><td class="tb-td-05"><button class="active">면접 시작</button></td>
                       </tr>
                       <tr>
-                        <td class="tb-td-1">2</td><td class="tb-td-2"><a href="/src/views/adm_rsm/adm_rsm_3.html">안녕하십니까 프론트엔드 지원지 김명지 입니다!</a></td><td class="tb-td-3">김명지</td>
+                        <td class="tb-td-01">2</td><td class="tb-td-02"><a href="#!">안녕하십니까 프론트엔드 지원지 김명지 입니다!</a></td><td class="tb-td-03">김명지</td><td class="tb-td-04" id="possible">가능</td><td class="tb-td-05"><button class="active" onclick="location.href='/src/views/adm_ci/adm_ci_3.html';">면접 시작</button></td>
                       </tr>
                       <tr>
-                        <td class="tb-td-1">3</td><td class="tb-td-2"><a href="#!">이력서 제목</a></td><td class="tb-td-3">김명지</td>
+                        <td class="tb-td-01">3</td><td class="tb-td-02"><a href="#!">이력서 제목</a></td><td class="tb-td-03">김명지</td><td class="tb-td-04" id="impossible">불가능</td><td class="tb-td-05"><button class="deactive">면접 시작</button></td>
                       </tr>
                       <tr>
-                        <td class="tb-td-1">4</td><td class="tb-td-2"><a href="#!">이력서 제목</a></td><td class="tb-td-3">김명지</td>
+                        <td class="tb-td-01">4</td><td class="tb-td-02"><a href="#!">이력서 제목</a></td><td class="tb-td-03">김명지</td><td class="tb-td-04" id="impossible">불가능</td><td class="tb-td-05"><button class="deactive">면접 시작</button></td>
                       </tr>
                       <tr>
-                        <td class="tb-td-1">5</td><td class="tb-td-2"><a href="#!">이력서 제목</a></td><td class="tb-td-3">김명지</td>
+                        <td class="tb-td-01">5</td><td class="tb-td-02"><a href="#!">이력서 제목</a></td><td class="tb-td-03">김명지</td><td class="tb-td-04" id="impossible">불가능</td><td class="tb-td-05"><button class="deactive">면접 시작</button></td>
                       </tr>
                       <tr>
-                        <td class="tb-td-1">6</td><td class="tb-td-2"><a href="#!">이력서 제목</a></td><td class="tb-td-3">김명지</td>
+                        <td class="tb-td-01">6</td><td class="tb-td-02"><a href="#!">이력서 제목</a></td><td class="tb-td-03">김명지</td><td class="tb-td-04" id="impossible">불가능</td><td class="tb-td-05"><button class="deactive">면접 시작</button></td>
                       </tr>
                       <tr>
-                        <td class="tb-td-1">7</td><td class="tb-td-2"><a href="#!">이력서 제목</a></td><td class="tb-td-3">김명지</td>
+                        <td class="tb-td-01">7</td><td class="tb-td-02"><a href="#!">이력서 제목</a></td><td class="tb-td-03">김명지</td><td class="tb-td-04" id="impossible">불가능</td><td class="tb-td-05"><button class="deactive">면접 시작</button></td>
                       </tr>
                       <tr>
-                        <td class="tb-td-1">8</td><td class="tb-td-2"><a href="#!">이력서 제목</a></td><td class="tb-td-3">김명지</td>
+                        <td class="tb-td-01">8</td><td class="tb-td-02"><a href="#!">이력서 제목</a></td><td class="tb-td-03">김명지</td><td class="tb-td-04" id="impossible">불가능</td><td class="tb-td-05"><button class="deactive">면접 시작</button></td>
                       </tr>
                       <tr>
-                        <td class="tb-td-1">9</td><td class="tb-td-2"><a href="#!">이력서 제목</a></td><td class="tb-td-3">김명지</td>
+                        <td class="tb-td-01">9</td><td class="tb-td-02"><a href="#!">이력서 제목</a></td><td class="tb-td-03">김명지</td><td class="tb-td-04" id="impossible">불가능</td><td class="tb-td-05"><button class="deactive">면접 시작</button></td>
                       </tr>
                       <tr>
-                        <td class="tb-td-1">10</td><td class="tb-td-2"><a href="#!">이력서 제목</a></td><td class="tb-td-3">김명지</td>
+                        <td class="tb-td-01">10</td><td class="tb-td-02"><a href="#!">이력서 제목</a></td><td class="tb-td-03">김명지</td><td class="tb-td-04" id="impossible">불가능</td><td class="tb-td-05"><button class="deactive">면접 시작</button></td>
                       </tr>
                       <tr>
-                        <td class="tb-td-1">11</td><td class="tb-td-2"><a href="#!">이력서 제목</a></td><td class="tb-td-3">김명지</td>
+                        <td class="tb-td-01">11</td><td class="tb-td-02"><a href="#!">이력서 제목</a></td><td class="tb-td-03">김명지</td><td class="tb-td-04" id="impossible">불가능</td><td class="tb-td-05"><button class="deactive">면접 시작</button></td>
                       </tr>
                     </tbody>
                   </table>
@@ -161,10 +169,10 @@
                     <a href="#">3</a>
                     <a href="#">&raquo;</a>
                   </div>
-                  <button onclick="location.href='/src/views/adm_rsm/adm_rsm_1.html';">뒤로가기</button>
+                  <button onclick="location.href='/src/views/adm_ci/adm_ci_1.html';">뒤로가기</button>
               </div>
             </article>
-          </section>
+            </section>
     </div>
       
     </main>
