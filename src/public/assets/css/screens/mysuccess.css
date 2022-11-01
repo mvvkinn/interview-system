@@ -63,6 +63,18 @@
   display: none;
 }
 
+.success_nav__menu li.active {
+  color: #3c62e5;
+}
+
+.success_nav__menu li.active > .component-column--img-blue {
+  display: block;
+}
+
+.success_nav__menu li.active > .component-column--img-black {
+  display: none;
+}
+
 /* my_success_1.html */
 
 .success {

@@ -44,11 +44,12 @@ header {
 }
 
 .header__menu {
+  font-family: "noto sans kr";
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #333333;
-  font-size: 16px;
+  font-size: 14px;
   /* width: 412px; */
 }
 

@@ -19,7 +19,7 @@
       </div>
       <div class="header__column">
         <div class="header__title">
-          <h1>아이디(학번)ㆍ비밀번호 찾기</h1>
+          <h1>아이디(학번) ㆍ 비밀번호 찾기</h1>
         </div>
       </div>
 
@@ -39,24 +39,30 @@
     </header>
 
     <main>
-      <section class="find">
+      <div class="find">
         <nav>
           <ul class="find__menu">
-            <li class="find__menu-id">아이디(학번) 찾기</li>
-            <li class="find__menu-ps active">비밀번호 찾기</li>
+            <li class="find__menu-id active">아이디(학번) 찾기</li>
+            <li class="find__menu-ps">비밀번호 찾기</li>
           </ul>
         </nav>
-        <article class="find__password find__success">
-          <div>
-            <div class="find__password-form">
-              <img src="/src/public/assets/images/logo1.png" alt="" />
-              <h1>비밀번호변경 완료</h1>
-              <p>비밀번호 변경이 완료되었습니다.</p>
-              <button>홈으로</button>
+        <section class="find_id">
+          <article class="find_id_title">
+            <div class="find_id_title-select">
+              <h1>휴대폰 인증</h1>
             </div>
-          </div>
-        </article>
-      </section>
+            <hr />
+            <div class="button_area">
+              <div class="prove_phone_button" id="phone_button" onmouseover="PhoneHover();" onmouseout="PhoneOut();">
+                <img src="/src/public/assets/images/icons/icon_phone.png" id="icon_phone"/>
+                <h2 class="btn_title">휴대폰 인증</h2>
+                <h2 class="btn_text">휴대폰 번호 입력 후<br />인증번호를 입력하세요.</p>
+              </div>
+            </div>
+            <hr />
+          </article>
+        </section>
+      </div>
     </main>
     <footer>
       <div class="footer">
@@ -68,4 +74,12 @@
       </div>
     </footer>
   </body>
+  <script>
+    function PhoneHover() {
+      document.getElementById("icon_phone").src="/src/public/assets/images/icons/icon_phone_hover.png";
+    }
+    function PhoneOut() {
+      document.getElementById("icon_phone").src="/src/public/assets/images/icons/icon_phone.png";
+    }
+  </script>
 </html>

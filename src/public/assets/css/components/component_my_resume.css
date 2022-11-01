@@ -90,6 +90,18 @@
   display: none;
 }
 
+.component-column--nav li.active {
+  color: #3c62e5;
+}
+
+.component-column--nav li.active > .component-column--img-blue {
+  display: block;
+}
+
+.component-column--nav li.active > .component-column--img-black {
+  display: none;
+}
+
 .component-column li {
   display: flex;
   flex-direction: column;

@@ -2,7 +2,7 @@
   display: flex;
   /* padding: 56px 16px; */
   /* flex-direction: row; */
-  /* justify-content: center; */
+  justify-content: center;
 }
 
 .authentication__form {

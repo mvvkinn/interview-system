@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/src/public/assets/css/style.css" />
+    <title>interview</title>
+  </head>
+  <body>
+    <header>
+      <div class="header__column">
+        <div class="header__logo">
+          <div class="header__logo--image">
+            <img src="/src/public/assets/images/logo4.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="header__column">
+        <div class="header__title">
+          <h1>아이디(학번) ㆍ 비밀번호 찾기</h1>
+        </div>
+      </div>
+
+      <div class="header__column">
+        <nav>
+          <ul class="header__menu">
+            <li>마이페이지</li>
+            <li>|</li>
+            <li>합격자조회</li>
+            <li>|</li>
+            <li>면접공지</li>
+            <li>|</li>
+            <li>로그인</li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="find">
+        <nav>
+          <ul class="find__menu">
+            <li class="find__menu-id active">아이디(학번) 찾기</li>
+            <li class="find__menu-ps">비밀번호 찾기</li>
+          </ul>
+        </nav>
+        <section class="find_id">
+          <article class="find_id_title">
+            <div class="find_id_title-select">
+              <h1>인증방식 선택</h1>
+            </div>
+            <hr />
+            <div class="button_area">
+              <div class="select_button" id="email_button"
+              onmouseover="EmailHover();"
+              onmouseout="EmailOut();"
+              onclick="location.href='find_id_2.html'">
+                <img src="/src/public/assets/images/icons/icon_email.png" id="icon_email"/>
+                <h2 class="btn_title">이메일 인증</h2>
+                <h2 class="btn_text">가입한 이메일로<br />본인인증을 진행합니다.</p>
+              </div>
+              <div class="vertical_line"></div>
+              <div class="select_button" id="phone_button"
+              onmouseover="PhoneHover();"
+              onmouseout="PhoneOut();"
+              onclick="location.href='find_id_3.html'">
+                <img src="/src/public/assets/images/icons/icon_phone.png" id="icon_phone"/>
+                <h2 class="btn_title">휴대폰 인증</h2>
+                <h2 class="btn_text">휴대폰 번호로<br />본인인증을 진행합니다.</p>
+              </div>
+              <div class="vertical_line"></div>
+              <div class="select_button" id="info_button"
+              onmouseover="InfoHover();"
+              onmouseout="InfoOut();"
+              onclick="location.href='find_id_4.html'">
+                <img src="/src/public/assets/images/icons/icon_info.png" id="icon_info"/>
+                <h2 class="btn_title">등록정보 인증</h2>
+                <h2 class="btn_text">이름과 생년월일로<br />본인인증을 진행합니다.</p>
+              </div>
+            </div>
+            <hr />
+          </article>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <div class="footer">
+        <p>
+          우)03656 서울특별시 서대문구 가좌로 134(서울특별시 서대문구 홍은 2동
+          356-1) 대표전화 (02)300-1000,1114 FAX (02)304-4832 <br />COPYRIGHT
+          2022 MYONGJI COLLEGE ALL RIGHTS RESERVED.
+        </p>
+      </div>
+    </footer>
+  </body>
+  <script>
+    function EmailHover() {
+      document.getElementById("icon_email").src="/src/public/assets/images/icons/icon_email_hover.png";
+    }
+    function EmailOut() {
+      document.getElementById("icon_email").src="/src/public/assets/images/icons/icon_email.png";
+    }
+    
+    function PhoneHover() {
+      document.getElementById("icon_phone").src="/src/public/assets/images/icons/icon_phone_hover.png";
+    }
+    function PhoneOut() {
+      document.getElementById("icon_phone").src="/src/public/assets/images/icons/icon_phone.png";
+    }
+    
+    function InfoHover() {
+      document.getElementById("icon_info").src="/src/public/assets/images/icons/icon_info_hover.png";
+    }
+    function InfoOut() {
+      document.getElementById("icon_info").src="/src/public/assets/images/icons/icon_info.png";
+    }
+  </script>
+</html>
