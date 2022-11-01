@@ -12,9 +12,9 @@
     <header>
       <div class="header__column">
         <div class="header__logo">
-            <div class="header__logo--image">
-                <img src="/src/public/assets/images/logo4.png" alt="" />
-            </div>
+          <div class="header__logo--image">
+            <img src="/src/public/assets/images/logo4.png" alt="" />
+          </div>
         </div>
       </div>
       <div class="header__column">
@@ -28,9 +28,9 @@
           <ul class="header__menu">
             <li>안녕하세요, 관리자 김관리님.</li>
             <li>
-                <div class="header__menu-logout">
-                    <button>로그아웃</button>
-                </div>
+              <div class="header__menu-logout">
+                <button>로그아웃</button>
+              </div>
             </li>
           </ul>
         </nav>
@@ -42,12 +42,12 @@
         <div class="adm_navbar">
           <div class="adm_nav__menu">
             <ul>
-              <li>
-                <!-- <img
+              <li class="adm_nav__menu--li active">
+                <img
                   src="/src/public/assets/images/icons/menuIcon_user.png"
                   alt=""
                   class="component-column--img-black"
-                /> -->
+                />
                 <img
                   src="/src/public/assets/images/icons/menuIcon_user_hover.png"
                   alt=""
@@ -56,7 +56,7 @@
                 />
                 <p>관리자 페이지</p>
               </li>
-              <li class="adm_nav__menu-search">
+              <li class="adm_nav__menu--li">
                 <img
                   src="/src/public/assets/images/icons/menuIcon_search.png"
                   alt=""
@@ -69,7 +69,7 @@
                 />
                 <p>합격자 조회</p>
               </li>
-              <li class="adm_nav__menu-notice">
+              <li class="adm_nav__menu--li">
                 <img
                   src="/src/public/assets/images/icons/menuIcon_notice.png"
                   alt=""
@@ -84,42 +84,52 @@
               </li>
             </ul>
           </div>
-        </nav>
-      </div>
+        </div>
         <section class="adm">
-            <nav>
-              <ul class="adm__menu">
-                <li class="adm__menu-rsm active"><a href="/src/views/adm_rsm/adm_rsm_1.html">지원자 및 이력서 조회</a></li>
-                <li class="adm__menu-id"><a href="/src/views/adm_id/adm_id_1.html">면접 내용 조회</a></li>
-                <li class="adm__menu-ci"><a href="/src/views/adm_ci/adm_ci_1.html">면접 진행</a></li>
-                <li class="adm__menu-empty"></li>
-                <li class="adm__menu-empty"></li>
-                <li class="adm__menu-empty"></li>
-              </ul>
-            </nav>
-            <article class="adm__rsm">
-              <h1>면접 선택</h1>
-              <div>
-                <hr />
-                <div class="adm__rsm-form">
-                    <p>이력서를 조회할 면접을 선택하세요.</p>
-                    <select name="rsm" id="rsm-select">
-                        <option value="">면접을 선택하세요</option>
-                        <option value="a">a</option>
-                        <option value="b">b</option>
-                        <option value="c">c</option>
-                        <option value="d">d</option>
-                        <option value="e">e</option>
-                        <option value="f">f</option>
-                    </select>
-                    <button onclick="location.href='/src/views/adm_rsm/adm_rsm_2.html';">조회하기</button>
-                </div>
-                <hr />
+          <nav>
+            <ul class="adm__menu">
+              <li class="adm__menu-rsm active">
+                <a href="/src/views/adm_rsm/adm_rsm_1.html"
+                  >지원자 및 이력서 조회</a
+                >
+              </li>
+              <li class="adm__menu-id">
+                <a href="/src/views/adm_id/adm_id_1.html">면접 내용 조회</a>
+              </li>
+              <li class="adm__menu-ci">
+                <a href="/src/views/adm_ci/adm_ci_1.html">면접 진행</a>
+              </li>
+              <li class="adm__menu-empty"></li>
+              <li class="adm__menu-empty"></li>
+              <li class="adm__menu-empty"></li>
+            </ul>
+          </nav>
+          <article class="adm__rsm">
+            <h1>면접 선택</h1>
+            <div>
+              <hr />
+              <div class="adm__rsm-form">
+                <p>이력서를 조회할 면접을 선택하세요.</p>
+                <select name="rsm" id="rsm-select">
+                  <option value="">면접을 선택하세요</option>
+                  <option value="a">a</option>
+                  <option value="b">b</option>
+                  <option value="c">c</option>
+                  <option value="d">d</option>
+                  <option value="e">e</option>
+                  <option value="f">f</option>
+                </select>
+                <button
+                  onclick="location.href='/src/views/adm_rsm/adm_rsm_2.html';"
+                >
+                  조회하기
+                </button>
               </div>
-            </article>
-          </section>
-    </div>
-      
+              <hr />
+            </div>
+          </article>
+        </section>
+      </div>
     </main>
     <footer>
       <div class="footer">
