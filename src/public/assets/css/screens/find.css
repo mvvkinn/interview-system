@@ -28,7 +28,7 @@
 }
 
 .find__password {
-  padding: 126px 0px;
+  padding: 116px 0px;
   background-color: white;
   border-radius: 0px 0px 15px 15px;
   border: 1px solid #c6c6c6;
@@ -46,7 +46,7 @@
 
 .find__password hr {
   width: 62.5%;
-  margin: 0px;
+  /* margin: 0px; */
 }
 
 .find__password-form {
@@ -91,12 +91,15 @@
   margin-top: 30px;
 }
 
-.success {
+.find__success {
   padding: 30px 0px;
+  background-color: #ffffff;
+  border: 1px solid #c6c6c6;
+  border-top: none;
 }
 
 .new {
-  padding: 104px 0px;
+  padding: 90px 0px;
 }
 
 .select_area {
