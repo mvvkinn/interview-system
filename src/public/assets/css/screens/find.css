@@ -46,7 +46,7 @@
 
 .find__password hr {
   width: 62.5%;
-  margin: 0px;
+  /* margin: 0px; */
 }
 
 .find__password-form {
@@ -91,8 +91,11 @@
   margin-top: 30px;
 }
 
-.success {
+.find__password-success {
   padding: 30px 0px;
+  border: 1px solid #c6c6c6;
+  border-top: none;
+  border-radius: 0px 0px 15px 15px;
 }
 
 .new {
