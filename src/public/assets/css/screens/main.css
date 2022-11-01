@@ -109,14 +109,14 @@ body {
 
 .header {
   width: 100%;
-  margin: 84px 0 56px;
-  padding-left: 50px;
+  padding: 10px 0px 10px 50px;
   background-color: #ffffff;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   border-top: 1px solid #333333;
   border-bottom: 1px solid #333333;
+  margin-top: 10px;
 }
 
 .header .header__column {
@@ -127,8 +127,9 @@ body {
   width: calc(1420 / 1920 * 100%);
   height: 670px;
   background-color: white;
-  margin: auto;
+  margin: 50px auto;
   display: flex;
+  justify-content: space-evenly;
 }
 
 .main-view__column {
@@ -253,6 +254,18 @@ body {
   height: 100%;
   margin: 0 auto;
   position: absolute;
+}
+
+.main-view__column-content img {
+  margin-bottom: 24px;
+}
+
+.main-view__column-content-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
 }
 
 .main-view__column-content h1 {
