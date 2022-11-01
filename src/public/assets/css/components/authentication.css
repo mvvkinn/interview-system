@@ -13,6 +13,7 @@
   text-align: center;
   padding: 56px 16px;
   margin: 10px 0px;
+  border: 1px solid white;
 }
 
 .authentication__form--blue {

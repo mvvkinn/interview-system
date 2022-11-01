@@ -55,7 +55,7 @@
   align-items: center;
   justify-content: space-between;
   /* height: 198px; */
-  padding: 50px 393px 50px 423px;
+  padding: 50px 0;
 }
 
 .find__password-form h1 {
@@ -66,12 +66,14 @@
 }
 
 .find__password-form p {
-  white-space: nowrap;
+  /* white-space: nowrap; */
   font-size: 18px;
 }
 
 .find__password-form input {
-  padding: 19px 169px 10px 20px;
+  /* padding: 19px 169px 10px 20px; */
+  height: 46px;
+  width: 92.54%;
   margin-top: 30px;
   border-style: none;
   border: 1px solid #c6c6c6;
@@ -79,10 +81,13 @@
 
 .find__password-form input::placeholder {
   font-size: 18px;
+  padding-left: 10px;
 }
 
 .find__password-form button {
-  padding: 16px 60px;
+  /* padding: 16px 60px; */
+  height: 60px;
+  width: 64.27%;
   background-color: #3c62e5;
   color: white;
   font-size: 20px;

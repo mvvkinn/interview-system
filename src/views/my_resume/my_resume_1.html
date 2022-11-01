@@ -19,28 +19,25 @@
       </div>
       <div class="header__column">
         <div class="header__title">
-          <h1>합격자 조회</h1>
+          <h1>마이페이지</h1>
         </div>
       </div>
 
       <div class="header__column">
         <nav>
           <ul class="header__menu">
-            <li>안녕하세요, 김명지님</li>
-            <li>
-              <div class="header__menu-logout">
-                <button>로그아웃</button>
-              </div>
-            </li>
+            <li>안녕하세요,</li>
+            <li>김명지님.</li>
+            <li class="component__header-menu--button">로그아웃</li>
           </ul>
         </nav>
       </div>
     </header>
 
     <main>
-      <div class="success_container">
-        <div class="success_navbar">
-          <div class="success_nav__menu">
+      <section class="find component">
+        <div class="component-column">
+          <nav class="component-column--nav">
             <ul>
               <li>
                 <img
@@ -53,11 +50,11 @@
                   alt=""
                   class="component-column--img-blue"
                 />
-                <p>마이페이지</p>
+                마이페이지
               </li>
               <li>
                 <img
-                  src="/src/public/assets/images/icons/menuIcon_search_hover.png"
+                  src="/src/public/assets/images/icons/menuIcon_search.png"
                   alt=""
                   class="component-column--img-black"
                 />
@@ -66,7 +63,7 @@
                   alt=""
                   class="component-column--img-blue"
                 />
-                <p>합격자 조회</p>
+                합격자조회
               </li>
               <li>
                 <img
@@ -79,50 +76,41 @@
                   alt=""
                   class="component-column--img-blue"
                 />
-                <p>면접 공지</p>
+                면접 공지
               </li>
             </ul>
-          </div>
-        </nav>
+          </nav>
         </div>
-        <section class="interview">
-          <article class="interview__result">
-            <div class="interview__result-title">
-              <h1>면접 결과</h1>
+        <div class="component-column">
+          <nav>
+            <ul class="component__menu">
+              <li class="component__menu--li active">내 이력서</li>
+              <li class="component__menu--li">내 면접</li>
+              <li class="component__menu--li">개인정보 변경</li>
+              <li></li>
+            </ul>
+          </nav>
+          <article class="component__content">
+            <div class="component__content-div">
+              <h1>이력서 목록</h1>
+              <div class="component__content--hr">
+                <div class="component__form">
+                  <div class="component__form-div">
+                    <img
+                      src="/src/public/assets/images/icons/icon_resume.png"
+                      alt=""
+                    />
+                    <div>
+                      <h1>이력서 등록</h1>
+                      <p>면접 지원을 위한<br />이력서를 등록해보세요.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <hr />
-            <div class="interview__result-content">
-              <p>면접 조회 결과입니다.</p>
-            </div>
-            <table class="interview__result-table">
-              <thead>
-                <tr class="interview__result-table_tb-th-ei">
-                  <th class="interview__result-table_tb-th-001">지원 면접</th>
-                  <th class="interview__result-table_tb-th-002">면접 결과</th>
-                  <th class="interview__result-table_tb-th-003">지원일</th>
-                  <th class="interview__result-table_tb-th-004">이름</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="interview__result-table_tb-td-ei">
-                  <td class="interview__result-table_tb-td-001">
-                    2022 명지전문대 입시 면접
-                  </td>
-                  <td class="interview__result-table_tb-td-002">합격</td>
-                  <td class="interview__result-table_tb-td-003">
-                    2022 / 01 / 01
-                  </td>
-                  <td class="interview__result-table_tb-td-004">김명지</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="interview__result-button">
-              <button>뒤로가기</button>
-            </div>
-            <hr />
           </article>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
     <footer>
       <div class="footer">
