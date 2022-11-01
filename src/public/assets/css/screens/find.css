@@ -73,28 +73,27 @@
 }
 
 .find__password-form p {
-  /* white-space: nowrap; */
+  white-space: nowrap;
   font-size: 18px;
 }
 
 .find__password-form input {
-  /* padding: 19px 169px 10px 20px; */
+  padding-left: 18px;
+  width: 360px;
   height: 46px;
-  width: 92.54%;
   margin-top: 30px;
   border-style: none;
+  font-size: 20px;
+  vertical-align: middle;
   border: 1px solid #c6c6c6;
 }
 
 .find__password-form input::placeholder {
   font-size: 18px;
-  padding-left: 10px;
 }
 
 .find__password-form button {
-  /* padding: 16px 60px; */
-  height: 60px;
-  width: 64.27%;
+  padding: 16px 60px;
   background-color: #3c62e5;
   color: white;
   font-size: 20px;
@@ -103,8 +102,11 @@
   margin-top: 30px;
 }
 
-.success {
+.find__success {
   padding: 30px 0px;
+  background-color: #ffffff;
+  border: 1px solid #c6c6c6;
+  border-top: none;
 }
 
 .new {
