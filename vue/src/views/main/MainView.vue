@@ -5,12 +5,14 @@
       <section class="main-view">
         <div class="main-view__column">
           <div class="main-view__column-content">
-            <img
-              src="/src/public/assets/images/icons/icon_notice.png"
-              alt=""
-              width="125"
-              height="125"
-            />
+            <router-link to="/">
+              <img
+                src="@/assets/images/icons/icon_notice.png"
+                alt=""
+                width="125"
+                height="125"
+              />
+            </router-link>
             <div class="main-view__column-content-text">
               <h1>공지사항</h1>
               <h2>NOTICE</h2>
@@ -35,7 +37,7 @@
         <div class="main-view__column">
           <div class="main-view__column-content">
             <img
-              src="/src/public/assets/images/icons/icon_mypage.png"
+              src="@/assets/images/icons/icon_mypage.png"
               alt=""
               width="125"
               height="125"
@@ -64,7 +66,7 @@
         <div class="main-view__column">
           <div class="main-view__column-content">
             <img
-              src="/src/public/assets/images/icons/icon_lookup.png"
+              src="@/assets/images/icons/icon_lookup.png"
               alt=""
               width="125"
               height="125"
@@ -97,8 +99,8 @@
 </template>
 
 <script>
-import HeaderView from "@/components/HeaderView.vue";
-import FooterView from "@/components/FooterView.vue";
+import HeaderView from "@/components/main/HeaderView.vue";
+import FooterView from "@/components/main/FooterView.vue";
 export default {
   components: {
     HeaderView,
