@@ -4,4 +4,6 @@
   </div>
 </template>
 
-<style></style>
+<style>
+@import url("./assets/css/style.css");
+</style>
