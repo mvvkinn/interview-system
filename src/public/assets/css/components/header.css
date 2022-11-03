@@ -54,16 +54,18 @@ header {
 }
 
 .header__menu > li {
+  font-family: "noto sans kr";
   text-align: center;
   margin-left: 18px;
 }
 
 .header__menu-logout button {
+  font-family: "noto sans kr";
   width: 120px;
-  height: 35px;
+  height: 30px;
   background-color: #ff776d;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 14px;
   border-style: none;
   cursor: pointer;
 }
