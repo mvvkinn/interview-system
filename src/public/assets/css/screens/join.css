@@ -1,12 +1,13 @@
 p,
 h1 {
   font-family: "noto sans kr";
+  font-size: 14px;
 }
 
 input[type="checkbox"] {
   width: 15px;
   height: 15px;
-  margin: 2px 5px 0 0;
+  margin: 1px 5px 0 0;
 }
 
 .container-joinus {
@@ -78,7 +79,7 @@ input[type="checkbox"] {
   align-items: center;
   display: flex;
   width: 100%;
-  padding: 20px 0 20px 0;
+  padding: 20px 0 30px 0;
   justify-content: center;
 }
 
@@ -88,14 +89,17 @@ input[type="checkbox"] {
   text-align: center;
   width: 200px;
   height: 50px;
-  background-color: #333333;
-  color: white;
-  font-weight: bold;
+  border: 1px solid #333333;
+  background-color: none;
+  color: #333333;
+  font-weight: 500;
+  font-size: 14px;
   cursor: pointer;
 }
 
 .back_btn:hover {
-  background-color: #3c62e5;
+  background-color: #333333;
+  color: white;
 }
 
 .next_btn {
@@ -103,18 +107,22 @@ input[type="checkbox"] {
   text-align: center;
   width: 200px;
   height: 50px;
-  background-color: #3c62e5;
-  color: white;
-  font-weight: bold;
+  margin: 15px 0 15px 0;
+  font-size: 14px;
+  background-color: none;
+  border: 1px solid #3c62e5;
+  font-weight: 500;
+  color: #3c62e5;
   cursor: pointer;
 }
 
 .next_btn:hover {
-  background-color: #333333;
+  background-color: #3c62e5;
+  color: white;
 }
 
 .info_area {
-  margin: 20px 0 0 0;
+  margin: 30px 0 0 0;
   width: 100%;
 }
 
@@ -137,6 +145,17 @@ input[type="checkbox"] {
   width: 75%;
   height: 60px;
   padding: 12px 0 0 0;
+}
+
+input {
+  border-radius: 0px;
+  border: 1px solid #707070;
+  padding: 2px 0 0 5px;
+}
+
+input:focus {
+  outline: 1px solid #333333;
+  border-radius: 0px;
 }
 
 .info_input_text {
@@ -200,6 +219,9 @@ input[type="radio"]:checked {
   margin: 0 10px 0 0;
   width: 175px;
   height: 35px;
+  border-radius: 0px;
+  border: 1px solid #707070;
+  padding: 2px 0 0 5px;
 }
 
 .info_input_adress {
@@ -209,13 +231,14 @@ input[type="radio"]:checked {
 }
 
 .info_blue_text {
-  margin-top: -10px;
+  margin-top: -15px;
   font-size: 12px;
   color: #3c62e5;
 }
 
 .join_us_finish_area {
   width: 100%;
+  height: 364px;
   padding: 0;
   text-align: center;
   margin: 40px 0 0 0;
@@ -232,4 +255,11 @@ input[type="radio"]:checked {
   font-size: 16px;
   font-family: "noto sans kr";
   margin: 0 0 20px 0;
+}
+
+.join_us_finish_area img {
+  margin: 70px 0 0 0;
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
 }
