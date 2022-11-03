@@ -30,7 +30,8 @@ header {
 }
 
 .header__title {
-  font-size: 26px;
+  font-family: "noto sans kr";
+  font-size: 22px;
   font-weight: 700;
   color: #333333;
   display: flex;
