@@ -35,33 +35,36 @@
           <div class="main-view__column-right-box"></div>
         </div>
         <div class="main-view__column">
-          <div class="main-view__column-content">
-            <img
-              src="@/assets/images/icons/icon_mypage.png"
-              alt=""
-              width="125"
-              height="125"
-            />
-            <div class="main-view__column-content-text">
-              <h1>마이페이지</h1>
-              <h2>MY PAGE</h2>
-              <div class="main-view__column-content-tag">
-                <span>#내_이력서</span>
-                <span>#내_면접</span>
-                <span>#개인정보_변경</span>
+          <router-link to="/mypage/resume">
+            <div class="main-view__column-content">
+              <img
+                src="@/assets/images/icons/icon_mypage.png"
+                alt=""
+                width="125"
+                height="125"
+              />
+              <div class="main-view__column-content-text">
+                <h1>마이페이지</h1>
+                <h2>MY PAGE</h2>
+                <div class="main-view__column-content-tag">
+                  <span>#내_이력서</span>
+                  <span>#내_면접</span>
+                  <span>#개인정보_변경</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="main-view__column-out-1"></div>
-          <div class="main-view__column-in-1"></div>
-          <div class="main-view__column-out-2"></div>
-          <div class="main-view__column-in-2"></div>
-          <div class="main-view__column-left-corner-1"></div>
-          <div class="main-view__column-left-corner-2"></div>
-          <div class="main-view__column-right-corner-1"></div>
-          <div class="main-view__column-right-corner-2"></div>
-          <div class="main-view__column-left-box"></div>
-          <div class="main-view__column-right-box"></div>
+
+            <div class="main-view__column-out-1"></div>
+            <div class="main-view__column-in-1"></div>
+            <div class="main-view__column-out-2"></div>
+            <div class="main-view__column-in-2"></div>
+            <div class="main-view__column-left-corner-1"></div>
+            <div class="main-view__column-left-corner-2"></div>
+            <div class="main-view__column-right-corner-1"></div>
+            <div class="main-view__column-right-corner-2"></div>
+            <div class="main-view__column-left-box"></div>
+            <div class="main-view__column-right-box"></div>
+          </router-link>
         </div>
         <div class="main-view__column">
           <div class="main-view__column-content">

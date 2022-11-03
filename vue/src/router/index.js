@@ -38,6 +38,7 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/joinus/SignUpSuccess.vue"
       ),
   },
+  // find_id
   {
     path: "/find/id",
     name: "find_id",
@@ -74,6 +75,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/find/SuccessId.vue"),
   },
+  // find_password
   {
     path: "/find/password",
     name: "find_password",
@@ -108,6 +110,15 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "about" */ "../views/find/SuccessPassword.vue"
+      ),
+  },
+  // mypage
+  {
+    path: "/mypage/resume",
+    name: "mypage_resume",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/mypage/resume/RegistResume.vue"
       ),
   },
 ];
