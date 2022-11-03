@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/src/public/assets/css/style.css" />
+    <title>interview</title>
+  </head>
+  <script>
+    var time = 600;
+    var min = "";
+    var sec = "";
+
+    var x = setInterval(function () {
+      min = parseInt(time / 60);
+      sec = time % 60;
+
+      if (min < 10) {
+        min = "0" + min;
+      }
+      if (sec < 10) {
+        sec = "0" + sec;
+      }
+
+      document.getElementById("timer").innerHTML = min + ":" + sec;
+      time--;
+
+      if (time < 0) {
+        clearInterval(x);
+        timer.style.color = "#ff776d";
+        document.getElementById("input1").readOnly = true;
+        document.getElementById("input01").readOnly = true;
+        document.getElementById("input02").readOnly = true;
+        document.getElementById("input03").readOnly = true;
+        document.getElementById("input04").readOnly = true;
+        document.getElementById("input05").readOnly = true;
+        document.getElementById("input06").readOnly = true;
+        document.getElementById("input07").readOnly = true;
+        document.getElementById("input08").readOnly = true;
+        document.getElementById("input09").readOnly = true;
+        document.getElementById("score01").readOnly = true;
+        document.getElementById("score02").readOnly = true;
+        document.getElementById("score03").readOnly = true;
+        document.getElementById("score04").readOnly = true;
+      }
+    }, 1000);
+  </script>
+  <body>
+    <header>
+      <div class="header__column">
+        <div class="header__logo">
+          <div class="header__logo--image">
+            <img src="/src/public/assets/images/logo4.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="header__column">
+        <div class="header__title">
+          <h1>관리자 페이지</h1>
+        </div>
+      </div>
+      <div class="header__column">
+        <nav>
+          <ul class="header__menu">
+            <li class="header__menu-timer">
+              <div id="timer"></div>
+            </li>
+            <li>
+              <div class="header__menu-logout">
+                <button>로그아웃</button>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="adm_container">
+        <section class="adm-interview">
+          <article class="adm__rsm-content adm-interview-content">
+            <div class="adm__rsm-content-div">
+              <h1>2022년도 하반기 OOOOO 프론트엔드 개발자 모집 - 김명지</h1>
+            </div>
+            <div class="adm__rsm-content-checklist">
+              <table class="adm__rsm-content-info--table">
+                <tbody>
+                  <tr>
+                    <th class="adm__rsm-content-info--table--section-1">
+                      면접명
+                    </th>
+                    <td class="adm__rsm-content-info--table--section-2">
+                      2022년도 하반기 OOOOO 프론트엔드 개발자 모집
+                    </td>
+                    <th class="adm__rsm-content-info--table--section-3">
+                      지원자
+                    </th>
+                    <td class="adm__rsm-content-info--table--section-4">
+                      김명지
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="adm__rsm-content-criteria--table">
+                <tbody>
+                  <tr>
+                    <th class="adm__rsm-content-criteria--table--section-1">
+                      평가 기준
+                    </th>
+                    <td class="adm__rsm-content-criteria--table--section-2">
+                      프론트엔드 업무에 대한 전반적인 이해 및 업무능력 평가.
+                      관련 자격 및 업무 커뮤니케이션 능력 평가. <br />평가기준
+                      예시
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="adm__rsm-content-checklist--table">
+                <thead>
+                  <tr>
+                    <th class="adm__rsm-content-checklist--table--section-1">
+                      질문 목록
+                    </th>
+                    <th class="adm__rsm-content-checklist--table--section-2">
+                      추가 질문
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- <td class="adm__rsm-content-checklist--table--section-1">주 질문 1</td> -->
+                    <td class="adm__rsm-content-checklist--table--section-1">
+                      <textarea id="input01" placeholder="주 질문 1"></textarea>
+                    </td>
+                    <td
+                      class="adm__rsm-content-checklist--table--section-2"
+                      rowspan="4"
+                    >
+                      <textarea
+                        id="input1"
+                        placeholder="추가 질문 내용"
+                      ></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="adm__rsm-content-checklist--table--section-1">
+                      <textarea id="input02" placeholder="주 질문 2"></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="adm__rsm-content-checklist--table--section-1">
+                      <textarea id="input03" placeholder="주 질문 3"></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="adm__rsm-content-checklist--table--section-1">
+                      <textarea id="input04" placeholder="주 질문 4"></textarea>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="adm__rsm-content-checklist--title">평가준거</p>
+            <div class="adm__rsm-content-checklist">
+              <table class="adm__rsm-content-score--table">
+                <thead>
+                  <tr>
+                    <th class="adm__rsm-content-score--table--section-1">
+                      주 질문
+                    </th>
+                    <th class="adm__rsm-content-score--table--section-2">
+                      점수 (100점 만점)
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="adm__rsm-content-score--table--section-1">
+                      <textarea id="input05" placeholder="주 질문 1"></textarea>
+                    </td>
+                    <!-- <td class="adm__rsm-content-score--table--section-2"><text class="score">00</text>점</td> -->
+                    <td class="adm__rsm-content-score--table--section-2">
+                      <input
+                        id="score01"
+                        type="number"
+                        min="0"
+                        max="100"
+                        placeholder="00"
+                      />
+                      점
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="adm__rsm-content-score--table--section-1">
+                      <textarea id="input06" placeholder="주 질문 2"></textarea>
+                    </td>
+                    <td class="adm__rsm-content-score--table--section-2">
+                      <input
+                        id="score02"
+                        type="number"
+                        min="0"
+                        max="100"
+                        placeholder="00"
+                      />점
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="adm__rsm-content-score--table--section-1">
+                      <textarea id="input07" placeholder="주 질문 3"></textarea>
+                    </td>
+                    <td class="adm__rsm-content-score--table--section-2">
+                      <input
+                        id="score03"
+                        type="number"
+                        min="0"
+                        max="100"
+                        placeholder="00"
+                      />점
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="adm__rsm-content-score--table--section-1">
+                      <textarea id="input08" placeholder="주 질문 4"></textarea>
+                    </td>
+                    <td class="adm__rsm-content-score--table--section-2">
+                      <input
+                        id="score04"
+                        type="number"
+                        min="0"
+                        max="100"
+                        placeholder="00"
+                      />점
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="adm__rsm-content-opinion--table">
+                <tbody>
+                  <tr>
+                    <th class="adm__rsm-content-opinion--table--section-1">
+                      기타 의견
+                    </th>
+                    <td class="adm__rsm-content-opinion--table--section-2">
+                      <textarea id="input09"></textarea>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="adm__rsm-content-btn">
+              <hr class="adm__rsm-content-hr" />
+
+              <button
+                class="submit"
+                onclick="location.href='/src/views/adm_ci/adm_ci_2.html';"
+              >
+                제출하기
+              </button>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <div class="footer">
+        <p>
+          우)03656 서울특별시 서대문구 가좌로 134(서울특별시 서대문구 홍은 2동
+          356-1) 대표전화 (02)300-1000,1114 FAX (02)304-4832 <br />COPYRIGHT
+          2022 MYONGJI COLLEGE ALL RIGHTS RESERVED.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

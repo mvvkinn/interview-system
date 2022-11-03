@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/src/public/assets/css/style.css" />
+    <title>interview</title>
+  </head>
+  <body>
+    <header>
+      <div class="header__column">
+        <div class="header__logo">
+          <div class="header__logo--image">
+            <img src="/src/public/assets/images/logo4.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="header__column">
+        <div class="header__title">
+          <h1>관리자 페이지</h1>
+        </div>
+      </div>
+
+      <div class="header__column">
+        <nav>
+          <ul class="header__menu">
+            <li>안녕하세요, 관리자 김관리님.</li>
+            <li>
+              <div class="header__menu-logout">
+                <button>로그아웃</button>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="adm_container">
+        <div class="adm_navbar">
+          <div class="adm_nav__menu">
+            <ul>
+              <li class="adm_nav__menu--li active">
+                <img
+                  src="/src/public/assets/images/icons/menuIcon_user.png"
+                  alt=""
+                  class="component-column--img-black"
+                />
+                <img
+                  src="/src/public/assets/images/icons/menuIcon_user_hover.png"
+                  alt=""
+                  class="component-column--img-blue"
+                  onclick="location.href='/src/views/adm_rsm/adm_rsm_1.html';"
+                />
+                <p>관리자 페이지</p>
+              </li>
+              <li class="adm_nav__menu--li">
+                <img
+                  src="/src/public/assets/images/icons/menuIcon_search.png"
+                  alt=""
+                  class="component-column--img-black"
+                />
+                <img
+                  src="/src/public/assets/images/icons/menuIcon_search_hover.png"
+                  alt=""
+                  class="component-column--img-blue"
+                />
+                <p>합격자 조회</p>
+              </li>
+              <li class="adm_nav__menu--li">
+                <img
+                  src="/src/public/assets/images/icons/menuIcon_notice.png"
+                  alt=""
+                  class="component-column--img-black"
+                />
+                <img
+                  src="/src/public/assets/images/icons/menuIcon_notice_hover.png"
+                  alt=""
+                  class="component-column--img-blue"
+                />
+                <p>면접 공지</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <section class="adm">
+          <nav>
+            <ul class="adm__menu">
+              <li class="adm__menu-rsm">
+                <a href="/src/views/adm_rsm/adm_rsm_1.html"
+                  >지원자 및 이력서 조회</a
+                >
+              </li>
+              <li class="adm__menu-id">
+                <a href="/src/views/adm_id/adm_id_1.html">면접 내용 조회</a>
+              </li>
+              <li class="adm__menu-ci active">
+                <a href="/src/views/adm_ci/adm_ci_1.html">면접 진행</a>
+              </li>
+              <li class="adm__menu-empty"></li>
+              <li class="adm__menu-empty"></li>
+              <li class="adm__menu-empty"></li>
+            </ul>
+          </nav>
+          <article class="re-adm">
+            <div class="re-adm__interview">
+              <div class="re-adm__interview-title">
+                <h1>
+                  면접 진행 - 2022년도 하반기 OOOOO 프론트엔드 개발자 모집
+                </h1>
+              </div>
+              <hr />
+              <div class="re-adm__interview-tab-header">
+                <div class="re-adm__interview-tab-header-div">
+                  <p>번호</p>
+                </div>
+                <hr />
+                <div class="re-adm__interview-tab-header-div">
+                  <p>이력서 제목</p>
+                </div>
+                <hr />
+                <div class="re-adm__interview-tab-header-div">
+                  <p>지원자</p>
+                </div>
+                <hr />
+                <div class="re-adm__interview-tab-header-div">
+                  <p>면접 가능 여부</p>
+                </div>
+                <hr />
+                <div class="re-adm__interview-tab-header-div">
+                  <p>면접 진행</p>
+                </div>
+              </div>
+
+              <div class="re-adm__interview-table-text">
+                <div class="re-adm__interview-table-text-no">
+                  <p>1</p>
+                </div>
+                <div class="re-adm__interview-table-text-title">
+                  <p>이력서 제목</p>
+                </div>
+                <div class="re-adm__interview-table-text-volunteer">
+                  <p>김명지</p>
+                </div>
+                <div class="re-adm__interview-table-text-possible">
+                  <p>가능</p>
+                </div>
+                <div class="re-adm__interview-table-text-on">
+                  <button>면접 시작</button>
+                </div>
+              </div>
+
+              <div class="re-adm__interview-table-text">
+                <div class="re-adm__interview-table-text-no">
+                  <p>2</p>
+                </div>
+                <div class="re-adm__interview-table-text-title">
+                  <p>안녕하십니까 프론트엔드 지원자 김명지 입니다!</p>
+                </div>
+                <div class="re-adm__interview-table-text-volunteer">
+                  <p>김명지</p>
+                </div>
+                <div class="re-adm__interview-table-text-possible">
+                  <p>가능</p>
+                </div>
+                <div class="re-adm__interview-table-text-on">
+                  <button>면접 시작</button>
+                </div>
+              </div>
+
+              <div class="re-adm__interview-table-text">
+                <div class="re-adm__interview-table-text-no">
+                  <p>3</p>
+                </div>
+                <div class="re-adm__interview-table-text-title">
+                  <p>이력서 제목</p>
+                </div>
+                <div class="re-adm__interview-table-text-volunteer">
+                  <p>김명지</p>
+                </div>
+                <div class="re-adm__interview-table-text-impossible">
+                  <p>불가능</p>
+                </div>
+                <div class="re-adm__interview-table-text-on">
+                  <button>면접 시작</button>
+                </div>
+              </div>
+
+              <div class="re-adm__interview-table-text">
+                <div class="re-adm__interview-table-text-no">
+                  <p>4</p>
+                </div>
+                <div class="re-adm__interview-table-text-title">
+                  <p>이력서 제목</p>
+                </div>
+                <div class="re-adm__interview-table-text-volunteer">
+                  <p>김명지</p>
+                </div>
+                <div class="re-adm__interview-table-text-impossible">
+                  <p>불가능</p>
+                </div>
+                <div class="re-adm__interview-table-text-on">
+                  <button>면접 시작</button>
+                </div>
+              </div>
+
+              <div class="re-adm__interview-table-text">
+                <div class="re-adm__interview-table-text-no">
+                  <p>5</p>
+                </div>
+                <div class="re-adm__interview-table-text-title">
+                  <p>이력서 제목</p>
+                </div>
+                <div class="re-adm__interview-table-text-volunteer">
+                  <p>김명지</p>
+                </div>
+                <div class="re-adm__interview-table-text-impossible">
+                  <p>불가능</p>
+                </div>
+                <div class="re-adm__interview-table-text-on">
+                  <button>면접 시작</button>
+                </div>
+              </div>
+
+              <div class="re-adm__interview-table-text">
+                <div class="re-adm__interview-table-text-no">
+                  <p>6</p>
+                </div>
+                <div class="re-adm__interview-table-text-title">
+                  <p>이력서 제목</p>
+                </div>
+                <div class="re-adm__interview-table-text-volunteer">
+                  <p>김명지</p>
+                </div>
+                <div class="re-adm__interview-table-text-impossible">
+                  <p>불가능</p>
+                </div>
+                <div class="re-adm__interview-table-text-on">
+                  <button>면접 시작</button>
+                </div>
+              </div>
+
+              <div class="re-adm__interview-table-text">
+                <div class="re-adm__interview-table-text-no">
+                  <p>7</p>
+                </div>
+                <div class="re-adm__interview-table-text-title">
+                  <p>이력서 제목</p>
+                </div>
+                <div class="re-adm__interview-table-text-volunteer">
+                  <p>김명지</p>
+                </div>
+                <div class="re-adm__interview-table-text-impossible">
+                  <p>불가능</p>
+                </div>
+                <div class="re-adm__interview-table-text-on">
+                  <button>면접 시작</button>
+                </div>
+              </div>
+
+              <div class="re-adm__interview-table-text">
+                <div class="re-adm__interview-table-text-no">
+                  <p>8</p>
+                </div>
+                <div class="re-adm__interview-table-text-title">
+                  <p>이력서 제목</p>
+                </div>
+                <div class="re-adm__interview-table-text-volunteer">
+                  <p>김명지</p>
+                </div>
+                <div class="re-adm__interview-table-text-impossible">
+                  <p>불가능</p>
+                </div>
+                <div class="re-adm__interview-table-text-on">
+                  <button>면접 시작</button>
+                </div>
+              </div>
+
+              <div class="re-adm__interview-table-text">
+                <div class="re-adm__interview-table-text-no">
+                  <p>9</p>
+                </div>
+                <div class="re-adm__interview-table-text-title">
+                  <p>이력서 제목</p>
+                </div>
+                <div class="re-adm__interview-table-text-volunteer">
+                  <p>김명지</p>
+                </div>
+                <div class="re-adm__interview-table-text-impossible">
+                  <p>불가능</p>
+                </div>
+                <div class="re-adm__interview-table-text-on">
+                  <button>면접 시작</button>
+                </div>
+              </div>
+
+              <div class="re-adm__interview-table-text">
+                <div class="re-adm__interview-table-text-no">
+                  <p>10</p>
+                </div>
+                <div class="re-adm__interview-table-text-title">
+                  <p>이력서 제목</p>
+                </div>
+                <div class="re-adm__interview-table-text-volunteer">
+                  <p>김명지</p>
+                </div>
+                <div class="re-adm__interview-table-text-impossible">
+                  <p>불가능</p>
+                </div>
+                <div class="re-adm__interview-table-text-on">
+                  <button>면접 시작</button>
+                </div>
+              </div>
+
+              <div class="notice__interview-page">
+                <div class="notice__interview-pagination">
+                  <a href="#">&laquo;</a>
+                  <a class="active" href="#">1</a>
+                  <a href="#">2</a>
+                  <a href="#">3</a>
+                  <a href="#">&raquo;</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <div class="footer">
+        <p>
+          우)03656 서울특별시 서대문구 가좌로 134(서울특별시 서대문구 홍은 2동
+          356-1) 대표전화 (02)300-1000,1114 FAX (02)304-4832 <br />COPYRIGHT
+          2022 MYONGJI COLLEGE ALL RIGHTS RESERVED.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

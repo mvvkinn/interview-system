@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/src/public/assets/css/style.css" />
+    <title>interview</title>
+  </head>
+  <body>
+    <header>
+      <div class="header__column">
+        <div class="header__logo">
+          <div class="header__logo--image">
+            <img src="/src/public/assets/images/logo4.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="header__column">
+        <div class="header__title">
+          <h1>아이디(학번) ㆍ 비밀번호 찾기</h1>
+        </div>
+      </div>
+
+      <div class="header__column">
+        <nav>
+          <ul class="header__menu">
+            <li>마이페이지</li>
+            <li>|</li>
+            <li>합격자조회</li>
+            <li>|</li>
+            <li>면접공지</li>
+            <li>|</li>
+            <li>로그인</li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="find">
+        <nav>
+          <ul class="find__menu">
+            <li class="find__menu-id active">아이디(학번) 찾기</li>
+            <li class="find__menu-ps">비밀번호 찾기</li>
+          </ul>
+        </nav>
+        <section class="find_id">
+          <article class="find_id_title">
+            <div class="find_id_title-select">
+              <h1>아이디(학번)찾기 결과</h1>
+            </div>
+            <hr />
+            <div class="result_area">
+              <p>아이디(학번) 조회 결과입니다.</p>
+              <div class="table_line_area">
+                <div class="table_line" id="table_top">
+                  <div class="table_value_top" id="table_num">순서</div>
+                  <div class="table_value_top" id="table_date">가입일</div>
+                  <div class="table_value_top" id="table_id">아이디(학번)</div>
+                  <div class="table_value_top" id="table_name">이름</div>
+                  <div class="table_value_top" id="table_birth">생년월일</div>
+                </div>
+              </div>
+              <div class="table_line_area">
+                <div class="table_line">
+                  <div class="table_value" id="table_num">-</div>
+                  <div class="table_value" id="table_date">-</div>
+                  <div class="table_value" id="table_id">-</div>
+                  <div class="table_value" id="table_name">-</div>
+                  <div class="table_value" id="table_birth">-</div>
+                </div>
+              </div>
+              <div class="find_menu_btn_area">
+                <div
+                  class="btn_normal"
+                  onclick="location.href='../main_page/main_page_1.html'"
+                >
+                  <p>로그인</p>
+                </div>
+                <div
+                  class="btn_reverse"
+                  onclick="location.href='../find_pw/find_pw_1.html'"
+                >
+                  <p>비밀번호 찾기</p>
+                </div>
+              </div>
+            </div>
+            <hr />
+          </article>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <div class="footer">
+        <p>
+          우)03656 서울특별시 서대문구 가좌로 134(서울특별시 서대문구 홍은 2동
+          356-1) 대표전화 (02)300-1000,1114 FAX (02)304-4832 <br />COPYRIGHT
+          2022 MYONGJI COLLEGE ALL RIGHTS RESERVED.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
