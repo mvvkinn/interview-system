@@ -7,45 +7,51 @@ vu
         <div class="notice_navbar">
           <div class="notice_nav__menu">
             <ul>
-              <li>
-                <img
-                  src="@/assets/images/icons/menuIcon_user.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_user_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>마이페이지</p>
-              </li>
-              <li>
-                <img
-                  src="@/assets/images/icons/menuIcon_search.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_search_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>합격자 조회</p>
-              </li>
-              <li class="active">
-                <img
-                  src="@/assets/images/icons/menuIcon_notice.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_notice_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>면접 공지</p>
-              </li>
+              <router-link to="/mypage/resume">
+                <li>
+                  <img
+                    src="@/assets/images/icons/menuIcon_user.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_user_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  마이페이지
+                </li>
+              </router-link>
+              <router-link to="/success">
+                <li>
+                  <img
+                    src="@/assets/images/icons/menuIcon_search.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_search_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  합격자조회
+                </li>
+              </router-link>
+              <router-link to="/notice">
+                <li class="active">
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  면접 공지
+                </li>
+              </router-link>
             </ul>
           </div>
         </div>
@@ -103,21 +109,22 @@ vu
               </div>
             </div>
 
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>24</p>
+            <router-link to="/notice/detail">
+              <div class="notice-adm__interview-table-text">
+                <div class="notice-adm__interview-table-text-no">
+                  <p>24</p>
+                </div>
+                <div class="notice-adm__interview-table-text-title">
+                  <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p>
+                </div>
+                <div class="notice-adm__interview-table-text-date">
+                  <p>2022/01/01</p>
+                </div>
+                <div class="notice-adm__interview-table-text-views">
+                  <p>159</p>
+                </div>
               </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p>
-              </div>
-              <div class="notice-adm__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
+            </router-link>
             <div class="notice-adm__interview-table-text">
               <div class="notice-adm__interview-table-text-no">
                 <p>23</p>

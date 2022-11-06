@@ -12,7 +12,7 @@
         <article class="find__password find__success">
           <div>
             <div class="find__password-form">
-              <img src="/src/public/assets/images/logo1.png" alt="" />
+              <img src="@/assets/images/logo1.png" alt="" />
               <h1>비밀번호변경 완료</h1>
               <p>비밀번호 변경이 완료되었습니다.</p>
               <router-link to="/">

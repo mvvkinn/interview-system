@@ -3,12 +3,12 @@ vu
   <div>
     <HeaderView />
     <main>
-      <div class="notice_container">
-        <div class="notice_navbar">
-          <div class="notice_nav__menu">
+      <section class="find component">
+        <div class="component-column">
+          <nav class="component-column--nav">
             <ul>
               <router-link to="/mypage/resume">
-                <li>
+                <li class="active">
                   <img
                     src="@/assets/images/icons/menuIcon_user.png"
                     alt=""
@@ -38,7 +38,7 @@ vu
                 </li>
               </router-link>
               <router-link to="/notice">
-                <li class="active">
+                <li>
                   <img
                     src="@/assets/images/icons/menuIcon_notice.png"
                     alt=""
@@ -53,26 +53,37 @@ vu
                 </li>
               </router-link>
             </ul>
-          </div>
+          </nav>
         </div>
-        <section class="notice">
-          <article class="notice_component__content-notice">
-            <div class="notice_component__content-div">
-              <h1>면접 지원 - 2022년도 하반기 OOOOO 프론트엔트 개발자 모집</h1>
-              <form class="notice_component__content--hr">
-                <div class="notice_component__content-column">
-                  <div class="notice-button">
-                    <button>내정보 불러오기</button>
-                  </div>
-                  <div class="notice_component__content-column--img">
+        <div class="component-column">
+          <nav>
+            <ul class="component__menu">
+              <li class="component__menu--li active">
+                <router-link to="/mypage/resume">내 이력서</router-link>
+              </li>
+              <li class="component__menu--li">
+                <router-link to="/mypage/interview">내 면접</router-link>
+              </li>
+              <li class="component__menu--li">
+                <router-link to="/mypage/changeinfo">개인정보 변경</router-link>
+              </li>
+              <li></li>
+            </ul>
+          </nav>
+          <article class="component__content">
+            <div class="component__content-div">
+              <h1>이력서 제목1</h1>
+              <form class="component__content--hr">
+                <div class="component__content-column">
+                  <div class="component__content-column--img">
                     <img src="https://via.placeholder.com/297x358" alt="" />
                     <button>이미지 업로드</button>
                   </div>
                 </div>
-                <div class="notice_component__content-column">
+                <div class="component__content-column">
                   <h2>인적사항</h2>
-                  <div class="notice_component__table">
-                    <div class="notice_component__table-column">
+                  <div class="component__table">
+                    <div class="component__table-column">
                       <label for="name">이름</label>
                       <input
                         id="name"
@@ -82,7 +93,7 @@ vu
                       <label for="birth">생년월일</label>
                       <input id="birth" type="text" placeholder="8자리 입력" />
                     </div>
-                    <div class="notice_component__table-column">
+                    <div class="component__table-column">
                       <label for="phone">휴대폰</label>
                       <input
                         id="phone"
@@ -96,7 +107,7 @@ vu
                         placeholder="example@example.com"
                       />
                     </div>
-                    <div class="notice_component__table-column">
+                    <div class="component__table-column">
                       <label for="adress">주소</label>
                       <input
                         id="adress"
@@ -106,10 +117,10 @@ vu
                     </div>
                   </div>
                 </div>
-                <div class="notice_component__content-column">
+                <div class="component__content-column">
                   <h2>학력사항</h2>
-                  <div class="notice_component__table">
-                    <div class="notice_component__table-column">
+                  <div class="component__table">
+                    <div class="component__table-column">
                       <label for="period">기간</label>
                       <input
                         id="period"
@@ -127,7 +138,7 @@ vu
                         placeholder="00/00/00 - 00/00/00"
                       />
                     </div>
-                    <div class="notice_component__table-column">
+                    <div class="component__table-column">
                       <label for="school">학교명</label>
                       <input
                         id="school"
@@ -145,7 +156,7 @@ vu
                         placeholder="학교명을 입력해주세요."
                       />
                     </div>
-                    <div class="notice_component__table-column">
+                    <div class="component__table-column">
                       <label for="major">전공</label>
                       <input
                         id="major"
@@ -164,15 +175,16 @@ vu
                       />
                     </div>
                   </div>
+                  <button>+</button>
                 </div>
-                <div class="notice_component__content-column">
+                <div class="component__content-column">
                   <h2>자격 및 교육 사항</h2>
-                  <div class="notice_component__table">
-                    <div class="notice_component__table-column">
+                  <div class="component__table">
+                    <div class="component__table-column">
                       <label for="achive">취득일자</label>
                       <input id="achive" type="text" placeholder="0000/00/00" />
                     </div>
-                    <div class="notice_component__table-column">
+                    <div class="component__table-column">
                       <label for="quality">자격 및 교육명</label>
                       <input
                         id="quality"
@@ -180,7 +192,7 @@ vu
                         placeholder="자격 및 교육명을 입력해주세요."
                       />
                     </div>
-                    <div class="notice_component__table-column">
+                    <div class="component__table-column">
                       <label for="rating">등급</label>
                       <input
                         id="rating"
@@ -188,7 +200,7 @@ vu
                         placeholder="등급을 입력해주세요."
                       />
                     </div>
-                    <div class="notice_component__table-column">
+                    <div class="component__table-column">
                       <label for="issuer">발행기관</label>
                       <input
                         id="issuer"
@@ -197,24 +209,60 @@ vu
                       />
                     </div>
                   </div>
+                  <button>+</button>
                 </div>
-                <div class="component__content-column-notice">
-                  <div class="component__content-column--button-notice">
+                <div class="component__content-column">
+                  <h2>경력사항</h2>
+                  <div class="component__table">
+                    <div class="component__table-column">
+                      <label for="employ">근무기간</label>
+                      <input
+                        id="employ"
+                        type="text"
+                        placeholder="00/00/00 - 00/00/00"
+                      />
+                    </div>
+                    <div class="component__table-column">
+                      <label for="position">근무처</label>
+                      <input
+                        id="position"
+                        type="text"
+                        placeholder="근무처를 입력해주세요."
+                      />
+                    </div>
+                    <div class="component__table-column">
+                      <label for="job">직위</label>
+                      <input
+                        id="job"
+                        type="text"
+                        placeholder="직위를 입력해주세요."
+                      />
+                    </div>
+                    <div class="component__table-column">
+                      <label for="department">부서</label>
+                      <input
+                        id="department"
+                        type="text"
+                        placeholder="부서를 입력해주세요."
+                      />
+                    </div>
+                  </div>
+                  <button>+</button>
+                </div>
+                <div class="component__content-column">
+                  <div class="component__content-column--button">
+                    <button>수정하기</button>
+                    <button>삭제</button>
                     <button>
-                      <router-link to="/notice/detail/apply/success"
-                        >지원하기</router-link
-                      >
-                    </button>
-                    <button>
-                      <router-link to="/notice/detail">취소하기</router-link>
+                      <router-link to="/mypage/resume/list">목록</router-link>
                     </button>
                   </div>
                 </div>
               </form>
             </div>
           </article>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
     <FooterView />
   </div>

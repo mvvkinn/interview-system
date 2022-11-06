@@ -7,54 +7,66 @@ vu
         <div class="component-column">
           <nav class="component-column--nav">
             <ul>
-              <li class="active">
-                <img
-                  src="@/assets/images/icons/menuIcon_user.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_user_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                마이페이지
-              </li>
-              <li>
-                <img
-                  src="@/assets/images/icons/menuIcon_search.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_search_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                합격자조회
-              </li>
-              <li>
-                <img
-                  src="@/assets/images/icons/menuIcon_notice.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_notice_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                면접 공지
-              </li>
+              <router-link to="/mypage/resume">
+                <li class="active">
+                  <img
+                    src="@/assets/images/icons/menuIcon_user.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_user_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  마이페이지
+                </li>
+              </router-link>
+              <router-link to="/success">
+                <li>
+                  <img
+                    src="@/assets/images/icons/menuIcon_search.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_search_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  합격자조회
+                </li>
+              </router-link>
+              <router-link to="/notice">
+                <li>
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  면접 공지
+                </li>
+              </router-link>
             </ul>
           </nav>
         </div>
         <div class="component-column">
           <nav>
             <ul class="component__menu">
-              <li class="component__menu--li active">내 이력서</li>
-              <li class="component__menu--li">내 면접</li>
-              <li class="component__menu--li">개인정보 변경</li>
+              <li class="component__menu--li active">
+                <router-link to="/mypage/resume">내 이력서</router-link>
+              </li>
+              <li class="component__menu--li">
+                <router-link to="/mypage/interview">내 면접</router-link>
+              </li>
+              <li class="component__menu--li">
+                <router-link to="/mypage/changeinfo">개인정보 변경</router-link>
+              </li>
               <li></li>
             </ul>
           </nav>
@@ -62,7 +74,7 @@ vu
             <div class="component__content-div">
               <h1>이력서 등록</h1>
               <div class="component__content--hr">
-                <router-link to="javascript:void(0)">
+                <router-link to="/mypage/resume/list">
                   <div class="component__form">
                     <div class="component__form-div">
                       <img src="@/assets/images/icons/icon_resume.png" alt="" />

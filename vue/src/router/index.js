@@ -122,6 +122,22 @@ const routes = [
       ),
   },
   {
+    path: "/mypage/resume/list",
+    name: "mypage_resume_list",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/mypage/resume/ListView.vue"
+      ),
+  },
+  {
+    path: "/mypage/resume/detail",
+    name: "mypage_resume_detail",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/mypage/resume/DetailView.vue"
+      ),
+  },
+  {
     path: "/mypage/interview",
     name: "mypage_apply",
     component: () =>

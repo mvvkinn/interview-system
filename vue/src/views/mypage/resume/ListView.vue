@@ -58,13 +58,13 @@ vu
         <div class="component-column">
           <nav>
             <ul class="component__menu">
-              <li class="component__menu--li">
+              <li class="component__menu--li active">
                 <router-link to="/mypage/resume">내 이력서</router-link>
               </li>
               <li class="component__menu--li">
                 <router-link to="/mypage/interview">내 면접</router-link>
               </li>
-              <li class="component__menu--li active">
+              <li class="component__menu--li">
                 <router-link to="/mypage/changeinfo">개인정보 변경</router-link>
               </li>
               <li></li>
@@ -72,17 +72,28 @@ vu
           </nav>
           <article class="component__content">
             <div class="component__content-div">
-              <h1>비밀번호 입력</h1>
+              <h1>이력서 목록</h1>
               <div class="component__content--hr">
-                <div class="component__content-form">
-                  <p>비밀번호를 입력해주세요.</p>
-                  <input type="text" placeholder="비밀번호를 입력하세요." />
-
-                  <button>
-                    <router-link to="/mypage/changeinfo/personal"
-                      >비밀번호 입력</router-link
-                    >
-                  </button>
+                <div class="component__list">
+                  <div class="component__list-div">
+                    <div class="component__list-column">
+                      <div class="component__list-column--text">
+                        <h1>이력서 제목1</h1>
+                        <p>작성일 : 2022/01/01</p>
+                      </div>
+                    </div>
+                    <div class="component__list-column">
+                      <div class="component__list-column--text">
+                        <h1>이력서 제목2</h1>
+                        <p>작성일 : 2022/01/01</p>
+                      </div>
+                    </div>
+                    <button>
+                      <router-link to="/mypage/resume/detail"
+                        >이력서 등록</router-link
+                      >
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

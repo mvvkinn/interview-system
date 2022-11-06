@@ -7,45 +7,51 @@ vu
         <div class="success_navbar">
           <div class="success_nav__menu">
             <ul>
-              <li>
-                <img
-                  src="@/assets/images/icons/menuIcon_user.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_user_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>마이페이지</p>
-              </li>
-              <li class="active">
-                <img
-                  src="@/assets/images/icons/menuIcon_search_hover.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_search_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>합격자 조회</p>
-              </li>
-              <li>
-                <img
-                  src="@/assets/images/icons/menuIcon_notice.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_notice_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>면접 공지</p>
-              </li>
+              <router-link to="/mypage/resume">
+                <li>
+                  <img
+                    src="@/assets/images/icons/menuIcon_user.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_user_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  마이페이지
+                </li>
+              </router-link>
+              <router-link to="/success">
+                <li class="active">
+                  <img
+                    src="@/assets/images/icons/menuIcon_search.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_search_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  합격자조회
+                </li>
+              </router-link>
+              <router-link to="/notice">
+                <li>
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  면접 공지
+                </li>
+              </router-link>
             </ul>
           </div>
         </div>
@@ -56,15 +62,17 @@ vu
             </div>
             <hr />
             <div class="success__search-select-interview">
-              <button>
-                <div class="success__search-select-interview-group-1">
-                  <span>2022 명지전문대 입시 면접</span>
-                  <span>합격조회 가능</span>
-                </div>
-                <div class="success__search-select-interview-group-2">
-                  <span>지원일 : 2022/01/01</span>
-                </div>
-              </button>
+              <router-link to="/success/result">
+                <button>
+                  <div class="success__search-select-interview-group-1">
+                    <span>2022 명지전문대 입시 면접</span>
+                    <span>합격조회 가능</span>
+                  </div>
+                  <div class="success__search-select-interview-group-2">
+                    <span>지원일 : 2022/01/01</span>
+                  </div>
+                </button>
+              </router-link>
             </div>
             <hr />
           </article>

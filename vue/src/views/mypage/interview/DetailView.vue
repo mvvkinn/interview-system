@@ -7,54 +7,66 @@ vu
         <div class="component-column">
           <nav class="component-column--nav">
             <ul>
-              <li class="active">
-                <img
-                  src="@/assets/images/icons/menuIcon_user.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_user_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                마이페이지
-              </li>
-              <li>
-                <img
-                  src="@/assets/images/icons/menuIcon_search.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_search_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                합격자조회
-              </li>
-              <li>
-                <img
-                  src="@/assets/images/icons/menuIcon_notice.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_notice_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                면접 공지
-              </li>
+              <router-link to="/mypage/resume">
+                <li class="active">
+                  <img
+                    src="@/assets/images/icons/menuIcon_user.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_user_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  마이페이지
+                </li>
+              </router-link>
+              <router-link to="/success">
+                <li>
+                  <img
+                    src="@/assets/images/icons/menuIcon_search.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_search_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  합격자조회
+                </li>
+              </router-link>
+              <router-link to="/notice">
+                <li>
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  면접 공지
+                </li>
+              </router-link>
             </ul>
           </nav>
         </div>
         <div class="component-column">
           <nav>
             <ul class="component__menu">
-              <li class="component__menu--li">내 이력서</li>
-              <li class="component__menu--li active">내 면접</li>
-              <li class="component__menu--li">개인정보 변경</li>
+              <li class="component__menu--li">
+                <router-link to="/mypage/resume">내 이력서</router-link>
+              </li>
+              <li class="component__menu--li active">
+                <router-link to="/mypage/interview">내 면접</router-link>
+              </li>
+              <li class="component__menu--li">
+                <router-link to="/mypage/changeinfo">개인정보 변경</router-link>
+              </li>
               <li></li>
             </ul>
           </nav>
@@ -79,9 +91,12 @@ vu
                   </div>
                 </div>
                 <img src="https://via.placeholder.com/1200x2080" alt="" />
-                <div class="component__content-info--button">
+                <router-link
+                  class="component__content-info--button"
+                  to="/mypage/interview"
+                >
                   <button>목록</button>
-                </div>
+                </router-link>
               </div>
             </div>
           </article>

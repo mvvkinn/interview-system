@@ -7,45 +7,51 @@ vu
         <div class="notice_navbar">
           <div class="notice_nav__menu">
             <ul>
-              <li>
-                <img
-                  src="@/assets/images/icons/menuIcon_user.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_user_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>마이페이지</p>
-              </li>
-              <li>
-                <img
-                  src="@/assets/images/icons/menuIcon_search.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_search_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>합격자 조회</p>
-              </li>
-              <li class="active">
-                <img
-                  src="@/assets/images/icons/menuIcon_notice.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_notice_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>면접 공지</p>
-              </li>
+              <router-link to="/mypage/resume">
+                <li>
+                  <img
+                    src="@/assets/images/icons/menuIcon_user.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_user_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  마이페이지
+                </li>
+              </router-link>
+              <router-link to="/success">
+                <li>
+                  <img
+                    src="@/assets/images/icons/menuIcon_search.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_search_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  합격자조회
+                </li>
+              </router-link>
+              <router-link to="/notice">
+                <li class="active">
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  면접 공지
+                </li>
+              </router-link>
             </ul>
           </div>
         </div>
@@ -82,8 +88,12 @@ vu
               </p>
             </div>
             <div class="notice__details-button">
-              <button>지원하기</button>
-              <button>목록</button>
+              <button>
+                <router-link to="/notice/detail/apply">지원하기</router-link>
+              </button>
+              <button>
+                <router-link to="/notice">목록</router-link>
+              </button>
             </div>
             <hr />
           </article>
