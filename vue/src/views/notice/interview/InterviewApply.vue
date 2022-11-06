@@ -1,0 +1,222 @@
+vu
+<template>
+  <div>
+    <HeaderView />
+    <main>
+      <div class="notice_container">
+        <div class="notice_navbar">
+          <div class="notice_nav__menu">
+            <ul>
+              <li>
+                <img
+                  src="@/assets/images/icons/menuIcon_user.png"
+                  alt=""
+                  class="component-column--img-black"
+                />
+                <img
+                  src="@/assets/images/icons/menuIcon_user_hover.png"
+                  alt=""
+                  class="component-column--img-blue"
+                />
+                <p>마이페이지</p>
+              </li>
+              <li>
+                <img
+                  src="@/assets/images/icons/menuIcon_search.png"
+                  alt=""
+                  class="component-column--img-black"
+                />
+                <img
+                  src="@/assets/images/icons/menuIcon_search_hover.png"
+                  alt=""
+                  class="component-column--img-blue"
+                />
+                <p>합격자 조회</p>
+              </li>
+              <li class="active">
+                <img
+                  src="@/assets/images/icons/menuIcon_notice.png"
+                  alt=""
+                  class="component-column--img-black"
+                />
+                <img
+                  src="@/assets/images/icons/menuIcon_notice_hover.png"
+                  alt=""
+                  class="component-column--img-blue"
+                />
+                <p>면접 공지</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <section class="notice">
+          <article class="notice_component__content-notice">
+            <div class="notice_component__content-div">
+              <h1>면접 지원 - 2022년도 하반기 OOOOO 프론트엔트 개발자 모집</h1>
+              <form class="notice_component__content--hr">
+                <div class="notice_component__content-column">
+                  <div class="notice-button">
+                    <button>내정보 불러오기</button>
+                  </div>
+                  <div class="notice_component__content-column--img">
+                    <img src="https://via.placeholder.com/297x358" alt="" />
+                    <button>이미지 업로드</button>
+                  </div>
+                </div>
+                <div class="notice_component__content-column">
+                  <h2>인적사항</h2>
+                  <div class="notice_component__table">
+                    <div class="notice_component__table-column">
+                      <label for="name">이름</label>
+                      <input
+                        id="name"
+                        type="text"
+                        placeholder="이름을 입력해주세요."
+                      />
+                      <label for="birth">생년월일</label>
+                      <input id="birth" type="text" placeholder="8자리 입력" />
+                    </div>
+                    <div class="notice_component__table-column">
+                      <label for="phone">휴대폰</label>
+                      <input
+                        id="phone"
+                        type="text"
+                        placeholder="'-'없이 입력"
+                      />
+                      <label for="email">E-mail</label>
+                      <input
+                        id="email"
+                        type="textarea"
+                        placeholder="example@example.com"
+                      />
+                    </div>
+                    <div class="notice_component__table-column">
+                      <label for="adress">주소</label>
+                      <input
+                        id="adress"
+                        type="text"
+                        placeholder="주소를 입력해주세요."
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="notice_component__content-column">
+                  <h2>학력사항</h2>
+                  <div class="notice_component__table">
+                    <div class="notice_component__table-column">
+                      <label for="period">기간</label>
+                      <input
+                        id="period"
+                        type="text"
+                        placeholder="00/00/00 - 00/00/00"
+                      />
+                      <input
+                        id="period"
+                        type="text"
+                        placeholder="00/00/00 - 00/00/00"
+                      />
+                      <input
+                        id="period"
+                        type="text"
+                        placeholder="00/00/00 - 00/00/00"
+                      />
+                    </div>
+                    <div class="notice_component__table-column">
+                      <label for="school">학교명</label>
+                      <input
+                        id="school"
+                        type="text"
+                        placeholder="학교명을 입력해주세요."
+                      />
+                      <input
+                        id="school"
+                        type="text"
+                        placeholder="학교명을 입력해주세요."
+                      />
+                      <input
+                        id="school"
+                        type="text"
+                        placeholder="학교명을 입력해주세요."
+                      />
+                    </div>
+                    <div class="notice_component__table-column">
+                      <label for="major">전공</label>
+                      <input
+                        id="major"
+                        type="text"
+                        placeholder="전공을 입력해주세요."
+                      />
+                      <input
+                        id="major"
+                        type="text"
+                        placeholder="전공을 입력해주세요."
+                      />
+                      <input
+                        id="major"
+                        type="text"
+                        placeholder="전공을 입력해주세요."
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="notice_component__content-column">
+                  <h2>자격 및 교육 사항</h2>
+                  <div class="notice_component__table">
+                    <div class="notice_component__table-column">
+                      <label for="achive">취득일자</label>
+                      <input id="achive" type="text" placeholder="0000/00/00" />
+                    </div>
+                    <div class="notice_component__table-column">
+                      <label for="quality">자격 및 교육명</label>
+                      <input
+                        id="quality"
+                        type="text"
+                        placeholder="자격 및 교육명을 입력해주세요."
+                      />
+                    </div>
+                    <div class="notice_component__table-column">
+                      <label for="rating">등급</label>
+                      <input
+                        id="rating"
+                        type="text"
+                        placeholder="등급을 입력해주세요."
+                      />
+                    </div>
+                    <div class="notice_component__table-column">
+                      <label for="issuer">발행기관</label>
+                      <input
+                        id="issuer"
+                        type="text"
+                        placeholder="발행기관을 입력해주세요."
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="component__content-column-notice">
+                  <div class="component__content-column--button-notice">
+                    <button>지원하기</button>
+                    <button>취소하기</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+    <FooterView />
+  </div>
+</template>
+
+<script>
+import HeaderView from "@/components/HeaderView.vue";
+import FooterView from "@/components/FooterView.vue";
+export default {
+  components: {
+    HeaderView,
+    FooterView,
+  },
+};
+</script>
+
+<style></style>

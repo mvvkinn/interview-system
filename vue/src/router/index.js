@@ -121,6 +121,175 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/mypage/resume/RegistResume.vue"
       ),
   },
+  {
+    path: "/mypage/apply",
+    name: "mypage_apply",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/mypage/interview/MyApplyInterview.vue"
+      ),
+  },
+  {
+    path: "/mypage/apply/detail",
+    name: "mypage_apply_detail",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/mypage/interview/MyApplyInterviewDetail.vue"
+      ),
+  },
+  {
+    path: "/mypage/changeinfo",
+    name: "mypage_changeinfo",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/mypage/changeinfo/EnterPassword.vue"
+      ),
+  },
+  {
+    path: "/mypage/changeinfo/personal",
+    name: "mypage_changeinfo_personal",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/mypage/changeinfo/ChangeInformation.vue"
+      ),
+  },
+  // notice
+  {
+    path: "/notice",
+    name: "notice_list",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/notice/NoticeList.vue"),
+  },
+  {
+    path: "/notice/detail",
+    name: "notice_detail",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/notice/NoticeDetail.vue"
+      ),
+  },
+  {
+    path: "/notice/apply",
+    name: "notice_apply",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/notice/interview/InterviewApply.vue"
+      ),
+  },
+  {
+    path: "/notice/apply/success",
+    name: "notice_apply_success",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/notice/interview/InterviewApplySuccess.vue"
+      ),
+  },
+  // success
+  {
+    path: "/success",
+    name: "success_search",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/success/SelectSuccess.vue"
+      ),
+  },
+  {
+    path: "/success/result",
+    name: "success_result",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/success/InterviewResult"
+      ),
+  },
+  // admin
+  {
+    path: "/admin/notice",
+    name: "admin_notice_list",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/notice/NoticeList.vue"
+      ),
+  },
+  {
+    path: "/admin/notice/write",
+    name: "admin_notice_write",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/notice/NoticeWrite.vue"
+      ),
+  },
+  {
+    path: "/admin",
+    name: "admin_interview",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/resume/SelectInterview.vue"
+      ),
+  },
+  {
+    path: "/admin/resume",
+    name: "admin_interview_resume",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/resume/ResumeList.vue"
+      ),
+  },
+  {
+    path: "/admin/resume/detail",
+    name: "admin_interview_resume_detail",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/resume/ResumeDetail.vue"
+      ),
+  },
+  {
+    path: "/admin/progress",
+    name: "admin_interview_progress",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/progress/SelectInterview.vue"
+      ),
+  },
+  {
+    path: "/admin/progress/list",
+    name: "admin_interview_progress_list",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/progress/ProgressList.vue"
+      ),
+  },
+  {
+    path: "/admin/progress/evaluation",
+    name: "admin_interview_progress_evaluation",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/progress/InterviewEvaluation.vue"
+      ),
+  },
+  {
+    path: "/admin/content",
+    name: "admin_interview_content",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/content/SelectInterview.vue"
+      ),
+  },
+  {
+    path: "/admin/content/list",
+    name: "admin_interview_content_list",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/content/ContentList.vue"
+      ),
+  },
+  {
+    path: "/admin/content/detail",
+    name: "admin_interview_content_detail",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/content/ContentDetail.vue"
+      ),
+  },
 ];
 
 const router = new VueRouter({

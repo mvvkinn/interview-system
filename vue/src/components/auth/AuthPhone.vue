@@ -24,7 +24,7 @@
                   onmouseout="PhoneOut();"
                 >
                   <img
-                    src="/src/public/assets/images/icons/icon_phone.png"
+                    src="@/assets/images/icons/icon_phone.png"
                     id="icon_phone"
                   />
                   <h2 class="btn_title">휴대폰 인증</h2>
