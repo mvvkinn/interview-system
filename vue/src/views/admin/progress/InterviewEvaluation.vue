@@ -176,13 +176,9 @@ vu
             </div>
             <div class="adm__rsm-content-btn">
               <hr class="adm__rsm-content-hr" />
-
-              <button
-                class="submit"
-                onclick="location.href='/src/views/adm_ci/adm_ci_2.html';"
-              >
-                제출하기
-              </button>
+              <router-link to="/admin/progress/list">
+                <button class="submit">제출하기</button>
+              </router-link>
             </div>
           </article>
         </section>

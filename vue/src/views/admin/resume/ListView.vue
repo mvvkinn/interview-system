@@ -7,46 +7,51 @@ vu
         <div class="adm_navbar">
           <div class="adm_nav__menu">
             <ul>
-              <li class="adm_nav__menu--li active">
-                <img
-                  src="@/assets/images/icons/menuIcon_user.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_user_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                  onclick="location.href='/src/views/adm_rsm/adm_rsm_1.html';"
-                />
-                <p>관리자 페이지</p>
-              </li>
-              <li class="adm_nav__menu--li">
-                <img
-                  src="@/assets/images/icons/menuIcon_search.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_search_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>합격자 조회</p>
-              </li>
-              <li class="adm_nav__menu--li">
-                <img
-                  src="@/assets/images/icons/menuIcon_notice.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_notice_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>면접 공지</p>
-              </li>
+              <router-link to="/admin/resume">
+                <li class="adm_nav__menu--li active">
+                  <img
+                    src="@/assets/images/icons/menuIcon_user.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_user_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  <p>관리자 페이지</p>
+                </li>
+              </router-link>
+              <router-link to="/success">
+                <li class="adm_nav__menu--li">
+                  <img
+                    src="@/assets/images/icons/menuIcon_search.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_search_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  <p>합격자 조회</p>
+                </li>
+              </router-link>
+              <router-link to="/admin/notice">
+                <li class="adm_nav__menu--li">
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  <p>면접 공지</p>
+                </li>
+              </router-link>
             </ul>
           </div>
         </div>
@@ -54,15 +59,15 @@ vu
           <nav>
             <ul class="adm__menu">
               <li class="adm__menu-rsm active">
-                <a href="/src/views/adm_rsm/adm_rsm_1.html"
-                  >지원자 및 이력서 조회</a
+                <router-link to="/admin/resume"
+                  >지원자 및 이력서 조회</router-link
                 >
               </li>
               <li class="adm__menu-id">
-                <a href="/src/views/adm_id/adm_id_1.html">면접 내용 조회</a>
+                <router-link to="/admin/content">면접 내용 조회</router-link>
               </li>
               <li class="adm__menu-ci">
-                <a href="/src/views/adm_ci/adm_ci_1.html">면접 진행</a>
+                <router-link to="/admin/progress">면접 진행</router-link>
               </li>
               <li class="adm__menu-empty"></li>
               <li class="adm__menu-empty"></li>
@@ -103,19 +108,19 @@ vu
                   <p>김명지</p>
                 </div>
               </div>
-
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>2</p>
+              <router-link to="/admin/resume/detail">
+                <div class="re-adm__interview-content-table-text">
+                  <div class="re-adm__interview-content-table-text-no">
+                    <p>2</p>
+                  </div>
+                  <div class="re-adm__interview-content-table-text-title">
+                    <p>안녕하십니까 프론트엔드 지원자 김명지 입니다!</p>
+                  </div>
+                  <div class="re-adm__interview-content-table-text-volunteer">
+                    <p>김명지</p>
+                  </div>
                 </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>안녕하십니까 프론트엔드 지원자 김명지 입니다!</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-
+              </router-link>
               <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>3</p>
@@ -222,11 +227,9 @@ vu
                 </div>
               </div>
               <div class="re-adm-content-btn">
-                <button
-                  onclick="location.href='/src/views/adm_id/adm_rsm_1.html';"
-                >
-                  뒤로가기
-                </button>
+                <router-link to="/admin/resume">
+                  <button>뒤로가기</button>
+                </router-link>
               </div>
             </div>
           </article>

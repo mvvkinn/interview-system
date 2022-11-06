@@ -7,45 +7,51 @@ vu
         <div class="notice_adm_navbar">
           <div class="notice_adm_nav__menu">
             <ul>
-              <li>
-                <img
-                  src="@/assets/images/icons/menuIcon_user.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_user_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>관리자페이지</p>
-              </li>
-              <li>
-                <img
-                  src="@/assets/images/icons/menuIcon_search.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_search_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>합격자 조회</p>
-              </li>
-              <li class="active">
-                <img
-                  src="@/assets/images/icons/menuIcon_notice.png"
-                  alt=""
-                  class="component-column--img-black"
-                />
-                <img
-                  src="@/assets/images/icons/menuIcon_notice_hover.png"
-                  alt=""
-                  class="component-column--img-blue"
-                />
-                <p>면접 공지</p>
-              </li>
+              <router-link to="/admin/resume">
+                <li class="adm_nav__menu--li">
+                  <img
+                    src="@/assets/images/icons/menuIcon_user.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_user_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  <p>관리자 페이지</p>
+                </li>
+              </router-link>
+              <router-link to="/success">
+                <li class="adm_nav__menu--li">
+                  <img
+                    src="@/assets/images/icons/menuIcon_search.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_search_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  <p>합격자 조회</p>
+                </li>
+              </router-link>
+              <router-link to="/admin/notice">
+                <li class="adm_nav__menu--li active">
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice.png"
+                    alt=""
+                    class="component-column--img-black"
+                  />
+                  <img
+                    src="@/assets/images/icons/menuIcon_notice_hover.png"
+                    alt=""
+                    class="component-column--img-blue"
+                  />
+                  <p>면접 공지</p>
+                </li>
+              </router-link>
             </ul>
           </div>
         </div>
@@ -53,7 +59,10 @@ vu
           <article class="notice-adm__interview">
             <div class="notice-adm__interview-title">
               <h1>면접 공지사항</h1>
-              <button>글쓰기</button>
+
+              <button>
+                <router-link to="/admin/notice/write">글쓰기</router-link>
+              </button>
             </div>
             <hr />
             <div class="notice-adm__interview-tab-header">
