@@ -122,19 +122,19 @@ const routes = [
       ),
   },
   {
-    path: "/mypage/apply",
+    path: "/mypage/interview",
     name: "mypage_apply",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/mypage/interview/MyApplyInterview.vue"
+        /* webpackChunkName: "about" */ "../views/mypage/interview/ListView.vue"
       ),
   },
   {
-    path: "/mypage/apply/detail",
+    path: "/mypage/interview/detail",
     name: "mypage_apply_detail",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/mypage/interview/MyApplyInterviewDetail.vue"
+        /* webpackChunkName: "about" */ "../views/mypage/interview/DetailView.vue"
       ),
   },
   {
@@ -150,7 +150,7 @@ const routes = [
     name: "mypage_changeinfo_personal",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/mypage/changeinfo/ChangeInformation.vue"
+        /* webpackChunkName: "about" */ "../views/mypage/changeinfo/ChangeInfo.vue"
       ),
   },
   // notice
@@ -158,30 +158,28 @@ const routes = [
     path: "/notice",
     name: "notice_list",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/notice/NoticeList.vue"),
+      import(/* webpackChunkName: "about" */ "../views/notice/ListView.vue"),
   },
   {
     path: "/notice/detail",
     name: "notice_detail",
     component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../views/notice/NoticeDetail.vue"
-      ),
+      import(/* webpackChunkName: "about" */ "../views/notice/DetailView.vue"),
   },
   {
-    path: "/notice/apply",
+    path: "/notice/detail/apply",
     name: "notice_apply",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/notice/interview/InterviewApply.vue"
+        /* webpackChunkName: "about" */ "../views/notice/interview/ApplyView.vue"
       ),
   },
   {
-    path: "/notice/apply/success",
+    path: "/notice/detail/apply/success",
     name: "notice_apply_success",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/notice/interview/InterviewApplySuccess.vue"
+        /* webpackChunkName: "about" */ "../views/notice/interview/ApplySuccess.vue"
       ),
   },
   // success
@@ -189,16 +187,14 @@ const routes = [
     path: "/success",
     name: "success_search",
     component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../views/success/SelectSuccess.vue"
-      ),
+      import(/* webpackChunkName: "about" */ "../views/success/SearchView.vue"),
   },
   {
     path: "/success/result",
     name: "success_result",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/success/InterviewResult"
+        /* webpackChunkName: "about" */ "../views/success/InterviewResult.vue"
       ),
   },
   // admin
@@ -207,7 +203,7 @@ const routes = [
     name: "admin_notice_list",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/admin/notice/NoticeList.vue"
+        /* webpackChunkName: "about" */ "../views/admin/notice/ListView.vue"
       ),
   },
   {
@@ -215,23 +211,23 @@ const routes = [
     name: "admin_notice_write",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/admin/notice/NoticeWrite.vue"
-      ),
-  },
-  {
-    path: "/admin",
-    name: "admin_interview",
-    component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../views/admin/resume/SelectInterview.vue"
+        /* webpackChunkName: "about" */ "../views/admin/notice/WriteView.vue"
       ),
   },
   {
     path: "/admin/resume",
+    name: "admin_interview",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/resume/SearchInterview.vue"
+      ),
+  },
+  {
+    path: "/admin/resume/list",
     name: "admin_interview_resume",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/admin/resume/ResumeList.vue"
+        /* webpackChunkName: "about" */ "../views/admin/resume/ListView.vue"
       ),
   },
   {
@@ -239,7 +235,7 @@ const routes = [
     name: "admin_interview_resume_detail",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/admin/resume/ResumeDetail.vue"
+        /* webpackChunkName: "about" */ "../views/admin/resume/DetailView.vue"
       ),
   },
   {
@@ -247,7 +243,7 @@ const routes = [
     name: "admin_interview_progress",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/admin/progress/SelectInterview.vue"
+        /* webpackChunkName: "about" */ "../views/admin/progress/SearchInterview.vue"
       ),
   },
   {
@@ -255,7 +251,7 @@ const routes = [
     name: "admin_interview_progress_list",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/admin/progress/ProgressList.vue"
+        /* webpackChunkName: "about" */ "../views/admin/progress/ListView.vue"
       ),
   },
   {
@@ -271,7 +267,7 @@ const routes = [
     name: "admin_interview_content",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/admin/content/SelectInterview.vue"
+        /* webpackChunkName: "about" */ "../views/admin/content/SearchInterview.vue"
       ),
   },
   {
@@ -279,7 +275,7 @@ const routes = [
     name: "admin_interview_content_list",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/admin/content/ContentList.vue"
+        /* webpackChunkName: "about" */ "../views/admin/content/ListView.vue"
       ),
   },
   {
@@ -287,7 +283,7 @@ const routes = [
     name: "admin_interview_content_detail",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/admin/content/ContentDetail.vue"
+        /* webpackChunkName: "about" */ "../views/admin/content/DetailView.vue"
       ),
   },
 ];
