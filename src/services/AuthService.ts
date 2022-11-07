@@ -32,15 +32,11 @@ export default class AuthService {
   ): Promise<{ user: IUser; token: string }> {
     const userRecord = await this.userModel.findByPk(username);
 
-    const userDTO = Object.keys(userRecord).map(key => {
-      const user = Object(userRecord[key as keyof IUser]);
-      return user;
-    })[0];
-
-    if (!userDTO) {
+    if (!userRecord) {
       throw new Error(`Can't find user : ${username}`);
     }
 
+    const userDTO = userRecord.dataValues;
     const isPasswordValid = await argon2.verify(userDTO.password, password);
 
     if (isPasswordValid) {
@@ -63,8 +59,8 @@ export default class AuthService {
 
     return jwt.sign(
       {
-        _id: user.username,
         username: user.username,
+        role: user.role,
         exp: tokenExpiration.getTime() / 1000,
       },
       config.jwtSecret
