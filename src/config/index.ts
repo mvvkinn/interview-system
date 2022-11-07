@@ -8,5 +8,9 @@ export default {
   port: 3000,
 
   jwtSecret: process.env.JWT_SECRET as string,
-  jwtAlgorithm: process.env.JWT_ALGO as string,
+  jwtAlgorithm: process.env.JWT_ALGO as any,
+
+  logs: {
+    level: process.env.LOG_LEVEL || "silly",
+  },
 };
