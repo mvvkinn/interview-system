@@ -1,11 +1,13 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { IUser } from "@interfaces/IUser";
-import { User } from "@models/User";
 import AuthService from "@services/AuthService";
+import Container from "typedi";
+import { Logger } from "winston";
 
 const route = Router();
 
 export default (app: Router) => {
+  const logger: Logger = Container.get("logger");
   app.use("/auth", route);
 
   route.post(
@@ -20,7 +22,7 @@ export default (app: Router) => {
 
         res.status(201).send(result);
       } catch (e) {
-        console.log("error", e);
+        logger.error(e);
         next(e);
       }
     }
@@ -31,13 +33,14 @@ export default (app: Router) => {
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const authServiceInstance = new AuthService();
+
         const { user, token } = await authServiceInstance.SignIn(
           req.body.username,
           req.body.password
         );
         return res.json({ user, token }).status(200);
       } catch (e) {
-        console.log(e);
+        logger.error(e);
         next(e);
       }
     }
