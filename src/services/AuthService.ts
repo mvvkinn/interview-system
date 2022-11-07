@@ -1,16 +1,23 @@
-import { User } from "@models/User";
+import { Container } from "typedi";
 import { randomBytes } from "crypto";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import { IUser, IUserSignInDTO } from "@interfaces/IUser";
 import config from "@config";
+import { ModelCtor, Sequelize } from "sequelize";
 
 export default class AuthService {
+  userModel: ModelCtor<any>;
+  constructor() {
+    const db: Sequelize = Container.get("db");
+    this.userModel = db.models.User;
+  }
+
   public async SignUp(UserDTO: IUser) {
     const salt = randomBytes(32);
 
     const hashedPassword = await argon2.hash(UserDTO.password, { salt });
-    const userRecord = await User.Create({
+    const userRecord = this.userModel.create({
       ...UserDTO,
       password: hashedPassword,
       salt: salt.toString("hex"),
@@ -23,7 +30,8 @@ export default class AuthService {
     username: string,
     password: string
   ): Promise<{ user: IUser; token: string }> {
-    const userRecord = await User.findOne({ username });
+    const userRecord = await this.userModel.findByPk(username);
+
     const userDTO = Object.keys(userRecord).map(key => {
       const user = Object(userRecord[key as keyof IUser]);
       return user;
@@ -36,7 +44,6 @@ export default class AuthService {
     const isPasswordValid = await argon2.verify(userDTO.password, password);
 
     if (isPasswordValid) {
-      console.log(userDTO);
       const token = this.generateToken(userDTO);
 
       const user = Object(userDTO);
@@ -53,8 +60,6 @@ export default class AuthService {
     const today = new Date();
     const tokenExpiration = new Date(today);
     tokenExpiration.setDate(today.getDate() + 60);
-
-    console.log(`Sign JWT for username ${user.username}`);
 
     return jwt.sign(
       {
