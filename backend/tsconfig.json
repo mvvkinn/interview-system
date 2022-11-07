@@ -8,7 +8,7 @@
     "rootDir": "./",
     "baseUrl": ".",
     "paths": {
-      "@*": ["./*"]
+      "@*": ["./src/*"]
     },
 
     /* JavaScript Support */
@@ -33,6 +33,6 @@
     /* Completeness */
     "skipLibCheck": true
   },
-  "include": ["./**/*.ts"],
+  "include": ["./src/**/*.ts"],
   "exclude": ["node_modules"]
 }
