@@ -1,5 +1,5 @@
 import { IUser, IUserSignInDTO } from "@interfaces/IUser";
-import { DataTypes, Model, Sequelize } from "sequelize";
+import { DataTypes, Sequelize } from "sequelize";
 import Container from "typedi";
 import { Logger } from "winston";
 
@@ -10,7 +10,12 @@ export default async (db: Sequelize) => {
   const userModel = db.define(
     "User",
     {
-      username: { type: DataTypes.STRING, allowNull: false, primaryKey: true },
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true,
+        unique: true,
+      },
       email: { type: DataTypes.STRING, allowNull: false },
       password: { type: DataTypes.STRING, allowNull: false },
       salt: { type: DataTypes.STRING, allowNull: false },
@@ -21,6 +26,15 @@ export default async (db: Sequelize) => {
       zipcode: DataTypes.STRING,
       address: DataTypes.STRING,
       recieve_info: DataTypes.BOOLEAN,
+      role: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: {
+            args: [["user", "recruiter", "admin"]],
+            msg: "Must be user, recruiter, admin",
+          },
+        },
+      },
     },
     { tableName: "User", timestamps: false }
   );
