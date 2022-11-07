@@ -7,4 +7,6 @@ export default (sequelizeInstance: Sequelize) => {
   Container.set("logger", LoggerInstance);
 
   Container.set("db", sequelizeInstance);
+
+  Container.set("userModel", User(sequelizeInstance));
 };
