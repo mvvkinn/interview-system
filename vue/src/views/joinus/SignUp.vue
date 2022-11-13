@@ -9,12 +9,14 @@
               <h1>정보입력</h1>
             </div>
             <hr />
-            <div class="info_area">
+            <form class="info_area" v-on:submit.prevent="submitForm">
               <div class="info_line">
                 <div class="info_empty"></div>
                 <div class="info_name_area"><p>아이디*</p></div>
                 <div class="info_input_area">
                   <input
+                    v-model="username"
+                    ref="username"
                     type="text"
                     class="info_input_text"
                     placeholder="아이디를 입력해주세요."
@@ -27,6 +29,8 @@
                 <div class="info_name_area"><p>비밀번호*</p></div>
                 <div class="info_input_area">
                   <input
+                    v-model="password"
+                    ref="password"
                     type="password"
                     class="info_input_text"
                     placeholder="비밀번호를 입력해주세요."
@@ -37,7 +41,12 @@
                 <div class="info_empty"></div>
                 <div class="info_name_area"><p>이름*</p></div>
                 <div class="info_input_area">
-                  <input type="text" class="info_input_text" />
+                  <input
+                    @input="checkInput"
+                    ref="name"
+                    type="text"
+                    class="info_input_text"
+                  />
                 </div>
               </div>
               <div class="info_line">
@@ -46,6 +55,7 @@
                 <div class="info_input_area">
                   <label class="label_gender">
                     <input
+                      v-model="gender"
                       class="info_input_radio"
                       type="radio"
                       name="gender"
@@ -56,6 +66,7 @@
                   </label>
                   <label class="label_gender">
                     <input
+                      v-model="gender"
                       class="info_input_radio"
                       type="radio"
                       name="gender"
@@ -71,6 +82,8 @@
                 <div class="info_name_area"><p>생년월일*</p></div>
                 <div class="info_input_area">
                   <input
+                    v-model="birthdate"
+                    ref="birthdate"
                     type="text"
                     class="info_input_text"
                     placeholder="예)20221212"
@@ -82,9 +95,11 @@
                 <div class="info_name_area"><p>전화번호*</p></div>
                 <div class="info_input_area">
                   <input
+                    ref="phone"
                     type="text"
                     class="info_input_text"
                     placeholder="'-' 제외하고 입력"
+                    @input="checkInput"
                   />
                 </div>
               </div>
@@ -92,7 +107,12 @@
                 <div class="info_empty"></div>
                 <div class="info_name_area"><p>이메일*</p></div>
                 <div class="info_input_area">
-                  <input type="text" class="info_input_text_2" />
+                  <input
+                    v-model="email"
+                    ref="email"
+                    type="text"
+                    class="info_input_text_2"
+                  />
                   <p class="email_center">@</p>
                   <input type="text" class="info_input_text_2" />
                   <select name="email_back" class="email_select">
@@ -107,7 +127,12 @@
                 <div class="info_empty"></div>
                 <div class="info_name_area"><p>주소*</p></div>
                 <div class="info_input_area">
-                  <input type="text" class="info_input_text" />
+                  <input
+                    v-model="zipcode"
+                    ref="zipcode"
+                    type="text"
+                    class="info_input_text"
+                  />
                   <div class="info_value_btn">우편번호</div>
                 </div>
               </div>
@@ -115,7 +140,12 @@
                 <div class="info_empty"></div>
                 <div class="info_name_area"></div>
                 <div class="info_input_area">
-                  <input type="text" class="info_input_adress" />
+                  <input
+                    v-model="address"
+                    ref="address"
+                    type="text"
+                    class="info_input_adress"
+                  />
                 </div>
               </div>
               <div class="info_line">
@@ -124,21 +154,21 @@
                 <div class="info_input_area">
                   <label class="label_agree">
                     <input
+                      v-model="isAgree"
                       class="info_input_radio"
                       type="radio"
                       name="agree"
-                      id="agree"
-                      value="agree"
+                      value="true"
                     />
                     <p class="radio_value">동의</p>
                   </label>
                   <label class="label_agree">
                     <input
+                      v-model="isAgree"
                       class="info_input_radio"
                       type="radio"
                       name="agree"
-                      id="agree"
-                      value="disagree"
+                      value="false"
                     />
                     <p class="radio_value">안함</p>
                   </label>
@@ -153,19 +183,17 @@
                   </p>
                 </div>
               </div>
-            </div>
-            <div class="joinUs_btn_area">
-              <router-link to="/joinus">
-                <div class="back_btn">
-                  <p>이전 단계로</p>
-                </div>
-              </router-link>
-              <router-link to="/signup/success">
-                <div class="next_btn">
-                  <p>다음 단계로</p>
-                </div>
-              </router-link>
-            </div>
+              <div class="joinUs_btn_area">
+                <router-link to="/joinus">
+                  <div class="back_btn">
+                    <p>이전 단계로</p>
+                  </div>
+                </router-link>
+                <!-- <router-link to="/signup/success"> -->
+                <button class="next_btn" type="submit">다음 단계로</button>
+                <!-- </router-link> -->
+              </div>
+            </form>
             <hr />
           </article>
         </section>
@@ -183,6 +211,51 @@ export default {
     HeaderView,
     FooterView,
   },
+  data() {
+    return {
+      username: "",
+      password: "",
+      name: "",
+      gender: "",
+      birthdate: "",
+      phone: "",
+      email: "",
+      zipcode: "",
+      address: "",
+      isAgree: false,
+    };
+  },
+  watch: {},
+  methods: {
+    async submitForm() {
+      const data = {
+        username: this.username,
+        password: this.password,
+        name: this.name,
+        gender: this.gender,
+        birthdate: this.birthdate,
+        phone: this.phone,
+        email: this.email,
+        zipcode: this.zipcode,
+        address: this.address,
+        recieve_info: this.isAgree,
+      };
+      // const arrayKey = Object.keys(data);
+
+      await this.$axios
+        .post("/auth/signup", JSON.stringify(data), {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then((res) => {
+          console.log(res);
+          this.$router.push("/signup/success");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+  computed: {},
 };
 </script>
 
