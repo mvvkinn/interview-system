@@ -67,7 +67,6 @@
                       class="info_input_radio"
                       type="radio"
                       name="gender"
-                      id="male"
                       value="male"
                     />
                     <p class="radio_value">남자</p>
@@ -78,7 +77,6 @@
                       class="info_input_radio"
                       type="radio"
                       name="gender"
-                      id="female"
                       value="female"
                     />
                     <p class="radio_value">여자</p>
@@ -245,13 +243,13 @@ export default {
       username: "",
       password: "",
       name: "",
-      gender: "",
+      gender: "male",
       birthdate: "",
       phone: "",
       email: "",
       zipcode: "",
       address: "",
-      isAgree: false,
+      isAgree: true,
       domain: "",
       checkEmpty: false,
       inputError: [false, false, false, false, false, false, false, false],
