@@ -58,7 +58,7 @@ vu
         <section class="notice">
           <article class="notice__details">
             <div class="notice__details-h1">
-              <h1>2022년도 하반기 OOOOO 프론트엔트 개발자 모집</h1>
+              <h1>{{ detail.title }}</h1>
             </div>
             <hr />
             <div class="notice__details-header">
@@ -70,18 +70,19 @@ vu
               <div class="notice__details-header-div"><p>날짜</p></div>
               <hr />
               <div class="notice__details-header-div">
-                <p>2022 / 01 / 01</p>
+                <p>{{ detail.date }}</p>
               </div>
               <hr />
               <div class="notice__details-header-div"><p>조회수</p></div>
               <hr />
-              <div class="notice__details-header-div"><p>159</p></div>
+              <div class="notice__details-header-div">
+                <p>{{ detail.view }}</p>
+              </div>
             </div>
             <hr />
             <div class="notice__details-text">
               <p>
-                2022년도 하반기 OOOOO 프론트엔트 개발자를 모집합니다.<br />저희와
-                함께 할 인재를 모집합니다. 많은 지원 부탁드립니다<br />지원방법<br />
+                {{ detail.detail }}<br />
                 .<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />
                 .<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />
                 .<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />
@@ -111,6 +112,26 @@ export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  data() {
+    return {
+      noticelist: [],
+      detail: {},
+    };
+  },
+
+  async created() {
+    const noticeText = await this.$axios.get(
+      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
+    );
+    this.noticelist = noticeText.data.noticelist;
+    // console.log(
+    //   this.noticelist.filter((v) => v.number === +this.$route.params.number)
+    // );
+    this.detail = this.noticelist.filter(
+      (v) => v.number === +this.$route.params.number
+    )[0];
+    console.log(this.detail[0]);
   },
 };
 </script>

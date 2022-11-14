@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -96,7 +95,7 @@ vu
 
             <div v-if="splitlist">
               <router-link
-                to="/notice/detail"
+                :to="`/notice/detail/${notice.number}`"
                 :key="index"
                 v-for="(notice, index) in splitlist"
               >
