@@ -20,7 +20,7 @@ export default (app: Router) => {
         const authServiceInstance = new AuthService();
         const result = await authServiceInstance.SignUp(UserDTO);
 
-        res.status(201).send(result);
+        res.status(201).end();
       } catch (e) {
         logger.error(e);
         next(e);
