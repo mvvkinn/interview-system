@@ -94,33 +94,39 @@ vu
               </div>
             </div>
 
-            <router-link to="/notice/detail">
-              <div
-                class="notice-adm__interview-table-text"
+            <div v-if="splitlist">
+              <router-link
+                to="/notice/detail"
                 :key="index"
-                v-for="(notice, index) in noticelist"
+                v-for="(notice, index) in splitlist"
               >
-                <div class="notice-adm__interview-table-text-no">
-                  <p>{{ notice.number }}</p>
+                <div class="notice-adm__interview-table-text">
+                  <div class="notice-adm__interview-table-text-no">
+                    <p>{{ notice.number }}</p>
+                  </div>
+                  <div class="notice-adm__interview-table-text-title">
+                    <p>{{ notice.title }}</p>
+                  </div>
+                  <div class="notice-adm__interview-table-text-date">
+                    <p>{{ notice.date }}</p>
+                  </div>
+                  <div class="notice-adm__interview-table-text-views">
+                    <p>{{ notice.view }}</p>
+                  </div>
                 </div>
-                <div class="notice-adm__interview-table-text-title">
-                  <p>{{ notice.title }}</p>
-                </div>
-                <div class="notice-adm__interview-table-text-date">
-                  <p>{{ notice.date }}</p>
-                </div>
-                <div class="notice-adm__interview-table-text-views">
-                  <p>{{ notice.view }}</p>
-                </div>
-              </div>
-            </router-link>
+              </router-link>
+            </div>
 
             <div class="notice__interview-page">
               <div class="notice__interview-pagination">
                 <a>&laquo;</a>
-                <a class="active">1</a>
-                <!-- <a>2</a>
-                <a>3</a> -->
+                <a
+                  v-for="unit in page"
+                  :key="`page-${unit}`"
+                  @click="pagination(unit)"
+                >
+                  {{ unit }}
+                </a>
                 <a>&raquo;</a>
               </div>
             </div>
@@ -144,26 +150,52 @@ export default {
   data() {
     return {
       noticelist: [],
+      splitlist: [],
+      pagecount: 10,
     };
   },
+  computed: {
+    page() {
+      return Math.ceil(this.noticelist.length / 10);
+    },
+  },
+
   async created() {
     const noticeText = await this.$axios.get(
       "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
     );
     this.noticelist = noticeText.data.noticelist;
-    console.log(this.noticelist[0].date);
+    console.log(this.noticelist);
+    this.pagination(1);
+  },
+  methods: {
+    pagination(num) {
+      let start = 0;
+      let end = this.pagecount;
+      if (num === 1) {
+        this.splitlist = this.noticelist.filter(
+          (v, i) => i >= start && i < end
+        );
+      } else {
+        start = this.pagecount * (num - 1);
+        end = this.pagecount * num;
+        this.splitlist = this.noticelist.filter(
+          (v, i) => i >= start && i < end
+        );
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
-.notice-adm__interview-table-text:nth-last-child(1) {
+/* .notice-adm__interview-table-text:nth-last-child(1) {
   border-bottom: 1px solid #333333;
-}
-.notice-adm__interview-table-text:nth-last-child(2) {
+} */
+/* .notice-adm__interview-table-text:nth-last-child(2) {
   border-bottom: none;
-}
-.notice-adm__interview-table-text:hover {
+} */
+/* .notice-adm__interview-table-text:hover {
   border-bottom: 1px solid #3c62e5;
-}
+} */
 </style>
