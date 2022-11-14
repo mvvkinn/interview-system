@@ -4,35 +4,36 @@
     <main>
       <section class="main-view">
         <div class="main-view__column">
-          <div class="main-view__column-content">
-            <router-link to="/">
+          <router-link to="/notice">
+            <div class="main-view__column-content">
               <img
                 src="@/assets/images/icons/icon_notice.png"
                 alt=""
                 width="125"
                 height="125"
               />
-            </router-link>
-            <div class="main-view__column-content-text">
-              <h1>공지사항</h1>
-              <h2>NOTICE</h2>
-              <div class="main-view__column-content-tag">
-                <span>#오늘의 공지</span>
-                <span>#필수확인</span>
-                <span>#대학공지</span>
+
+              <div class="main-view__column-content-text">
+                <h1>공지사항</h1>
+                <h2>NOTICE</h2>
+                <div class="main-view__column-content-tag">
+                  <span>#오늘의 공지</span>
+                  <span>#필수확인</span>
+                  <span>#대학공지</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="main-view__column-out-1"></div>
-          <div class="main-view__column-in-1"></div>
-          <div class="main-view__column-out-2"></div>
-          <div class="main-view__column-in-2"></div>
-          <div class="main-view__column-left-corner-1"></div>
-          <div class="main-view__column-left-corner-2"></div>
-          <div class="main-view__column-right-corner-1"></div>
-          <div class="main-view__column-right-corner-2"></div>
-          <div class="main-view__column-left-box"></div>
-          <div class="main-view__column-right-box"></div>
+            <div class="main-view__column-out-1"></div>
+            <div class="main-view__column-in-1"></div>
+            <div class="main-view__column-out-2"></div>
+            <div class="main-view__column-in-2"></div>
+            <div class="main-view__column-left-corner-1"></div>
+            <div class="main-view__column-left-corner-2"></div>
+            <div class="main-view__column-right-corner-1"></div>
+            <div class="main-view__column-right-corner-2"></div>
+            <div class="main-view__column-left-box"></div>
+            <div class="main-view__column-right-box"></div>
+          </router-link>
         </div>
         <div class="main-view__column">
           <router-link to="/mypage/resume">
@@ -67,33 +68,35 @@
           </router-link>
         </div>
         <div class="main-view__column">
-          <div class="main-view__column-content">
-            <img
-              src="@/assets/images/icons/icon_lookup.png"
-              alt=""
-              width="125"
-              height="125"
-            />
-            <div class="main-view__column-content-text">
-              <h1>합격자조회</h1>
-              <h2>LOOK UP</h2>
-              <div class="main-view__column-content-tag">
-                <span>#면접결과</span>
-                <span>#두근두근</span>
-                <span>#후회는_없다</span>
+          <router-link to="/success">
+            <div class="main-view__column-content">
+              <img
+                src="@/assets/images/icons/icon_lookup.png"
+                alt=""
+                width="125"
+                height="125"
+              />
+              <div class="main-view__column-content-text">
+                <h1>합격자조회</h1>
+                <h2>LOOK UP</h2>
+                <div class="main-view__column-content-tag">
+                  <span>#면접결과</span>
+                  <span>#두근두근</span>
+                  <span>#후회는_없다</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="main-view__column-out-1"></div>
-          <div class="main-view__column-in-1"></div>
-          <div class="main-view__column-out-2"></div>
-          <div class="main-view__column-in-2"></div>
-          <div class="main-view__column-left-corner-1"></div>
-          <div class="main-view__column-left-corner-2"></div>
-          <div class="main-view__column-right-corner-1"></div>
-          <div class="main-view__column-right-corner-2"></div>
-          <div class="main-view__column-left-box"></div>
-          <div class="main-view__column-right-box"></div>
+            <div class="main-view__column-out-1"></div>
+            <div class="main-view__column-in-1"></div>
+            <div class="main-view__column-out-2"></div>
+            <div class="main-view__column-in-2"></div>
+            <div class="main-view__column-left-corner-1"></div>
+            <div class="main-view__column-left-corner-2"></div>
+            <div class="main-view__column-right-corner-1"></div>
+            <div class="main-view__column-right-corner-2"></div>
+            <div class="main-view__column-left-box"></div>
+            <div class="main-view__column-right-box"></div>
+          </router-link>
         </div>
       </section>
     </main>

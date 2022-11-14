@@ -94,164 +94,34 @@ vu
               </div>
             </div>
 
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>25</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>2022년도 명지전문대 면접 모집</p>
-              </div>
-              <div class="notice-adm__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
             <router-link to="/notice/detail">
-              <div class="notice-adm__interview-table-text">
+              <div
+                class="notice-adm__interview-table-text"
+                :key="index"
+                v-for="(notice, index) in noticelist"
+              >
                 <div class="notice-adm__interview-table-text-no">
-                  <p>24</p>
+                  <p>{{ notice.number }}</p>
                 </div>
                 <div class="notice-adm__interview-table-text-title">
-                  <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p>
+                  <p>{{ notice.title }}</p>
                 </div>
                 <div class="notice-adm__interview-table-text-date">
-                  <p>2022/01/01</p>
+                  <p>{{ notice.date }}</p>
                 </div>
                 <div class="notice-adm__interview-table-text-views">
-                  <p>159</p>
+                  <p>{{ notice.view }}</p>
                 </div>
               </div>
             </router-link>
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>23</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice-adm__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>22</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice-adm__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>21</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice-adm__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>20</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice-adm__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>19</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice-adm__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>18</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice-adm__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>17</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice-adm__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>16</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice-adm__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
 
             <div class="notice__interview-page">
               <div class="notice__interview-pagination">
-                <a href="#">&laquo;</a>
-                <a class="active" href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">&raquo;</a>
+                <a>&laquo;</a>
+                <a class="active">1</a>
+                <!-- <a>2</a>
+                <a>3</a> -->
+                <a>&raquo;</a>
               </div>
             </div>
           </article>
@@ -265,12 +135,35 @@ vu
 <script>
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+
 export default {
   components: {
     HeaderView,
     FooterView,
   },
+  data() {
+    return {
+      noticelist: [],
+    };
+  },
+  async created() {
+    const noticeText = await this.$axios.get(
+      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
+    );
+    this.noticelist = noticeText.data.noticelist;
+    console.log(this.noticelist[0].date);
+  },
 };
 </script>
 
-<style></style>
+<style scoped>
+.notice-adm__interview-table-text:nth-last-child(1) {
+  border-bottom: 1px solid #333333;
+}
+.notice-adm__interview-table-text:nth-last-child(2) {
+  border-bottom: none;
+}
+.notice-adm__interview-table-text:hover {
+  border-bottom: 1px solid #3c62e5;
+}
+</style>
