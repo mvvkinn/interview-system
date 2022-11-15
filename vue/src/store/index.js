@@ -2,6 +2,7 @@
 
 import Vue from "vue";
 import Vuex from "vuex";
+import { login } from "./module/login";
 
 Vue.use(Vuex);
 
@@ -17,4 +18,7 @@ export const store = new Vuex.Store({
 
   // 비동기적 로직
   actions: {},
+  modules: {
+    login,
+  },
 });
