@@ -19,7 +19,7 @@
                     ref="username"
                     type="text"
                     class="info_input_text"
-                    :class="{ error: inputError[0] }"
+                    :class="{ error: inputError.username }"
                     placeholder="아이디를 입력해주세요."
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
@@ -35,7 +35,7 @@
                     ref="password"
                     type="password"
                     class="info_input_text"
-                    :class="{ error: inputError[1] }"
+                    :class="{ error: inputError.password }"
                     placeholder="비밀번호를 입력해주세요."
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
@@ -51,7 +51,7 @@
                     ref="name"
                     type="text"
                     class="info_input_text"
-                    :class="{ error: inputError[2] }"
+                    :class="{ error: inputError.name }"
                     placeholder="예) 홍길동"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
@@ -67,7 +67,7 @@
                       class="info_input_radio"
                       type="radio"
                       name="gender"
-                      value="male"
+                      value="m"
                     />
                     <p class="radio_value">남자</p>
                   </label>
@@ -77,7 +77,7 @@
                       class="info_input_radio"
                       type="radio"
                       name="gender"
-                      value="female"
+                      value="f"
                     />
                     <p class="radio_value">여자</p>
                   </label>
@@ -92,7 +92,7 @@
                     ref="birthdate"
                     type="date"
                     class="info_input_text"
-                    :class="{ error: inputError[3] }"
+                    :class="{ error: inputError.birthdate }"
                     placeholder="예)20221212"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
@@ -106,7 +106,7 @@
                     ref="phone"
                     type="text"
                     class="info_input_text"
-                    :class="{ error: inputError[4] }"
+                    :class="{ error: inputError.phone }"
                     placeholder="'-' 제외하고 입력"
                     maxlength="11"
                     :value="phone"
@@ -124,7 +124,7 @@
                     ref="email"
                     type="text"
                     class="info_input_text_2"
-                    :class="{ error: inputError[5] }"
+                    :class="{ error: inputError.email }"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
                   <p class="email_center">@</p>
@@ -155,7 +155,7 @@
                     type="text"
                     class="info_input_text"
                     maxlength="5"
-                    :class="{ error: inputError[6] }"
+                    :class="{ error: inputError.zipcode }"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
                   <div class="info_value_btn">우편번호</div>
@@ -170,7 +170,7 @@
                     ref="address"
                     type="text"
                     class="info_input_adress"
-                    :class="{ error: inputError[7] }"
+                    :class="{ error: inputError.address }"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
                 </div>
@@ -243,16 +243,25 @@ export default {
       username: "",
       password: "",
       name: "",
-      gender: "male",
+      gender: "m",
       birthdate: "",
       phone: "",
       email: "",
+      domain: "",
       zipcode: "",
       address: "",
       isAgree: true,
-      domain: "",
-      checkEmpty: false,
-      inputError: [false, false, false, false, false, false, false, false],
+      isEmpty: false,
+      inputError: {
+        username: false,
+        password: false,
+        name: false,
+        birthdate: false,
+        phone: false,
+        email: false,
+        zipcode: false,
+        address: false,
+      },
       inputErrorMsg: "",
       regexp: {
         korean: /[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,
@@ -267,46 +276,46 @@ export default {
   watch: {
     username() {
       if (this.username.trim() !== "") {
-        this.inputError[0] = false;
+        this.inputError.username = false;
       }
     },
     password() {
       if (this.password.trim() !== "") {
-        this.inputError[1] = false;
+        this.inputError.password = false;
       }
       if (!this.regexp.pwd.test(this.password.trim())) {
-        this.inputError[1] = true;
+        this.inputError.password = true;
         this.inputErrorMsg = "영어 및 숫자, 특수문자를 결합한 최소 8자리 이상";
       }
     },
     name() {
       if (this.name.trim() !== "") {
-        this.inputError[2] = false;
+        this.inputError.name = false;
       }
     },
     birthdate() {
       if (this.birthdate.trim() !== "") {
-        this.inputError[3] = false;
+        this.inputError.birthdate = false;
       }
     },
     phone() {
       if (this.phone.trim() !== "") {
-        this.inputError[4] = false;
+        this.inputError.phone = false;
       }
     },
     email() {
       if (this.email.trim() !== "") {
-        this.inputError[5] = false;
+        this.inputError.email = false;
       }
     },
     zipcode() {
       if (this.zipcode.trim() !== "") {
-        this.inputError[6] = false;
+        this.inputError.zipcode = false;
       }
     },
     address() {
       if (this.address.trim() !== "") {
-        this.inputError[7] = false;
+        this.inputError.address = false;
       }
     },
   },
@@ -319,69 +328,66 @@ export default {
         gender: this.gender,
         birthdate: this.birthdate,
         phone: this.phone,
-        email: this.email + "@" + this.domain,
+        email: this.email === "" ? this.email : this.email + "@" + this.domain,
         zipcode: this.zipcode,
         address: this.address,
         recieve_info: this.isAgree,
       };
 
       const arrayValue = Object.values(data);
-
       focus: {
         for (let i in arrayValue) {
           if (arrayValue[i] === "") {
-            this.checkEmpty = true;
-            console.log(i);
+            this.isEmpty = true;
             switch (+i) {
               case 0:
                 this.$refs.username.focus();
-                this.inputError[0] = true;
+                this.inputError.username = true;
                 this.inputErrorMsg = "아이디를 확인해주세요.";
-                console.log(this.inputError[0]);
                 break focus;
               case 1:
                 this.$refs.password.focus();
-                this.inputError[1] = true;
+                this.inputError.password = true;
                 this.inputErrorMsg = "비밀번호를 확인해주세요.";
                 break focus;
               case 2:
                 this.$refs.name.focus();
-                this.inputError[2] = true;
+                this.inputError.name = true;
                 this.inputErrorMsg = "이름을 확인해주세요.";
                 break focus;
               case 4:
                 this.$refs.birthdate.focus();
-                this.inputError[3] = true;
+                this.inputError.birthdate = true;
                 this.inputErrorMsg = "생년월일을 확인해주세요.";
                 break focus;
               case 5:
                 this.$refs.phone.focus();
-                this.inputError[4] = true;
+                this.inputError.phone = true;
                 this.inputErrorMsg = "전화번호를 확인해주세요.";
                 break focus;
               case 6:
                 this.$refs.email.focus();
-                this.inputError[5] = true;
+                this.inputError.email = true;
                 this.inputErrorMsg = "이메일을 확인해주세요.";
                 break focus;
               case 7:
                 this.$refs.zipcode.focus();
-                this.inputError[6] = true;
+                this.inputError.zipcode = true;
                 this.inputErrorMsg = "우편번호를 확인해주세요.";
                 break focus;
               case 8:
                 this.$refs.address.focus();
-                this.inputError[7] = true;
+                this.inputError.address = true;
                 this.inputErrorMsg = "주소를 확인해주세요.";
                 break focus;
             }
           } else {
-            this.checkEmpty = false;
+            this.isEmpty = false;
           }
         }
       }
 
-      if (this.checkEmpty === false) {
+      if (this.isEmpty === false) {
         await this.$axios
           .post("/auth/signup", JSON.stringify(data), {
             headers: { "Content-Type": "application/json" },
