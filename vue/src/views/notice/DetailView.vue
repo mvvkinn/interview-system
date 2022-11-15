@@ -90,7 +90,10 @@ vu
             </div>
             <div class="notice__details-button">
               <button>
-                <router-link to="/notice/detail/apply">지원하기</router-link>
+                <router-link
+                  :to="`/notice/detail/${$route.params.number}/apply`"
+                  >지원하기</router-link
+                >
               </button>
               <button>
                 <router-link to="/notice">목록</router-link>

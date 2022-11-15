@@ -183,7 +183,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/notice/DetailView.vue"),
   },
   {
-    path: "/notice/detail/apply",
+    path: "/notice/detail/:number/apply",
     name: "notice_apply",
     component: () =>
       import(
@@ -191,7 +191,7 @@ const routes = [
       ),
   },
   {
-    path: "/notice/detail/apply/success",
+    path: "/notice/detail/:number/apply/success",
     name: "notice_apply_success",
     component: () =>
       import(
