@@ -82,12 +82,18 @@ vu
                 <p>이력서를 조회할 면접을 선택하세요.</p>
                 <select name="rsm" id="rsm-select">
                   <option value="">면접을 선택하세요</option>
-                  <option value="a">a</option>
+                  <!-- <option value="a">a</option>
                   <option value="b">b</option>
                   <option value="c">c</option>
                   <option value="d">d</option>
                   <option value="e">e</option>
-                  <option value="f">f</option>
+                  <option value="f">f</option> -->
+                  <option
+                  :key="index"
+                  v-for="(resume,index) in resumelist"
+                  >
+                    {{resume.interviewTitle}}
+                  </option>
                 </select>
                 <router-link to="/admin/resume/list">
                   <button>조회하기</button>
@@ -110,6 +116,18 @@ export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  data(){
+    return {
+      resumelist: [],
+    };
+  },
+  async created(){
+    const resumeText = await this.$axios.get(
+      "https://fc1c7bbb-cd92-4929-9a01-be37aacd2ea3.mock.pstmn.io/resumelist"
+    );
+    this.resumelist = resumeText.data.resumelist;
+    console.log(this.resumelist); //확인용
   },
 };
 </script>
