@@ -97,7 +97,7 @@ vu
                 </div>
               </div>
 
-              <div class="re-adm__interview-content-table-text">
+              <!-- <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>1</p>
                 </div>
@@ -107,21 +107,28 @@ vu
                 <div class="re-adm__interview-content-table-text-volunteer">
                   <p>김명지</p>
                 </div>
-              </div>
+              </div> -->
               <router-link to="/admin/resume/detail">
-                <div class="re-adm__interview-content-table-text">
+                <div 
+                  class="re-adm__interview-content-table-text"
+                  :key="index"
+                  v-for="(resume,index) in resumelist"
+                >
                   <div class="re-adm__interview-content-table-text-no">
-                    <p>2</p>
+                    <!-- <p>2</p> -->
+                    <p>{{resume.number}}</p>
                   </div>
                   <div class="re-adm__interview-content-table-text-title">
-                    <p>안녕하십니까 프론트엔드 지원자 김명지 입니다!</p>
+                    <!-- <p>안녕하십니까 프론트엔드 지원자 김명지 입니다!</p> -->
+                    <p>{{resume.title}}</p>
                   </div>
                   <div class="re-adm__interview-content-table-text-volunteer">
-                    <p>김명지</p>
+                    <!-- <p>김명지</p> -->
+                    <p>{{resume.person}}</p>
                   </div>
                 </div>
               </router-link>
-              <div class="re-adm__interview-content-table-text">
+              <!-- <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>3</p>
                 </div>
@@ -215,15 +222,20 @@ vu
                 <div class="re-adm__interview-content-table-text-volunteer">
                   <p>김명지</p>
                 </div>
-              </div>
+              </div> -->
 
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">
-                  <a href="#">&laquo;</a>
+                  <!-- <a href="#">&laquo;</a>
                   <a class="active" href="#">1</a>
                   <a href="#">2</a>
                   <a href="#">3</a>
-                  <a href="#">&raquo;</a>
+                  <a href="#">&raquo;</a> -->
+                  <a>&laquo;</a>
+                  <a class="active">1</a>
+                  <a>2</a>
+                  <a>3</a>
+                  <a>&raquo;</a>
                 </div>
               </div>
               <div class="re-adm-content-btn">
@@ -248,7 +260,30 @@ export default {
     HeaderView,
     FooterView,
   },
+  data(){
+    return {
+      resumelist: [],
+    };
+  },
+  async created(){
+    const resumeText = await this.$axios.get(
+      "https://fc1c7bbb-cd92-4929-9a01-be37aacd2ea3.mock.pstmn.io/resumelist"
+    );
+    this.resumelist = resumeText.data.resumelist;
+    console.log(this.resumelist); //확인용
+  },
 };
 </script>
 
-<style></style>
+<!-- <style></style>
+<style scoped>
+  .re-adm__interview-table-text:nth-last-child(1) {
+   border-bottom: 1px solid #333333;
+ }
+ .re-adm__interview-table-text:nth-last-child(2) {
+   border-bottom: none;
+ }
+ .re-adm__interview-table-text:hover {
+   border-bottom: 1px solid #3c62e5;
+ }
+</style> -->
