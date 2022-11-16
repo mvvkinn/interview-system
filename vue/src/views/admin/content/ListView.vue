@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -58,12 +57,12 @@ vu
         <section class="adm">
           <nav>
             <ul class="adm__menu">
-              <li class="adm__menu-rsm">
+              <li class="adm__menu-rsm active">
                 <router-link to="/admin/resume"
                   >지원자 및 이력서 조회</router-link
                 >
               </li>
-              <li class="adm__menu-id active">
+              <li class="adm__menu-id">
                 <router-link to="/admin/content">면접 내용 조회</router-link>
               </li>
               <li class="adm__menu-ci">
@@ -78,7 +77,8 @@ vu
             <div class="re-adm__interview">
               <div class="re-adm__interview-title">
                 <h1>
-                  면접 진행 - 2022년도 하반기 OOOOO 프론트엔드 개발자 모집
+                  지원자 및 이력서 목록 - 2022년도 하반기 OOOOO 프론트엔드
+                  개발자 모집
                 </h1>
               </div>
               <hr />
@@ -96,7 +96,7 @@ vu
                 </div>
               </div>
 
-              <div class="re-adm__interview-content-table-text">
+              <!-- <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>1</p>
                 </div>
@@ -106,23 +106,28 @@ vu
                 <div class="re-adm__interview-content-table-text-volunteer">
                   <p>김명지</p>
                 </div>
-              </div>
-
-              <router-link to="/admin/content/detail">
-                <div class="re-adm__interview-content-table-text">
+              </div> -->
+              <router-link to="/admin/resume/detail">
+                <div 
+                  class="re-adm__interview-content-table-text"
+                  :key="index"
+                  v-for="(resume,index) in resumelist"
+                >
                   <div class="re-adm__interview-content-table-text-no">
-                    <p>2</p>
+                    <!-- <p>2</p> -->
+                    <p>{{resume.number}}</p>
                   </div>
                   <div class="re-adm__interview-content-table-text-title">
-                    <p>안녕하십니까 프론트엔드 지원자 김명지 입니다!</p>
+                    <!-- <p>안녕하십니까 프론트엔드 지원자 김명지 입니다!</p> -->
+                    <p>{{resume.resumeTitle}}</p>
                   </div>
                   <div class="re-adm__interview-content-table-text-volunteer">
-                    <p>김명지</p>
+                    <!-- <p>김명지</p> -->
+                    <p>{{resume.person}}</p>
                   </div>
                 </div>
               </router-link>
-
-              <div class="re-adm__interview-content-table-text">
+              <!-- <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>3</p>
                 </div>
@@ -133,7 +138,6 @@ vu
                   <p>김명지</p>
                 </div>
               </div>
-
               <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>4</p>
@@ -145,7 +149,6 @@ vu
                   <p>김명지</p>
                 </div>
               </div>
-
               <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>5</p>
@@ -157,7 +160,6 @@ vu
                   <p>김명지</p>
                 </div>
               </div>
-
               <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>6</p>
@@ -169,7 +171,6 @@ vu
                   <p>김명지</p>
                 </div>
               </div>
-
               <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>7</p>
@@ -181,7 +182,6 @@ vu
                   <p>김명지</p>
                 </div>
               </div>
-
               <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>8</p>
@@ -193,7 +193,6 @@ vu
                   <p>김명지</p>
                 </div>
               </div>
-
               <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>9</p>
@@ -205,7 +204,6 @@ vu
                   <p>김명지</p>
                 </div>
               </div>
-
               <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>10</p>
@@ -216,22 +214,27 @@ vu
                 <div class="re-adm__interview-content-table-text-volunteer">
                   <p>김명지</p>
                 </div>
-              </div>
+              </div> -->
 
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">
-                  <a href="#">&laquo;</a>
+                  <!-- <a href="#">&laquo;</a>
                   <a class="active" href="#">1</a>
                   <a href="#">2</a>
                   <a href="#">3</a>
-                  <a href="#">&raquo;</a>
+                  <a href="#">&raquo;</a> -->
+                  <a>&laquo;</a>
+                  <a class="active">1</a>
+                  <a>2</a>
+                  <a>3</a>
+                  <a>&raquo;</a>
                 </div>
               </div>
-              <router-link to="/admin/content">
-                <div class="re-adm-content-btn">
+              <div class="re-adm-content-btn">
+                <router-link to="/admin/resume">
                   <button>뒤로가기</button>
-                </div>
-              </router-link>
+                </router-link>
+              </div>
             </div>
           </article>
         </section>
@@ -249,7 +252,17 @@ export default {
     HeaderView,
     FooterView,
   },
+  data(){
+    return {
+      resumelist: [],
+    };
+  },
+  async created(){
+    const resumeText = await this.$axios.get(
+      "https://fc1c7bbb-cd92-4929-9a01-be37aacd2ea3.mock.pstmn.io/resumelist"
+    );
+    this.resumelist = resumeText.data.resumelist;
+    console.log(this.resumelist); //확인용
+  },
 };
 </script>
-
-<style></style>
