@@ -108,13 +108,15 @@ vu
                   <tr class="adm__rsm-content-pd--table-top">
                     <th class="adm__rsm-content-pd--table--section-1">이름</th>
                     <td class="adm__rsm-content-pd--table--section-2">
-                      김명지
+                      <!-- 김명지 -->
+                      {{resumelist.name}}
                     </td>
                     <th class="adm__rsm-content-pd--table--section-3">
                       생년월일
                     </th>
                     <td class="adm__rsm-content-pd--table--section-4">
-                      20010101
+                      <!-- 20010101 -->
+                      {{resumelist.birth}}
                     </td>
                   </tr>
                   <tr class="adm__rsm-content-pd--table-middle">
@@ -122,19 +124,22 @@ vu
                       휴대폰
                     </th>
                     <td class="adm__rsm-content-pd--table--section-2">
-                      01012345678
+                      <!-- 01012345678 -->
+                      {{resumelist.phone}}
                     </td>
                     <th class="adm__rsm-content-pd--table--section-3">
                       E-mail
                     </th>
                     <td class="adm__rsm-content-pd--table--section-4">
-                      mjc1234@itc.mjc.ac.kr
+                      <!-- mjc1234@itc.mjc.ac.kr -->
+                      {{resumelist.email}}
                     </td>
                   </tr>
                   <tr>
                     <th class="adm__rsm-content-pd--table--section-5">주소</th>
                     <td class="adm__rsm-content-pd--table--section-6">
-                      서울시 서대문구 어딘가 123-45 101호
+                      <!-- 서울시 서대문구 어딘가 123-45 101호 -->
+                      {{resumelist.address}}
                     </td>
                   </tr>
                 </tbody>
@@ -153,16 +158,23 @@ vu
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr
+                    :key="index"
+                    v-for="(education,index) in education"
+                  >
                     <td class="adm__rsm-content-ei--table--section-1">
-                      08/03/01 - 15/02/01
+                      <!-- 08/03/01 - 15/02/01 -->
+                      {{education.period}}
                     </td>
                     <td class="adm__rsm-content-ei--table--section-2">
-                      명지초등학교
+                      <!-- 명지초등학교 -->
+                      {{education.schoolname}}
                     </td>
-                    <td class="adm__rsm-content-ei--table--section-3">-</td>
+                    <td class="adm__rsm-content-ei--table--section-3">
+                      {{education.major}}
+                    </td>
                   </tr>
-                  <tr>
+                  <!-- <tr>
                     <td class="adm__rsm-content-ei--table--section-1">
                       15/03/01 - 18/02/01
                     </td>
@@ -179,7 +191,7 @@ vu
                       명지고등학교
                     </td>
                     <td class="adm__rsm-content-ei--table--section-3">-</td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>
@@ -199,16 +211,25 @@ vu
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr
+                    :key="index"
+                    v-for="(qualification,index) in qualification"
+                  >
                     <td class="adm__rsm-content-et--table--section-1">
-                      2018/05/16
+                      <!-- 2018/05/16 -->
+                      {{qualification.date}}
                     </td>
                     <td class="adm__rsm-content-et--table--section-2">
-                      워드프로세서
+                      <!-- 워드프로세서 -->
+                      {{qualification.education_name}}
                     </td>
-                    <td class="adm__rsm-content-et--table--section-3">1급</td>
+                    <td class="adm__rsm-content-et--table--section-3">
+                      <!-- 1급 -->
+                      {{qualification.class}}
+                    </td>
                     <td class="adm__rsm-content-et--table--section-4">
-                      대한상공회의소
+                      <!-- 대한상공회의소 -->
+                      {{qualification.institution}}
                     </td>
                   </tr>
                 </tbody>
@@ -236,6 +257,30 @@ export default {
     HeaderView,
     FooterView,
   },
+  data(){
+    return {
+      interviewlist:{},
+      resumelist: {},
+      education: [],
+      qualification: [],
+    }
+  },
+  async created(){
+      const resumeText = await this.$axios.get(
+         "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/resume"
+       );
+       this.resumelist = resumeText.data;
+       this.education = this.resumelist.education;
+       this.qualification = this.resumelist.qualification;
+       console.log(this.resumelist);
+
+       const interviewText = await this.$axios.get(
+        "https://fc1c7bbb-cd92-4929-9a01-be37aacd2ea3.mock.pstmn.io/resumelist"
+      );
+      this.interviewlist = interviewText.data.interviewlist;
+      console.log(this.interviewlist);
+    }
+
 };
 </script>
 

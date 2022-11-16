@@ -120,7 +120,7 @@ vu
                   </div>
                   <div class="re-adm__interview-content-table-text-title">
                     <!-- <p>안녕하십니까 프론트엔드 지원자 김명지 입니다!</p> -->
-                    <p>{{resume.title}}</p>
+                    <p>{{resume.resumeTitle}}</p>
                   </div>
                   <div class="re-adm__interview-content-table-text-volunteer">
                     <!-- <p>김명지</p> -->
