@@ -275,9 +275,9 @@ export default {
        console.log(this.resumelist);
 
        const interviewText = await this.$axios.get(
-        "https://fc1c7bbb-cd92-4929-9a01-be37aacd2ea3.mock.pstmn.io/resumelist"
+        "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
       );
-      this.interviewlist = interviewText.data.interviewlist;
+      this.interviewlist = interviewText.data;
       console.log(this.interviewlist);
     }
 

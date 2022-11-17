@@ -108,22 +108,20 @@ vu
                   <p>김명지</p>
                 </div>
               </div> -->
-              <router-link to="/admin/resume/detail">
-                <div 
-                  class="re-adm__interview-content-table-text"
+              <!-- <router-link to="/admin/resume/detail"> -->
+              <div v-if="splitlist">
+                <router-link 
+                  to="/resume/detail"
                   :key="index"
-                  v-for="(resume,index) in resumelist"
-                >
+                  v-for="(resume,index) in splitlist">
+                <div class="re-adm__interview-content-table-text"                >
                   <div class="re-adm__interview-content-table-text-no">
-                    <!-- <p>2</p> -->
                     <p>{{resume.number}}</p>
                   </div>
                   <div class="re-adm__interview-content-table-text-title">
-                    <!-- <p>안녕하십니까 프론트엔드 지원자 김명지 입니다!</p> -->
                     <p>{{resume.resumeTitle}}</p>
                   </div>
                   <div class="re-adm__interview-content-table-text-volunteer">
-                    <!-- <p>김명지</p> -->
                     <p>{{resume.person}}</p>
                   </div>
                 </div>
@@ -223,6 +221,7 @@ vu
                   <p>김명지</p>
                 </div>
               </div> -->
+            </div>
 
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">
@@ -232,9 +231,16 @@ vu
                   <a href="#">3</a>
                   <a href="#">&raquo;</a> -->
                   <a>&laquo;</a>
-                  <a class="active">1</a>
+                  <a
+                    v-for="unit in page"
+                    :key="`page-${unit}`"
+                    @click="pagination(unit)"
+                  >
+                    {{unit}}
+                  </a>
+                  <!-- <a class="active">1</a>
                   <a>2</a>
-                  <a>3</a>
+                  <a>3</a> -->
                   <a>&raquo;</a>
                 </div>
               </div>
@@ -263,7 +269,14 @@ export default {
   data(){
     return {
       resumelist: [],
+      splitlist:[],
+      pagecount: 10,
     };
+  },
+  computed: {
+    page(){
+      return Math.ceil(this.resumelist.length / 10);
+    },
   },
   async created(){
     const resumeText = await this.$axios.get(
@@ -271,7 +284,25 @@ export default {
     );
     this.resumelist = resumeText.data.resumelist;
     console.log(this.resumelist); //확인용
+    this.pagination(1);
   },
+  methods: {
+    pagination(num){
+      let start = 0;
+      let end = this.pagecount;
+      if(num===1){
+        this.splitlist = this.resumelist.filter(
+          (v,i) => i >= start && i < end
+        );
+      } else {
+        start = this.pagecount * (num-1);
+        end = this.pagecount * num;
+        this.splitlist = this.resumelist.filter(
+          (v,i) => i >= start && i < end
+        );
+      }
+    }
+  }
 };
 </script>
 
