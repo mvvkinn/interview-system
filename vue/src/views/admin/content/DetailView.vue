@@ -105,9 +105,10 @@ vu
                       평가 기준
                     </th>
                     <td class="adm__rsm-content-criteria--table--section-2">
-                      프론트엔드 업무에 대한 전반적인 이해 및 업무능력 평가.
+                      <!-- 프론트엔드 업무에 대한 전반적인 이해 및 업무능력 평가.
                       관련 자격 및 업무 커뮤니케이션 능력 평가. <br />평가기준
-                      예시
+                      예시 -->
+                      <!-- {{resume.}} -->
                     </td>
                   </tr>
                 </tbody>
@@ -233,6 +234,20 @@ export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  data(){
+    return {
+      resumelist: [],
+      // defaultQustion : [],
+    };
+  },
+  async created(){
+    const resumeText = await this.$axios.get(
+      "https://fc1c7bbb-cd92-4929-9a01-be37aacd2ea3.mock.pstmn.io/resumecheck"
+    );
+    this.resumelist = resumeText.data.resumelist;
+    // this.defaultQustion = this.resumelist.defaultQustion;
+    console.log(this.resumelist); //확인용
   },
 };
 </script>

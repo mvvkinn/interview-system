@@ -57,12 +57,12 @@
         <section class="adm">
           <nav>
             <ul class="adm__menu">
-              <li class="adm__menu-rsm active">
+              <li class="adm__menu-rsm">
                 <router-link to="/admin/resume"
                   >지원자 및 이력서 조회</router-link
                 >
               </li>
-              <li class="adm__menu-id">
+              <li class="adm__menu-id active">
                 <router-link to="/admin/content">면접 내용 조회</router-link>
               </li>
               <li class="adm__menu-ci">
@@ -107,7 +107,7 @@
                   <p>김명지</p>
                 </div>
               </div> -->
-              <router-link to="/admin/resume/detail">
+              <router-link to="/admin/content/detail">
                 <div 
                   class="re-adm__interview-content-table-text"
                   :key="index"
