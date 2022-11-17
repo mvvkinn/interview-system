@@ -31,6 +31,8 @@ input[type="checkbox"] {
 }
 
 .joinUs_title hr {
+  border: none;
+  border-top: 1px #8e8e8e solid;
   width: 100%;
   margin: 0px;
 }
