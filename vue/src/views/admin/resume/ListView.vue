@@ -78,8 +78,9 @@ vu
             <div class="re-adm__interview">
               <div class="re-adm__interview-title">
                 <h1>
-                  지원자 및 이력서 목록 - 2022년도 하반기 OOOOO 프론트엔드
-                  개발자 모집
+                  <!-- 지원자 및 이력서 목록 - 2022년도 하반기 OOOOO 프론트엔드
+                  개발자 모집 -->
+                  {{number.title}}
                 </h1>
               </div>
               <hr />
@@ -271,6 +272,8 @@ export default {
       resumelist: [],
       splitlist:[],
       pagecount: 10,
+      noticelist:[],
+      number: {},
     };
   },
   computed: {
@@ -285,6 +288,19 @@ export default {
     this.resumelist = resumeText.data.resumelist;
     console.log(this.resumelist); //확인용
     this.pagination(1);
+
+    const noticeText = await this.$axios.get(
+      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
+    );
+
+    this.noticelist = noticeText.data.noticelist;
+    console.log(this.noticelist);//확인용
+
+    this.number = this.noticelist.filter(
+      (v) => v.number === +this.$route.params.number
+    )[0];
+
+    
   },
   methods: {
     pagination(num){

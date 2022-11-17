@@ -84,7 +84,8 @@ vu
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-2">
-                    <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p>
+                    <!-- <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p> -->
+                    <p>{{detail.title}}</p>
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-3">
@@ -259,7 +260,7 @@ export default {
   },
   data(){
     return {
-      interviewlist:{},
+      noticelist:{},
       resumelist: {},
       education: [],
       qualification: [],
@@ -274,11 +275,11 @@ export default {
        this.qualification = this.resumelist.qualification;
        console.log(this.resumelist);
 
-       const interviewText = await this.$axios.get(
+       const noticeText = await this.$axios.get(
         "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
       );
-      this.interviewlist = interviewText.data;
-      console.log(this.interviewlist);
+      this.noticelist = noticeText.data;
+      console.log(this.noticelist);
     }
 
 };
