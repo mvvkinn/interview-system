@@ -19,7 +19,7 @@
       <nav>
         <ul class="header__menu">
           <li>안녕하세요,</li>
-          <li>김명지님.</li>
+          <li>{{ user.name }}님,</li>
           <router-link :to="`/`">
             <li class="component__header-menu--button">로그아웃</li>
           </router-link>
@@ -30,7 +30,13 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+
+export default {
+  computed: {
+    ...mapState(["user", "token"]),
+  },
+};
 </script>
 
 <style></style>
