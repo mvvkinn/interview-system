@@ -60,8 +60,10 @@ export const store = new Vuex.Store({
         .post("/auth/signin", params)
         .then((res) => {
           commit("loginToken", res.data.token);
-          commit("loginUser", res.data.user);
+          commit("loginUser", res.data.userDTO);
           router.push("/main");
+          console.log(res);
+          return false;
         })
         .catch((err) => {
           console.log(err.message);
