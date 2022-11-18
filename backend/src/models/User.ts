@@ -45,7 +45,5 @@ export default async (db: Sequelize) => {
     { tableName: "User", timestamps: false }
   );
 
-  await db.sync();
-
   return userModel;
 };
