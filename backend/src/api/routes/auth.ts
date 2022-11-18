@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import { IUser } from "@interfaces/IUser";
 import AuthService from "@services/AuthService";
 import Container from "typedi";
+import { celebrate, Joi } from "celebrate";
 import { Logger } from "winston";
 
 const route = Router();
@@ -34,11 +35,11 @@ export default (app: Router) => {
       try {
         const authServiceInstance = new AuthService();
 
-        const { user, token } = await authServiceInstance.SignIn(
-          req.body.username,
+        const { userDTO, token } = await authServiceInstance.SignIn(
+          req.body.email,
           req.body.password
         );
-        return res.json({ user, token }).status(200);
+        return res.json({ userDTO, token }).status(200);
       } catch (e) {
         logger.error(e);
         next(e);
