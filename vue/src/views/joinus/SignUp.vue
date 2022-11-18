@@ -12,18 +12,32 @@
             <form class="info_area" v-on:submit.prevent="submitForm">
               <div class="info_line">
                 <div class="info_empty"></div>
-                <div class="info_name_area"><p>아이디*</p></div>
+                <div class="info_name_area"><p>이메일*</p></div>
                 <div class="info_input_area">
                   <input
-                    v-model="username"
-                    ref="username"
+                    v-model="email"
+                    ref="email"
                     type="text"
-                    class="info_input_text"
-                    :class="{ error: inputError.username }"
-                    placeholder="아이디를 입력해주세요."
+                    class="info_input_text_2"
+                    :class="{ error: inputError.email }"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
-                  <div class="info_value_btn">중복 확인</div>
+                  <p class="email_center">@</p>
+                  <input
+                    type="text"
+                    class="info_input_text_2"
+                    :value="domain"
+                  />
+                  <select
+                    name="email_back"
+                    class="email_select"
+                    @change="changeDomain"
+                  >
+                    <option value="">직접입력</option>
+                    <option value="naver.com">naver.com</option>
+                    <option value="daum.net">daum.net</option>
+                    <option value="gmail.com">gmail.com</option>
+                  </select>
                 </div>
               </div>
               <div class="info_line">
@@ -113,36 +127,6 @@
                     @input="checkInput($event, 'dash')"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
-                </div>
-              </div>
-              <div class="info_line">
-                <div class="info_empty"></div>
-                <div class="info_name_area"><p>이메일*</p></div>
-                <div class="info_input_area">
-                  <input
-                    v-model="email"
-                    ref="email"
-                    type="text"
-                    class="info_input_text_2"
-                    :class="{ error: inputError.email }"
-                  />
-                  <p class="error_txt">{{ inputErrorMsg }}</p>
-                  <p class="email_center">@</p>
-                  <input
-                    type="text"
-                    class="info_input_text_2"
-                    :value="domain"
-                  />
-                  <select
-                    name="email_back"
-                    class="email_select"
-                    @change="changeDomain"
-                  >
-                    <option value="">직접입력</option>
-                    <option value="naver.com">naver.com</option>
-                    <option value="daum.net">daum.net</option>
-                    <option value="gmail.com">gmail.com</option>
-                  </select>
                 </div>
               </div>
               <div class="info_line">
@@ -253,12 +237,11 @@ export default {
       isAgree: true,
       isEmpty: false,
       inputError: {
-        username: false,
+        email: false,
         password: false,
         name: false,
         birthdate: false,
         phone: false,
-        email: false,
         zipcode: false,
         address: false,
       },
@@ -274,11 +257,6 @@ export default {
     };
   },
   watch: {
-    username() {
-      if (this.username.trim() !== "") {
-        this.inputError.username = false;
-      }
-    },
     password() {
       if (this.password.trim() !== "") {
         this.inputError.password = false;
@@ -322,13 +300,12 @@ export default {
   methods: {
     async submitForm() {
       const data = {
-        username: this.username,
+        email: this.email === "" ? this.email : this.email + "@" + this.domain,
         password: this.password,
         name: this.name,
         gender: this.gender,
         birthdate: this.birthdate,
         phone: this.phone,
-        email: this.email === "" ? this.email : this.email + "@" + this.domain,
         zipcode: this.zipcode,
         address: this.address,
         recieve_info: this.isAgree,
@@ -341,9 +318,9 @@ export default {
             this.isEmpty = true;
             switch (+i) {
               case 0:
-                this.$refs.username.focus();
-                this.inputError.username = true;
-                this.inputErrorMsg = "아이디를 확인해주세요.";
+                this.$refs.email.focus();
+                this.inputError.email = true;
+                this.inputErrorMsg = "이메일을 확인해주세요.";
                 break focus;
               case 1:
                 this.$refs.password.focus();
@@ -366,16 +343,11 @@ export default {
                 this.inputErrorMsg = "전화번호를 확인해주세요.";
                 break focus;
               case 6:
-                this.$refs.email.focus();
-                this.inputError.email = true;
-                this.inputErrorMsg = "이메일을 확인해주세요.";
-                break focus;
-              case 7:
                 this.$refs.zipcode.focus();
                 this.inputError.zipcode = true;
                 this.inputErrorMsg = "우편번호를 확인해주세요.";
                 break focus;
-              case 8:
+              case 7:
                 this.$refs.address.focus();
                 this.inputError.address = true;
                 this.inputErrorMsg = "주소를 확인해주세요.";
