@@ -60,6 +60,7 @@ export default class AuthService {
 
     return jwt.sign(
       {
+        id: user.id,
         email: user.email,
         role: user.role,
         exp: tokenExpiration.getTime() / 1000,
