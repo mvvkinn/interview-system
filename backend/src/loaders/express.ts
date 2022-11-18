@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from "express";
 import morgan from "morgan";
 import { OpticMiddleware } from "@useoptic/express-middleware";
 import routes from "@api";
+import history from "connect-history-api-fallback";
 
 export default (app: express.Application) => {
   app.get("/status", (req, res) => {
@@ -15,6 +16,7 @@ export default (app: express.Application) => {
     })
   );
   app.disable("x-powered-by");
+  app.use(history());
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
