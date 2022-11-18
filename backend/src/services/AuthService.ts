@@ -27,13 +27,15 @@ export default class AuthService {
   }
 
   public async SignIn(
-    username: string,
+    email: string,
     password: string
-  ): Promise<{ user: IUser; token: string }> {
-    const userRecord = await this.userModel.findByPk(username);
+  ): Promise<{ userDTO: IUser; token: string }> {
+    const userRecord = await this.userModel.findOne({
+      where: { email: email },
+    });
 
     if (!userRecord) {
-      throw new Error(`Can't find user : ${username}`);
+      throw new Error(`Can't find user : ${email}`);
     }
 
     const userDTO = userRecord.dataValues;
@@ -42,11 +44,10 @@ export default class AuthService {
     if (isPasswordValid) {
       const token = this.generateToken(userDTO);
 
-      const user = Object(userDTO);
-      Reflect.deleteProperty(user, "password");
-      Reflect.deleteProperty(user, "salt");
+      Reflect.deleteProperty(userDTO, "password");
+      Reflect.deleteProperty(userDTO, "salt");
 
-      return { user, token };
+      return { userDTO, token };
     } else {
       throw new Error("Invalid password");
     }
@@ -59,7 +60,8 @@ export default class AuthService {
 
     return jwt.sign(
       {
-        username: user.username,
+        id: user.id,
+        email: user.email,
         role: user.role,
         exp: tokenExpiration.getTime() / 1000,
       },
