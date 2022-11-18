@@ -76,7 +76,12 @@ vu
           </nav>
           <article class="adm__rsm-content">
             <div class="adm__rsm-content-div">
-              <h1>안녕하십니까 프론트엔드 지원지 김명지 입니다!</h1>
+              <h1>
+                <!-- 안녕하십니까 프론트엔드 지원지 김명지 입니다! -->
+                <!-- {{noticeValue.title}} -->
+                지금 DB에 지원자 이력서 제목이 없음 움냠 - 
+                {{resumelist.name}}
+              </h1>
               <div class="adm__rsm-content--hr">
                 <div class="adm__rsm-content-info">
                   <div class="adm__rsm-content-info--div-1">
@@ -85,7 +90,8 @@ vu
                   <hr />
                   <div class="adm__rsm-content-info--div-2">
                     <!-- <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p> -->
-                    <p>{{detail.title}}</p>
+                    <!-- <p>{{noticeValue.title}}</p> -->
+                    <p>{{number.title}}</p>
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-3">
@@ -93,7 +99,8 @@ vu
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-4">
-                    <p>김명지</p>
+                    <!-- <p>김명지</p> -->
+                    <p>{{resumelist.name}}</p>
                   </div>
                   <!-- <hr> -->
                 </div>
@@ -264,6 +271,8 @@ export default {
       resumelist: {},
       education: [],
       qualification: [],
+      // noticeValue: {},
+      number:{},
     }
   },
   async created(){
@@ -278,9 +287,18 @@ export default {
        const noticeText = await this.$axios.get(
         "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
       );
-      this.noticelist = noticeText.data;
+      this.noticelist = noticeText.data.noticelist;
+      this.number = this.noticelist.filter(
+      (v) => v.number === +this.$route.params.number
+    )[0];
+      // console.log("noticelist: ");
       console.log(this.noticelist);
-    }
+      // console.log("noticeValue: ");
+      // console.log(this.number);
+      // console.log(this.noticelist);
+      // console.log(this.$route);
+      // console.log(this.$route.params);
+    },
 
 };
 </script>

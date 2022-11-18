@@ -112,21 +112,21 @@ vu
               <!-- <router-link to="/admin/resume/detail"> -->
               <div v-if="splitlist">
                 <router-link 
-                  to="/resume/detail"
+                  :to="`/admin/resume/${$route.params.number}/detail`"
                   :key="index"
                   v-for="(resume,index) in splitlist">
-                <div class="re-adm__interview-content-table-text"                >
-                  <div class="re-adm__interview-content-table-text-no">
-                    <p>{{resume.number}}</p>
+                  <div class="re-adm__interview-content-table-text"                >
+                    <div class="re-adm__interview-content-table-text-no">
+                      <p>{{resume.number}}</p>
+                    </div>
+                    <div class="re-adm__interview-content-table-text-title">
+                      <p>{{resume.resumeTitle}}</p>
+                    </div>
+                    <div class="re-adm__interview-content-table-text-volunteer">
+                      <p>{{resume.person}}</p>
+                    </div>
                   </div>
-                  <div class="re-adm__interview-content-table-text-title">
-                    <p>{{resume.resumeTitle}}</p>
-                  </div>
-                  <div class="re-adm__interview-content-table-text-volunteer">
-                    <p>{{resume.person}}</p>
-                  </div>
-                </div>
-              </router-link>
+                </router-link>
               <!-- <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>3</p>
@@ -286,7 +286,7 @@ export default {
       "https://fc1c7bbb-cd92-4929-9a01-be37aacd2ea3.mock.pstmn.io/resumelist"
     );
     this.resumelist = resumeText.data.resumelist;
-    console.log(this.resumelist); //확인용
+    // console.log(this.resumelist); //확인용
     this.pagination(1);
 
     const noticeText = await this.$axios.get(
@@ -294,7 +294,7 @@ export default {
     );
 
     this.noticelist = noticeText.data.noticelist;
-    console.log(this.noticelist);//확인용
+    // console.log(this.noticelist);//확인용
 
     this.number = this.noticelist.filter(
       (v) => v.number === +this.$route.params.number
