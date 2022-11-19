@@ -13,7 +13,10 @@
     <div class="header__column">
       <nav>
         <ul class="header__menu">
-          <li>안녕하세요, {{ user.name }}님.</li>
+          <li>
+            안녕하세요,
+            {{ name }}님.
+          </li>
           <li>
             <div class="header__menu-logout">
               <router-link :to="`/`">
@@ -31,11 +34,19 @@
 import { mapState } from "vuex";
 
 export default {
+  date() {
+    return {
+      name: this.user.name,
+    };
+  },
   computed: {
     ...mapState(["user", "Token"]),
     main() {
-      return this.Token ? "/main" : "/";
+      return this.$cookies.get("Token") ? "/main" : "/";
     },
+  },
+  created() {
+    this.name = JSON.parse(localStorage.getItem("user")).name;
   },
 };
 </script>

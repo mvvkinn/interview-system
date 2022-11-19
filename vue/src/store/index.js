@@ -33,16 +33,19 @@ export const store = new Vuex.Store({
     loginToken(state, payload) {
       VueCookies.set("Token", payload, "1h");
       state.Token = payload;
+      localStorage.setItem("Token", payload);
     },
 
     // 쿠키에 저장되어있는 토큰 제거
     removeToken() {
       VueCookies.remove("Token");
+      localStorage.clear();
     },
 
     // 사용자 정보 state.user에 저장
     loginUser(state, payload) {
       state.user = payload;
+      localStorage.setItem("user", JSON.stringify(payload));
     },
   },
   getters: {
@@ -62,11 +65,11 @@ export const store = new Vuex.Store({
           commit("loginToken", res.data.token);
           commit("loginUser", res.data.userDTO);
           router.push("/main");
-          return false;
+          return res;
         })
         .catch((err) => {
           console.log(err.message);
-          return true;
+          return err;
         });
     },
     logout: (context) => {
