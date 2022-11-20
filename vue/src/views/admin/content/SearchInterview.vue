@@ -131,7 +131,6 @@ export default {
        "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/list"
      );
      this.resumelist = resumeText.data.noticelist;
-     console.log(this.resumelist); //확인용
 
      this.number = this.resumelist.filter(
       (v) => v.number === this.$route.params.number

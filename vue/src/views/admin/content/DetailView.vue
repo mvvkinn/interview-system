@@ -254,7 +254,6 @@ export default {
     this.mainQuestion = this.checklist.main;
     this.additionalQuestion = this.checklist.additional;
     this.check = this.checklist.check;
-    console.log(this.check); //확인용
   },
 };
 </script>
