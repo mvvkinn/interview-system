@@ -77,7 +77,6 @@ vu
           <article class="adm__rsm-content">
             <div class="adm__rsm-content-div">
               <h1>
-                <!-- 안녕하십니까 프론트엔드 지원지 김명지 입니다! -->
                 {{resumelist.title}}
               </h1>
               <div class="adm__rsm-content--hr">
@@ -88,7 +87,6 @@ vu
                   <hr />
                   <div class="adm__rsm-content-info--div-2">
                     <p>
-                      <!-- 2022년도 하반기 OOOOO 프론트엔드 개발자 모집 -->
                       {{number.title}}
                     </p>
                   </div>
@@ -99,7 +97,6 @@ vu
                   <hr />
                   <div class="adm__rsm-content-info--div-4">
                     <p>
-                      <!-- 김명지 -->
                       {{resumelist.name}}
                     </p>
                   </div>
@@ -114,9 +111,6 @@ vu
                       평가 기준
                     </th>
                     <td class="adm__rsm-content-criteria--table--section-2">
-                      <!-- 프론트엔드 업무에 대한 전반적인 이해 및 업무능력 평가.
-                      관련 자격 및 업무 커뮤니케이션 능력 평가. <br />평가기준
-                      예시 -->
                       {{checklist.criterion}}
                     </td>
                   </tr>
@@ -136,14 +130,12 @@ vu
                 <tbody>
                   <tr>
                     <td class="adm__rsm-content-checklist--table--section-1">
-                      <!-- 주 질문 1 -->
                       {{mainQuestion.first}}
                     </td>
                     <td
                       class="adm__rsm-content-checklist--table--section-2"
                       rowspan="4"
                     >
-                      <!-- 추가 질문 내용 -->
                       {{additionalQuestion.first}}
                       <br>
                       {{additionalQuestion.second}}
@@ -151,19 +143,16 @@ vu
                   </tr>
                   <tr>
                     <td class="adm__rsm-content-checklist--table--section-1">
-                      <!-- 주 질문 2 -->
                       {{mainQuestion.second}}
                     </td>
                   </tr>
                   <tr>
                     <td class="adm__rsm-content-checklist--table--section-1">
-                      <!-- 주 질문 3 -->
                       {{mainQuestion.third}}
                     </td>
                   </tr>
                   <tr>
                     <td class="adm__rsm-content-checklist--table--section-1">
-                      <!-- 주 질문 4 -->
                       {{mainQuestion.fourth}}
                     </td>
                   </tr>
@@ -189,41 +178,13 @@ vu
                     v-for="(check,index) in check"
                   >
                     <td class="adm__rsm-content-score--table--section-1">
-                      <!-- 주 질문 1 -->
                       {{check.question}}
                     </td>
                     <td class="adm__rsm-content-score--table--section-2">
-                      <!-- <text class="score"> -->
-                        <!-- 00 -->
                         {{check.score}}
-                      <!-- </text> -->
                       점
                     </td>
                   </tr>
-                  <!-- <tr>
-                    <td class="adm__rsm-content-score--table--section-1">
-                      주 질문 2
-                    </td>
-                    <td class="adm__rsm-content-score--table--section-2">
-                      <text class="score">00</text>점
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="adm__rsm-content-score--table--section-1">
-                      주 질문 3
-                    </td>
-                    <td class="adm__rsm-content-score--table--section-2">
-                      <text class="score">00</text>점
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="adm__rsm-content-score--table--section-1">
-                      주 질문 4
-                    </td>
-                    <td class="adm__rsm-content-score--table--section-2">
-                      <text class="score">00</text>점
-                    </td>
-                  </tr> -->
                 </tbody>
               </table>
               <table class="adm__rsm-content-opinion--table">

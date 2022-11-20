@@ -77,8 +77,6 @@
             <div class="re-adm__interview">
               <div class="re-adm__interview-title">
                 <h1>
-                  <!-- 지원자 및 이력서 목록 - 2022년도 하반기 OOOOO 프론트엔드
-                  개발자 모집 -->
                   {{number.title}}
                 </h1>
               </div>
@@ -96,19 +94,6 @@
                   <p>지원자</p>
                 </div>
               </div>
-
-              <!-- <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>1</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div> -->
-              <!-- <router-link to="/admin/content/detail"> -->
               <div v-if="splitlist">
                 <router-link
                   :to="`/admin/content/${$route.params.number}/detail`"
@@ -127,95 +112,6 @@
                   </div>
                 </router-link>
               </div>
-              <!-- <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>3</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>4</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>5</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>6</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>7</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>8</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>9</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>10</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div> -->
-
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">
                   <a>&laquo;</a>
@@ -226,9 +122,6 @@
                   >
                     {{unit}}
                   </a>
-                  <!-- <a class="active">1</a>
-                  <a>2</a>
-                  <a>3</a> -->
                   <a>&raquo;</a>
                 </div>
               </div>
@@ -273,7 +166,6 @@ export default {
       "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/resumelist"
     );
     this.resumelist = resumeText.data.resumelist;
-    // console.log(this.resumelist); //확인용
     this.pagination(1);
 
     const noticeText = await this.$axios.get(

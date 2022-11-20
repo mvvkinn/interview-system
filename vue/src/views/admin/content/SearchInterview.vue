@@ -82,12 +82,6 @@ vu
                 <p>목록을 불러올 면접을 선택하세요.</p>
                 <select name="rsm" id="rsm-select" @change="changeValue">
                   <option value="">면접을 선택하세요</option>
-                  <!-- <option value="a">a</option>
-                  <option value="b">b</option>
-                  <option value="c">c</option>
-                  <option value="d">d</option>
-                  <option value="e">e</option>
-                  <option value="f">f</option> -->
                   <option
                     :value="resume.number"
                     :key="index"
@@ -142,7 +136,6 @@ export default {
      this.number = this.resumelist.filter(
       (v) => v.number === this.$route.params.number
     );
-    // console.log(this.number);
    },
 
    methods:{
