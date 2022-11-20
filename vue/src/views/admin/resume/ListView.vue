@@ -283,14 +283,14 @@ export default {
   },
   async created(){
     const resumeText = await this.$axios.get(
-      "https://fc1c7bbb-cd92-4929-9a01-be37aacd2ea3.mock.pstmn.io/resumelist"
+      "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/resumelist"
     );
     this.resumelist = resumeText.data.resumelist;
     // console.log(this.resumelist); //확인용
     this.pagination(1);
 
     const noticeText = await this.$axios.get(
-      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
+      "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/list"
     );
 
     this.noticelist = noticeText.data.noticelist;

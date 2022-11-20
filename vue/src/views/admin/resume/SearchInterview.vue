@@ -96,9 +96,16 @@ vu
                     {{resume.title}}
                   </option>
                 </select>
-                <router-link :to="`/admin/resume/${num}/list`">
-                  <button>조회하기</button>
-                </router-link>
+                <div id="btn">
+                  <div v-if="num===0">
+                    <button @click="errorMessage">조회하기</button>
+                  </div>
+                  <div v-else>
+                    <router-link :to="`/admin/resume/${num}/list`">
+                      <button>조회하기</button>
+                    </router-link>
+                  </div>
+                </div>
               </div>
               <hr />
             </div>
@@ -127,7 +134,7 @@ export default {
   },
   async created(){
     const resumeText = await this.$axios.get(
-      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
+      "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/list"
     );
     this.resumelist = resumeText.data.noticelist;
     console.log(this.resumelist); //확인용
@@ -140,6 +147,9 @@ export default {
   methods:{
     changeValue(e){
       this.num=e.target.value;
+    },
+    errorMessage(){
+      alert('면접을 선택해주세요')
     }
   }
 };

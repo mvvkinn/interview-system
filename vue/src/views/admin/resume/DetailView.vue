@@ -78,9 +78,7 @@ vu
             <div class="adm__rsm-content-div">
               <h1>
                 <!-- 안녕하십니까 프론트엔드 지원지 김명지 입니다! -->
-                <!-- {{noticeValue.title}} -->
-                지금 DB에 지원자 이력서 제목이 없음 움냠 - 
-                {{resumelist.name}}
+                {{resumelist.title}}
               </h1>
               <div class="adm__rsm-content--hr">
                 <div class="adm__rsm-content-info">
@@ -277,7 +275,7 @@ export default {
   },
   async created(){
       const resumeText = await this.$axios.get(
-         "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/resume"
+         "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/resume"
        );
        this.resumelist = resumeText.data;
        this.education = this.resumelist.education;
@@ -285,7 +283,7 @@ export default {
        console.log(this.resumelist);
 
        const noticeText = await this.$axios.get(
-        "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
+        "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/list"
       );
       this.noticelist = noticeText.data.noticelist;
       this.number = this.noticelist.filter(
