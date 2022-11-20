@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -63,13 +62,13 @@ vu
             <hr />
             <div class="success__search-select-interview">
               <router-link to="/success/result">
-                <button>
+                <button :key="index" v-for="(success, index) in success">
                   <div class="success__search-select-interview-group-1">
-                    <span>2022 명지전문대 입시 면접</span>
-                    <span>합격조회 가능</span>
+                    <span>{{ success.title }}</span>
+                    <span>{{ success.checkstatus }}</span>
                   </div>
                   <div class="success__search-select-interview-group-2">
-                    <span>지원일 : 2022/01/01</span>
+                    <span>지원일 : {{ success.applydate }}</span>
                   </div>
                 </button>
               </router-link>
@@ -90,6 +89,18 @@ export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  data() {
+    return {
+      success: [],
+    };
+  },
+  async created() {
+    const successText = await this.$axios.get(
+      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/success"
+    );
+    this.success = successText.data.success;
+    console.log(this.success);
   },
 };
 </script>
