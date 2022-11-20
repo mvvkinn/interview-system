@@ -81,14 +81,14 @@ vu
                         id="name"
                         type="text"
                         placeholder="이름을 입력해주세요."
-                        v-bind:value="resumelist.name"
+                        v-bind:value="user.name"
                       />
                       <label for="birth">생년월일</label>
                       <input
                         id="birth"
                         type="text"
                         placeholder="8자리 입력"
-                        v-bind:value="resumelist.birth"
+                        v-bind:value="sliceBirthdate"
                       />
                     </div>
                     <div class="notice_component__table-column">
@@ -97,14 +97,14 @@ vu
                         id="phone"
                         type="text"
                         placeholder="'-'없이 입력"
-                        v-bind:value="resumelist.phone"
+                        v-bind:value="user.phone"
                       />
                       <label for="email">E-mail</label>
                       <input
                         id="email"
                         type="textarea"
                         placeholder="example@example.com"
-                        v-bind:value="resumelist.email"
+                        v-bind:value="user.email"
                       />
                     </div>
                     <div class="notice_component__table-column">
@@ -113,7 +113,7 @@ vu
                         id="adress"
                         type="text"
                         placeholder="주소를 입력해주세요."
-                        v-bind:value="resumelist.address"
+                        v-bind:value="user.address"
                       />
                     </div>
                   </div>
@@ -276,6 +276,7 @@ vu
 <script>
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+import { mapState } from "vuex";
 export default {
   components: {
     HeaderView,
@@ -322,6 +323,12 @@ export default {
       this.qualification = this.resumelist.qualification;
       console.log(this.resumelist);
       this.isClick = true;
+    },
+  },
+  computed: {
+    ...mapState(["user"]),
+    sliceBirthdate() {
+      return this.user.birthdate.slice(0, 10).split("-").join("");
     },
   },
 };
