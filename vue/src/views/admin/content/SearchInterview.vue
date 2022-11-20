@@ -80,7 +80,7 @@ vu
               <hr />
               <div class="adm__rsm-form">
                 <p>목록을 불러올 면접을 선택하세요.</p>
-                <select name="rsm" id="rsm-select">
+                <select name="rsm" id="rsm-select" @change="changeValue">
                   <option value="">면접을 선택하세요</option>
                   <!-- <option value="a">a</option>
                   <option value="b">b</option>
@@ -89,13 +89,14 @@ vu
                   <option value="e">e</option>
                   <option value="f">f</option> -->
                   <option
+                    :value="resume.number"
                     :key="index"
                     v-for="(resume,index) in resumelist"
                   >
-                    {{resume.interviewTitle}}
+                    {{resume.title}}
                   </option>
                 </select>
-                <router-link to="/admin/content/list">
+                <router-link :to="`/admin/resume/${num}/list`">
                   <button>조회하기</button>
                 </router-link>
               </div>
@@ -120,15 +121,28 @@ export default {
   data(){
      return {
        resumelist: [],
+       number: {},
+       num: 0,
      };
    },
    async created(){
      const resumeText = await this.$axios.get(
-       "https://fc1c7bbb-cd92-4929-9a01-be37aacd2ea3.mock.pstmn.io/resumelist"
+       "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/list"
      );
-     this.resumelist = resumeText.data.resumelist;
+     this.resumelist = resumeText.data.noticelist;
      console.log(this.resumelist); //확인용
+
+     this.number = this.resumelist.filter(
+      (v) => v.number === this.$route.params.number
+    );
+    // console.log(this.number);
    },
+
+   methods:{
+    changeValue(e){
+      this.num = e.target.value;
+    }
+   }
 };
 </script>
 
