@@ -287,7 +287,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/content/list",
+    path: "/admin/content/:number/list",
     name: "admin_interview_content_list",
     component: () =>
       import(

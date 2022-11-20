@@ -96,9 +96,16 @@ vu
                     {{resume.title}}
                   </option>
                 </select>
-                <router-link :to="`/admin/resume/${num}/list`">
-                  <button>조회하기</button>
-                </router-link>
+                <div id="btn">
+                  <div v-if="num===0">
+                    <button @click="errorMessage">조회하기</button>
+                  </div>
+                  <div v-else>
+                    <router-link :to="`/admin/content/${num}/list`">
+                      <button>조회하기</button>
+                    </router-link>
+                  </div>
+                </div>
               </div>
               <hr />
             </div>
@@ -141,6 +148,9 @@ export default {
    methods:{
     changeValue(e){
       this.num = e.target.value;
+    },
+    errorMessage(){
+      alert('면접을 선택해주세요')
     }
    }
 };
