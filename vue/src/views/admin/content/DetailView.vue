@@ -76,7 +76,10 @@ vu
           </nav>
           <article class="adm__rsm-content">
             <div class="adm__rsm-content-div">
-              <h1>안녕하십니까 프론트엔드 지원지 김명지 입니다!</h1>
+              <h1>
+                <!-- 안녕하십니까 프론트엔드 지원지 김명지 입니다! -->
+                {{resumelist.title}}
+              </h1>
               <div class="adm__rsm-content--hr">
                 <div class="adm__rsm-content-info">
                   <div class="adm__rsm-content-info--div-1">
@@ -84,7 +87,10 @@ vu
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-2">
-                    <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p>
+                    <p>
+                      <!-- 2022년도 하반기 OOOOO 프론트엔드 개발자 모집 -->
+                      {{number.title}}
+                    </p>
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-3">
@@ -92,7 +98,10 @@ vu
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-4">
-                    <p>김명지</p>
+                    <p>
+                      <!-- 김명지 -->
+                      {{resumelist.name}}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -256,14 +265,27 @@ export default {
   data(){
     return {
       resumelist: [],
+      number:{},
       checklist:[],
       mainQuestion:[],
       additionalQuestion:[],
-      criterion:[],
       check:[],
     };
   },
   async created(){
+    const resumeText = await this.$axios.get(
+      "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/resume"
+    );
+    this.resumelist = resumeText.data;
+
+    const noticeText = await this.$axios.get(
+      "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/list"
+    );
+    this.noticelist = noticeText.data.noticelist;
+      this.number = this.noticelist.filter(
+      (v) => v.number === +this.$route.params.number
+    )[0];
+
     const checklistText = await this.$axios.get(
       "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/checklist"
     );
