@@ -77,8 +77,9 @@
             <div class="re-adm__interview">
               <div class="re-adm__interview-title">
                 <h1>
-                  지원자 및 이력서 목록 - 2022년도 하반기 OOOOO 프론트엔드
-                  개발자 모집
+                  <!-- 지원자 및 이력서 목록 - 2022년도 하반기 OOOOO 프론트엔드
+                  개발자 모집 -->
+                  {{number.title}}
                 </h1>
               </div>
               <hr />
@@ -107,26 +108,25 @@
                   <p>김명지</p>
                 </div>
               </div> -->
-              <router-link to="/admin/content/detail">
-                <div 
-                  class="re-adm__interview-content-table-text"
+              <!-- <router-link to="/admin/content/detail"> -->
+              <div v-if="splitlist">
+                <router-link
+                  :to="`/admin/content/${$route.params.number}/detail`"
                   :key="index"
-                  v-for="(resume,index) in resumelist"
-                >
-                  <div class="re-adm__interview-content-table-text-no">
-                    <!-- <p>2</p> -->
-                    <p>{{resume.number}}</p>
+                  v-for="(resume,index) in splitlist">
+                  <div class="re-adm__interview-content-table-text">
+                    <div class="re-adm__interview-content-table-text-no">
+                      <p>{{resume.number}}</p>
+                    </div>
+                    <div class="re-adm__interview-content-table-text-title">
+                      <p>{{resume.resumeTitle}}</p>
+                    </div>
+                    <div class="re-adm__interview-content-table-text-volunteer">
+                      <p>{{resume.person}}</p>
+                    </div>
                   </div>
-                  <div class="re-adm__interview-content-table-text-title">
-                    <!-- <p>안녕하십니까 프론트엔드 지원자 김명지 입니다!</p> -->
-                    <p>{{resume.resumeTitle}}</p>
-                  </div>
-                  <div class="re-adm__interview-content-table-text-volunteer">
-                    <!-- <p>김명지</p> -->
-                    <p>{{resume.person}}</p>
-                  </div>
-                </div>
-              </router-link>
+                </router-link>
+              </div>
               <!-- <div class="re-adm__interview-content-table-text">
                 <div class="re-adm__interview-content-table-text-no">
                   <p>3</p>
@@ -218,20 +218,22 @@
 
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">
-                  <!-- <a href="#">&laquo;</a>
-                  <a class="active" href="#">1</a>
-                  <a href="#">2</a>
-                  <a href="#">3</a>
-                  <a href="#">&raquo;</a> -->
                   <a>&laquo;</a>
-                  <a class="active">1</a>
+                  <a
+                    v-for="unit in page"
+                    :key="`page-${unit}`"
+                    @click="pagination(unit)"
+                  >
+                    {{unit}}
+                  </a>
+                  <!-- <a class="active">1</a>
                   <a>2</a>
-                  <a>3</a>
+                  <a>3</a> -->
                   <a>&raquo;</a>
                 </div>
               </div>
               <div class="re-adm-content-btn">
-                <router-link to="/admin/resume">
+                <router-link to="/admin/content">
                   <button>뒤로가기</button>
                 </router-link>
               </div>
@@ -255,14 +257,50 @@ export default {
   data(){
     return {
       resumelist: [],
+      splitlist:[],
+      pagecount:10,
+      noticelist:[],
+      number:{},
     };
+  },
+  computed:{
+    page(){
+      return Math.ceil(this.resumelist.length/10);
+    }
   },
   async created(){
     const resumeText = await this.$axios.get(
-      "https://fc1c7bbb-cd92-4929-9a01-be37aacd2ea3.mock.pstmn.io/resumelist"
+      "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/resumelist"
     );
     this.resumelist = resumeText.data.resumelist;
-    console.log(this.resumelist); //확인용
+    // console.log(this.resumelist); //확인용
+    this.pagination(1);
+
+    const noticeText = await this.$axios.get(
+      "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/list"
+    );
+    this.noticelist = noticeText.data.noticelist;
+
+    this.number = this.noticelist.filter(
+      (v) => v.number === +this.$route.params.number
+    )[0];
   },
+  methods:{
+    pagination(num){
+      let start=0;
+      let end=this.pagecount;
+      if(num===1){
+        this.splitlist = this.resumelist.filter(
+          (v,i) => i >= start && i < end
+        );
+      }else {
+        start = this.pagecount * (num-1);
+        end = this.pagecount * num;
+        this.splitlist = this.resumelist.filter(
+          (v,i) => i >= start && i < end
+        );
+      }
+    }
+  }
 };
 </script>
