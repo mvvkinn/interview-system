@@ -108,7 +108,7 @@ vu
                       <!-- 프론트엔드 업무에 대한 전반적인 이해 및 업무능력 평가.
                       관련 자격 및 업무 커뮤니케이션 능력 평가. <br />평가기준
                       예시 -->
-                      <!-- {{resume.}} -->
+                      {{checklist.criterion}}
                     </td>
                   </tr>
                 </tbody>
@@ -127,34 +127,42 @@ vu
                 <tbody>
                   <tr>
                     <td class="adm__rsm-content-checklist--table--section-1">
-                      주 질문 1
+                      <!-- 주 질문 1 -->
+                      {{mainQuestion.first}}
                     </td>
                     <td
                       class="adm__rsm-content-checklist--table--section-2"
                       rowspan="4"
                     >
-                      추가 질문 내용
+                      <!-- 추가 질문 내용 -->
+                      {{additionalQuestion.first}}
+                      <br>
+                      {{additionalQuestion.second}}
                     </td>
                   </tr>
                   <tr>
                     <td class="adm__rsm-content-checklist--table--section-1">
-                      주 질문 2
+                      <!-- 주 질문 2 -->
+                      {{mainQuestion.second}}
                     </td>
                   </tr>
                   <tr>
                     <td class="adm__rsm-content-checklist--table--section-1">
-                      주 질문 3
+                      <!-- 주 질문 3 -->
+                      {{mainQuestion.third}}
                     </td>
                   </tr>
                   <tr>
                     <td class="adm__rsm-content-checklist--table--section-1">
-                      주 질문 4
+                      <!-- 주 질문 4 -->
+                      {{mainQuestion.fourth}}
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div class="adm__rsm-content-checklist">
+              <h3>평가 준거</h3>
               <table class="adm__rsm-content-score--table">
                 <thead>
                   <tr>
@@ -167,15 +175,23 @@ vu
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr
+                    :key="index"
+                    v-for="(check,index) in check"
+                  >
                     <td class="adm__rsm-content-score--table--section-1">
-                      주 질문 1
+                      <!-- 주 질문 1 -->
+                      {{check.question}}
                     </td>
                     <td class="adm__rsm-content-score--table--section-2">
-                      <text class="score">00</text>점
+                      <!-- <text class="score"> -->
+                        <!-- 00 -->
+                        {{check.score}}
+                      <!-- </text> -->
+                      점
                     </td>
                   </tr>
-                  <tr>
+                  <!-- <tr>
                     <td class="adm__rsm-content-score--table--section-1">
                       주 질문 2
                     </td>
@@ -198,7 +214,7 @@ vu
                     <td class="adm__rsm-content-score--table--section-2">
                       <text class="score">00</text>점
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
               <table class="adm__rsm-content-opinion--table">
@@ -207,7 +223,9 @@ vu
                     <th class="adm__rsm-content-opinion--table--section-1">
                       기타 의견
                     </th>
-                    <td class="adm__rsm-content-opinion--table--section-2"></td>
+                    <td class="adm__rsm-content-opinion--table--section-2">
+                      {{checklist.opinion}}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -238,18 +256,29 @@ export default {
   data(){
     return {
       resumelist: [],
-      // defaultQustion : [],
+      checklist:[],
+      mainQuestion:[],
+      additionalQuestion:[],
+      criterion:[],
+      check:[],
     };
   },
   async created(){
-    const resumeText = await this.$axios.get(
-      "https://fc1c7bbb-cd92-4929-9a01-be37aacd2ea3.mock.pstmn.io/resumecheck"
+    const checklistText = await this.$axios.get(
+      "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/checklist"
     );
-    this.resumelist = resumeText.data.resumelist;
-    // this.defaultQustion = this.resumelist.defaultQustion;
-    console.log(this.resumelist); //확인용
+    this.checklist = checklistText.data;
+    this.mainQuestion = this.checklist.main;
+    this.additionalQuestion = this.checklist.additional;
+    this.check = this.checklist.check;
+    console.log(this.check); //확인용
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+  .adm__rsm-content-checklist h3{
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+</style>

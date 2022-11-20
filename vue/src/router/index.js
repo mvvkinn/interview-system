@@ -295,7 +295,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/content/detail",
+    path: "/admin/content/:number/detail",
     name: "admin_interview_content_detail",
     component: () =>
       import(
