@@ -27,7 +27,10 @@ export const store = new Vuex.Store({
       username: null,
       zipcode: null,
     },
+    isLogin: null,
+    isEmail: null,
   },
+
   mutations: {
     // 로그인 토큰 쿠키에 저장, 1시간동안
     loginToken(state, payload) {
@@ -47,7 +50,17 @@ export const store = new Vuex.Store({
       state.user = payload;
       localStorage.setItem("user", JSON.stringify(payload));
     },
+
+    isLogin(state, payload) {
+      state.isLogin = payload;
+    },
+
+    isEmail(state, payload) {
+      state.isEmail = payload;
+      console.log(state.isEmail);
+    },
   },
+
   getters: {
     //쿠키에 저장된 토큰 가져오기
     getToken() {
@@ -57,6 +70,7 @@ export const store = new Vuex.Store({
       };
     },
   },
+
   actions: {
     login: async ({ commit }, params) => {
       await axios
@@ -64,17 +78,32 @@ export const store = new Vuex.Store({
         .then((res) => {
           commit("loginToken", res.data.token);
           commit("loginUser", res.data.userDTO);
+          commit("isLogin", false);
           router.push("/main");
-          return res;
         })
         .catch((err) => {
           console.log(err.message);
-          return err;
+          commit("isLogin", true);
         });
     },
-    logout: (context) => {
+
+    isEmail: async ({ commit }, params) => {
+      await axios
+        .post("/auth/signin", params)
+        .then(() => {})
+        .catch((err) => {
+          console.log(err.response.data.errors.message);
+          if (err.response.data.errors.message.includes("Can't")) {
+            commit("isEmail", false);
+          } else {
+            commit("isEmail", true);
+          }
+        });
+    },
+
+    logout: ({ commit }) => {
       // 로그아웃
-      context.commit("removeToken");
+      commit("removeToken");
     },
   },
 });

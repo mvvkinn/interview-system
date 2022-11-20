@@ -27,11 +27,13 @@
                     type="text"
                     class="info_input_text_2"
                     :value="domain"
+                    :class="{ error: inputError.email }"
                   />
                   <select
                     name="email_back"
                     class="email_select"
                     @change="changeDomain"
+                    @blur="isEmail"
                   >
                     <option value="">직접입력</option>
                     <option value="naver.com">naver.com</option>
@@ -140,6 +142,7 @@
                     class="info_input_text"
                     maxlength="5"
                     :class="{ error: inputError.zipcode }"
+                    @input="checkInput($event, 'number')"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
                   <div class="info_value_btn">우편번호</div>
@@ -217,6 +220,7 @@
 <script>
 import HeaderView from "@/components/auth/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+import { store } from "@/store";
 export default {
   components: {
     HeaderView,
@@ -238,6 +242,7 @@ export default {
       isEmpty: false,
       inputError: {
         email: false,
+        domain: false,
         password: false,
         name: false,
         birthdate: false,
@@ -284,6 +289,11 @@ export default {
     email() {
       if (this.email.trim() !== "") {
         this.inputError.email = false;
+      }
+    },
+    domain() {
+      if (this.domain.trim() !== "") {
+        this.inputError.domain = false;
       }
     },
     zipcode() {
@@ -380,12 +390,31 @@ export default {
       }
 
       if (role === "dash") {
-        this.phone = e.target.value.replace(/-/g, "");
+        this.phone = e.target.value.replace(/-|\D/g, "");
         e.target.value = this.phone;
+      }
+
+      if (role === "number") {
+        this.zipcode = e.target.value.replace(this.regexp.number, "");
+        e.target.value = this.zipcode;
       }
     },
     changeDomain(e) {
       this.domain = e.target.value;
+    },
+    isEmail(e) {
+      store
+        .dispatch("isEmail", { email: this.email + "@" + this.domain })
+        .then(() => {
+          if (store.state.isEmail) {
+            this.inputError.email = store.state.isEmail;
+            this.inputErrorMsg = "이미 사용중인 이메일입니다.";
+            e.target.value = "";
+            this.domain = "";
+          } else {
+            this.inputError.email = store.state.isEmail;
+          }
+        });
     },
   },
   computed: {},

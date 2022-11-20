@@ -77,10 +77,12 @@ export default {
     email() {
       if (this.email.trim() !== "") {
         this.inputError.email = false;
+        this.inputError.password = false;
       }
     },
     password() {
       if (this.password.trim() !== "") {
+        this.inputError.email = false;
         this.inputError.password = false;
       }
     },
@@ -103,13 +105,12 @@ export default {
       }
 
       if (!this.inputError.email && !this.inputError.password) {
-        store.dispatch("login", { ...data }).then((res) => {
-          if (res) {
-            this.inputError.email = res;
-            this.inputError.password = res;
+        store.dispatch("login", { ...data }).then(() => {
+          if (store.state.isLogin) {
+            this.inputError.email = store.state.isLogin;
+            this.inputError.password = store.state.isLogin;
             this.inputErrorMsg = "입력하신 이메일과 비밀번호를 확인해주세요.";
           }
-          console.log(res);
         });
       }
     },
