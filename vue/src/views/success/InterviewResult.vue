@@ -76,13 +76,17 @@ vu
               <tbody>
                 <tr class="interview__result-table_tb-td-ei">
                   <td class="interview__result-table_tb-td-001">
-                    2022 명지전문대 입시 면접
+                    {{ result.title }}
                   </td>
-                  <td class="interview__result-table_tb-td-002">합격</td>
+                  <td class="interview__result-table_tb-td-002">
+                    {{ result.result }}
+                  </td>
                   <td class="interview__result-table_tb-td-003">
-                    2022 / 01 / 01
+                    {{ result.applydate }}
                   </td>
-                  <td class="interview__result-table_tb-td-004">김명지</td>
+                  <td class="interview__result-table_tb-td-004">
+                    {{ result.name }}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -107,6 +111,22 @@ export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  data() {
+    return {
+      success: [],
+      result: {},
+    };
+  },
+  async created() {
+    const successText = await this.$axios.get(
+      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/success"
+    );
+    this.success = successText.data.success;
+    this.result = this.success.filter(
+      (v) => v.id === +this.$route.params.id
+    )[0];
+    console.log(this.result);
   },
 };
 </script>
