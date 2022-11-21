@@ -61,8 +61,12 @@
             </div>
             <hr />
             <div class="success__search-select-interview">
-              <router-link to="/success/result">
-                <button :key="index" v-for="(success, index) in success">
+              <router-link
+                :to="`/success/result/${success.id}`"
+                :key="index"
+                v-for="(success, index) in success"
+              >
+                <button>
                   <div class="success__search-select-interview-group-1">
                     <span>{{ success.title }}</span>
                     <span>{{ success.checkstatus }}</span>
@@ -100,7 +104,7 @@ export default {
       "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/success"
     );
     this.success = successText.data.success;
-    console.log(this.success);
+    console.log(this.success.id);
   },
 };
 </script>

@@ -206,7 +206,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/success/SearchView.vue"),
   },
   {
-    path: "/success/result",
+    path: "/success/result/:id",
     name: "success_result",
     component: () =>
       import(
