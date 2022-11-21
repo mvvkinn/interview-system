@@ -57,7 +57,6 @@ export const store = new Vuex.Store({
 
     isEmail(state, payload) {
       state.isEmail = payload;
-      console.log(state.isEmail);
     },
   },
 
@@ -81,8 +80,7 @@ export const store = new Vuex.Store({
           commit("isLogin", false);
           router.push("/main");
         })
-        .catch((err) => {
-          console.log(err.message);
+        .catch(() => {
           commit("isLogin", true);
         });
     },
@@ -92,7 +90,6 @@ export const store = new Vuex.Store({
         .post("/auth/signin", params)
         .then(() => {})
         .catch((err) => {
-          console.log(err.response.data.errors.message);
           if (err.response.data.errors.message.includes("Can't")) {
             commit("isEmail", false);
           } else {

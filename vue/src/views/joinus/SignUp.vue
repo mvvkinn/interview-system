@@ -145,7 +145,9 @@
                     @input="checkInput($event, 'number')"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
-                  <div class="info_value_btn">우편번호</div>
+                  <button class="info_value_btn" @click="execDaumPostcode">
+                    우편번호
+                  </button>
                 </div>
               </div>
               <div class="info_line">
@@ -374,12 +376,8 @@ export default {
           .post("/auth/signup", JSON.stringify(data), {
             headers: { "Content-Type": "application/json" },
           })
-          .then((res) => {
-            console.log(res);
+          .then(() => {
             this.$router.push("/signup/success");
-          })
-          .catch((error) => {
-            console.log(error);
           });
       }
     },
@@ -415,6 +413,23 @@ export default {
             this.inputError.email = store.state.isEmail;
           }
         });
+    },
+    execDaumPostcode(e) {
+      e.preventDefault();
+      new window.daum.Postcode({
+        oncomplete: (data) => {
+          if (data.userSelectedType === "R") {
+            // 사용자가 도로명 주소를 선택했을 경우
+            this.address = data.roadAddress;
+          } else {
+            // 사용자가 지번 주소를 선택했을 경우(J)
+            this.address = data.jibunAddress;
+          }
+          // 우편번호를 입력한다.
+          this.zipcode = data.zonecode;
+        },
+      }).open();
+      this.$refs.address.focus();
     },
   },
   computed: {},
