@@ -223,6 +223,14 @@ const routes = [
       ),
   },
   {
+    path: "/admin/notice/detail",
+    name: "admin_notice_list",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/notice/DetailView.vue"
+      ),
+  },
+  {
     path: "/admin/notice/write",
     name: "admin_notice_write",
     component: () =>

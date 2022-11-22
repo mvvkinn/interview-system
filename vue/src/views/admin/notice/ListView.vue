@@ -113,20 +113,22 @@ vu
               </div>
             </div>
 
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>24</p>
+            <router-link to="/admin/notice/detail">
+              <div class="notice-adm__interview-table-text">
+                <div class="notice-adm__interview-table-text-no">
+                  <p>24</p>
+                </div>
+                <div class="notice-adm__interview-table-text-title">
+                  <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p>
+                </div>
+                <div class="notice-adm__interview-table-text-date">
+                  <p>2022/01/01</p>
+                </div>
+                <div class="notice-adm__interview-table-text-views">
+                  <p>159</p>
+                </div>
               </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p>
-              </div>
-              <div class="notice-adm__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
+            </router-link>
 
             <div class="notice-adm__interview-table-text">
               <div class="notice-adm__interview-table-text-no">
