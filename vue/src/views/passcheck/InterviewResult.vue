@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -22,7 +21,7 @@ vu
                   마이페이지
                 </li>
               </router-link>
-              <router-link to="/success">
+              <router-link to="/passcheck">
                 <li class="active">
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -76,19 +75,23 @@ vu
               <tbody>
                 <tr class="interview__result-table_tb-td-ei">
                   <td class="interview__result-table_tb-td-001">
-                    2022 명지전문대 입시 면접
+                    {{ result.title }}
                   </td>
-                  <td class="interview__result-table_tb-td-002">합격</td>
+                  <td class="interview__result-table_tb-td-002">
+                    {{ result.result }}
+                  </td>
                   <td class="interview__result-table_tb-td-003">
-                    2022 / 01 / 01
+                    {{ result.applydate }}
                   </td>
-                  <td class="interview__result-table_tb-td-004">김명지</td>
+                  <td class="interview__result-table_tb-td-004">
+                    {{ result.name }}
+                  </td>
                 </tr>
               </tbody>
             </table>
             <div class="interview__result-button">
               <button>
-                <router-link to="/success">뒤로가기</router-link>
+                <router-link to="/passcheck">뒤로가기</router-link>
               </button>
             </div>
             <hr />
@@ -107,6 +110,22 @@ export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  data() {
+    return {
+      passcheck: [],
+      result: {},
+    };
+  },
+  async created() {
+    const passcheckText = await this.$axios.get(
+      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/passcheck"
+    );
+    this.passcheck = passcheckText.data.passcheck;
+    this.result = this.passcheck.filter(
+      (v) => v.id === +this.$route.params.id
+    )[0];
+    console.log(this.result);
   },
 };
 </script>
