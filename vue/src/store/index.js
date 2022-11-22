@@ -27,8 +27,6 @@ export const store = new Vuex.Store({
       username: null,
       zipcode: null,
     },
-    isLogin: null,
-    isEmail: null,
   },
 
   mutations: {
@@ -50,14 +48,6 @@ export const store = new Vuex.Store({
       state.user = payload;
       localStorage.setItem("user", JSON.stringify(payload));
     },
-
-    isLogin(state, payload) {
-      state.isLogin = payload;
-    },
-
-    isEmail(state, payload) {
-      state.isEmail = payload;
-    },
   },
 
   getters: {
@@ -72,30 +62,22 @@ export const store = new Vuex.Store({
 
   actions: {
     login: async ({ commit }, params) => {
-      await axios
+      return await axios
         .post("/auth/signin", params)
         .then((res) => {
           commit("loginToken", res.data.token);
           commit("loginUser", res.data.userDTO);
-          commit("isLogin", false);
           router.push("/main");
+          return res.status;
         })
-        .catch(() => {
-          commit("isLogin", true);
-        });
+        .catch((e) => e.response.status);
     },
 
-    isEmail: async ({ commit }, params) => {
-      await axios
+    isEmail: async (_, params) => {
+      return await axios
         .post("/auth/signin", params)
-        .then(() => {})
-        .catch((err) => {
-          if (err.response.data.errors.message.includes("Can't")) {
-            commit("isEmail", false);
-          } else {
-            commit("isEmail", true);
-          }
-        });
+        .then((res) => res.status)
+        .catch((e) => e.response.status);
     },
 
     logout: ({ commit }) => {

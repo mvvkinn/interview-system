@@ -40,8 +40,10 @@ export default (app: Router) => {
           req.body.password
         );
         return res.json({ userDTO, token }).status(200);
-      } catch (e) {
+      } catch (e: any) {
+        console.log(e);
         logger.error(e);
+        e.status = 401;
         next(e);
       }
     }

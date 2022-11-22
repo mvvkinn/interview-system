@@ -105,10 +105,10 @@ export default {
       }
 
       if (!this.inputError.email && !this.inputError.password) {
-        store.dispatch("login", { ...data }).then(() => {
-          if (store.state.isLogin) {
-            this.inputError.email = store.state.isLogin;
-            this.inputError.password = store.state.isLogin;
+        store.dispatch("login", { ...data }).then((res) => {
+          if (res !== 200) {
+            this.inputError.email = true;
+            this.inputError.password = true;
             this.inputErrorMsg = "입력하신 이메일과 비밀번호를 확인해주세요.";
           }
         });

@@ -28,6 +28,8 @@
                     class="info_input_text_2"
                     :value="domain"
                     :class="{ error: inputError.email }"
+                    @input="changeDomain"
+                    @blur="isEmail"
                   />
                   <select
                     name="email_back"
@@ -401,18 +403,19 @@ export default {
       this.domain = e.target.value;
     },
     isEmail(e) {
-      store
-        .dispatch("isEmail", { email: this.email + "@" + this.domain })
-        .then(() => {
-          if (store.state.isEmail) {
-            this.inputError.email = store.state.isEmail;
-            this.inputErrorMsg = "이미 사용중인 이메일입니다.";
-            e.target.value = "";
-            this.domain = "";
-          } else {
-            this.inputError.email = store.state.isEmail;
-          }
-        });
+      const data = {
+        email: this.email + "@" + this.domain,
+      };
+      store.dispatch("isEmail", { ...data }).then((res) => {
+        if (res !== 200) {
+          this.inputError.email = true;
+          this.inputErrorMsg = "이미 사용중인 이메일입니다.";
+          e.target.value = "";
+          this.domain = "";
+        } else {
+          this.inputError.email = false;
+        }
+      });
     },
     execDaumPostcode(e) {
       e.preventDefault();
