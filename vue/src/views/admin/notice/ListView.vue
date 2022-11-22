@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -98,164 +97,41 @@ vu
               </div>
             </div>
 
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>25</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>2022년도 명지전문대 면접 모집</p>
-              </div>
-              <div class="notice-adm__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <router-link to="/admin/notice/detail">
-              <div class="notice-adm__interview-table-text">
-                <div class="notice-adm__interview-table-text-no">
-                  <p>24</p>
+            <div v-if="splitlist">
+              <router-link
+                to="/admin/notice/detail"
+                :key="index"
+                v-for="(notice, index) in splitlist"
+              >
+                <div class="notice-adm__interview-table-text">
+                  <!-- <div class="notice-adm__interview-table-text"> -->
+                  <div class="notice-adm__interview-table-text-no">
+                    <p>{{ notice.number }}</p>
+                  </div>
+                  <div class="notice-adm__interview-table-text-title">
+                    <p>{{ notice.title }}</p>
+                  </div>
+                  <div class="notice-adm__interview-table-text-date">
+                    <p>{{ notice.date }}</p>
+                  </div>
+                  <div class="notice-adm__interview-table-text-views">
+                    <p>{{ notice.view }}</p>
+                  </div>
+                  <!-- </div> -->
                 </div>
-                <div class="notice-adm__interview-table-text-title">
-                  <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p>
-                </div>
-                <div class="notice-adm__interview-table-text-date">
-                  <p>2022/01/01</p>
-                </div>
-                <div class="notice-adm__interview-table-text-views">
-                  <p>159</p>
-                </div>
-              </div>
-            </router-link>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>23</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>22</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>21</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>20</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>19</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>18</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>17</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
-            </div>
-
-            <div class="notice-adm__interview-table-text">
-              <div class="notice-adm__interview-table-text-no">
-                <p>16</p>
-              </div>
-              <div class="notice-adm__interview-table-text-title">
-                <p>면접 공지 제목 문구</p>
-              </div>
-              <div class="notice__interview-table-text-date">
-                <p>2022/01/01</p>
-              </div>
-              <div class="notice-adm__interview-table-text-views">
-                <p>159</p>
-              </div>
+              </router-link>
             </div>
 
             <div class="notice__interview-page">
               <div class="notice__interview-pagination">
                 <a href="#">&laquo;</a>
-                <a class="active" href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
+                <a
+                  v-for="unit in page"
+                  :key="`page-${unit}`"
+                  @click="pagination(unit)"
+                >
+                  {{ unit }}
+                </a>
                 <a href="#">&raquo;</a>
               </div>
             </div>
@@ -274,6 +150,36 @@ export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  data() {
+    return {
+      noticelist: [],
+      splitlist: [],
+      pagecount: 10,
+    };
+  },
+  computed: {
+    page() {
+      return Math.ceil(this.notice.length / 10);
+    },
+  },
+  async created() {
+    const noticeText = await this.$axios.get(
+      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
+    );
+    this.noticelist = noticeText.data.noticelist;
+    this.pagenation(1);
+  },
+  methods: {
+    pagination(num) {
+      let start = 0;
+      let end = this.pagecount;
+      if (num == 1) {
+        this.splitlist = this.noticelist.filter(
+          (v, i) => i >= start && i < end
+        );
+      }
+    },
   },
 };
 </script>
