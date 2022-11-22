@@ -39,8 +39,9 @@ export default (app: Router) => {
           req.body.password
         );
         return res.json({ user, token }).status(200);
-      } catch (e) {
+      } catch (e: any) {
         logger.error(e);
+        e.status = 401; // Unauthorized
         next(e);
       }
     }
