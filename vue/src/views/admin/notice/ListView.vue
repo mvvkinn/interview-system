@@ -96,7 +96,6 @@
                 <p>1596</p>
               </div>
             </div>
-
             <div v-if="splitlist">
               <router-link
                 to="/admin/notice/detail"
@@ -104,7 +103,6 @@
                 v-for="(notice, index) in splitlist"
               >
                 <div class="notice-adm__interview-table-text">
-                  <!-- <div class="notice-adm__interview-table-text"> -->
                   <div class="notice-adm__interview-table-text-no">
                     <p>{{ notice.number }}</p>
                   </div>
@@ -117,7 +115,6 @@
                   <div class="notice-adm__interview-table-text-views">
                     <p>{{ notice.view }}</p>
                   </div>
-                  <!-- </div> -->
                 </div>
               </router-link>
             </div>
@@ -129,9 +126,8 @@
                   v-for="unit in page"
                   :key="`page-${unit}`"
                   @click="pagination(unit)"
+                  >{{ unit }}</a
                 >
-                  {{ unit }}
-                </a>
                 <a href="#">&raquo;</a>
               </div>
             </div>
@@ -160,7 +156,7 @@ export default {
   },
   computed: {
     page() {
-      return Math.ceil(this.notice.length / 10);
+      return Math.ceil(this.noticelist.length / 10);
     },
   },
   async created() {
@@ -168,13 +164,19 @@ export default {
       "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
     );
     this.noticelist = noticeText.data.noticelist;
-    this.pagenation(1);
+    this.pagination(1);
   },
   methods: {
     pagination(num) {
       let start = 0;
       let end = this.pagecount;
-      if (num == 1) {
+      if (num === 1) {
+        this.splitlist = this.noticelist.filter(
+          (v, i) => i >= start && i < end
+        );
+      } else {
+        start = this.pagecount * (num - 1);
+        end = this.pagecount * num;
         this.splitlist = this.noticelist.filter(
           (v, i) => i >= start && i < end
         );

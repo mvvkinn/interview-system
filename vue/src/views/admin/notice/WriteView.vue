@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
