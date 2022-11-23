@@ -68,4 +68,14 @@ export default class AuthService {
       config.jwtSecret
     );
   }
+
+  public async isEmailExist(email: string) {
+    const record = await this.userModel.findOne({
+      where: {
+        email: email,
+      },
+    });
+
+    return !record ? false : true;
+  }
 }

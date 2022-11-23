@@ -198,19 +198,21 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/notice/interview/ApplySuccess.vue"
       ),
   },
-  // success
+  // passcheck
   {
-    path: "/success",
-    name: "success_search",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/success/SearchView.vue"),
-  },
-  {
-    path: "/success/result",
-    name: "success_result",
+    path: "/passcheck",
+    name: "passcheck_search",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/success/InterviewResult.vue"
+        /* webpackChunkName: "about" */ "../views/passcheck/SearchView.vue"
+      ),
+  },
+  {
+    path: "/passcheck/result/:id",
+    name: "passcheck_result",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/passcheck/InterviewResult.vue"
       ),
   },
   // admin

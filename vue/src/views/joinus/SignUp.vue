@@ -406,8 +406,8 @@ export default {
       const data = {
         email: this.email + "@" + this.domain,
       };
-      store.dispatch("isEmail", { ...data }).then((res) => {
-        if (res !== 200) {
+      store.dispatch("isDuplicate", { ...data }).then((res) => {
+        if (res) {
           this.inputError.email = true;
           this.inputErrorMsg = "이미 사용중인 이메일입니다.";
           e.target.value = "";

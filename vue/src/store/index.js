@@ -73,10 +73,10 @@ export const store = new Vuex.Store({
         .catch((e) => e.response.status);
     },
 
-    isEmail: async (_, params) => {
+    isDuplicate: async (_, params) => {
       return await axios
-        .post("/auth/signin", params)
-        .then((res) => res.status)
+        .post("/auth/emailDuplication", params)
+        .then((res) => res.data.emailDuplication)
         .catch((e) => e.response.status);
     },
 

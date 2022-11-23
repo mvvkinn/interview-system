@@ -48,4 +48,19 @@ export default (app: Router) => {
       }
     }
   );
+
+  route.post("/emailDuplication", async (req, res, next) => {
+    try {
+      const authServiceInstance = new AuthService();
+
+      const isDuplicate = await authServiceInstance.isEmailExist(
+        req.body.email
+      );
+
+      return res.json({ emailDuplication: isDuplicate });
+    } catch (e) {
+      logger.error(e);
+      next(e);
+    }
+  });
 };
