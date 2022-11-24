@@ -241,6 +241,14 @@ const routes = [
       ),
   },
   {
+    path: "/admin/notice/amend",
+    name: "admin_notice_amend",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/notice/AmendView.vue"
+      ),
+  },
+  {
     path: "/admin/resume",
     name: "admin_interview",
     component: () =>

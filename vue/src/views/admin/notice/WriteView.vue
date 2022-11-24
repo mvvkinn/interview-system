@@ -58,7 +58,7 @@
           <article class="notice_adm__write">
             <div class="notice_adm__write-title">
               <h1>글쓰기</h1>
-              <button>불러오기</button>
+              <!-- <button>불러오기</button> -->
             </div>
             <hr />
             <div class="notice_adm_write-content">
@@ -76,7 +76,7 @@
             </div>
             <div class="notice_adm_write-button">
               <button>업로드</button>
-              <button>임시저장</button>
+              <!-- <button>임시저장</button> -->
 
               <button>
                 <router-link to="/admin/notice">취소</router-link>

@@ -2,12 +2,12 @@
   <div>
     <HeaderView />
     <main>
-      <div class="notice_container">
-        <div class="notice_navbar">
-          <div class="notice_nav__menu">
+      <div class="notice_adm_container">
+        <div class="notice_adm_navbar">
+          <div class="notice_adm_nav__menu">
             <ul>
-              <router-link to="/mypage/resume">
-                <li>
+              <router-link to="/admin/resume">
+                <li class="adm_nav__menu--li">
                   <img
                     src="@/assets/images/icons/menuIcon_user.png"
                     alt=""
@@ -18,11 +18,11 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  관리자페이지
+                  <p>관리자 페이지</p>
                 </li>
               </router-link>
               <router-link to="/success">
-                <li>
+                <li class="adm_nav__menu--li">
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
                     alt=""
@@ -33,11 +33,11 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  합격자조회
+                  <p>합격자 조회</p>
                 </li>
               </router-link>
-              <router-link to="/notice">
-                <li class="active">
+              <router-link to="/admin/notice">
+                <li class="adm_nav__menu--li active">
                   <img
                     src="@/assets/images/icons/menuIcon_notice.png"
                     alt=""
@@ -48,51 +48,38 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  면접 공지
+                  <p>면접 공지</p>
                 </li>
               </router-link>
             </ul>
           </div>
         </div>
-        <section class="notice">
-          <article class="notice__details">
-            <div class="notice__details-h1">
-              <h1>{{ detail.title }}</h1>
+        <section class="notice_adm">
+          <article class="notice_adm__write">
+            <div class="notice_adm__write-title">
+              <h1>글쓰기</h1>
+              <!-- <button>불러오기</button> -->
             </div>
             <hr />
-            <div class="notice__details-header">
-              <div class="notice__details-header-div"><p>첨부파일</p></div>
-              <hr />
-              <div class="notice__details-header-div">
-                <p>첨부파일...hwp</p>
-              </div>
-              <div class="notice__details-header-div"><p>날짜</p></div>
-              <hr />
-              <div class="notice__details-header-div">
-                <p>{{ detail.date }}</p>
-              </div>
-              <hr />
-              <div class="notice__details-header-div"><p>조회수</p></div>
-              <hr />
-              <div class="notice__details-header-div">
-                <p>{{ detail.view }}</p>
-              </div>
+            <div class="notice_adm_write-content">
+              <textarea id="title" type="text" placeholder="글제목"></textarea>
+              <textarea
+                id="interview_title"
+                type="text"
+                placeholder="면접명"
+              ></textarea>
+              <textarea id="content" type="text" placeholder="내용"></textarea>
             </div>
-            <hr />
-            <div class="notice__details-text">
-              <p>
-                {{ detail.detail }}<br />
-                .<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />
-                .<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />
-                .<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />
-              </p>
+            <div class="notice_adm_write-filebutton">
+              <label for="input-file">파일 첨부</label>
+              <input type="file" id="input-file" style="display: none" />
             </div>
-            <div class="notice__details-button">
+            <div class="notice_adm_write-button">
+              <button>업로드</button>
+              <!-- <button>임시저장</button> -->
+
               <button>
-                <router-link to="/admin/notice/amend">수정하기</router-link>
-              </button>
-              <button>
-                <router-link to="/admin/notice">목록</router-link>
+                <router-link to="/admin/notice">취소</router-link>
               </button>
             </div>
             <hr />
@@ -115,19 +102,14 @@ export default {
   data() {
     return {
       noticelist: [],
-      detail: {},
     };
   },
-
   async created() {
     const noticeText = await this.$axios.get(
       "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/api/notice"
     );
     this.noticelist = noticeText.data.noticelist;
-    this.detail = this.noticelist.filter(
-      (v) => v.number === +this.$route.params.number
-    )[0];
-    console.log(this.detail[0]);
+    console.log(this.noticelist);
   },
 };
 </script>
