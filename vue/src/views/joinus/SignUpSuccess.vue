@@ -11,7 +11,7 @@
               <p class="join_us_finish_text_2">회원가입이 완료되었습니다.</p>
             </div>
             <div class="joinUs_btn_area">
-              <router-link to="/main">
+              <router-link to="/">
                 <div class="next_btn">
                   <p>홈으로</p>
                 </div>
