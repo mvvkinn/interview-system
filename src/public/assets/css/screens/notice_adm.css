@@ -97,13 +97,17 @@
 }
 
 .notice-adm__interview {
-  width: 72.9%;
+  margin-top: 152px;
+  /* height: 38.51%; */
+  width: 71%;
 }
 
 .notice-adm__interview hr {
-  width: 100%;
   border: none;
-  border-top: 1px solid #333333;
+  border-top: 1px #8e8e8e solid;
+  width: 100%;
+  margin: 0px;
+  margin-bottom: 10px;
 }
 
 /* .notice__interview hr:nth-child(2) {
@@ -122,8 +126,7 @@
 .notice-adm__interview-title h1 {
   font-weight: 700;
   font-size: 24px;
-  margin-top: 102px;
-  margin-bottom: 23px;
+  margin-bottom: 22px;
 }
 
 .notice-adm__interview-tab-header {
