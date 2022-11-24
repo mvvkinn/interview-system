@@ -223,7 +223,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/notice/detail",
+    path: "/admin/notice/detail/:number",
     name: "admin_notice_list",
     component: () =>
       import(

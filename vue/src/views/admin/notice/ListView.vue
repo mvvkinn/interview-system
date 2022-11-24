@@ -98,7 +98,7 @@
             </div>
             <div v-if="splitlist">
               <router-link
-                to="/admin/notice/detail"
+                :to="`/admin/notice/detail/${notice.number}`"
                 :key="index"
                 v-for="(notice, index) in splitlist"
               >
@@ -161,7 +161,7 @@ export default {
   },
   async created() {
     const noticeText = await this.$axios.get(
-      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
+      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/api/notice"
     );
     this.noticelist = noticeText.data.noticelist;
     this.pagination(1);
