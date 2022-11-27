@@ -57,18 +57,28 @@
         <section class="notice_adm">
           <article class="notice_adm__write">
             <div class="notice_adm__write-title">
-              <h1>글쓰기</h1>
+              <h1>수정하기</h1>
               <!-- <button>불러오기</button> -->
             </div>
             <hr />
             <div class="notice_adm_write-content">
-              <textarea id="title" type="text" placeholder="글제목"></textarea>
               <textarea
+                id="title"
+                type="text"
+                placeholder="글제목"
+                v-bind:value="detail.title"
+              ></textarea>
+              <!-- <textarea
                 id="interview_title"
                 type="text"
                 placeholder="면접명"
+              ></textarea> -->
+              <textarea
+                id="content"
+                type="text"
+                placeholder="내용"
+                v-bind:value="detail.detail"
               ></textarea>
-              <textarea id="content" type="text" placeholder="내용"></textarea>
             </div>
             <div class="notice_adm_write-filebutton">
               <label for="input-file">파일 첨부</label>
@@ -102,6 +112,7 @@ export default {
   data() {
     return {
       noticelist: [],
+      detail: {},
     };
   },
   async created() {
@@ -109,9 +120,15 @@ export default {
       "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/api/notice"
     );
     this.noticelist = noticeText.data.noticelist;
-    console.log(this.noticelist);
+    this.detail = this.noticelist.filter(
+      (v) => v.number === +this.$route.params.number
+    )[0];
   },
 };
 </script>
 
-<style></style>
+<style>
+.notice_adm_write-content textarea:nth-child(2) {
+  height: 550px;
+}
+</style>
