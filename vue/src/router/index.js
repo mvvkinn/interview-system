@@ -241,7 +241,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/notice/amend",
+    path: "/admin/notice/detail/:number/amend",
     name: "admin_notice_amend",
     component: () =>
       import(

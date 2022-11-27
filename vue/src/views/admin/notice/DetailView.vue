@@ -81,15 +81,14 @@
             <hr />
             <div class="notice__details-text">
               <p>
-                {{ detail.detail }}<br />
-                .<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />
-                .<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />
-                .<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />
+                {{ detail.detail }}
               </p>
             </div>
             <div class="notice__details-button">
               <button>
-                <router-link to="/admin/notice/amend">수정하기</router-link>
+                <router-link :to="`/admin/notice/detail/${detail.number}/amend`"
+                  >수정하기</router-link
+                >
               </button>
               <button>
                 <router-link to="/admin/notice">목록</router-link>
@@ -127,7 +126,8 @@ export default {
     this.detail = this.noticelist.filter(
       (v) => v.number === +this.$route.params.number
     )[0];
-    console.log(this.detail[0]);
+    // console.log(this.detail[0]);
+    console.log(this.detail.number);
   },
 };
 </script>
