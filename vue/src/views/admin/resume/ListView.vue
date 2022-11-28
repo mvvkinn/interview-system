@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -78,9 +77,7 @@ vu
             <div class="re-adm__interview">
               <div class="re-adm__interview-title">
                 <h1>
-                  <!-- 지원자 및 이력서 목록 - 2022년도 하반기 OOOOO 프론트엔드
-                  개발자 모집 -->
-                  {{number.title}}
+                  {{interviewNumber.title}}
                 </h1>
               </div>
               <hr />
@@ -97,27 +94,15 @@ vu
                   <p>지원자</p>
                 </div>
               </div>
-
-              <!-- <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>1</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div> -->
-              <!-- <router-link to="/admin/resume/detail"> -->
-              <div v-if="splitlist">
+              <div v-if="splitList">
                 <router-link 
-                  :to="`/admin/resume/${$route.params.number}/detail`"
+                  :to="`list/${resume.number}/detail`"
                   :key="index"
-                  v-for="(resume,index) in splitlist">
-                  <div class="re-adm__interview-content-table-text"                >
+                  v-for="(resume,index) in splitList"
+                  >
+                  <div class="re-adm__interview-content-table-text" >
                     <div class="re-adm__interview-content-table-text-no">
-                      <p>{{resume.number}}</p>
+                      <p>{{index + 1 + (pageNum * pageCount - pageCount)}}</p>
                     </div>
                     <div class="re-adm__interview-content-table-text-title">
                       <p>{{resume.resumeTitle}}</p>
@@ -127,110 +112,9 @@ vu
                     </div>
                   </div>
                 </router-link>
-              <!-- <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>3</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>4</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>5</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>6</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>7</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>8</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>9</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-content-table-text">
-                <div class="re-adm__interview-content-table-text-no">
-                  <p>10</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-content-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-              </div> -->
             </div>
-
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">
-                  <!-- <a href="#">&laquo;</a>
-                  <a class="active" href="#">1</a>
-                  <a href="#">2</a>
-                  <a href="#">3</a>
-                  <a href="#">&raquo;</a> -->
                   <a>&laquo;</a>
                   <a
                     v-for="unit in page"
@@ -239,9 +123,6 @@ vu
                   >
                     {{unit}}
                   </a>
-                  <!-- <a class="active">1</a>
-                  <a>2</a>
-                  <a>3</a> -->
                   <a>&raquo;</a>
                 </div>
               </div>
@@ -269,51 +150,54 @@ export default {
   },
   data(){
     return {
-      resumelist: [],
-      splitlist:[],
-      pagecount: 10,
-      noticelist:[],
-      number: {},
+      resumeList: [],
+      interviewList:[],
+      interviewNumber: {},
+      filteredList:[],
+      splitList:[],
+      pageCount: 10,
+      pageNum: 1,
     };
   },
   computed: {
     page(){
-      return Math.ceil(this.resumelist.length / 10);
+      return Math.ceil(this.filteredList.length / 10);
     },
   },
   async created(){
     const resumeText = await this.$axios.get(
-      "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/resumelist"
+      "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io/interview/resume"
     );
-    this.resumelist = resumeText.data.resumelist;
-    // console.log(this.resumelist); //확인용
-    this.pagination(1);
+    this.resumeList = resumeText.data.resumelist;
 
-    const noticeText = await this.$axios.get(
-      "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/list"
+    const interviewText = await this.$axios.get(
+      "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io/interview"
     );
 
-    this.noticelist = noticeText.data.noticelist;
-    // console.log(this.noticelist);//확인용
+    this.interviewList = interviewText.data.interview;
 
-    this.number = this.noticelist.filter(
-      (v) => v.number === +this.$route.params.number
+    this.interviewNumber = this.interviewList.filter(
+      (v) => v.number === +this.$route.params.interviewId
     )[0];
 
-    
+    this.filteredList = this.resumeList.filter((v) => v.interviewTitle === this.interviewNumber.title);
+    this.pagination(1);
+
   },
   methods: {
     pagination(num){
       let start = 0;
-      let end = this.pagecount;
+      let end = this.pageCount;
       if(num===1){
-        this.splitlist = this.resumelist.filter(
+        this.splitList = this.filteredList.filter(
           (v,i) => i >= start && i < end
         );
+        this.pageNum = num;
       } else {
-        start = this.pagecount * (num-1);
-        end = this.pagecount * num;
-        this.splitlist = this.resumelist.filter(
+        start = this.pageCount * (num-1);
+        end = this.pageCount * num;
+        this.pageNum = num;
+        this.splitList = this.filteredList.filter(
           (v,i) => i >= start && i < end
         );
       }
@@ -322,15 +206,4 @@ export default {
 };
 </script>
 
-<!-- <style></style>
-<style scoped>
-  .re-adm__interview-table-text:nth-last-child(1) {
-   border-bottom: 1px solid #333333;
- }
- .re-adm__interview-table-text:nth-last-child(2) {
-   border-bottom: none;
- }
- .re-adm__interview-table-text:hover {
-   border-bottom: 1px solid #3c62e5;
- }
-</style> -->
+<style></style>

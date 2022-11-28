@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -82,26 +81,20 @@ vu
                 <p>이력서를 조회할 면접을 선택하세요.</p>
                 <select name="rsm" id="rsm-select" @change="changeValue">
                   <option value="">면접을 선택하세요</option>
-                  <!-- <option value="a">a</option>
-                  <option value="b">b</option>
-                  <option value="c">c</option>
-                  <option value="d">d</option>
-                  <option value="e">e</option>
-                  <option value="f">f</option> -->
                   <option
-                  :value="resume.number"
+                  :value="interview.number"
                   :key="index"
-                  v-for="(resume,index) in resumelist"
+                  v-for="(interview,index) in interviewList"
                   >
-                    {{resume.title}}
+                    {{interview.title}}
                   </option>
                 </select>
                 <div id="btn">
-                  <div v-if="num===0">
+                  <div v-if="interviewNum===0">
                     <button @click="errorMessage">조회하기</button>
                   </div>
                   <div v-else>
-                    <router-link :to="`/admin/resume/${num}/list`">
+                    <router-link :to="`/admin/resume/${interviewNum}/list`">
                       <button>조회하기</button>
                     </router-link>
                   </div>
@@ -127,26 +120,19 @@ export default {
   },
   data(){
     return {
-      resumelist: [],
-      number: {},
-      num: 0,
+      interviewList: [],
+      interviewNum: 0,
     };
   },
   async created(){
-    const resumeText = await this.$axios.get(
-      "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/list"
+    const interviewText = await this.$axios.get(
+      "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io/interview"
     );
-    this.resumelist = resumeText.data.noticelist;
-    console.log(this.resumelist); //확인용
-
-    this.number = this.resumelist.filter(
-      (v) => v.number === this.$route.params.number
-    );
-    console.log(this.number);
+    this.interviewList = interviewText.data.interview;
   },
   methods:{
     changeValue(e){
-      this.num=e.target.value;
+      this.interviewNum=e.target.value;
     },
     errorMessage(){
       alert('면접을 선택해주세요')
@@ -156,3 +142,4 @@ export default {
 </script>
 
 <style></style>
+

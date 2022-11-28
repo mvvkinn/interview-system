@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -77,8 +76,7 @@ vu
           <article class="adm__rsm-content">
             <div class="adm__rsm-content-div">
               <h1>
-                <!-- 안녕하십니까 프론트엔드 지원지 김명지 입니다! -->
-                {{resumelist.title}}
+                {{resumeNumber.resumeTitle}}
               </h1>
               <div class="adm__rsm-content--hr">
                 <div class="adm__rsm-content-info">
@@ -87,9 +85,7 @@ vu
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-2">
-                    <!-- <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p> -->
-                    <!-- <p>{{noticeValue.title}}</p> -->
-                    <p>{{number.title}}</p>
+                    <p>{{resumeNumber.interviewTitle}}</p>
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-3">
@@ -97,14 +93,12 @@ vu
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-4">
-                    <!-- <p>김명지</p> -->
-                    <p>{{resumelist.name}}</p>
+                    <p>{{resumeNumber.person}}</p>
                   </div>
-                  <!-- <hr> -->
                 </div>
               </div>
               <div class="adm__rsm-content-img">
-                <img src="https://via.placeholder.com/297x358" alt="" />
+                <img v-bind:src="resumeDetail.img" alt="" />
               </div>
             </div>
             <div class="adm__rsm-content-pd">
@@ -114,15 +108,13 @@ vu
                   <tr class="adm__rsm-content-pd--table-top">
                     <th class="adm__rsm-content-pd--table--section-1">이름</th>
                     <td class="adm__rsm-content-pd--table--section-2">
-                      <!-- 김명지 -->
-                      {{resumelist.name}}
+                      {{resumeDetail.name}}
                     </td>
                     <th class="adm__rsm-content-pd--table--section-3">
                       생년월일
                     </th>
                     <td class="adm__rsm-content-pd--table--section-4">
-                      <!-- 20010101 -->
-                      {{resumelist.birth}}
+                      {{resumeDetail.birth}}
                     </td>
                   </tr>
                   <tr class="adm__rsm-content-pd--table-middle">
@@ -130,22 +122,19 @@ vu
                       휴대폰
                     </th>
                     <td class="adm__rsm-content-pd--table--section-2">
-                      <!-- 01012345678 -->
-                      {{resumelist.phone}}
+                      {{resumeDetail.phone}}
                     </td>
                     <th class="adm__rsm-content-pd--table--section-3">
                       E-mail
                     </th>
                     <td class="adm__rsm-content-pd--table--section-4">
-                      <!-- mjc1234@itc.mjc.ac.kr -->
-                      {{resumelist.email}}
+                      {{resumeDetail.email}}
                     </td>
                   </tr>
                   <tr>
                     <th class="adm__rsm-content-pd--table--section-5">주소</th>
                     <td class="adm__rsm-content-pd--table--section-6">
-                      <!-- 서울시 서대문구 어딘가 123-45 101호 -->
-                      {{resumelist.address}}
+                      {{resumeDetail.address}}
                     </td>
                   </tr>
                 </tbody>
@@ -169,35 +158,15 @@ vu
                     v-for="(education,index) in education"
                   >
                     <td class="adm__rsm-content-ei--table--section-1">
-                      <!-- 08/03/01 - 15/02/01 -->
                       {{education.period}}
                     </td>
                     <td class="adm__rsm-content-ei--table--section-2">
-                      <!-- 명지초등학교 -->
                       {{education.schoolname}}
                     </td>
                     <td class="adm__rsm-content-ei--table--section-3">
                       {{education.major}}
                     </td>
                   </tr>
-                  <!-- <tr>
-                    <td class="adm__rsm-content-ei--table--section-1">
-                      15/03/01 - 18/02/01
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-2">
-                      명지중학교
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-3">-</td>
-                  </tr>
-                  <tr>
-                    <td class="adm__rsm-content-ei--table--section-1">
-                      18/03/01 - 21/02/01
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-2">
-                      명지고등학교
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-3">-</td>
-                  </tr> -->
                 </tbody>
               </table>
             </div>
@@ -222,19 +191,15 @@ vu
                     v-for="(qualification,index) in qualification"
                   >
                     <td class="adm__rsm-content-et--table--section-1">
-                      <!-- 2018/05/16 -->
                       {{qualification.date}}
                     </td>
                     <td class="adm__rsm-content-et--table--section-2">
-                      <!-- 워드프로세서 -->
                       {{qualification.education_name}}
                     </td>
                     <td class="adm__rsm-content-et--table--section-3">
-                      <!-- 1급 -->
                       {{qualification.class}}
                     </td>
                     <td class="adm__rsm-content-et--table--section-4">
-                      <!-- 대한상공회의소 -->
                       {{qualification.institution}}
                     </td>
                   </tr>
@@ -242,7 +207,7 @@ vu
               </table>
             </div>
             <div class="adm__rsm-content-btn">
-              <router-link to="/admin/resume/list">
+              <router-link :to="`/admin/resume/${interviewId}/list`">
                 <button>목록으로</button>
               </router-link>
               <hr class="adm__rsm-content-hr" />
@@ -265,40 +230,52 @@ export default {
   },
   data(){
     return {
-      noticelist:{},
-      resumelist: {},
+      detailList: {},
+      resumeList:{},
+      resumeNumber:{},
+      resumeDetail:[],
       education: [],
       qualification: [],
-      // noticeValue: {},
-      number:{},
+      interviewList:{},
+      interviewNumber: {},
+      interviewId:{},
     }
   },
   async created(){
-      const resumeText = await this.$axios.get(
-         "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/resume"
+      const detailText = await this.$axios.get(
+         "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io/interview/resume/detail"
        );
-       this.resumelist = resumeText.data;
-       this.education = this.resumelist.education;
-       this.qualification = this.resumelist.qualification;
-       console.log(this.resumelist);
+       this.detailList = detailText.data.detail;
 
-       const noticeText = await this.$axios.get(
-        "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/list"
+       const resumeText = await this.$axios.get(
+        "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io/interview/resume"
       );
-      this.noticelist = noticeText.data.noticelist;
-      this.number = this.noticelist.filter(
+      this.resumeList = resumeText.data.resumelist;
+      this.resumeNumber = this.resumeList.filter(
       (v) => v.number === +this.$route.params.number
     )[0];
-      // console.log("noticelist: ");
-      console.log(this.noticelist);
-      // console.log("noticeValue: ");
-      // console.log(this.number);
-      // console.log(this.noticelist);
-      // console.log(this.$route);
-      // console.log(this.$route.params);
+
+    this.resumeDetail = this.detailList.filter((v)=>v.title === this.resumeNumber.resumeTitle)[0];
+    
+    this.education = this.resumeDetail.education;
+    this.qualification = this.resumeDetail.qualification;
+
+    const interviewText = await this.$axios.get(
+      "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io/interview"
+    );
+
+    this.interviewList = interviewText.data.interview;
+
+    this.interviewNumber = this.interviewList.filter(
+      (v) => v.number === +this.$route.params.interviewId
+    )[0];
+    
+    this.interviewId = this.interviewNumber.number;
+
     },
 
 };
 </script>
 
 <style></style>
+
