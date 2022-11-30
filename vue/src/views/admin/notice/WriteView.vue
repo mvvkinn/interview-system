@@ -63,12 +63,17 @@
             <hr />
             <div class="notice_adm_write-content">
               <textarea id="title" type="text" placeholder="글제목"></textarea>
-              <textarea
-                id="interview_title"
-                type="text"
-                placeholder="면접명"
-              ></textarea>
               <textarea id="content" type="text" placeholder="내용"></textarea>
+            </div>
+            <div class="notice_adm_write-applybutton">
+              <div class="notice_adm_write-applybutton-begin">
+                <p>모집 시작일시</p>
+                <input id="begin" type="datetime-local" />
+              </div>
+              <div class="notice_adm_write-applybutton-deadline">
+                <p>모집 마감일시</p>
+                <input id="deadline" type="datetime-local" />
+              </div>
             </div>
             <div class="notice_adm_write-filebutton">
               <label for="input-file">파일 첨부</label>
@@ -76,8 +81,6 @@
             </div>
             <div class="notice_adm_write-button">
               <button>업로드</button>
-              <!-- <button>임시저장</button> -->
-
               <button>
                 <router-link to="/admin/notice">취소</router-link>
               </button>
@@ -102,4 +105,31 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.notice_adm_write-content textarea:nth-child(2) {
+  height: 550px;
+}
+
+.notice_adm_write-applybutton {
+  display: flex;
+  justify-content: center;
+  padding: 30px 10px;
+}
+.notice_adm_write-applybutton p {
+  float: left;
+}
+.notice_adm_write-applybutton-begin {
+  /* margin-right: 80px; */
+  font-size: 18px;
+}
+.notice_adm_write-applybutton-begin input {
+  height: 35px;
+}
+.notice_adm_write-applybutton-deadline {
+  /* margin-left: 80px; */
+  font-size: 18px;
+}
+.notice_adm_write-applybutton-deadline input {
+  height: 35px;
+}
+</style>

@@ -68,17 +68,31 @@
                 placeholder="글제목"
                 v-bind:value="detail.title"
               ></textarea>
-              <!-- <textarea
-                id="interview_title"
-                type="text"
-                placeholder="면접명"
-              ></textarea> -->
+
               <textarea
                 id="content"
                 type="text"
                 placeholder="내용"
                 v-bind:value="detail.detail"
               ></textarea>
+              <div class="notice_adm_write-applybutton">
+                <div class="notice_adm_write-applybutton-begin">
+                  <p>모집 시작일시</p>
+                  <input
+                    id="begin"
+                    type="datetime-local"
+                    v-bind:value="detail.begin"
+                  />
+                </div>
+                <div class="notice_adm_write-applybutton-deadline">
+                  <p>모집 마감일시</p>
+                  <input
+                    id="deadline"
+                    type="datetime-local"
+                    v-bind:value="detail.deadline"
+                  />
+                </div>
+              </div>
             </div>
             <div class="notice_adm_write-filebutton">
               <label for="input-file">파일 첨부</label>
@@ -123,6 +137,8 @@ export default {
     this.detail = this.noticelist.filter(
       (v) => v.number === +this.$route.params.number
     )[0];
+    console.log(this.detail.begin);
+    console.log(this.detail.deadline);
   },
 };
 </script>
@@ -130,5 +146,27 @@ export default {
 <style>
 .notice_adm_write-content textarea:nth-child(2) {
   height: 550px;
+}
+.notice_adm_write-applybutton {
+  display: flex;
+  justify-content: center;
+  padding: 30px 10px;
+}
+.notice_adm_write-applybutton p {
+  float: left;
+}
+.notice_adm_write-applybutton-begin {
+  /* margin-right: 80px; */
+  font-size: 18px;
+}
+.notice_adm_write-applybutton-begin input {
+  height: 35px;
+}
+.notice_adm_write-applybutton-deadline {
+  /* margin-left: 80px; */
+  font-size: 18px;
+}
+.notice_adm_write-applybutton-deadline input {
+  height: 35px;
 }
 </style>
