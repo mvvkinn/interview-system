@@ -294,7 +294,7 @@ export default {
 
   async created() {
     const noticeText = await this.$axios.get(
-      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/list"
+      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/api/notice"
     );
     this.noticelist = noticeText.data.noticelist;
     console.log(
@@ -315,7 +315,7 @@ export default {
   methods: {
     async clickbutton() {
       const resumeText = await this.$axios.get(
-        "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/resume"
+        "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/api/resume"
       );
       this.resumelist = resumeText.data;
       this.education = this.resumelist.education;
