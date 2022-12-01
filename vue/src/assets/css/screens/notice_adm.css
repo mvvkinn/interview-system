@@ -136,27 +136,27 @@
 }
 
 .notice-adm__interview-tab-header p {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
   text-align: center;
 }
 
 .notice-adm__interview-tab-header hr {
   width: 1px;
-  height: 30px;
+  height: 22px;
   margin: 0;
   border: none;
-  border-left: 1px solid #333333;
+  border-left: 1px solid #707070;
 }
 
 .notice-adm__interview-tab-header-div {
   display: flex;
   justify-content: center;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
   align-items: center;
   text-align: center;
-  height: 30px;
+  height: 25px;
 }
 
 .notice-adm__interview-tab-header-div:first-child,
@@ -179,12 +179,13 @@
   align-items: center;
   padding: 15px 0px 15px;
   margin-top: 8px;
+  background-color: #f3f3f3;
   border: 1px solid white;
-  border-top: 1px solid #333333;
+  border-top: 1px solid #8e8e8e;
 }
 
 .notice-adm__interview-table-notice:hover {
-  border: 1px solid #3c62e5;
+  background-color: #e8e8e8;
 }
 
 .notice-adm__interview-table-notice-no,
@@ -224,11 +225,11 @@
 }
 
 .notice-adm__interview-table-text:nth-last-child(2) {
-  border-bottom: 1px solid #333333;
+  border-bottom: 1px solid #8e8e8e;
 }
 
 .notice-adm__interview-table-text:hover {
-  border: 1px solid #3c62e5;
+  background-color: #f3f3f3;
 }
 
 .notice-adm__interview-table-text-no,
