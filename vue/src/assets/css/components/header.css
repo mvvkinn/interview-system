@@ -30,7 +30,8 @@ header {
 }
 
 .header__title {
-  font-size: 26px;
+  font-family: "noto sans kr";
+  font-size: 22px;
   font-weight: 700;
   color: #333333;
   display: flex;
@@ -54,16 +55,19 @@ header {
 }
 
 .header__menu > li {
+  font-family: "noto sans kr";
   text-align: center;
   margin-left: 18px;
 }
 
 .header__menu-logout button {
-  width: 120px;
-  height: 35px;
+  font-family: "noto sans kr";
+  width: 101px;
+  height: 27.5px;
+  padding-bottom: 2px;
   background-color: #ff776d;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 14px;
   border-style: none;
   cursor: pointer;
 }

@@ -150,3 +150,8 @@ body {
   background-color: #f3f3f3;
   width: 100%;
 }
+
+p {
+  font-size: 14px;
+  font-family: "noto sans kr";
+}

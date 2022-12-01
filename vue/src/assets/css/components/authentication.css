@@ -3,6 +3,7 @@
   /* padding: 56px 16px; */
   /* flex-direction: row; */
   justify-content: center;
+  padding: 30px 0 34px 0;
 }
 
 .authentication__form {
@@ -12,7 +13,7 @@
   align-items: center;
   text-align: center;
   padding: 56px 16px;
-  margin: 10px 0px;
+  margin: 10px 0 20px 0;
   border: 1px solid white;
 }
 
@@ -41,13 +42,14 @@
 }
 
 .authentication__form h1 {
-  font-size: 20px;
+  font-family: "noto sans kr";
+  font-size: 18px;
   font-weight: 700;
-  margin-bottom: 30px;
+  margin: 30px 0 20px 0;
 }
 
 .authentication__form--contour {
   height: 200px;
-  border: 1px solid #c6c6c6;
+  border-left: 1px solid #c6c6c6;
   margin: 56px 80px;
 }
