@@ -6,7 +6,6 @@ import { Logger } from "winston";
 //export const User = new Model<IUser & Document>("user");
 
 export default async (db: Sequelize) => {
-  const logger: Logger = Container.get("logger");
   const userModel = db.define(
     "User",
     {
