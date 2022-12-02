@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/src/public/assets/css/style.css" />
+    <link rel="stylesheet" href="/vue/src/assets/css/style.css" />
     <title>interview</title>
   </head>
   <script>
@@ -29,21 +29,6 @@
 
       if (time < 0) {
         clearInterval(x);
-        timer.style.color = "#ff776d";
-        document.getElementById("input1").readOnly = true;
-        document.getElementById("input01").readOnly = true;
-        document.getElementById("input02").readOnly = true;
-        document.getElementById("input03").readOnly = true;
-        document.getElementById("input04").readOnly = true;
-        document.getElementById("input05").readOnly = true;
-        document.getElementById("input06").readOnly = true;
-        document.getElementById("input07").readOnly = true;
-        document.getElementById("input08").readOnly = true;
-        document.getElementById("input09").readOnly = true;
-        document.getElementById("score01").readOnly = true;
-        document.getElementById("score02").readOnly = true;
-        document.getElementById("score03").readOnly = true;
-        document.getElementById("score04").readOnly = true;
       }
     }, 1000);
 
@@ -107,7 +92,7 @@
             />
             SHOW VIDEO
           </div>
-          <div class="online_Btn" id="scoreBtn" onclick="closeScoreBoared();">
+          <div class="online_Btn" id="scoreBtn" onclick="closeScoreBoared()">
             <img
               src="/src/public/assets/images/icons/icon_checkscore.png"
               class="icon_checkscore"

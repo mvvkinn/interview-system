@@ -288,13 +288,19 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/admin/progress/ListView.vue"
       ),
   },
+  // {
+  //   path: "/admin/progress/evaluation",
+  //   name: "admin_interview_progress_evaluation",
+  //   component: () =>
+  //     import(
+  //       /* webpackChunkName: "about" */ "../views/admin/progress/InterviewEvaluation.vue"
+  //     ),
+  // },
   {
     path: "/admin/progress/evaluation",
     name: "admin_interview_progress_evaluation",
     component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../views/admin/progress/InterviewEvaluation.vue"
-      ),
+      import(/* webpackChunkName: "about" */ "../views/VideoMeeting.vue"),
   },
   {
     path: "/admin/content",
@@ -319,6 +325,12 @@ const routes = [
       import(
         /* webpackChunkName: "about" */ "../views/admin/content/DetailView.vue"
       ),
+  },
+  {
+    path: "/meeting",
+    name: "video_meeting",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/VideoMeeting.vue"),
   },
 ];
 
