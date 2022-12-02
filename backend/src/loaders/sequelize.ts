@@ -4,7 +4,7 @@ import LoggerInstance from "./logger";
 
 export default async () => {
   const sequelizeInstance = new Sequelize(config.db, {
-    logging: msg => LoggerInstance.debug(msg),
+    logging: (msg) => LoggerInstance.debug(msg),
   });
 
   await sequelizeInstance.authenticate();
