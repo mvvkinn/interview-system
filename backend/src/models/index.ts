@@ -1,4 +1,3 @@
-import applyModel from "@models/Apply";
 import userModel from "@models/User";
 import { DataTypes, Sequelize } from "sequelize";
 import { Logger } from "winston";
@@ -47,7 +46,7 @@ export default async (db: Sequelize) => {
   const applyModel = db.define(
     "Apply",
     {
-      apply_id: {
+      id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -65,7 +64,11 @@ export default async (db: Sequelize) => {
     },
     { tableName: "Apply", timestamps: false }
   );
-  userModel.hasMany(applyModel, { foreignKey: "user_id", sourceKey: "id" });
+  userModel.hasMany(applyModel, {
+    sourceKey: "id",
+    onDelete: "cascade",
+    onUpdate: "cascade",
+  });
   //   userModel.hasMany(applyModel, { foreignKey: "user_name", sourceKey: "name" });
 
   applyModel.belongsTo(userModel);
