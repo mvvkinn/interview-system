@@ -1,5 +1,4 @@
 import { IUser, IUserSignInDTO } from "@interfaces/IUser";
-import sequelize from "@loaders/sequelize";
 import { DataTypes, Sequelize } from "sequelize";
 import Container from "typedi";
 import { Logger } from "winston";
@@ -46,9 +45,6 @@ export default async (db: Sequelize) => {
     },
     { tableName: "User", timestamps: false }
   );
-
-  // userModel.hasMany(applyModel, { foreignKey: "user_id", sourceKey: "id" });
-  // userModel.hasMany(applyModel, { foreignKey: "user_name", sourceKey: "name" });
 
   // await db.sync();
 
