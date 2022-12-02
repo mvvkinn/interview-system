@@ -1,7 +1,7 @@
 import { Container } from "typedi";
 import { ModelCtor, Sequelize } from "sequelize";
 
-export default class AuthService {
+export default class ApplyService {
   applyModel: ModelCtor<any>;
   constructor() {
     const db: Sequelize = Container.get("db");
