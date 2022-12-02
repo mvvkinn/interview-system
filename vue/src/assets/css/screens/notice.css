@@ -21,7 +21,7 @@
   background-color: white;
   border-radius: 15px;
   border: 1px solid #c6c6c6;
-  width: 7.1%;
+  width: 7%;
   margin-right: 30px;
 }
 
@@ -766,26 +766,31 @@
 /* notice_4 */
 .notice__apply {
   width: 30%;
-  margin-top: 5.8%;
+  margin: 119px 0;
 }
 
 .notice__apply-image {
+  margin: 50px 0 10px 0;
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
+.notice__apply-image img {
+  width: 160px;
+}
+
 .notice__apply-title {
   margin-top: -2%;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 700;
   display: flex;
   justify-content: center;
 }
 
 .notice__apply-subtitle {
-  margin-top: 10px;
-  font-size: 22px;
+  margin: 10px 0 30px 0;
+  font-size: 14px;
   display: flex;
   justify-content: center;
 }

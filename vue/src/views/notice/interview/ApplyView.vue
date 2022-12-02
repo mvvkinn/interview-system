@@ -227,14 +227,12 @@ vu
                   </div>
                 </div>
                 <div class="component__content-column-notice">
-                  <button id="notice_blueBtn">
-                    <router-link to="/notice/detail/apply/success"
-                      >지원하기</router-link
-                    >
-                  </button>
-                  <button id="notice_blackBtn">
-                    <router-link to="/notice/detail">취소하기</router-link>
-                  </button>
+                  <router-link to="/notice/detail/apply/success">
+                    <button id="notice_blueBtn">지원하기</button>
+                  </router-link>
+                  <router-link to="/notice/detail">
+                    <button id="notice_blackBtn">취소하기</button>
+                  </router-link>
                 </div>
               </form>
             </div>
