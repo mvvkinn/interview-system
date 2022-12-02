@@ -71,7 +71,9 @@
       </div>
     </div>
     <div class="import_btnArea">
-      <div class="import_btn" id="btn_black">닫기</div>
+      <router-link to="/notice/detail/modal">
+        <div class="import_btn" id="btn_black">목록으로</div>
+      </router-link>
       <div class="import_btn" id="btn_blue">불러오기</div>
     </div>
   </body>
