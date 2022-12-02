@@ -198,6 +198,22 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/notice/interview/ApplySuccess.vue"
       ),
   },
+  {
+    path: "/notice/detail/modal",
+    name: "notice_view_myResumeList",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/notice/interview/SelectResume.vue"
+      ),
+  },
+  {
+    path: "/notice/detail/modal/resume",
+    name: "notice_view_myResumeList_detail",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/notice/interview/ResumePriview.vue"
+      ),
+  },
   // passcheck
   {
     path: "/passcheck",
