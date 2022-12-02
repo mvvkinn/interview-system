@@ -6,11 +6,11 @@
 }
 
 .notice_adm_navbar {
-  padding-top: 38px;
+  padding-top: 23.5px;
   background-color: white;
   border-radius: 15px;
   border: 1px solid #c6c6c6;
-  width: 8.14%;
+  width: 7%;
 
   margin-right: 30px;
 }
@@ -27,8 +27,7 @@
 
 .notice_adm_nav__menu li {
   font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 50px;
+  margin: 10px 0 35px 0;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -36,11 +35,12 @@
 
 .notice_adm_nav__menu img {
   margin: 0 auto 0;
-  width: 40.5%;
-  height: 40.5%;
+  width: 40px;
 }
 .notice_adm_nav__menu p {
-  padding-top: 7px;
+  font-family: "noto sans kr";
+  padding-top: 13px;
+  font-size: 12px;
 }
 
 .component-column--img-blue {
@@ -72,16 +72,6 @@
 }
 
 /* notice_adm_1.html */
-
-.notice-adm__interview-title button {
-  background-color: #3c62e5;
-  color: white;
-  border: 0;
-  width: 8.3%;
-  height: 35px;
-  margin-bottom: 23px;
-  cursor: pointer;
-}
 
 .notice-adm__interview-pagination a:hover:not(.active) {
   background-color: silver;
@@ -129,6 +119,16 @@
   margin-bottom: 22px;
 }
 
+.notice-adm__interview-title button {
+  background-color: #3c62e5;
+  color: white;
+  border: 0;
+  width: 100px;
+  height: 25px;
+  font-size: 12px;
+  margin: 0 10px 10px 0;
+  cursor: pointer;
+}
 .notice-adm__interview-tab-header {
   width: 100%;
   display: flex;
@@ -279,7 +279,7 @@
 /* notice_adm_2.html */
 .notice_adm {
   position: relative;
-  width: 88.5%;
+  width: 100%;
   /* height: 71.3vh; */
   background-color: white;
   border: 1px solid #c6c6c6;
@@ -295,54 +295,58 @@
 }
 
 .notice_adm__write {
-  width: 73%;
-  margin-top: 5%;
+  width: 71%;
+  margin-top: 152px;
   margin-bottom: 6%;
 }
 
 .notice_adm__write-title {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.5%;
+  align-items: flex-end;
 }
 .notice_adm__write-title h1 {
   font-weight: 700;
   font-size: 24px;
+  margin-bottom: 22px;
 }
 
 .notice_adm__write-title button {
   background-color: #8e8e8e;
   color: white;
   border: 0;
-  width: 6.3%;
-  height: 30px;
+  width: 100px;
+  height: 25px;
+  margin: 0 10px 10px 0;
   cursor: pointer;
+  font-size: 12px;
 }
 
 .notice_adm__write hr {
   width: 100%;
-  background-color: #333333;
-  margin-bottom: 40px;
+  border: none;
+  border-bottom: 1px solid #8e8e8e;
+  margin: 0 0 40px 0;
 }
 
 .notice_adm_write-content textarea {
   width: 100%;
-  border: 1px solid #707070;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  padding-left: 1.6%;
-  padding: 18px 0px 18px 1.6%;
-  font-size: 18px;
-}
-
-.notice_adm_write-content textarea:nth-child(1) {
-  height: 60px;
-}
-.notice_adm_write-content textarea:nth-child(2) {
-  height: 60px;
+  border: none;
+  background-color: #efefef;
+  border-radius: 5px;
+  font-family: "noto sans kr";
+  font-size: 14px;
+  height: 40px;
+  margin: 5px 0;
+  padding-left: 10px;
+  padding-top: 9px;
+  resize: none;
+  outline: none;
 }
 .notice_adm_write-content textarea:nth-child(3) {
   height: 550px;
+  padding-top: 10px;
+  border: none;
 }
 
 .notice_adm_write-filebutton {
@@ -353,12 +357,14 @@
 .notice_adm_write-filebutton label {
   background-color: #3c62e5;
   color: white;
+  width: 100px;
+  height: 25px;
+  margin: 10px 10px 0 0;
   cursor: pointer;
-  font-size: 16px;
-  width: 12.6%;
-  height: 35px;
-  text-align: center;
-  padding: 0.75%;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .notice_adm_write-button {
