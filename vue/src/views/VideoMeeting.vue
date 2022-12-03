@@ -188,7 +188,7 @@ export default {
     await this.initCall();
 
     this.peerConnection.addEventListener("icecandidate", iceData => {
-      socket.emit("ice", iceData.ice, this.roomName);
+      socket.emit("candidate", iceData.ice, this.roomName);
       console.log("ICECandidate sent");
     });
 
@@ -233,7 +233,7 @@ export default {
     /**
      * set remote ICECandidate
      */
-    socket.on("ice", ice => {
+    socket.on("candidate", ice => {
       console.log("recieved iceCandidate");
 
       this.peerConnection.addIceCandidate(ice);
