@@ -211,6 +211,11 @@ export default {
     HeaderView,
     FooterView,
   },
+  mounted() {
+    this.$loadScript(
+      "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+    );
+  },
   data() {
     return {
       username: "",
@@ -377,7 +382,7 @@ export default {
       const data = {
         email: this.email,
       };
-      store.dispatch("isDuplicate", { ...data }).then((res) => {
+      store.dispatch("isDuplicate", { ...data }).then(res => {
         if (res) {
           this.inputError.email = true;
           this.inputErrorMsg = "이미 사용중인 이메일입니다.";
@@ -389,7 +394,7 @@ export default {
     execDaumPostcode(e) {
       e.preventDefault();
       new window.daum.Postcode({
-        oncomplete: (data) => {
+        oncomplete: data => {
           if (data.userSelectedType === "R") {
             // 사용자가 도로명 주소를 선택했을 경우
             this.address = data.roadAddress;
