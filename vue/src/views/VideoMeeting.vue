@@ -145,7 +145,7 @@
 </template>
 
 <script>
-import { initCall, toggleMute, toggleCamera } from "@/plugins/socket";
+import { initCall, toggleMute, toggleCamera } from "@/plugins/stream";
 
 export default {
   data() {
