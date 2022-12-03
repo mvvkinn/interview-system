@@ -30,11 +30,17 @@
               <video
                 autoplay
                 playsinline
-                :src-object.prop.camel="myCamera"
+                :src-object.prop.camel="myVideo"
               ></video>
             </div>
             <div class="camArea_right">
-              <div class="camArea" id="myCam"></div>
+              <div class="camArea" id="myCam">
+                <video
+                  autoplay
+                  playsinline
+                  :src-object.prop.camel="peerVideo"
+                ></video>
+              </div>
               <div class="subCamArea">
                 <div class="camArea" id="subCam"></div>
                 <div class="camArea" id="subCam"></div>
@@ -151,45 +157,95 @@ export default {
       text_mute: "MUTE",
       text_video: "CAMERA OFF",
       onlineTimer: 0,
-      myCamera: null,
+      myVideo: null,
+      peerVideo: null,
       myStream: {},
       isMuted: false,
       isCameraOn: true,
       roomName: this.$route.query.roomName,
       pcObj: {},
+      peerConnection: new RTCPeerConnection({
+        iceServers: [
+          {
+            urls: [
+              "stun:stun.l.google.com:19302",
+              "stun:stun1.l.google.com:19302",
+              "stun:stun2.l.google.com:19302",
+              "stun:stun3.l.google.com:19302",
+              "stun:stun4.l.google.com:19302",
+            ],
+          },
+        ],
+      }),
     };
   },
 
-  mounted() {
+  async mounted() {
+    await this.$loadScript("/socket.io/socket.io.js");
+
+    // eslint-disable-next-line no-undef
+    const socket = io();
+    await this.initCall();
+
+    this.peerConnection.addEventListener("icecandidate", iceData => {
+      socket.emit("ice", iceData.ice, this.roomName);
+      console.log("ICECandidate sent");
+    });
+
+    this.peerConnection.addEventListener("addstream", streamData => {
+      this.peerVideo = streamData.stream;
+    });
+
+    socket.emit("joinRoom", this.roomName);
+
+    /**
+     * event on join
+     * Send local offer to remote
+     */
+    socket.on("join", async () => {
+      console.log("join");
+
+      // create offer and set to local description
+      const offer = await this.peerConnection.createOffer();
+      this.peerConnection.setLocalDescription(offer);
+
+      // send Local offer to remote peer
+      socket.emit("offer", offer, this.roomName);
+    });
+
+    /**
+     * event on recieved offer
+     * set remote peer offer
+     */
+    socket.on("offer", async offer => {
+      console.log("recieved offer");
+
+      this.peerConnection.setRemoteDescription(offer);
+
+      // create answer and set to local description
+      const answer = await this.peerConnection.createAnswer();
+      this.peerConnection.setLocalDescription(answer);
+
+      // send answer to remote peer
+      socket.emit("answer", answer, this.roomName);
+    });
+
+    /**
+     * set remote ICECandidate
+     */
+    socket.on("ice", ice => {
+      console.log("recieved iceCandidate");
+
+      this.peerConnection.addIceCandidate(ice);
+    });
+
     setInterval(() => {
       this.count();
     }, 1000);
   },
 
-  async created() {
-    await this.$loadScript("/socket.io/socket.io.js");
-
-    // eslint-disable-next-line no-undef
-    const socket = io();
-
-    socket.on("connect", async () => {
-      this.myCamera = await this.initCall();
-      console.log("connect");
-    });
-
-    socket.emit("joinRoom", "room1");
-
-    socket.on("join", async () => {
-      try {
-        this.myCamera = await this.initCall();
-        console.log("join");
-      } catch (err) {
-        console.log(err);
-      }
-    });
-  },
-
   methods: {
+    // Interview Timer
     count() {
       this.min = parseInt(this.time / 60);
       this.sec = this.time % 60;
@@ -208,23 +264,22 @@ export default {
       }
     },
 
-    async getCameras() {
+    async getDevices() {
       try {
         const devices = await navigator.mediaDevices.enumerateDevices();
+
+        // Video Input, Audio Input, Audio Output
         const cameras = devices.filter(device => device.kind === "videoinput");
+        const AIDevice = devices.filter(device => device.kind === "audioinput");
+        const AODevice = devices.filter(device => device.kind === "audioinput");
+
         const currentCamera = this.myStream.getVideoTracks();
 
-        // Camera selector
-        cameras.forEach(camera => {
-          const option = document.createElement("option");
-          option.value = camera.deviceId;
-          option.innerText = camera.label;
-          if (currentCamera.label === camera.label) {
-            option.selected = true;
-          }
-          // camerasSelect.appendChild(option);
-        });
-        console.log(cameras);
+        // Prevent ESLint Unused Error
+        cameras;
+        AIDevice;
+        AODevice;
+        currentCamera;
       } catch (e) {
         console.log(e);
       }
@@ -250,7 +305,7 @@ export default {
         : (this.text_video = "CAMERA ON");
     },
 
-    async getMedia(myCamera, deviceId) {
+    async getMedia(myVideo, deviceId) {
       // deviceId가 없을 경우 초기 상태
       const initialConstrains = {
         audio: true,
@@ -262,16 +317,17 @@ export default {
         audio: true,
         video: { deviceId: { exact: deviceId } },
       };
+
       try {
         this.myStream = await navigator.mediaDevices.getUserMedia(
           deviceId ? cameraConstrains : initialConstrains
         );
-        console.log(this.myStream);
-        // myCamera.srcObject = myStream;
+
+        this.myVideo = this.myStream;
+
         if (!deviceId) {
-          await this.getCameras();
+          await this.getDevices();
         }
-        return this.myStream;
       } catch (e) {
         console.log(e);
       }
@@ -279,7 +335,14 @@ export default {
 
     async initCall() {
       console.log("initCall");
-      return await this.getMedia();
+
+      // load AV IO
+      await this.getMedia();
+
+      // Add
+      this.myStream
+        .getTracks()
+        .forEach(track => this.peerConnection.addTrack(track, this.myStream));
     },
   },
 
