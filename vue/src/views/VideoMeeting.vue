@@ -145,8 +145,8 @@
 </template>
 
 <script>
-//import { initCall } from "@/plugins/socket";
-
+// import { initCall } from "@/plugins/socket";
+// import io from "socket.io-client";
 export default {
   data() {
     return {
@@ -182,7 +182,10 @@ export default {
 
   async mounted() {
     await this.$loadScript("/socket.io/socket.io.js");
+    //const socket = io("http://localhost:3000/");
 
+    // THIS COMMENT IS TO PREVENT io() not found.
+    // DO NOT DELETE COMMENT BELOW
     // eslint-disable-next-line no-undef
     const socket = io();
     await this.initCall();
@@ -228,6 +231,11 @@ export default {
 
       // send answer to remote peer
       socket.emit("answer", answer, this.roomName);
+    });
+
+    socket.on("answer", answer => {
+      console.log("recieved answer");
+      this.peerConnection.setRemoteDescription(answer);
     });
 
     /**
