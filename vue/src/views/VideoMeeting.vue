@@ -145,7 +145,7 @@
 </template>
 
 <script>
-//import { initCall } from "@/plugins/socket";
+import { initCall, toggleMute, toggleCamera } from "@/plugins/socket";
 
 export default {
   data() {
@@ -159,7 +159,7 @@ export default {
       onlineTimer: 0,
       myVideo: null,
       peerVideo: null,
-      myStream: {},
+      // myStream: navigator.mediaDevices.getUserMedia(),
       isMuted: false,
       isCameraOn: true,
       roomName: this.$route.query.roomName,
@@ -179,22 +179,42 @@ export default {
       }),
     };
   },
+  methods: {
+    // Interview Timer
+    count() {
+      this.min = parseInt(this.time / 60);
+      this.sec = this.time % 60;
 
+      if (this.min < 10) {
+        this.min = "0" + this.min;
+      }
+      if (this.sec < 10) {
+        this.sec = "0" + this.sec;
+      }
+      this.text_timer = `${this.min} : ${this.sec}`;
+      this.time--;
+
+      if (this.time < 0) {
+        clearInterval();
+      }
+    },
+    toggleMute() {
+      this.text_mute = toggleMute(this.text_mute, this.isMuted);
+    },
+    toggleCamera() {
+      this.text_video = toggleCamera(this.text_video, this.isCameraOn);
+    },
+  },
+
+  destroyed() {
+    this.count();
+  },
   async mounted() {
     await this.$loadScript("/socket.io/socket.io.js");
 
     // eslint-disable-next-line no-undef
     const socket = io();
-    await this.initCall();
-
-    this.peerConnection.addEventListener("icecandidate", iceData => {
-      socket.emit("candidate", iceData.ice, this.roomName);
-      console.log("ICECandidate sent");
-    });
-
-    this.peerConnection.addEventListener("addstream", streamData => {
-      this.peerVideo = streamData.stream;
-    });
+    this.myVideo = await initCall(this.peerConnection);
 
     socket.emit("joinRoom", this.roomName);
 
@@ -217,7 +237,7 @@ export default {
      * event on recieved offer
      * set remote peer offer
      */
-    socket.on("offer", async offer => {
+    socket.on("offer", async (offer) => {
       console.log("recieved offer");
 
       this.peerConnection.setRemoteDescription(offer);
@@ -230,124 +250,34 @@ export default {
       socket.emit("answer", answer, this.roomName);
     });
 
+    socket.on("answer", (answer) => {
+      console.log("recieved answer");
+      this.peerConnection.setRemoteDescription(answer);
+    });
+
     /**
      * set remote ICECandidate
      */
-    socket.on("candidate", ice => {
+    socket.on("candidate", (ice) => {
       console.log("recieved iceCandidate");
 
       this.peerConnection.addIceCandidate(ice);
     });
 
+    this.peerConnection.addEventListener("icecandidate", (iceData) => {
+      socket.emit("candidate", iceData.ice, this.roomName);
+      console.log("ICECandidate sent");
+    });
+
+    this.peerConnection.addEventListener("addstream", (streamData) => {
+      console.log("straemData.stream", streamData.stream);
+      this.peerVideo = streamData.stream;
+      console.log("peerVideo", this.peerVideo);
+    });
+
     setInterval(() => {
       this.count();
     }, 1000);
-  },
-
-  methods: {
-    // Interview Timer
-    count() {
-      this.min = parseInt(this.time / 60);
-      this.sec = this.time % 60;
-
-      if (this.min < 10) {
-        this.min = "0" + this.min;
-      }
-      if (this.sec < 10) {
-        this.sec = "0" + this.sec;
-      }
-      this.text_timer = `${this.min} : ${this.sec}`;
-      this.time--;
-
-      if (this.time < 0) {
-        clearInterval();
-      }
-    },
-
-    async getDevices() {
-      try {
-        const devices = await navigator.mediaDevices.enumerateDevices();
-
-        // Video Input, Audio Input, Audio Output
-        const cameras = devices.filter(device => device.kind === "videoinput");
-        const AIDevice = devices.filter(device => device.kind === "audioinput");
-        const AODevice = devices.filter(device => device.kind === "audioinput");
-
-        const currentCamera = this.myStream.getVideoTracks();
-
-        // Prevent ESLint Unused Error
-        cameras;
-        AIDevice;
-        AODevice;
-        currentCamera;
-      } catch (e) {
-        console.log(e);
-      }
-    },
-
-    toggleMute() {
-      this.myStream.getAudioTracks().forEach(track => {
-        track.enabled = !track.enabled;
-        this.isMuted = track.enabled;
-      });
-
-      this.isMuted ? (this.text_mute = "MUTE") : (this.text_mute = "UNMUTE");
-    },
-
-    toggleCamera() {
-      this.myStream.getVideoTracks().forEach(track => {
-        track.enabled = !track.enabled;
-        this.isCameraOn = track.enabled;
-      });
-
-      this.isCameraOn
-        ? (this.text_video = "CAMERA OFF")
-        : (this.text_video = "CAMERA ON");
-    },
-
-    async getMedia(deviceId) {
-      // deviceId가 없을 경우 초기 상태
-      const initialConstrains = {
-        audio: true,
-        video: { facingMode: "user" },
-      };
-
-      // deviceId가 있을 경우
-      const cameraConstrains = {
-        audio: true,
-        video: { deviceId: { exact: deviceId } },
-      };
-
-      try {
-        this.myStream = await navigator.mediaDevices.getUserMedia(
-          deviceId ? cameraConstrains : initialConstrains
-        );
-
-        this.myVideo = this.myStream;
-
-        if (!deviceId) {
-          await this.getDevices();
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    },
-
-    async initCall() {
-      console.log("initCall");
-
-      // load AV IO
-      await this.getMedia();
-
-      // Add
-      this.myStream
-        .getTracks()
-        .forEach(track => this.peerConnection.addTrack(track, this.myStream));
-    },
-  },
-
-  destroyed() {
-    this.count();
   },
 };
 </script>
