@@ -290,6 +290,8 @@ export default {
         console.log(this.data);
         if (res == 200) {
           this.inputError.email = false;
+        } else {
+          alert("이미 지원하였습니다");
         }
       });
     },
