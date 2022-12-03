@@ -19,6 +19,7 @@ export default (db: Sequelize) => {
         unique: true,
       },
       title: DataTypes.STRING,
+      user_id: { type: DataTypes.INTEGER },
     },
     { tableName: "Apply", timestamps: false }
   );

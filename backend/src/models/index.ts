@@ -12,6 +12,7 @@ export default async (sequelizeInstance: Sequelize) => {
   const logger: Logger = Container.get("logger");
 
   userModel.hasMany(applyModel, {
+    foreignKey: "user_id",
     sourceKey: "id",
     onDelete: "cascade",
     onUpdate: "cascade",
