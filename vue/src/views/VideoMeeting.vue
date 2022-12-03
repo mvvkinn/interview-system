@@ -305,7 +305,7 @@ export default {
         : (this.text_video = "CAMERA ON");
     },
 
-    async getMedia(myVideo, deviceId) {
+    async getMedia(deviceId) {
       // deviceId가 없을 경우 초기 상태
       const initialConstrains = {
         audio: true,
