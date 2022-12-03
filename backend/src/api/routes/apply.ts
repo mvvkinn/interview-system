@@ -19,11 +19,13 @@ export default (app: Router) => {
   //Create new Apply
   route.post("", async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req.body);
+      //   console.log(req.body.name);
       const email: IUser = req.body.email;
+      const name: IUser = req.body.name;
+      const id: IUser = req.body.id;
 
       const applyServiceInstance = new ApplyService();
-      const result = await applyServiceInstance.create(email);
+      const result = await applyServiceInstance.create(email, name, id);
 
       res.status(201).send(result);
     } catch (e) {
