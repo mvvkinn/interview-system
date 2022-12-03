@@ -4,5 +4,4 @@ export interface IScore {
     score_two: number;
     score_three: number;
     id: number;
-    UserId: number;
 }

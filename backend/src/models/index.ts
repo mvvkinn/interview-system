@@ -13,6 +13,7 @@ export default async ( sequelizeInstance :Sequelize) => {
 
     userModel.hasMany(scoreModel,{
         sourceKey: "id",
+        foreignKey:"id",
         onDelete: "cascade",
         onUpdate: "cascade",
     });

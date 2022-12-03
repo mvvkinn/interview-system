@@ -22,7 +22,8 @@ export default (db: Sequelize) => {
             question_three: { type: DataTypes.STRING, allowNull: false },
             anwer_three: { type: DataTypes.STRING },
             score_three: { type: DataTypes.INTEGER, allowNull: false },
-            opinion: { type: DataTypes.STRING }
+            opinion: { type: DataTypes.STRING },
+            id: {type:DataTypes.INTEGER},
         },
         {tableName:"Score", timestamps:false}
     );

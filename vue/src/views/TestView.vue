@@ -83,7 +83,7 @@
         </main>
     </div>
   </template>
-  
+
   <script>
 import HeaderView from '@/components/HeaderView.vue';
 
@@ -99,6 +99,5 @@ import HeaderView from '@/components/HeaderView.vue';
     components: { HeaderView }
 };
   </script>
-  
+
   <style lang="scss" scoped></style>
-  
