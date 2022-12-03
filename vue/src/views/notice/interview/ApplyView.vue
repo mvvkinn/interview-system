@@ -284,9 +284,7 @@ export default {
         id: JSON.parse(localStorage.getItem("user")).id,
         name: JSON.parse(localStorage.getItem("user")).name,
       };
-      console.log(JSON.parse(localStorage.getItem("user")).email);
-      console.log(JSON.parse(localStorage.getItem("user")).id);
-      console.log(JSON.parse(localStorage.getItem("user")).name);
+
       store.dispatch("apply", { ...data }).then((res) => {
         console.log("success");
         console.log(this.data);
