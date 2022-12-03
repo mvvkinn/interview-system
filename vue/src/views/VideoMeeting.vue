@@ -230,6 +230,26 @@ export default {
       }
     },
 
+    toggleMute() {
+      this.myStream.getAudioTracks().forEach(track => {
+        track.enabled = !track.enabled;
+        this.isMuted = track.enabled;
+      });
+
+      this.isMuted ? (this.text_mute = "MUTE") : (this.text_mute = "UNMUTE");
+    },
+
+    toggleCamera() {
+      this.myStream.getVideoTracks().forEach(track => {
+        track.enabled = !track.enabled;
+        this.isCameraOn = track.enabled;
+      });
+
+      this.isCameraOn
+        ? (this.text_video = "CAMERA OFF")
+        : (this.text_video = "CAMERA ON");
+    },
+
     async getMedia(myCamera, deviceId) {
       // deviceId가 없을 경우 초기 상태
       const initialConstrains = {
