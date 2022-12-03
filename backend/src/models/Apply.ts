@@ -15,7 +15,7 @@ export default (db: Sequelize) => {
       user_name: { type: DataTypes.STRING },
       interview_number: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        // allowNull: false, 임시
         unique: true,
       },
       title: DataTypes.STRING,
