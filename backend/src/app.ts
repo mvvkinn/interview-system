@@ -12,7 +12,7 @@ async function startServer() {
 
   const logger: Logger = Container.get("logger");
 
-  app.listen(config.port, () => {
+  httpServer.listen(config.port, () => {
     logger.info(`Server running on http://localhost:${config.port}`);
   });
 }
