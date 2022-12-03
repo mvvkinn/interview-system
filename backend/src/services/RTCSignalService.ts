@@ -1,5 +1,5 @@
 import Container from "typedi";
-import { Server, Socket } from "socket.io";
+import { Server } from "socket.io";
 import { Logger } from "winston";
 
 export default () => {
