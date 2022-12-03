@@ -26,7 +26,13 @@
       <div class="onMain">
         <div id="onMain_leftArea">
           <div class="mainLeft_camArea">
-            <div class="camArea_left"></div>
+            <div class="camArea_left">
+              <video
+                autoplay
+                playsinline
+                :src-object.prop.camel="myCamera"
+              ></video>
+            </div>
             <div class="camArea_right">
               <div class="camArea" id="myCam"></div>
               <div class="subCamArea">
@@ -38,21 +44,21 @@
           <div class="mainLeft_btnArea">
             <div class="online_Btn" id="micBtn">
               <img
-                src="/src/public/assets/images/icons/icon_mic_green.png"
+                src="../assets/images/icons/icon_mic_green.png"
                 class="icon_mic_green"
               />
               MUTE
             </div>
             <div class="online_Btn" id="camBtn">
               <img
-                src="/src/public/assets/images/icons/icon_cam_green.png"
+                src="../assets/images/icons/icon_cam_green.png"
                 class="icon_cam_green"
               />
               SHOW VIDEO
             </div>
             <div class="online_Btn" id="scoreBtn" onclick="closeScoreBoared();">
               <img
-                src="/src/public/assets/images/icons/icon_checkscore.png"
+                src="../assets/images/icons/icon_checkscore.png"
                 class="icon_checkscore"
               />
             </div>
@@ -133,6 +139,8 @@
 </template>
 
 <script>
+import { initCall } from "@/plugins/socket";
+
 export default {
   data() {
     return {
@@ -141,12 +149,35 @@ export default {
       sec: 0,
       text: "",
       onlineTimer: 0,
+      myCamera: null,
+      myStream: {},
+      muted: true,
+      cameraOff: false,
+      roomName: this.$route.query.roomName,
+      pcObj: {},
     };
   },
   mounted() {
     setInterval(() => {
       this.count();
     }, 1000);
+  },
+  async created() {
+    this.$socket.on("connect", async () => {
+      this.myCamera = await initCall();
+      console.log("connect");
+    });
+
+    this.$socket.emit("joinRoom", "room1");
+
+    this.$socket.on("join", async () => {
+      try {
+        this.myCamera = await initCall();
+        console.log("join");
+      } catch (err) {
+        console.log(err);
+      }
+    });
   },
   methods: {
     count() {
@@ -168,9 +199,14 @@ export default {
     },
   },
   destroyed() {
-    this.count;
+    this.count();
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+video {
+  width: 100%;
+  height: 100%;
+}
+</style>
