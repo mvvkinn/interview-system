@@ -12,20 +12,12 @@ export default class ApplyService {
     this.userModel = db.models.User;
   }
 
-  public async create(email: IUser) {
-    const userName = this.userModel.findAll({
-      attributes: ["name"],
-      where: { email: email },
-    });
-    const userID = this.userModel.findAll({
-      attributes: ["id"],
-      where: { email: email },
-    });
-
+  public async create(email: IUser, name: IUser, id: IUser) {
     await this.applyModel.create({
       ...email,
-      user_name: userName,
-      UserID: userID,
+
+      user_id: id,
+      user_name: name,
     });
   }
 }
