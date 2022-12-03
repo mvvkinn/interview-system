@@ -3,14 +3,16 @@ import config from "@config";
 import loaders from "@loaders";
 import Container from "typedi";
 import { Logger } from "winston";
+import { createServer } from "http";
 
 async function startServer() {
   const app = express();
-  await loaders(app);
+  const httpServer = createServer(app);
+  await loaders(app, httpServer);
 
   const logger: Logger = Container.get("logger");
 
-  app.listen(config.port, () => {
+  httpServer.listen(config.port, () => {
     logger.info(`Server running on http://localhost:${config.port}`);
   });
 }

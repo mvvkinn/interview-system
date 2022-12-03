@@ -19,7 +19,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  마이페이지
+                  <p>마이페이지</p>
                 </li>
               </router-link>
               <router-link to="/success">
@@ -34,7 +34,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  합격자조회
+                  <p>합격자조회</p>
                 </li>
               </router-link>
               <router-link to="/notice">
@@ -49,7 +49,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  면접 공지
+                  <p>면접 공지</p>
                 </li>
               </router-link>
             </ul>
@@ -57,28 +57,22 @@ vu
         </div>
         <section class="notice">
           <article class="notice__apply">
-            <div class="notice__contents">
-              <div class="notice__apply-image">
-                <img src="@/assets/images/logo1.png" />
-              </div>
-              <div class="notice__apply-title">
-                <h1>면접지원 완료</h1>
-              </div>
-              <div class="notice__apply-subtitle">
-                <p>면접 지원이 완료되었습니다.</p>
-              </div>
-              <div class="notice__apply-button">
-                <div class="notice__apply-button-1">
-                  <button>
-                    <router-link to="/main">홈으로</router-link>
-                  </button>
-                </div>
-                <div class="notice__apply-button-2">
-                  <button>
-                    <router-link to="/notice">목록으로</router-link>
-                  </button>
-                </div>
-              </div>
+            <div class="notice__apply-image">
+              <img src="@/assets/images/logo1.png" />
+            </div>
+            <div class="notice__apply-title">
+              <h1>면접지원 완료</h1>
+            </div>
+            <div class="notice__apply-subtitle">
+              <p>면접 지원이 완료되었습니다.</p>
+            </div>
+            <div class="component__content-column-notice">
+              <router-link to="/main">
+                <button id="notice_blueBtn">홈으로</button>
+              </router-link>
+              <router-link to="/notice">
+                <button id="notice_blackBtn">목록으로</button>
+              </router-link>
             </div>
           </article>
         </section>

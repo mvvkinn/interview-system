@@ -118,7 +118,9 @@ vu
                   <p>가능</p>
                 </div>
                 <div class="re-adm__interview-table-text-on">
-                  <button>면접 시작</button>
+                  <router-link to="/admin/progress/evaluation">
+                    <button>면접 시작</button>
+                  </router-link>
                 </div>
               </div>
 

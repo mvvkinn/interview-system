@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/vue/src/assets/css/style.css" />
+    <title>interview</title>
+  </head>
+  <script>
+    var time = 600;
+    var min = "";
+    var sec = "";
+
+    var x = setInterval(function () {
+      min = parseInt(time / 60);
+      sec = time % 60;
+
+      if (min < 10) {
+        min = "0" + min;
+      }
+      if (sec < 10) {
+        sec = "0" + sec;
+      }
+
+      document.getElementById("online_timer").innerHTML = min + ":" + sec;
+      time--;
+
+      if (time < 0) {
+        clearInterval(x);
+      }
+    }, 1000);
+
+    function showScoreBoared() {
+      $("#onMain_leftArea").css("width", "63.5%");
+      $("#onMain_rightArea").css("display", "block");
+    }
+
+    function closeScoreBoared() {
+      $("#onMain_leftArea").css("width", "100%");
+      $("#onMain_rightArea").css("display", "none");
+    }
+  </script>
+  <body class="online_body">
+    <div class="onTitle">
+      <div class="onTitle_sideArea"></div>
+      <div class="onTitle_centerArea">화상면접</div>
+      <div class="onTitle_sideArea">
+        <div class="sideArea_object">
+          <div class="sideObject_title" id="objectTitle_gray">
+            <p id="applicantName">지원자</p>
+          </div>
+          <div class="sideObject_value" id="objectValue_gray">
+            <p>김명지</p>
+          </div>
+        </div>
+        <div class="sideArea_object">
+          <div class="sideObject_title" id="objectTitle_red">
+            <p>남은시간</p>
+          </div>
+          <div class="sideObject_value" id="objectValue_red">
+            <p id="online_timer"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="onMain">
+      <div id="onMain_leftArea">
+        <div class="mainLeft_camArea">
+          <div class="camArea_left"></div>
+          <div class="camArea_right">
+            <div class="camArea" id="myCam"></div>
+            <div class="subCamArea">
+              <div class="camArea" id="subCam"></div>
+              <div class="camArea" id="subCam"></div>
+            </div>
+          </div>
+        </div>
+        <div class="mainLeft_btnArea">
+          <div class="online_Btn" id="micBtn">
+            <img
+              src="/src/public/assets/images/icons/icon_mic_green.png"
+              class="icon_mic_green"
+            />
+            MUTE
+          </div>
+          <div class="online_Btn" id="camBtn">
+            <img
+              src="/src/public/assets/images/icons/icon_cam_green.png"
+              class="icon_cam_green"
+            />
+            SHOW VIDEO
+          </div>
+          <div class="online_Btn" id="scoreBtn" onclick="closeScoreBoared()">
+            <img
+              src="/src/public/assets/images/icons/icon_checkscore.png"
+              class="icon_checkscore"
+            />
+          </div>
+          <div class="online_Btn" id="ectBtn">ㆍㆍㆍ</div>
+        </div>
+      </div>
+      <div id="onMain_rightArea">
+        <div class="scoreBoard_topArea" id="topArea_interviewTitle">
+          <div class="scoreBoaed_title">
+            <p id="online_boldText">면접명</p>
+          </div>
+          <div class="scoreBoaed_value">
+            <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p>
+          </div>
+        </div>
+        <div class="scoreBoard_topArea" id="topArea_standard">
+          <div class="scoreBoaed_title">
+            <p id="online_boldText">평가기준</p>
+          </div>
+          <div class="scoreBoaed_value">
+            <p>
+              프론트엔드 업무에 대한 전반적인 이해 및 업무능력 평가. 관련 자격
+              및 업무 커뮤니케이션 능력 평가.
+            </p>
+          </div>
+        </div>
+        <div class="scoreBoard_question">
+          <p id="online_boldText">질문1</p>
+          <div class="scoreBoard_questionBox">
+            <textarea
+              class="questionBox_content"
+              placeholder="질문 내용을 입력해주세요."
+            ></textarea>
+            <div class="questionBox_score">
+              <input type="text" class="question_Score" placeholder="00" />
+            </div>
+          </div>
+        </div>
+        <div class="scoreBoard_question">
+          <p id="online_boldText">질문2</p>
+          <div class="scoreBoard_questionBox">
+            <textarea
+              class="questionBox_content"
+              placeholder="질문 내용을 입력해주세요."
+            ></textarea>
+            <div class="questionBox_score">
+              <input type="text" class="question_Score" placeholder="00" />
+            </div>
+          </div>
+        </div>
+        <div class="scoreBoard_question">
+          <p id="online_boldText">질문3</p>
+          <div class="scoreBoard_questionBox">
+            <textarea
+              class="questionBox_content"
+              placeholder="질문 내용을 입력해주세요."
+            ></textarea>
+            <div class="questionBox_score">
+              <input type="text" class="question_Score" placeholder="00" />
+            </div>
+          </div>
+        </div>
+        <div class="scoreBoard_question">
+          <p id="online_boldText">추가질문</p>
+          <textarea
+            class="questionBox_addQuest"
+            placeholder="질문 내용을 입력해주세요."
+          ></textarea>
+        </div>
+        <div class="scoreBoard_btnArea">
+          <div class="scoreBoard_btn" id="scoreBoard_whiteBtn">저장</div>
+          <div class="scoreBoard_btn" id="scoreBoard_redBtn">제출</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
