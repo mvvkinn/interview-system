@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import { Container } from "typedi";
 import LoggerInstance from "./logger";
 import { Server } from "http";
-import models from "@models/index";
+import models from "@models/Index";
 
 export default async (sequelizeInstance: Sequelize, httpServer: Server) => {
   Container.set("logger", LoggerInstance);
