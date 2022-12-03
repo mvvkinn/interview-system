@@ -1,5 +1,3 @@
-//src/store/index.js
-
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
@@ -83,6 +81,17 @@ export const store = new Vuex.Store({
     logout: ({ commit }) => {
       // 로그아웃
       commit("removeToken");
+    },
+
+    apply: async ({ commit }, params) => {
+      return await axios
+        .post("/apply", params)
+        .then((res) => {
+          commit("email", res.data.email);
+          router.push("/notice/detail/apply/success");
+          return res.status;
+        })
+        .catch((e) => e.response.status);
     },
   },
 });
