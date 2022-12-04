@@ -10,13 +10,7 @@ export const getDevices = async () => {
     const AIDevice = devices.filter(device => device.kind === "audioinput");
     const AODevice = devices.filter(device => device.kind === "audioinput");
 
-    const currentCamera = myStream.getVideoTracks();
-
-    // Prevent ESLint Unused Error
-    cameras;
-    AIDevice;
-    AODevice;
-    currentCamera;
+    const currentCamera = myStream.getVideoTracks()[0];
   } catch (e) {
     console.log(e);
   }
@@ -27,6 +21,7 @@ export const toggleMute = isMuted => {
     track.enabled = !track.enabled;
     isMuted = track.enabled;
   });
+
   return isMuted ? "MUTE" : "UNMUTE";
 };
 
@@ -55,11 +50,11 @@ export const getMedia = async deviceId => {
     myStream = await navigator.mediaDevices.getUserMedia(
       deviceId ? cameraConstrains : initialConstrains
     );
-    console.log(myStream);
-    // myCamera.srcObject = myStream;
+
     if (!deviceId) {
       await getDevices();
     }
+
     return myStream;
   } catch (e) {
     console.log(e);
@@ -74,5 +69,6 @@ export const initCall = async peerConnection => {
   myStream
     .getTracks()
     .forEach(track => peerConnection.addTrack(track, myStream));
+
   return stream;
 };
