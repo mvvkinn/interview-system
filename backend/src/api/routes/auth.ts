@@ -40,10 +40,27 @@ export default (app: Router) => {
           req.body.password
         );
         return res.json({ userDTO, token }).status(200);
-      } catch (e) {
+      } catch (e: any) {
+        console.log(e);
         logger.error(e);
+        e.status = 401;
         next(e);
       }
     }
   );
+
+  route.post("/emailDuplication", async (req, res, next) => {
+    try {
+      const authServiceInstance = new AuthService();
+
+      const isDuplicate = await authServiceInstance.isEmailExist(
+        req.body.email
+      );
+
+      return res.json({ emailDuplication: isDuplicate });
+    } catch (e) {
+      logger.error(e);
+      next(e);
+    }
+  });
 };

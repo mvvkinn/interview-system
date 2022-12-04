@@ -1,5 +1,3 @@
-//src/store/index.js
-
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
@@ -28,23 +26,28 @@ export const store = new Vuex.Store({
       zipcode: null,
     },
   },
+
   mutations: {
     // 로그인 토큰 쿠키에 저장, 1시간동안
     loginToken(state, payload) {
       VueCookies.set("Token", payload, "1h");
       state.Token = payload;
+      localStorage.setItem("Token", payload);
     },
 
     // 쿠키에 저장되어있는 토큰 제거
     removeToken() {
       VueCookies.remove("Token");
+      localStorage.clear();
     },
 
     // 사용자 정보 state.user에 저장
     loginUser(state, payload) {
       state.user = payload;
+      localStorage.setItem("user", JSON.stringify(payload));
     },
   },
+
   getters: {
     //쿠키에 저장된 토큰 가져오기
     getToken() {
@@ -54,24 +57,30 @@ export const store = new Vuex.Store({
       };
     },
   },
+
   actions: {
     login: async ({ commit }, params) => {
-      await axios
+      return await axios
         .post("/auth/signin", params)
         .then((res) => {
           commit("loginToken", res.data.token);
           commit("loginUser", res.data.userDTO);
           router.push("/main");
-          return false;
+          return res.status;
         })
-        .catch((err) => {
-          console.log(err.message);
-          return true;
-        });
+        .catch((e) => e.response.status);
     },
-    logout: (context) => {
+
+    isDuplicate: async (_, params) => {
+      return await axios
+        .post("/auth/emailDuplication", params)
+        .then((res) => res.data.emailDuplication)
+        .catch((e) => e.response.status);
+    },
+
+    logout: ({ commit }) => {
       // 로그아웃
-      context.commit("removeToken");
+      commit("removeToken");
     },
   },
 });

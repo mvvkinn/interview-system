@@ -20,24 +20,9 @@
                     type="text"
                     class="info_input_text_2"
                     :class="{ error: inputError.email }"
+                    @blur="isEmail"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
-                  <p class="email_center">@</p>
-                  <input
-                    type="text"
-                    class="info_input_text_2"
-                    :value="domain"
-                  />
-                  <select
-                    name="email_back"
-                    class="email_select"
-                    @change="changeDomain"
-                  >
-                    <option value="">직접입력</option>
-                    <option value="naver.com">naver.com</option>
-                    <option value="daum.net">daum.net</option>
-                    <option value="gmail.com">gmail.com</option>
-                  </select>
                 </div>
               </div>
               <div class="info_line">
@@ -140,9 +125,12 @@
                     class="info_input_text"
                     maxlength="5"
                     :class="{ error: inputError.zipcode }"
+                    @input="checkInput($event, 'number')"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
-                  <div class="info_value_btn">우편번호</div>
+                  <button class="info_value_btn" @click="execDaumPostcode">
+                    우편번호
+                  </button>
                 </div>
               </div>
               <div class="info_line">
@@ -217,10 +205,16 @@
 <script>
 import HeaderView from "@/components/auth/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+import { store } from "@/store";
 export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  mounted() {
+    this.$loadScript(
+      "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+    );
   },
   data() {
     return {
@@ -231,7 +225,6 @@ export default {
       birthdate: "",
       phone: "",
       email: "",
-      domain: "",
       zipcode: "",
       address: "",
       isAgree: true,
@@ -300,7 +293,7 @@ export default {
   methods: {
     async submitForm() {
       const data = {
-        email: this.email === "" ? this.email : this.email + "@" + this.domain,
+        email: this.email,
         password: this.password,
         name: this.name,
         gender: this.gender,
@@ -364,12 +357,8 @@ export default {
           .post("/auth/signup", JSON.stringify(data), {
             headers: { "Content-Type": "application/json" },
           })
-          .then((res) => {
-            console.log(res);
+          .then(() => {
             this.$router.push("/signup/success");
-          })
-          .catch((error) => {
-            console.log(error);
           });
       }
     },
@@ -380,12 +369,44 @@ export default {
       }
 
       if (role === "dash") {
-        this.phone = e.target.value.replace(/-/g, "");
+        this.phone = e.target.value.replace(/-|\D/g, "");
         e.target.value = this.phone;
       }
+
+      if (role === "number") {
+        this.zipcode = e.target.value.replace(this.regexp.number, "");
+        e.target.value = this.zipcode;
+      }
     },
-    changeDomain(e) {
-      this.domain = e.target.value;
+    isEmail() {
+      const data = {
+        email: this.email,
+      };
+      store.dispatch("isDuplicate", { ...data }).then(res => {
+        if (res) {
+          this.inputError.email = true;
+          this.inputErrorMsg = "이미 사용중인 이메일입니다.";
+        } else {
+          this.inputError.email = false;
+        }
+      });
+    },
+    execDaumPostcode(e) {
+      e.preventDefault();
+      new window.daum.Postcode({
+        oncomplete: data => {
+          if (data.userSelectedType === "R") {
+            // 사용자가 도로명 주소를 선택했을 경우
+            this.address = data.roadAddress;
+          } else {
+            // 사용자가 지번 주소를 선택했을 경우(J)
+            this.address = data.jibunAddress;
+          }
+          // 우편번호를 입력한다.
+          this.zipcode = data.zonecode;
+        },
+      }).open();
+      this.$refs.address.focus();
     },
   },
   computed: {},

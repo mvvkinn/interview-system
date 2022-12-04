@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -22,7 +21,7 @@ vu
                   마이페이지
                 </li>
               </router-link>
-              <router-link to="/success">
+              <router-link to="/passcheck">
                 <li class="active">
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -62,14 +61,18 @@ vu
             </div>
             <hr />
             <div class="success__search-select-interview">
-              <router-link to="/success/result">
+              <router-link
+                :to="`/passcheck/result/${passcheck.id}`"
+                :key="index"
+                v-for="(passcheck, index) in passcheck"
+              >
                 <button>
                   <div class="success__search-select-interview-group-1">
-                    <span>2022 명지전문대 입시 면접</span>
-                    <span>합격조회 가능</span>
+                    <span>{{ passcheck.title }}</span>
+                    <span>{{ passcheck.checkstatus }}</span>
                   </div>
                   <div class="success__search-select-interview-group-2">
-                    <span>지원일 : 2022/01/01</span>
+                    <span>지원일 : {{ passcheck.applydate }}</span>
                   </div>
                 </button>
               </router-link>
@@ -90,6 +93,18 @@ export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  data() {
+    return {
+      passcheck: [],
+    };
+  },
+  async created() {
+    const passcheckText = await this.$axios.get(
+      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/passcheck"
+    );
+    this.passcheck = passcheckText.data.passcheck;
+    console.log(this.passcheck.id);
   },
 };
 </script>

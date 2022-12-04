@@ -5,8 +5,7 @@ import { Logger } from "winston";
 
 //export const User = new Model<IUser & Document>("user");
 
-export default async (db: Sequelize) => {
-  const logger: Logger = Container.get("logger");
+export default (db: Sequelize) => {
   const userModel = db.define(
     "User",
     {
@@ -17,7 +16,7 @@ export default async (db: Sequelize) => {
         unique: true,
         autoIncrement: true,
       },
-      email: { type: DataTypes.STRING, allowNull: false },
+      email: { type: DataTypes.STRING, allowNull: false, unique: true },
       password: { type: DataTypes.STRING, allowNull: false },
       salt: { type: DataTypes.STRING, allowNull: false },
       name: { type: DataTypes.STRING, allowNull: false },
@@ -29,7 +28,7 @@ export default async (db: Sequelize) => {
         },
       },
       birthdate: { type: DataTypes.DATE, allowNull: false },
-      phone: DataTypes.STRING,
+      phone: { type: DataTypes.STRING, unique: true },
       zipcode: DataTypes.STRING,
       address: DataTypes.STRING,
       recieve_info: DataTypes.BOOLEAN,
@@ -46,7 +45,7 @@ export default async (db: Sequelize) => {
     { tableName: "User", timestamps: false }
   );
 
-  await db.sync();
+  // await db.sync();
 
   return userModel;
 };

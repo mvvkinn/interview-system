@@ -74,8 +74,8 @@ vu
             <div class="component__content-div">
               <h1>이력서 등록</h1>
               <div class="component__content--hr">
-                <router-link to="/mypage/resume/list">
-                  <div class="component__form">
+                <div class="component__form">
+                  <router-link to="/mypage/resume/list">
                     <div class="component__form-div">
                       <img src="@/assets/images/icons/icon_resume.png" alt="" />
                       <div>
@@ -83,8 +83,8 @@ vu
                         <p>면접 지원을 위한<br />이력서를 등록해보세요.</p>
                       </div>
                     </div>
-                  </div>
-                </router-link>
+                  </router-link>
+                </div>
               </div>
             </div>
           </article>

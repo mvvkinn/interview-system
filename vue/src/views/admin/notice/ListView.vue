@@ -19,7 +19,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>관리자 페이지</p>
+                  <p>관리자페이지</p>
                 </li>
               </router-link>
               <router-link to="/success">
@@ -34,7 +34,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>합격자 조회</p>
+                  <p>합격자조회</p>
                 </li>
               </router-link>
               <router-link to="/admin/notice">
@@ -59,10 +59,9 @@ vu
           <article class="notice-adm__interview">
             <div class="notice-adm__interview-title">
               <h1>면접 공지사항</h1>
-
-              <button>
-                <router-link to="/admin/notice/write">글쓰기</router-link>
-              </button>
+              <router-link to="/admin/notice/write">
+                <button>글쓰기</button>
+              </router-link>
             </div>
             <hr />
             <div class="notice-adm__interview-tab-header">

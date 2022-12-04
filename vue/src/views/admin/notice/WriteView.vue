@@ -19,7 +19,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>관리자 페이지</p>
+                  <p>관리자페이지</p>
                 </li>
               </router-link>
               <router-link to="/success">
@@ -34,7 +34,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>합격자 조회</p>
+                  <p>합격자조회</p>
                 </li>
               </router-link>
               <router-link to="/admin/notice">
@@ -75,13 +75,14 @@ vu
               <label for="input-file">파일 첨부</label>
               <input type="file" id="input-file" style="display: none" />
             </div>
-            <div class="notice_adm_write-button">
-              <button>업로드</button>
-              <button>임시저장</button>
-
-              <button>
-                <router-link to="/admin/notice">취소</router-link>
-              </button>
+            <div class="component__content-column">
+              <div class="component__content-column--button">
+                <button id="blueBtn">업로드</button>
+                <button id="blackBtn">임시저장</button>
+                <router-link to="/admin/notice">
+                  <button id="grayBtn">취소</button>
+                </router-link>
+              </div>
             </div>
             <hr />
           </article>

@@ -18,7 +18,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  마이페이지
+                  <p>마이페이지</p>
                 </li>
               </router-link>
               <router-link to="/success">
@@ -33,7 +33,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  합격자조회
+                  <p>합격자조회</p>
                 </li>
               </router-link>
               <router-link to="/notice">
@@ -48,7 +48,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  면접 공지
+                  <p>면접 공지</p>
                 </li>
               </router-link>
             </ul>

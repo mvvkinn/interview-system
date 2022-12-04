@@ -1,6 +1,7 @@
 <template>
   <div>
     <HeaderView />
+    <SelectResume :active="isClick" @close="close" />
     <main>
       <div class="notice_container">
         <div class="notice_navbar">
@@ -18,7 +19,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  마이페이지
+                  <p>마이페이지</p>
                 </li>
               </router-link>
               <router-link to="/success">
@@ -33,7 +34,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  합격자조회
+                  <p>합격자조회</p>
                 </li>
               </router-link>
               <router-link to="/notice">
@@ -48,7 +49,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  면접 공지
+                  <p>면접 공지</p>
                 </li>
               </router-link>
             </ul>
@@ -64,203 +65,178 @@
               >
                 <div class="notice_component__content-column">
                   <div class="notice-button">
-                    <button type="submit">내정보 불러오기</button>
+                    <button @click.prevent="selectResume">
+                      내 이력서 불러오기
+                    </button>
                   </div>
                   <div class="notice_component__content-column--img">
                     <img src="https://via.placeholder.com/297x358" alt="" />
                     <button>이미지 업로드</button>
                   </div>
                 </div>
-                <div class="notice_component__content-column">
-                  <h2>인적사항</h2>
-                  <div class="notice_component__table">
-                    <div class="notice_component__table-column">
-                      <label for="name">이름</label>
-                      <input
-                        id="name"
-                        type="text"
-                        placeholder="이름을 입력해주세요."
-                        v-bind:value="user.name"
-                      />
-                      <label for="birth">생년월일</label>
-                      <input
-                        id="birth"
-                        type="text"
-                        placeholder="8자리 입력"
-                        v-bind:value="sliceBirthdate"
-                      />
+                <div class="notice_component_tableArea">
+                  <div class="notice_component_tableTitle">인적사항</div>
+                  <div class="notice_componet_tableLine">
+                    <div class="tableComponent_title">이름</div>
+                    <textarea
+                      class="tableComponent_value"
+                      placeholder="이름을 입력해주세요."
+                    ></textarea>
+                    <div class="tableComponent_title">생년월일</div>
+                    <textarea
+                      class="tableComponent_value"
+                      placeholder="생년 6자리를 입력해주세요."
+                    ></textarea>
+                  </div>
+                  <div class="notice_componet_tableLine">
+                    <div class="tableComponent_title">휴대폰</div>
+                    <textarea
+                      class="tableComponent_value"
+                      placeholder="'-'제외하고 입력"
+                    ></textarea>
+                    <div class="tableComponent_title" id="emailTitle">
+                      E-mail
                     </div>
-                    <div class="notice_component__table-column">
-                      <label for="phone">휴대폰</label>
-                      <input
-                        id="phone"
-                        type="text"
-                        placeholder="'-'없이 입력"
-                        v-bind:value="user.phone"
-                      />
-                      <label for="email">E-mail</label>
-                      <input
-                        id="email"
-                        type="textarea"
-                        placeholder="example@example.com"
-                        v-bind:value="user.email"
-                      />
+                    <textarea
+                      class="tableComponent_value"
+                      placeholder="이메일을 입력해주세요."
+                    ></textarea>
+                  </div>
+                  <div class="notice_componet_tableLine" id="addressLine">
+                    <div class="tableComponent_title" id="addressTitle">
+                      주소
                     </div>
-                    <div class="notice_component__table-column">
-                      <label for="adress">주소</label>
-                      <input
-                        id="adress"
-                        type="text"
-                        placeholder="주소를 입력해주세요."
-                        v-bind:value="user.address"
-                      />
-                    </div>
+                    <textarea
+                      class="tableComponent_value"
+                      placeholder="'-'제외하고 입력"
+                      id="addressTextArea"
+                    ></textarea>
                   </div>
                 </div>
-                <div class="notice_component__content-column">
-                  <h2>학력사항</h2>
-                  <div class="notice_component__table">
-                    <div class="notice_component__table-column">
-                      <label for="period">기간</label>
-                      <input
-                        v-if="!isClick"
-                        id="period"
-                        type="text"
-                        placeholder="00/00/00 - 00/00/00"
-                      />
-                      <input
-                        :key="index"
-                        v-for="(education, index) in education"
-                        id="period"
-                        type="text"
-                        placeholder="00/00/00 - 00/00/00"
-                        v-bind:value="education.period"
-                      />
+                <div class="notice_component_tableArea">
+                  <div class="notice_component_tableTitle">학력사항</div>
+                  <div class="notice_componet_tableLine">
+                    <div class="tableComponent_titleBlack" id="titleBlack_side">
+                      기간
                     </div>
-                    <div class="notice_component__table-column">
-                      <label for="school">학교명</label>
-                      <input
-                        v-if="!isClick"
-                        id="school"
-                        type="text"
-                        placeholder="학교명을 입력해주세요."
-                      />
-                      <input
-                        :key="index"
-                        v-for="(education, index) in education"
-                        id="school"
-                        type="text"
-                        placeholder="학교명을 입력해주세요."
-                        v-bind:value="education.schoolname"
-                      />
+                    <div
+                      class="tableComponent_titleBlack"
+                      id="titleBlack_center"
+                    >
+                      학교명
                     </div>
-                    <div class="notice_component__table-column">
-                      <label for="major">전공</label>
-                      <input
-                        v-if="!isClick"
-                        id="major"
-                        type="text"
-                        placeholder="전공을 입력해주세요."
-                      />
-                      <input
-                        :key="index"
-                        v-for="(education, index) in education"
-                        id="major"
-                        type="text"
-                        placeholder="전공을 입력해주세요."
-                        v-bind:value="education.major"
-                      />
+                    <div class="tableComponent_titleBlack" id="titleBlack_side">
+                      전공
                     </div>
                   </div>
+                  <div class="notice_componet_tableLine">
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="예)220101 ~ 220101"
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_center"
+                      placeholder="학교명을 입력해주세요."
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="전공을 입력해주세요."
+                    ></textarea>
+                  </div>
+                  <div class="notice_componet_tableLine">
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="예)220101 ~ 220101"
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_center"
+                      placeholder="학교명을 입력해주세요."
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="전공을 입력해주세요."
+                    ></textarea>
+                  </div>
+                  <div class="notice_componet_tableLine">
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="예)220101 ~ 220101"
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_center"
+                      placeholder="학교명을 입력해주세요."
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="전공을 입력해주세요."
+                    ></textarea>
+                  </div>
                 </div>
-                <div class="notice_component__content-column">
-                  <h2>자격 및 교육 사항</h2>
-                  <div class="notice_component__table">
-                    <div class="notice_component__table-column">
-                      <label for="achive">취득일자</label>
-                      <input
-                        v-if="!isClick"
-                        id="achive"
-                        type="text"
-                        placeholder="0000/00/00"
-                      />
-                      <input
-                        :key="index"
-                        v-for="(qualification, index) in qualification"
-                        id="achive"
-                        type="text"
-                        placeholder="0000/00/00"
-                        v-bind:value="qualification.date"
-                      />
+                <div class="notice_component_tableArea">
+                  <div class="notice_component_tableTitle">
+                    자격 및 교육사항
+                  </div>
+                  <div class="notice_componet_tableLine">
+                    <div class="tableComponent_titleBlack" id="titleBlack_side">
+                      취득일자
                     </div>
-                    <div class="notice_component__table-column">
-                      <label for="quality">자격 및 교육명</label>
-                      <input
-                        v-if="!isClick"
-                        id="quality"
-                        type="text"
-                        placeholder="자격 및 교육명을 입력해주세요."
-                      />
-                      <input
-                        :key="index"
-                        v-for="(qualification, index) in qualification"
-                        id="quality"
-                        type="text"
-                        placeholder="자격 및 교육명을 입력해주세요."
-                        v-bind:value="qualification.education_name"
-                      />
+                    <div
+                      class="tableComponent_titleBlack"
+                      id="titleBlack_classname"
+                    >
+                      자격 및 교육명
                     </div>
-                    <div class="notice_component__table-column">
-                      <label for="rating">등급</label>
-                      <input
-                        v-if="!isClick"
-                        id="rating"
-                        type="text"
-                        placeholder="등급을 입력해주세요."
-                      />
-                      <input
-                        :key="index"
-                        v-for="(qualification, index) in qualification"
-                        id="rating"
-                        type="text"
-                        placeholder="등급을 입력해주세요."
-                        v-bind:value="qualification.class"
-                      />
+                    <div
+                      class="tableComponent_titleBlack"
+                      id="titleBlack_rating"
+                    >
+                      등급
                     </div>
-                    <div class="notice_component__table-column">
-                      <label for="issuer">발행기관</label>
-                      <input
-                        v-if="!isClick"
-                        id="issuer"
-                        type="text"
-                        placeholder="발행기관을 입력해주세요."
-                      />
-                      <input
-                        :key="index"
-                        v-for="(qualification, index) in qualification"
-                        id="issuer"
-                        type="text"
-                        placeholder="발행기관을 입력해주세요."
-                        v-bind:value="qualification.institution"
-                      />
+                    <div class="tableComponent_titleBlack" id="titleBlack_side">
+                      발행기관
                     </div>
+                  </div>
+                  <div class="notice_componet_tableLine">
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="예)220101"
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_classname"
+                      placeholder="자격 및 교육명을 입력해주세요."
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_rating"
+                      placeholder="등급을 입력해주세요."
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="발행기관을 입력해주세요."
+                    ></textarea>
                   </div>
                 </div>
                 <div class="component__content-column-notice">
-                  <div class="component__content-column--button-notice">
-                    <button>
-                      <router-link
-                        :to="`/notice/detail/${$route.params.number}/apply/success`"
-                        >지원하기</router-link
-                      >
-                    </button>
-                    <button>
-                      <router-link
-                        :to="`/notice/detail/${$route.params.number}`"
-                        >취소하기</router-link
-                      >
-                    </button>
-                  </div>
+                  <router-link
+                    :to="`/notice/detail/${$route.params.number}/apply/success`"
+                  >
+                    <button id="notice_blueBtn">지원하기</button>
+                  </router-link>
+                  <router-link :to="`/notice/detail/${$route.params.number}`">
+                    <button id="notice_blackBtn">취소하기</button>
+                  </router-link>
                 </div>
               </form>
             </div>
@@ -276,21 +252,41 @@
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
 import { mapState } from "vuex";
+import SelectResume from "./SelectResume.vue";
 export default {
   components: {
     HeaderView,
     FooterView,
+    SelectResume,
   },
   data() {
     return {
-      noticelist: [],
-      detail: {},
-      resumelist: {},
-      education: [],
-      qualification: [],
       isClick: false,
     };
   },
+  methods: {
+    selectResume() {
+      this.isClick = true;
+      window.open(
+        "modal",
+        "blank",
+        "width=800, height=650, location=no, status=no, scrollbars=yes"
+      );
+    },
+    close() {
+      window.close();
+    },
+  },
+  // data() {
+  //   return {
+  //     noticelist: [],
+  //     detail: {},
+  //     resumelist: {},
+  //     education: [],
+  //     qualification: [],
+  //     // isClick: false,
+  //   };
+  // },
 
   async created() {
     const noticeText = await this.$axios.get(
@@ -311,18 +307,6 @@ export default {
     // this.education = this.resumelist.education;
     // this.qualification = this.resumelist.qualification;
     // console.log(this.qualification);
-  },
-  methods: {
-    async clickbutton() {
-      const resumeText = await this.$axios.get(
-        "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/api/resume"
-      );
-      this.resumelist = resumeText.data;
-      this.education = this.resumelist.education;
-      this.qualification = this.resumelist.qualification;
-      console.log(this.resumelist);
-      this.isClick = true;
-    },
   },
   computed: {
     ...mapState(["user"]),
