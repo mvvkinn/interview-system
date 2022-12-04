@@ -26,25 +26,22 @@
       <div class="onMain">
         <div id="onMain_leftArea">
           <div class="mainLeft_camArea">
-            <div class="camArea_left">
+            <div class="cam_top">
               <video
                 autoplay
                 playsinline
                 :src-object.prop.camel="myVideo"
               ></video>
             </div>
-            <div class="camArea_right">
-              <div class="camArea" id="myCam">
+            <div class="camArea_bottom">
+              <div class="subCam">
                 <video
                   autoplay
                   playsinline
                   :src-object.prop.camel="peerVideo"
                 ></video>
               </div>
-              <div class="subCamArea">
-                <div class="camArea" id="subCam"></div>
-                <div class="camArea" id="subCam"></div>
-              </div>
+              <div class="subCam"></div>
             </div>
           </div>
           <div class="mainLeft_btnArea">
