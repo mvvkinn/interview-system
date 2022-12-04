@@ -19,7 +19,6 @@ export default (app: Router) => {
   //Create new Apply
   route.post("", async (req: Request, res: Response, next: NextFunction) => {
     try {
-      //   console.log(req.body.name);
       const email: IUser = req.body.email;
       const name: IUser = req.body.name;
       const id: IUser = req.body.id;
