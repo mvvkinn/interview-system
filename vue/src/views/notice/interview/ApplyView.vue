@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderView />
-    <SelectResume :active="isClick" @close="close" />
+    <!-- <SelectResume :active="isClick" @close="close" /> -->
     <main>
       <div class="notice_container">
         <div class="notice_navbar">
@@ -22,7 +22,7 @@
                   <p>마이페이지</p>
                 </li>
               </router-link>
-              <router-link to="/success">
+              <router-link to="/passcheck">
                 <li>
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -81,11 +81,13 @@
                     <textarea
                       class="tableComponent_value"
                       placeholder="이름을 입력해주세요."
+                      v-bind:value="user.name"
                     ></textarea>
                     <div class="tableComponent_title">생년월일</div>
                     <textarea
                       class="tableComponent_value"
                       placeholder="생년 6자리를 입력해주세요."
+                      v-bind:value="sliceBirthdate"
                     ></textarea>
                   </div>
                   <div class="notice_componet_tableLine">
@@ -93,6 +95,7 @@
                     <textarea
                       class="tableComponent_value"
                       placeholder="'-'제외하고 입력"
+                      v-bind:value="user.phone"
                     ></textarea>
                     <div class="tableComponent_title" id="emailTitle">
                       E-mail
@@ -100,6 +103,7 @@
                     <textarea
                       class="tableComponent_value"
                       placeholder="이메일을 입력해주세요."
+                      v-bind:value="user.email"
                     ></textarea>
                   </div>
                   <div class="notice_componet_tableLine" id="addressLine">
@@ -110,6 +114,7 @@
                       class="tableComponent_value"
                       placeholder="'-'제외하고 입력"
                       id="addressTextArea"
+                      v-bind:value="user.address"
                     ></textarea>
                   </div>
                 </div>
@@ -229,11 +234,9 @@
                   </div>
                 </div>
                 <div class="component__content-column-notice">
-                  <router-link
-                    :to="`/notice/detail/${$route.params.number}/apply/success`"
-                  >
-                    <button id="notice_blueBtn">지원하기</button>
-                  </router-link>
+                  <button id="notice_blueBtn" @click.prevent="applyForm">
+                    지원하기
+                  </button>
                   <router-link :to="`/notice/detail/${$route.params.number}`">
                     <button id="notice_blackBtn">취소하기</button>
                   </router-link>
@@ -252,16 +255,19 @@
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
 import { mapState } from "vuex";
-import SelectResume from "./SelectResume.vue";
+import { store } from "@/store";
+// import SelectResume from "./SelectResume.vue";
 export default {
   components: {
     HeaderView,
     FooterView,
-    SelectResume,
+    // SelectResume,
   },
   data() {
     return {
       isClick: false,
+      noticelist: [],
+      detail: {},
     };
   },
   methods: {
@@ -276,37 +282,33 @@ export default {
     close() {
       window.close();
     },
+    async applyForm() {
+      const data = {
+        email: JSON.parse(localStorage.getItem("user")).email,
+        id: JSON.parse(localStorage.getItem("user")).id,
+        name: JSON.parse(localStorage.getItem("user")).name,
+      };
+
+      store.dispatch("apply", { ...data }).then((res) => {
+        console.log("success");
+        console.log(this.data);
+        if (res == 201) {
+          this.inputError.email = false;
+        } else {
+          alert("이미 지원하였습니다");
+        }
+      });
+    },
   },
-  // data() {
-  //   return {
-  //     noticelist: [],
-  //     detail: {},
-  //     resumelist: {},
-  //     education: [],
-  //     qualification: [],
-  //     // isClick: false,
-  //   };
-  // },
 
   async created() {
     const noticeText = await this.$axios.get(
       "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/api/notice"
     );
     this.noticelist = noticeText.data.noticelist;
-    console.log(
-      this.noticelist.filter((v) => v.number === +this.$route.params.number)
-    );
     this.detail = this.noticelist.filter(
       (v) => v.number === +this.$route.params.number
     )[0];
-
-    // const resumeText = await this.$axios.get(
-    //   "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/noticeapi/resume"
-    // );
-    // this.resumelist = resumeText.data;
-    // this.education = this.resumelist.education;
-    // this.qualification = this.resumelist.qualification;
-    // console.log(this.qualification);
   },
   computed: {
     ...mapState(["user"]),
@@ -317,9 +319,4 @@ export default {
 };
 </script>
 
-<style>
-.notice_component__content-column:nth-child(3) input,
-.notice_component__content-column:nth-child(4) input {
-  text-align: center;
-}
-</style>
+<style></style>
