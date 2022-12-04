@@ -21,7 +21,7 @@ export default class ScoreService {
 
         await this.scoreModel.create({
             ...id,
-            UserID: userID,
+            user_id: userID,
         });
     }
 }
