@@ -227,9 +227,7 @@
                 </div>
                 <div class="component__content-column-notice">
                   <router-link to="/notice/detail/apply/success">
-                    <button id="notice_blueBtn" @click.prevent="applyForm">
-                      지원하기
-                    </button>
+                    <button id="notice_blueBtn">지원하기</button>
                   </router-link>
                   <router-link to="/notice/detail">
                     <button id="notice_blackBtn">취소하기</button>
@@ -249,8 +247,6 @@
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
 import SelectResume from "./SelectResume.vue";
-import { store } from "@/store";
-import { mapState } from "vuex";
 export default {
   components: {
     HeaderView,
@@ -260,10 +256,6 @@ export default {
   data() {
     return {
       isClick: false,
-      email: "",
-      inputError: {
-        email: false,
-      },
     };
   },
   methods: {
@@ -277,29 +269,6 @@ export default {
     },
     close() {
       window.close();
-    },
-    async applyForm() {
-      const data = {
-        email: JSON.parse(localStorage.getItem("user")).email,
-        id: JSON.parse(localStorage.getItem("user")).id,
-        name: JSON.parse(localStorage.getItem("user")).name,
-      };
-
-      store.dispatch("apply", { ...data }).then((res) => {
-        console.log("success");
-        console.log(this.data);
-        if (res == 201) {
-          this.inputError.email = false;
-        } else {
-          alert("이미 지원하였습니다");
-        }
-      });
-    },
-  },
-  computed: {
-    ...mapState(["user"]),
-    useremail() {
-      return this.user.email;
     },
   },
 };
