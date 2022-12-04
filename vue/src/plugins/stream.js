@@ -6,9 +6,9 @@ export const getDevices = async () => {
     const devices = await navigator.mediaDevices.enumerateDevices();
 
     // Video Input, Audio Input, Audio Output
-    const cameras = devices.filter((device) => device.kind === "videoinput");
-    const AIDevice = devices.filter((device) => device.kind === "audioinput");
-    const AODevice = devices.filter((device) => device.kind === "audioinput");
+    const cameras = devices.filter(device => device.kind === "videoinput");
+    const AIDevice = devices.filter(device => device.kind === "audioinput");
+    const AODevice = devices.filter(device => device.kind === "audioinput");
 
     const currentCamera = myStream.getVideoTracks();
 
@@ -22,16 +22,16 @@ export const getDevices = async () => {
   }
 };
 
-export const toggleMute = (text_mute, isMuted) => {
-  myStream.getAudioTracks().forEach((track) => {
+export const toggleMute = isMuted => {
+  myStream.getAudioTracks().forEach(track => {
     track.enabled = !track.enabled;
     isMuted = track.enabled;
   });
   return isMuted ? "MUTE" : "UNMUTE";
 };
 
-export const toggleCamera = (text_video, isCameraOn) => {
-  myStream.getVideoTracks().forEach((track) => {
+export const toggleCamera = isCameraOn => {
+  myStream.getVideoTracks().forEach(track => {
     track.enabled = !track.enabled;
     isCameraOn = track.enabled;
   });
@@ -39,7 +39,7 @@ export const toggleCamera = (text_video, isCameraOn) => {
   return isCameraOn ? "CAMERA OFF" : "CAMERA ON";
 };
 
-export const getMedia = async (myCamera, deviceId) => {
+export const getMedia = async deviceId => {
   // deviceId가 없을 경우 초기 상태
   const initialConstrains = {
     audio: true,
@@ -66,13 +66,13 @@ export const getMedia = async (myCamera, deviceId) => {
   }
 };
 
-export const initCall = async (peerConnection) => {
+export const initCall = async peerConnection => {
   console.log("initCall");
   const stream = await getMedia();
 
   // Add
   myStream
     .getTracks()
-    .forEach((track) => peerConnection.addTrack(track, myStream));
+    .forEach(track => peerConnection.addTrack(track, myStream));
   return stream;
 };
