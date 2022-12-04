@@ -11,6 +11,11 @@ const routes = [
     component: MainLogin,
   },
   {
+    path: "/qrcode",
+    name: "qrcode",
+    component: () => import(/* webpackChunkName: "about" */ "../TestVue.vue"),
+  },
+  {
     path: "/main",
     name: "main",
     component: () =>
