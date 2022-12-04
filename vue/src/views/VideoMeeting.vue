@@ -146,6 +146,8 @@
 
 <script>
 import { initCall, toggleMute, toggleCamera } from "@/plugins/stream";
+// import io from "socket.io-client";
+// const socket = io("http://localhost:3000");
 
 export default {
   data() {
@@ -205,7 +207,6 @@ export default {
       this.text_video = toggleCamera(this.text_video, this.isCameraOn);
     },
   },
-
   destroyed() {
     this.count();
   },
@@ -265,7 +266,7 @@ export default {
     });
 
     this.peerConnection.addEventListener("icecandidate", (iceData) => {
-      socket.emit("candidate", iceData.ice, this.roomName);
+      socket.emit("candidate", iceData.candidate, this.roomName);
       console.log("ICECandidate sent");
     });
 
