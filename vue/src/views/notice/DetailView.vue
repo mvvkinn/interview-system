@@ -21,7 +21,7 @@
                   <p>마이페이지</p>
                 </li>
               </router-link>
-              <router-link to="/success">
+              <router-link to="/passcheck">
                 <li>
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -123,13 +123,9 @@ export default {
       "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/api/notice"
     );
     this.noticelist = noticeText.data.noticelist;
-    // console.log(
-    //   this.noticelist.filter((v) => v.number === +this.$route.params.number)
-    // );
     this.detail = this.noticelist.filter(
       (v) => v.number === +this.$route.params.number
     )[0];
-    console.log(this.detail[0]);
   },
 };
 </script>
