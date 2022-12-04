@@ -19,15 +19,12 @@ export default (app: Router) => {
 
     route.post("",async (req: Request, res: Response, next: NextFunction) => {
         try {
-            console.log(req.body);
             
             const id: IUser = req.body.id;
-            const criterion: IScore = req.body.criterion;
+            const name: IUser = req.body.name;
 
             const ScoreServiceInstance = new ScoreService();
-            const result = await ScoreServiceInstance.progress(id);
-
-              return res.json({id}).status(200);
+            const result = await ScoreServiceInstance.progress(id,name);
 
             res.status(201).send(result);
         } catch(e) {

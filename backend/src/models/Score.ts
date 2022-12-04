@@ -24,6 +24,7 @@ export default (db: Sequelize) => {
             score_three: { type: DataTypes.INTEGER },
             opinion: { type: DataTypes.STRING },
             id: {type:DataTypes.INTEGER},
+            name: {type:DataTypes.STRING},
         },
         {tableName:"Score", timestamps:false}
     );

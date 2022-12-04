@@ -13,15 +13,12 @@ export default class ScoreService {
         this.userModel = db.models.User;
     }
 
-    public async progress(id: IUser){
-        const userID = await this.userModel.findAll({
-            attributes: ["id"],
-            where: {id: id},
-        });
+    public async progress(id: IUser,name: IUser){
 
         await this.scoreModel.create({
             ...id,
-            user_id: userID,
+            user_id: id,
+            user_name: name,
         });
     }
 }
