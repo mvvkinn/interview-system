@@ -71,7 +71,9 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
+/* .dark {
+  display: none;
+} */
 .active {
   display: none;
   position: fixed;

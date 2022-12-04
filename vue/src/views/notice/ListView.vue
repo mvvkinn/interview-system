@@ -21,7 +21,7 @@
                   <p>마이페이지</p>
                 </li>
               </router-link>
-              <router-link to="/success">
+              <router-link to="/passcheck">
                 <li>
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"

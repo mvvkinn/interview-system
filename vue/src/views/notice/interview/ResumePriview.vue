@@ -71,7 +71,7 @@
       </div>
     </div>
     <div class="import_btnArea">
-      <router-link to="/notice/detail/modal">
+      <router-link :to="`/notice/detail/${$route.params.number}/modal`">
         <div class="import_btn" id="btn_black">목록으로</div>
       </router-link>
       <div class="import_btn" id="btn_blue">불러오기</div>
@@ -80,7 +80,23 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      noticelist: [],
+      detail: {},
+    };
+  },
+  async created() {
+    const noticeText = await this.$axios.get(
+      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/api/notice"
+    );
+    this.noticelist = noticeText.data.noticelist;
+    this.detail = this.noticelist.filter(
+      (v) => v.number === +this.$route.params.number
+    )[0];
+  },
+};
 </script>
 
 <style></style>

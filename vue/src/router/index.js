@@ -191,7 +191,7 @@ const routes = [
       ),
   },
   {
-    path: "/notice/detail/:number/apply/success",
+    path: "/notice/apply/success",
     name: "notice_apply_success",
     component: () =>
       import(
@@ -199,7 +199,7 @@ const routes = [
       ),
   },
   {
-    path: "/notice/detail/modal",
+    path: "/notice/detail/:number/modal",
     name: "notice_view_myResumeList",
     component: () =>
       import(
