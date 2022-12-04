@@ -5,8 +5,7 @@ import { Logger } from "winston";
 
 //export const User = new Model<IUser & Document>("user");
 
-export default async (db: Sequelize) => {
-  const logger: Logger = Container.get("logger");
+export default (db: Sequelize) => {
   const userModel = db.define(
     "User",
     {
@@ -46,7 +45,7 @@ export default async (db: Sequelize) => {
     { tableName: "User", timestamps: false }
   );
 
-  await db.sync();
+  // await db.sync();
 
   return userModel;
 };
