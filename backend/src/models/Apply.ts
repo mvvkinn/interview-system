@@ -20,6 +20,7 @@ export default (db: Sequelize) => {
       },
       title: DataTypes.STRING,
       user_id: { type: DataTypes.INTEGER },
+      token: { type: DataTypes.STRING },
     },
     { tableName: "Apply", timestamps: false }
   );

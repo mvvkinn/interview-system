@@ -4,4 +4,5 @@ export interface IApply {
   interview_number?: number;
   title?: string;
   user_id: number;
+  token?: string;
 }
