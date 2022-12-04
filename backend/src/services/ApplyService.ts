@@ -13,8 +13,10 @@ export default class ApplyService {
   }
 
   public async create(email: IUser, name: IUser, id: IUser) {
-    //11 = 임의의 Announcement.id(면접공고 id)
-    const array = [11, id];
+    const today = new Date();
+    const year = today.getFullYear();
+    //19 = 임의의 Announcement.id(면접공고 id)
+    const array = [year, 19, id];
     const interviewNumber = array.join("");
 
     await this.applyModel.create({

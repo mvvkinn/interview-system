@@ -288,7 +288,7 @@ export default {
       store.dispatch("apply", { ...data }).then((res) => {
         console.log("success");
         console.log(this.data);
-        if (res == 200) {
+        if (res == 201) {
           this.inputError.email = false;
         } else {
           alert("이미 지원하였습니다");
