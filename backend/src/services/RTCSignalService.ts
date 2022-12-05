@@ -25,7 +25,7 @@ export default () => {
     //   ]
     // },
   ];
-  const MAXIMUM = 4;
+  const MAXIMUM = 5;
 
   io.on("connection", (socket) => {
     let myRoomName = "";
@@ -48,7 +48,6 @@ export default () => {
 
           isRoomExist = true;
           targetRoomObj = roomObjArr[i];
-          console.log(targetRoomObj);
           break;
         }
       }
@@ -69,25 +68,52 @@ export default () => {
       });
       ++targetRoomObj.currentNum;
 
-      console.log(targetRoomObj);
+      console.log(targetRoomObj.user);
       socket.join(roomName);
       // emitting event after join room
-      socket.to(roomName).emit("join", targetRoomObj.user);
+      socket.emit("join", targetRoomObj.user);
     });
 
-    socket.on("offer", (offer: object, roomName: string) => {
-      logger.info(`relaying offer to ${roomName} from ${socket.id}`);
-      socket.to(roomName).emit("offer", offer);
+    socket.on("offer", (offer: object, remoteSocketId: string) => {
+      logger.info(`relaying offer to ${remoteSocketId} from ${socket.id}`);
+      socket.to(remoteSocketId).emit("offer", offer, socket.id);
     });
 
-    socket.on("answer", (answer: object, roomName: string) => {
-      logger.info(`relaying answer to ${roomName} from ${socket.id}`);
-      socket.to(roomName).emit("answer", answer);
+    socket.on("answer", (answer: object, remoteSocketId: string) => {
+      logger.info(`relaying answer to ${remoteSocketId} from ${socket.id}`);
+      socket.to(remoteSocketId).emit("answer", answer, socket.id);
     });
 
-    socket.on("candidate", (ice: object, roomName: string) => {
-      logger.info(`relaying candidate to ${roomName} from ${socket.id}`);
-      socket.to(roomName).emit("candidate", ice);
+    socket.on("candidate", (ice: object, remoteSocketId: string) => {
+      logger.info(`relaying candidate to ${remoteSocketId} from ${socket.id}`);
+      socket.to(remoteSocketId).emit("candidate", ice, socket.id);
+    });
+
+    socket.on("disconnecting", () => {
+      socket.to(myRoomName).emit("leave_room", socket.id);
+
+      let isRoomEmpty = false;
+      for (let i = 0; i < roomObjArr.length; ++i) {
+        if (roomObjArr[i].roomName === myRoomName) {
+          const newUser = roomObjArr[i].user.filter(
+            (sockeId: string) => sockeId != socket.id
+          );
+          roomObjArr[i].user = newUser;
+          --roomObjArr[i].currentNum;
+
+          if (roomObjArr[i].currentNum == 0) {
+            isRoomEmpty = true;
+          }
+        }
+      }
+
+      // Delete room
+      if (isRoomEmpty) {
+        const newRoomObjArr = roomObjArr.filter(
+          (roomObj) => roomObj.currentNum != 0
+        );
+        roomObjArr = newRoomObjArr;
+      }
     });
   });
 };

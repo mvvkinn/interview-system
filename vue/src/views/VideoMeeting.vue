@@ -26,26 +26,22 @@
       <div class="onMain">
         <div id="onMain_leftArea">
           <div class="mainLeft_camArea">
-            <div class="camArea_left">
-              <video
-                autoplay
-                playsinline
-                :src-object.prop.camel="myVideo"
-              ></video>
-            </div>
-            <div class="camArea_right">
-              <div class="camArea" id="myCam">
-                <video
-                  autoplay
-                  playsinline
-                  :src-object.prop.camel="peerVideo"
-                ></video>
-              </div>
-              <div class="subCamArea">
-                <div class="camArea" id="subCam"></div>
-                <div class="camArea" id="subCam"></div>
-              </div>
-            </div>
+            <video
+              autoplay
+              playsinline
+              :width="videoWidth"
+              :src-object.prop.camel="myVideo"
+            ></video>
+            <video
+              autoplay
+              playsinline
+              :width="videoWidth"
+              :src-object.prop.camel="peer"
+              v-for="(peer, i) in peerVideo"
+              :key="i"
+            >
+              {{ i }}
+            </video>
           </div>
           <div class="mainLeft_btnArea">
             <div class="online_Btn" id="micBtn" @click="toggleMute">
@@ -62,7 +58,7 @@
               />
               {{ text_video }}
             </div>
-            <div class="online_Btn" id="scoreBtn" onclick="closeScoreBoared();">
+            <div class="online_Btn" id="scoreBtn" @click="leaveRoom()">
               <img
                 src="../assets/images/icons/icon_checkscore.png"
                 class="icon_checkscore"
@@ -145,9 +141,7 @@
 </template>
 
 <script>
-import { initCall, toggleMute, toggleCamera } from "@/plugins/stream";
-// import io from "socket.io-client";
-// const socket = io("http://localhost:3000");
+import { initCall, toggleMute, toggleCamera, pc } from "@/plugins/stream";
 
 export default {
   data() {
@@ -160,25 +154,15 @@ export default {
       text_video: "CAMERA OFF",
       onlineTimer: 0,
       myVideo: null,
-      peerVideo: null,
-      // myStream: navigator.mediaDevices.getUserMedia(),
+      peerVideo: [],
+      myStream: null,
       isMuted: false,
       isCameraOn: true,
+      socket: null,
       roomName: this.$route.query.roomName,
       pcObj: {},
-      peerConnection: new RTCPeerConnection({
-        iceServers: [
-          {
-            urls: [
-              "stun:stun.l.google.com:19302",
-              "stun:stun1.l.google.com:19302",
-              "stun:stun2.l.google.com:19302",
-              "stun:stun3.l.google.com:19302",
-              "stun:stun4.l.google.com:19302",
-            ],
-          },
-        ],
-      }),
+      videoWidth: 800,
+      peerConnection: null,
     };
   },
   methods: {
@@ -200,80 +184,143 @@ export default {
         clearInterval();
       }
     },
+
+    /**
+     * mute on / off
+     */
     toggleMute() {
-      this.text_mute = toggleMute(this.text_mute, this.isMuted);
+      this.text_mute = toggleMute(this.isMuted);
     },
+
+    /**
+     * camera on / off
+     */
     toggleCamera() {
-      this.text_video = toggleCamera(this.text_video, this.isCameraOn);
+      this.text_video = toggleCamera(this.isCameraOn);
+    },
+
+    createConnection(remoteSocketId) {
+      this.peerConnection = pc();
+
+      this.peerConnection.addEventListener("icecandidate", async (iceData) => {
+        try {
+          if (iceData.candidate) {
+            await this.socket.emit(
+              "candidate",
+              iceData.candidate,
+              remoteSocketId
+            );
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+
+      this.peerConnection.addEventListener(
+        "track",
+        (trackData) => this.paintPeerFace(trackData),
+        false
+      );
+
+      this.pcObj[remoteSocketId] = this.peerConnection;
+
+      this.myStream
+        .getTracks()
+        .forEach((track) => this.peerConnection.addTrack(track, this.myStream));
+      return this.peerConnection;
+    },
+
+    // show peerVideo
+    paintPeerFace(peerStream) {
+      if (!this.peerVideo.includes(peerStream.streams[0])) {
+        this.peerVideo.push(peerStream.streams[0]);
+        this.videoWidth = 800 / (1 + this.peerVideo.length);
+      }
+    },
+
+    removeVideo(leavedSocketId) {
+      console.log("leave", leavedSocketId);
+      console.log(this.myStream);
+      this.peerVideo.splice();
+    },
+
+    leaveRoom() {
+      this.socket.disconnect();
+      this.myStream.getTracks().forEach((track) => track.stop());
     },
   },
+
   destroyed() {
     this.count();
   },
+
   async mounted() {
     await this.$loadScript("/socket.io/socket.io.js");
 
     // eslint-disable-next-line no-undef
-    const socket = io();
-    this.myVideo = await initCall(this.peerConnection);
-
-    socket.emit("joinRoom", this.roomName);
+    this.socket = io();
+    this.socket.emit("joinRoom", this.roomName);
 
     /**
      * event on join
      * Send local offer to remote
      */
-    socket.on("join", async () => {
-      console.log("join");
+    this.socket.on("join", async (userObjArr) => {
+      this.myStream = await initCall();
+      this.myVideo = this.myStream;
+      const length = userObjArr.length;
+      if (length === 1) {
+        return;
+      }
 
-      // create offer and set to local description
-      const offer = await this.peerConnection.createOffer();
-      this.peerConnection.setLocalDescription(offer);
+      for (let i = 0; i < length - 1; ++i) {
+        try {
+          const newPC = this.createConnection(userObjArr[i].socketId);
+          const offer = await newPC.createOffer();
 
-      // send Local offer to remote peer
-      socket.emit("offer", offer, this.roomName);
+          newPC.setLocalDescription(offer);
+          this.socket.emit("offer", offer, userObjArr[i].socketId);
+        } catch (err) {
+          console.error(err);
+        }
+      }
     });
 
     /**
      * event on recieved offer
      * set remote peer offer
      */
-    socket.on("offer", async (offer) => {
-      console.log("recieved offer");
+    this.socket.on("offer", async (offer, remoteSocketId) => {
+      try {
+        const newPC = this.createConnection(remoteSocketId);
+        await newPC.setRemoteDescription(offer);
 
-      this.peerConnection.setRemoteDescription(offer);
-
-      // create answer and set to local description
-      const answer = await this.peerConnection.createAnswer();
-      this.peerConnection.setLocalDescription(answer);
-
-      // send answer to remote peer
-      socket.emit("answer", answer, this.roomName);
+        const answer = await newPC.createAnswer();
+        newPC.setLocalDescription(answer);
+        this.socket.emit("answer", answer, remoteSocketId);
+      } catch (err) {
+        console.error(err);
+      }
     });
 
-    socket.on("answer", (answer) => {
-      console.log("recieved answer");
-      this.peerConnection.setRemoteDescription(answer);
+    this.socket.on("answer", (answer, remoteSocketId) => {
+      this.pcObj[remoteSocketId].setRemoteDescription(answer);
     });
 
     /**
      * set remote ICECandidate
      */
-    socket.on("candidate", (ice) => {
-      console.log("recieved iceCandidate");
-
-      this.peerConnection.addIceCandidate(ice);
+    this.socket.on("candidate", (ice, remoteSocketId) => {
+      this.pcObj[remoteSocketId].addIceCandidate(ice);
     });
 
-    this.peerConnection.addEventListener("icecandidate", (iceData) => {
-      socket.emit("candidate", iceData.candidate, this.roomName);
-      console.log("ICECandidate sent");
+    this.socket.on("leave_room", (leavedSocketId) => {
+      this.removeVideo(leavedSocketId);
     });
 
-    this.peerConnection.addEventListener("addstream", (streamData) => {
-      console.log("straemData.stream", streamData.stream);
-      this.peerVideo = streamData.stream;
-      console.log("peerVideo", this.peerVideo);
+    this.socket.on("reject_join", () => {
+      // Erase names
+      this.roomName = "";
     });
 
     setInterval(() => {
@@ -285,7 +332,6 @@ export default {
 
 <style scoped>
 video {
-  width: 100%;
-  height: 100%;
+  margin: auto;
 }
 </style>
