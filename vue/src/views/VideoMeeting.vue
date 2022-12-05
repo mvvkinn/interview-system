@@ -26,22 +26,22 @@
       <div class="onMain">
         <div id="onMain_leftArea">
           <div class="mainLeft_camArea">
-            <video
-              autoplay
-              playsinline
-              :width="videoWidth"
-              :src-object.prop.camel="myVideo"
-            ></video>
-            <video
-              autoplay
-              playsinline
-              :width="videoWidth"
-              :src-object.prop.camel="peer"
-              v-for="(peer, i) in peerVideo"
-              :key="i"
-            >
-              {{ i }}
-            </video>
+            <div class="cam_top" :class="{ addPeer: isPeer }">
+              <video
+                autoplay
+                playsinline
+                :src-object.prop.camel="myVideo"
+              ></video>
+            </div>
+            <div class="camArea_bottom" v-if="peerVideo.length">
+              <div class="subCam" v-for="(peer, i) in peerVideo" :key="i">
+                <video
+                  autoplay
+                  playsinline
+                  :src-object.prop.camel="peer"
+                ></video>
+              </div>
+            </div>
           </div>
           <div class="mainLeft_btnArea">
             <div class="online_Btn" id="micBtn" @click="toggleMute">
@@ -155,13 +155,14 @@ export default {
       onlineTimer: 0,
       myVideo: null,
       peerVideo: [],
+      isPeer: false,
       myStream: null,
       isMuted: false,
       isCameraOn: true,
       socket: null,
       roomName: this.$route.query.roomName,
       pcObj: {},
-      videoWidth: 800,
+      videoHeight: 100,
       peerConnection: null,
     };
   },
@@ -234,7 +235,7 @@ export default {
     paintPeerFace(peerStream) {
       if (!this.peerVideo.includes(peerStream.streams[0])) {
         this.peerVideo.push(peerStream.streams[0]);
-        this.videoWidth = 800 / (1 + this.peerVideo.length);
+        this.isPeer = true;
       }
     },
 
@@ -331,7 +332,31 @@ export default {
 </script>
 
 <style scoped>
-video {
+.cam_top {
+  height: 100%;
+}
+
+.cam_top video {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.addPeer {
+  height: 75%;
+}
+
+.mainLeft_camArea {
+  height: 640px;
+}
+
+.subCam {
+  display: flex;
+}
+
+.subCam video {
+  width: 100%;
+  height: 100%;
   margin: auto;
 }
 </style>
