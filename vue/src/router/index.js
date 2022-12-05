@@ -332,6 +332,14 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/VideoMeeting.vue"),
   },
+  {
+    path: "/meeting/offLine",
+    name: "offLine_meeting",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/content/InterviewView.vue"
+      ),
+  },
 ];
 
 const router = new VueRouter({
