@@ -1005,11 +1005,11 @@ li.header__menu-timer {
 .re-adm__interview-table-text-possible
   + .re-adm__interview-table-text-on
   button {
-  width: 120px;
-  height: 35px;
+  width: 80px;
+  height: 25px;
   background-color: #3c62e5;
   color: white;
-  font-size: 16px;
+  font-size: 12px;
   border: none;
   cursor: pointer;
 }
@@ -1017,11 +1017,11 @@ li.header__menu-timer {
 .re-adm__interview-table-text-impossible
   + .re-adm__interview-table-text-on
   button {
-  width: 120px;
-  height: 35px;
+  width: 80px;
+  height: 25px;
   background-color: #c6c6c6;
   color: white;
-  font-size: 16px;
+  font-size: 12px;
   border: none;
   cursor: pointer;
 }
@@ -1056,7 +1056,7 @@ li.header__menu-timer {
   font-weight: 700;
   font-size: 18px;
   align-items: center;
-  padding: 15px 0px 15px;
+  padding: 10px 0px 10px 0;
   margin-top: 8px;
   border: 1px solid white;
   border-top: 1px solid #333333;
@@ -1088,7 +1088,7 @@ li.header__menu-timer {
   align-items: center;
   border: 1px solid white;
   border-top: 1px solid #c6c6c6;
-  padding: 15px 0px;
+  padding: 10px 0px;
   align-items: center;
   vertical-align: middle;
 }
@@ -1101,19 +1101,19 @@ li.header__menu-timer {
   font-size: 18px;
   align-items: center;
   border: 1px solid white;
-  border-top: 1px solid #333333;
+  border-top: 1px solid #8e8e8e;
   margin-top: 8px;
-  padding: 15px 0px;
+  padding: 10px 0px;
   align-items: center;
   vertical-align: middle;
 }
 
 .re-adm__interview-table-text:nth-last-child(2) {
-  border-bottom: 1px solid #333333;
+  border-bottom: 1px solid #8e8e8e;
 }
 
 .re-adm__interview-table-text:hover {
-  border: 1px solid #3c62e5;
+  background-color: #f3f3f3;
 }
 
 .adm-interview {
@@ -1162,7 +1162,7 @@ li.header__menu-timer {
   font-weight: 700;
   font-size: 18px;
   align-items: center;
-  padding: 15px 0px 15px;
+  padding: 10px 0;
   margin-top: 8px;
   border: 1px solid white;
   border-top: 1px solid #8e8e8e;
@@ -1194,7 +1194,7 @@ li.header__menu-timer {
   align-items: center;
   border: 1px solid white;
   border-top: 1px solid #c6c6c6;
-  padding: 15px 0px;
+  padding: 10px 0px;
   align-items: center;
   vertical-align: middle;
 }
@@ -1209,7 +1209,7 @@ li.header__menu-timer {
   border: 1px solid white;
   border-top: 1px solid #8e8e8e;
   margin-top: 8px;
-  padding: 15px 0px;
+  padding: 10px 0px;
   align-items: center;
   vertical-align: middle;
 }
