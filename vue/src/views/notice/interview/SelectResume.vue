@@ -5,7 +5,7 @@
         <p class="import_title">내 이력서</p>
       </div>
       <div class="import_textArea">
-        <p class="import_Username" v-bind:class="user">{{ user.name }}</p>
+        <p class="import_Username">{{ userName }}</p>
         <p class="import_text">님의 현재 보유한 이력서 목록입니다.</p>
       </div>
       <div class="import_listArea">
@@ -48,12 +48,11 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 export default {
   data() {
     return {
       resumelist: {},
+      userName: "",
     };
   },
   props: {
@@ -72,12 +71,9 @@ export default {
     );
     this.resumelist = resumeText.data;
     console.log(this.resumelist.date);
-  },
-  computed: {
-    ...mapState(["user"]),
-    username() {
-      return this.user.name;
-    },
+    console.log(this.user);
+
+    this.userName = JSON.parse(localStorage.getItem("user")).name;
   },
 };
 </script>

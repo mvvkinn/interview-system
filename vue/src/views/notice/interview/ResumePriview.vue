@@ -11,19 +11,21 @@
         <p>인적사항</p>
         <div class="resumeTable_line">
           <div class="personalInfoTable_label" id="label_top">이름</div>
-          <div class="personalInfoTable_value">-</div>
+          <div class="personalInfoTable_value">{{ name }}</div>
           <div class="personalInfoTable_label" id="label_top">생년월일</div>
-          <div class="personalInfoTable_value">-</div>
+          <div class="personalInfoTable_value">{{ birth }}</div>
         </div>
         <div class="resumeTable_line">
           <div class="personalInfoTable_label">휴대폰</div>
-          <div class="personalInfoTable_value">-</div>
+          <div class="personalInfoTable_value">{{ phone }}</div>
           <div class="personalInfoTable_label">E-mail</div>
-          <div class="personalInfoTable_value">-</div>
+          <div class="personalInfoTable_value">{{ email }}</div>
         </div>
         <div class="resumeTable_line" id="tableLine_large">
           <div class="personalInfoTable_label">주소</div>
-          <div class="personalInfoTable_value" id="label_address">-</div>
+          <div class="personalInfoTable_value" id="label_address">
+            {{ address }}
+          </div>
         </div>
       </div>
       <div class="resume_tableArea">
@@ -99,7 +101,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
 
 export default {
   data() {
@@ -108,6 +110,11 @@ export default {
       education: [],
       qualification: [],
       detail: {},
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      birth: "",
     };
   },
   async created() {
@@ -117,14 +124,21 @@ export default {
     this.resumelist = resumeText.data;
     this.education = this.resumelist.education;
     this.qualification = this.resumelist.qualification;
-    console.log();
+    this.name = JSON.parse(localStorage.getItem("user")).name;
+    this.email = JSON.parse(localStorage.getItem("user")).email;
+    this.phone = JSON.parse(localStorage.getItem("user")).phone;
+    this.address = JSON.parse(localStorage.getItem("user")).address;
+    this.birth = JSON.parse(localStorage.getItem("user"))
+      .birthdate.slice(0, 10)
+      .split("-")
+      .join("");
   },
-  computed: {
-    ...mapState(["user"]),
-    sliceBirthdate() {
-      return this.user.birthdate.slice(0, 10).split("-").join("");
-    },
-  },
+  // computed: {
+  //   ...mapState(["user"]),
+  //   sliceBirthdate() {
+  //     return this.user.birthdate.slice(0, 10).split("-").join("");
+  //   },
+  // },
 };
 </script>
 
