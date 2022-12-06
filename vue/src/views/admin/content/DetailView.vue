@@ -22,7 +22,7 @@ vu
                   <p>관리자 페이지</p>
                 </li>
               </router-link>
-              <router-link to="/success">
+              <router-link to="/passcheck">
                 <li class="adm_nav__menu--li">
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
