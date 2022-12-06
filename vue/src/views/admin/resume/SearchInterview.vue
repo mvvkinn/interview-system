@@ -22,6 +22,7 @@ vu
                   <p>관리자페이지</p>
                 </li>
               </router-link>
+              <!-- router link to = /success -->
               <router-link to="/passcheck">
                 <li class="adm_nav__menu--li">
                   <img
@@ -60,8 +61,8 @@ vu
             <ul class="adm__menu">
               <li class="adm__menu-rsm active">
                 <router-link to="/admin/resume"
-                  >지원자 및 이력서 조회</router-link
-                >
+                  >지원자 및 이력서 조회
+                </router-link>
               </li>
               <li class="adm__menu-id">
                 <router-link to="/admin/content">면접 내용 조회</router-link>

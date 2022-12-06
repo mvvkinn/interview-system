@@ -22,6 +22,7 @@ vu
                   <p>관리자페이지</p>
                 </li>
               </router-link>
+              <!-- router link to = /success -->
               <router-link to="/passcheck">
                 <li class="adm_nav__menu--li">
                   <img
