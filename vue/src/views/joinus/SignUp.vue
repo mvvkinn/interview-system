@@ -20,28 +20,9 @@
                     type="text"
                     class="info_input_text_2"
                     :class="{ error: inputError.email }"
+                    @blur="isEmail"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
-                  <p class="email_center">@</p>
-                  <input
-                    type="text"
-                    class="info_input_text_2"
-                    :value="domain"
-                    :class="{ error: inputError.email }"
-                    @input="changeDomain"
-                    @blur="isEmail"
-                  />
-                  <select
-                    name="email_back"
-                    class="email_select"
-                    @change="changeDomain"
-                    @blur="isEmail"
-                  >
-                    <option value="">직접입력</option>
-                    <option value="naver.com">naver.com</option>
-                    <option value="daum.net">daum.net</option>
-                    <option value="gmail.com">gmail.com</option>
-                  </select>
                 </div>
               </div>
               <div class="info_line">
@@ -230,6 +211,11 @@ export default {
     HeaderView,
     FooterView,
   },
+  mounted() {
+    this.$loadScript(
+      "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+    );
+  },
   data() {
     return {
       username: "",
@@ -239,14 +225,12 @@ export default {
       birthdate: "",
       phone: "",
       email: "",
-      domain: "",
       zipcode: "",
       address: "",
       isAgree: true,
       isEmpty: false,
       inputError: {
         email: false,
-        domain: false,
         password: false,
         name: false,
         birthdate: false,
@@ -295,11 +279,6 @@ export default {
         this.inputError.email = false;
       }
     },
-    domain() {
-      if (this.domain.trim() !== "") {
-        this.inputError.domain = false;
-      }
-    },
     zipcode() {
       if (this.zipcode.trim() !== "") {
         this.inputError.zipcode = false;
@@ -314,7 +293,7 @@ export default {
   methods: {
     async submitForm() {
       const data = {
-        email: this.email === "" ? this.email : this.email + "@" + this.domain,
+        email: this.email,
         password: this.password,
         name: this.name,
         gender: this.gender,
@@ -399,19 +378,14 @@ export default {
         e.target.value = this.zipcode;
       }
     },
-    changeDomain(e) {
-      this.domain = e.target.value;
-    },
-    isEmail(e) {
+    isEmail() {
       const data = {
-        email: this.email + "@" + this.domain,
+        email: this.email,
       };
-      store.dispatch("isDuplicate", { ...data }).then((res) => {
+      store.dispatch("isDuplicate", { ...data }).then(res => {
         if (res) {
           this.inputError.email = true;
           this.inputErrorMsg = "이미 사용중인 이메일입니다.";
-          e.target.value = "";
-          this.domain = "";
         } else {
           this.inputError.email = false;
         }
@@ -420,7 +394,7 @@ export default {
     execDaumPostcode(e) {
       e.preventDefault();
       new window.daum.Postcode({
-        oncomplete: (data) => {
+        oncomplete: data => {
           if (data.userSelectedType === "R") {
             // 사용자가 도로명 주소를 선택했을 경우
             this.address = data.roadAddress;

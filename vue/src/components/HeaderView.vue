@@ -4,7 +4,7 @@
       <div class="header__logo">
         <div class="header__logo--image">
           <router-link :to="`/main`">
-            <img src="@/assets/images/logo4.png" alt="" />
+            <img id="header_logoImg" src="@/assets/images/logo4.png" alt="" />
           </router-link>
         </div>
       </div>

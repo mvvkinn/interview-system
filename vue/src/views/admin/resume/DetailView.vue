@@ -19,10 +19,11 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>관리자 페이지</p>
+                  <p>관리자페이지</p>
                 </li>
               </router-link>
-              <router-link to="/success">
+              <!-- router link to = /success -->
+              <router-link to="/passcheck">
                 <li class="adm_nav__menu--li">
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -34,7 +35,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>합격자 조회</p>
+                  <p>합격자조회</p>
                 </li>
               </router-link>
               <router-link to="/admin/notice">
@@ -69,9 +70,7 @@ vu
               <li class="adm__menu-ci">
                 <router-link to="/admin/progress">면접 진행</router-link>
               </li>
-              <li class="adm__menu-empty"></li>
-              <li class="adm__menu-empty"></li>
-              <li class="adm__menu-empty"></li>
+              <li></li>
             </ul>
           </nav>
           <article class="adm__rsm-content">
@@ -97,128 +96,158 @@ vu
                   <!-- <hr> -->
                 </div>
               </div>
-              <div class="adm__rsm-content-img">
-                <img src="https://via.placeholder.com/297x358" alt="" />
+            </div>
+            <div class="adm_contentArea">
+              <img src="https://via.placeholder.com/297x358" alt="" />
+              <div class="notice_component_tableArea">
+                <div class="notice_component_tableTitle">인적사항</div>
+                <div class="notice_componet_tableLine">
+                  <div class="tableComponent_title">이름</div>
+                  <div class="adm_tableComponent_value">-</div>
+                  <div class="tableComponent_title">생년월일</div>
+                  <div class="adm_tableComponent_value">-</div>
+                </div>
+                <div class="notice_componet_tableLine">
+                  <div class="tableComponent_title">휴대폰</div>
+                  <div class="adm_tableComponent_value">-</div>
+                  <div class="tableComponent_title" id="emailTitle">E-mail</div>
+                  <div class="adm_tableComponent_value">-</div>
+                </div>
+                <div class="notice_componet_tableLine" id="addressLine">
+                  <div class="tableComponent_title" id="addressTitle">주소</div>
+                  <div
+                    class="adm_tableComponent_value"
+                    id="adm_addressTextArea"
+                  >
+                    -
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="adm__rsm-content-pd">
-              <p class="adm__rsm-content-pd--title">인적사항</p>
-              <table class="adm__rsm-content-pd--table">
-                <tbody>
-                  <tr class="adm__rsm-content-pd--table-top">
-                    <th class="adm__rsm-content-pd--table--section-1">이름</th>
-                    <td class="adm__rsm-content-pd--table--section-2">
-                      김명지
-                    </td>
-                    <th class="adm__rsm-content-pd--table--section-3">
-                      생년월일
-                    </th>
-                    <td class="adm__rsm-content-pd--table--section-4">
-                      20010101
-                    </td>
-                  </tr>
-                  <tr class="adm__rsm-content-pd--table-middle">
-                    <th class="adm__rsm-content-pd--table--section-1">
-                      휴대폰
-                    </th>
-                    <td class="adm__rsm-content-pd--table--section-2">
-                      01012345678
-                    </td>
-                    <th class="adm__rsm-content-pd--table--section-3">
-                      E-mail
-                    </th>
-                    <td class="adm__rsm-content-pd--table--section-4">
-                      mjc1234@itc.mjc.ac.kr
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="adm__rsm-content-pd--table--section-5">주소</th>
-                    <td class="adm__rsm-content-pd--table--section-6">
-                      서울시 서대문구 어딘가 123-45 101호
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="adm__rsm-content-ei">
-              <p class="adm__rsm-content-ei--title">학력사항</p>
-              <table class="adm__rsm-content-ei--table">
-                <thead>
-                  <tr>
-                    <th class="adm__rsm-content-ei--table--section-1">기간</th>
-                    <th class="adm__rsm-content-ei--table--section-2">
-                      학교명
-                    </th>
-                    <th class="adm__rsm-content-ei--table--section-3">전공</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="adm__rsm-content-ei--table--section-1">
-                      08/03/01 - 15/02/01
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-2">
-                      명지초등학교
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-3">-</td>
-                  </tr>
-                  <tr>
-                    <td class="adm__rsm-content-ei--table--section-1">
-                      15/03/01 - 18/02/01
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-2">
-                      명지중학교
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-3">-</td>
-                  </tr>
-                  <tr>
-                    <td class="adm__rsm-content-ei--table--section-1">
-                      18/03/01 - 21/02/01
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-2">
-                      명지고등학교
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-3">-</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="adm__rsm-content-et">
-              <p class="adm__rsm-content-et--title">자격 및 교육 사항</p>
-              <table class="adm__rsm-content-et--table">
-                <thead>
-                  <tr>
-                    <th class="adm__rsm-content-et--table--section-1">기간</th>
-                    <th class="adm__rsm-content-et--table--section-2">
-                      자격 및 교육명
-                    </th>
-                    <th class="adm__rsm-content-et--table--section-3">등급</th>
-                    <th class="adm__rsm-content-et--table--section-4">
-                      발행기관
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="adm__rsm-content-et--table--section-1">
-                      2018/05/16
-                    </td>
-                    <td class="adm__rsm-content-et--table--section-2">
-                      워드프로세서
-                    </td>
-                    <td class="adm__rsm-content-et--table--section-3">1급</td>
-                    <td class="adm__rsm-content-et--table--section-4">
-                      대한상공회의소
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="adm__rsm-content-btn">
-              <router-link to="/admin/resume/list">
-                <button>목록으로</button>
-              </router-link>
-              <hr class="adm__rsm-content-hr" />
+              <div class="notice_component_tableArea">
+                <div class="notice_component_tableTitle">학력사항</div>
+                <div class="notice_componet_tableLine">
+                  <div class="tableComponent_titleBlack" id="titleBlack_side">
+                    기간
+                  </div>
+                  <div class="tableComponent_titleBlack" id="titleBlack_center">
+                    학교명
+                  </div>
+                  <div class="tableComponent_titleBlack" id="titleBlack_side">
+                    전공
+                  </div>
+                </div>
+                <div class="notice_componet_tableLine">
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    -
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_center"
+                  >
+                    -
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    -
+                  </div>
+                </div>
+                <div class="notice_componet_tableLine">
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    -
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_center"
+                  >
+                    -
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    -
+                  </div>
+                </div>
+                <div class="notice_componet_tableLine">
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    -
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_center"
+                  >
+                    -
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    -
+                  </div>
+                </div>
+              </div>
+              <div class="notice_component_tableArea">
+                <div class="notice_component_tableTitle">자격 및 교육사항</div>
+                <div class="notice_componet_tableLine">
+                  <div class="tableComponent_titleBlack" id="titleBlack_side">
+                    취득일자
+                  </div>
+                  <div
+                    class="tableComponent_titleBlack"
+                    id="titleBlack_classname"
+                  >
+                    자격 및 교육명
+                  </div>
+                  <div class="tableComponent_titleBlack" id="titleBlack_rating">
+                    등급
+                  </div>
+                  <div class="tableComponent_titleBlack" id="titleBlack_side">
+                    발행기관
+                  </div>
+                </div>
+                <div class="notice_componet_tableLine">
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    -
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_classname"
+                  >
+                    -
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_rating"
+                  >
+                    -
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    -
+                  </div>
+                </div>
+              </div>
+              <div class="component__content-column-notice">
+                <router-link to="/admin/resume/list">
+                  <button id="notice_blackBtn">목록으로</button>
+                </router-link>
+              </div>
             </div>
           </article>
         </section>

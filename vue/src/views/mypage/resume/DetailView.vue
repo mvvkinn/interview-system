@@ -22,7 +22,8 @@ vu
                   마이페이지
                 </li>
               </router-link>
-              <router-link to="/success">
+              <!-- router link to = /success -->
+              <router-link to="/passcheck">
                 <li>
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -80,182 +81,215 @@ vu
                     <button>이미지 업로드</button>
                   </div>
                 </div>
-                <div class="component__content-column">
-                  <h2>인적사항</h2>
-                  <div class="component__table">
-                    <div class="component__table-column">
-                      <label for="name">이름</label>
-                      <input
-                        id="name"
-                        type="text"
-                        placeholder="이름을 입력해주세요."
-                      />
-                      <label for="birth">생년월일</label>
-                      <input id="birth" type="text" placeholder="8자리 입력" />
+                <div class="notice_component_tableArea">
+                  <div class="notice_component_tableTitle">인적사항</div>
+                  <div class="notice_componet_tableLine">
+                    <div class="tableComponent_title">이름</div>
+                    <textarea
+                      class="tableComponent_value"
+                      placeholder="이름을 입력해주세요."
+                    ></textarea>
+                    <div class="tableComponent_title">생년월일</div>
+                    <textarea
+                      class="tableComponent_value"
+                      placeholder="생년 6자리를 입력해주세요."
+                    ></textarea>
+                  </div>
+                  <div class="notice_componet_tableLine">
+                    <div class="tableComponent_title">휴대폰</div>
+                    <textarea
+                      class="tableComponent_value"
+                      placeholder="'-'제외하고 입력"
+                    ></textarea>
+                    <div class="tableComponent_title" id="emailTitle">
+                      E-mail
                     </div>
-                    <div class="component__table-column">
-                      <label for="phone">휴대폰</label>
-                      <input
-                        id="phone"
-                        type="text"
-                        placeholder="'-'없이 입력"
-                      />
-                      <label for="email">E-mail</label>
-                      <input
-                        id="email"
-                        type="textarea"
-                        placeholder="example@example.com"
-                      />
+                    <textarea
+                      class="tableComponent_value"
+                      placeholder="이메일을 입력해주세요."
+                    ></textarea>
+                  </div>
+                  <div class="notice_componet_tableLine" id="addressLine">
+                    <div class="tableComponent_title" id="addressTitle">
+                      주소
                     </div>
-                    <div class="component__table-column">
-                      <label for="adress">주소</label>
-                      <input
-                        id="adress"
-                        type="text"
-                        placeholder="주소를 입력해주세요."
-                      />
-                    </div>
+                    <textarea
+                      class="tableComponent_value"
+                      placeholder="'-'제외하고 입력"
+                      id="addressTextArea"
+                    ></textarea>
                   </div>
                 </div>
-                <div class="component__content-column">
-                  <h2>학력사항</h2>
-                  <div class="component__table">
-                    <div class="component__table-column">
-                      <label for="period">기간</label>
-                      <input
-                        id="period"
-                        type="text"
-                        placeholder="00/00/00 - 00/00/00"
-                      />
-                      <input
-                        id="period"
-                        type="text"
-                        placeholder="00/00/00 - 00/00/00"
-                      />
-                      <input
-                        id="period"
-                        type="text"
-                        placeholder="00/00/00 - 00/00/00"
-                      />
+                <div class="notice_component_tableArea">
+                  <div class="notice_component_tableTitle">학력사항</div>
+                  <div class="notice_componet_tableLine">
+                    <div class="tableComponent_titleBlack" id="titleBlack_side">
+                      기간
                     </div>
-                    <div class="component__table-column">
-                      <label for="school">학교명</label>
-                      <input
-                        id="school"
-                        type="text"
-                        placeholder="학교명을 입력해주세요."
-                      />
-                      <input
-                        id="school"
-                        type="text"
-                        placeholder="학교명을 입력해주세요."
-                      />
-                      <input
-                        id="school"
-                        type="text"
-                        placeholder="학교명을 입력해주세요."
-                      />
+                    <div
+                      class="tableComponent_titleBlack"
+                      id="titleBlack_center"
+                    >
+                      학교명
                     </div>
-                    <div class="component__table-column">
-                      <label for="major">전공</label>
-                      <input
-                        id="major"
-                        type="text"
-                        placeholder="전공을 입력해주세요."
-                      />
-                      <input
-                        id="major"
-                        type="text"
-                        placeholder="전공을 입력해주세요."
-                      />
-                      <input
-                        id="major"
-                        type="text"
-                        placeholder="전공을 입력해주세요."
-                      />
+                    <div class="tableComponent_titleBlack" id="titleBlack_side">
+                      전공
                     </div>
                   </div>
-                  <button>+</button>
+                  <div class="notice_componet_tableLine">
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="예)220101 ~ 220101"
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_center"
+                      placeholder="학교명을 입력해주세요."
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="전공을 입력해주세요."
+                    ></textarea>
+                  </div>
+                  <div class="notice_componet_tableLine">
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="예)220101 ~ 220101"
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_center"
+                      placeholder="학교명을 입력해주세요."
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="전공을 입력해주세요."
+                    ></textarea>
+                  </div>
+                  <div class="notice_componet_tableLine">
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="예)220101 ~ 220101"
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_center"
+                      placeholder="학교명을 입력해주세요."
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="전공을 입력해주세요."
+                    ></textarea>
+                  </div>
+                  <div class="notice_componet_tableLine" id="addLine">+</div>
                 </div>
-                <div class="component__content-column">
-                  <h2>자격 및 교육 사항</h2>
-                  <div class="component__table">
-                    <div class="component__table-column">
-                      <label for="achive">취득일자</label>
-                      <input id="achive" type="text" placeholder="0000/00/00" />
+                <div class="notice_component_tableArea">
+                  <div class="notice_component_tableTitle">
+                    자격 및 교육사항
+                  </div>
+                  <div class="notice_componet_tableLine">
+                    <div class="tableComponent_titleBlack" id="titleBlack_side">
+                      취득일자
                     </div>
-                    <div class="component__table-column">
-                      <label for="quality">자격 및 교육명</label>
-                      <input
-                        id="quality"
-                        type="text"
-                        placeholder="자격 및 교육명을 입력해주세요."
-                      />
+                    <div
+                      class="tableComponent_titleBlack"
+                      id="titleBlack_classname"
+                    >
+                      자격 및 교육명
                     </div>
-                    <div class="component__table-column">
-                      <label for="rating">등급</label>
-                      <input
-                        id="rating"
-                        type="text"
-                        placeholder="등급을 입력해주세요."
-                      />
+                    <div
+                      class="tableComponent_titleBlack"
+                      id="titleBlack_rating"
+                    >
+                      등급
                     </div>
-                    <div class="component__table-column">
-                      <label for="issuer">발행기관</label>
-                      <input
-                        id="issuer"
-                        type="text"
-                        placeholder="발행기관을 입력해주세요."
-                      />
+                    <div class="tableComponent_titleBlack" id="titleBlack_side">
+                      발행기관
                     </div>
                   </div>
-                  <button>+</button>
+                  <div class="notice_componet_tableLine">
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="예)220101"
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_classname"
+                      placeholder="자격 및 교육명을 입력해주세요."
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_rating"
+                      placeholder="등급을 입력해주세요."
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="발행기관을 입력해주세요."
+                    ></textarea>
+                  </div>
+                  <div class="notice_componet_tableLine" id="addLine">+</div>
                 </div>
-                <div class="component__content-column">
-                  <h2>경력사항</h2>
-                  <div class="component__table">
-                    <div class="component__table-column">
-                      <label for="employ">근무기간</label>
-                      <input
-                        id="employ"
-                        type="text"
-                        placeholder="00/00/00 - 00/00/00"
-                      />
+                <div class="notice_component_tableArea">
+                  <div class="notice_component_tableTitle">경력사항</div>
+                  <div class="notice_componet_tableLine">
+                    <div class="tableComponent_titleBlack" id="titleBlack_side">
+                      근무기간
                     </div>
-                    <div class="component__table-column">
-                      <label for="position">근무처</label>
-                      <input
-                        id="position"
-                        type="text"
-                        placeholder="근무처를 입력해주세요."
-                      />
+                    <div
+                      class="tableComponent_titleBlack"
+                      id="titleBlack_classname"
+                    >
+                      근무처
                     </div>
-                    <div class="component__table-column">
-                      <label for="job">직위</label>
-                      <input
-                        id="job"
-                        type="text"
-                        placeholder="직위를 입력해주세요."
-                      />
+                    <div
+                      class="tableComponent_titleBlack"
+                      id="titleBlack_rating"
+                    >
+                      직위
                     </div>
-                    <div class="component__table-column">
-                      <label for="department">부서</label>
-                      <input
-                        id="department"
-                        type="text"
-                        placeholder="부서를 입력해주세요."
-                      />
+                    <div class="tableComponent_titleBlack" id="titleBlack_side">
+                      부서
                     </div>
                   </div>
-                  <button>+</button>
+                  <div class="notice_componet_tableLine">
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="예)220101 ~ 220102"
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_classname"
+                      placeholder="근무처를 입력해주세요."
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_rating"
+                      placeholder="직위를 입력해주세요."
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      placeholder="부서를 입력해주세요."
+                    ></textarea>
+                  </div>
+                  <div class="notice_componet_tableLine" id="addLine">+</div>
                 </div>
                 <div class="component__content-column">
                   <div class="component__content-column--button">
-                    <button>수정하기</button>
-                    <button>삭제</button>
-                    <button>
-                      <router-link to="/mypage/resume/list">목록</router-link>
-                    </button>
+                    <button id="blueBtn">수정하기</button>
+                    <button id="blackBtn">삭제</button>
+                    <router-link to="/mypage/resume/list">
+                      <button id="grayBtn">목록</button>
+                    </router-link>
                   </div>
                 </div>
               </form>
