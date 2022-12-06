@@ -70,8 +70,9 @@
                     </button>
                   </div>
                   <div class="notice_component__content-column--img">
-                    <img src="https://via.placeholder.com/297x358" alt="" />
-                    <button>이미지 업로드</button>
+                    <img v-bind:src="resumelist.image" alt="" />
+                    <!-- <img src="https://via.placeholder.com/297x358" alt="" /> -->
+                    <!-- <button>이미지 업로드</button> -->
                   </div>
                 </div>
                 <div class="notice_component_tableArea">
@@ -267,6 +268,7 @@ export default {
     return {
       isClick: false,
       noticelist: [],
+      resumelist: {},
       detail: {},
     };
   },
@@ -303,12 +305,17 @@ export default {
 
   async created() {
     const noticeText = await this.$axios.get(
-      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/api/notice"
+      "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/notice"
     );
     this.noticelist = noticeText.data.noticelist;
     this.detail = this.noticelist.filter(
       (v) => v.number === +this.$route.params.number
     )[0];
+
+    const resumeText = await this.$axios.get(
+      "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/resume"
+    );
+    this.resumelist = resumeText.data;
   },
   computed: {
     ...mapState(["user"]),
