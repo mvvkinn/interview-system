@@ -48,7 +48,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>면접공지</p>
+                  <p>면접 공지</p>
                 </li>
               </router-link>
             </ul>
