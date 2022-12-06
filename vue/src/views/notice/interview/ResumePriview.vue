@@ -5,11 +5,7 @@
     </div>
     <div class="import_resumeArea">
       <div class="resume_pictureArea">
-        <img
-          src="https://via.placeholder.com/297x358"
-          alt=""
-          class="resume_picture"
-        />
+        <img v-bind:src="resumelist.image" alt="" class="resume_picture" />
       </div>
       <div class="resume_tableArea">
         <p>인적사항</p>
@@ -37,15 +33,32 @@
           <div class="normalTable_label" id="label_center">학교명</div>
           <div class="normalTable_label" id="label_side">전공</div>
         </div>
-        <div class="resumeTable_line">
-          <div class="normalTabel_value" id="value_side">-</div>
-          <div class="normalTabel_value" id="value_center">-</div>
-          <div class="normalTabel_value" id="value_side">-</div>
-        </div>
-        <div class="resumeTable_line">
-          <div class="normalTabel_value" id="value_side">-</div>
-          <div class="normalTabel_value" id="value_center">-</div>
-          <div class="normalTabel_value" id="value_side">-</div>
+        <div
+          class="resumeTable_line"
+          :key="index"
+          v-for="(education, index) in education"
+        >
+          <div
+            class="normalTabel_value"
+            id="value_side"
+            v-bind:class="education"
+          >
+            {{ education.period }}
+          </div>
+          <div
+            class="normalTabel_value"
+            id="value_center"
+            v-bind:class="education"
+          >
+            {{ education.schoolname }}
+          </div>
+          <div
+            class="normalTabel_value"
+            id="value_side"
+            v-bind:class="education"
+          >
+            {{ education.major }}
+          </div>
         </div>
       </div>
       <div class="resume_tableArea">
@@ -56,17 +69,23 @@
           <div class="normalTable_label" id="label_rightCenter">등급</div>
           <div class="normalTable_label" id="label_side">발행기관</div>
         </div>
-        <div class="resumeTable_line">
-          <div class="normalTabel_value" id="value_side">-</div>
-          <div class="normalTabel_value" id="value_leftCenter">-</div>
-          <div class="normalTabel_value" id="value_rightCenter">-</div>
-          <div class="normalTabel_value" id="value_side">-</div>
-        </div>
-        <div class="resumeTable_line">
-          <div class="normalTabel_value" id="value_side">-</div>
-          <div class="normalTabel_value" id="value_leftCenter">-</div>
-          <div class="normalTabel_value" id="value_rightCenter">-</div>
-          <div class="normalTabel_value" id="value_side">-</div>
+        <div
+          class="resumeTable_line"
+          :key="index"
+          v-for="(qualification, index) in qualification"
+        >
+          <div class="normalTabel_value" id="value_side">
+            {{ qualification.date }}
+          </div>
+          <div class="normalTabel_value" id="value_leftCenter">
+            {{ qualification.education_name }}
+          </div>
+          <div class="normalTabel_value" id="value_rightCenter">
+            {{ qualification.class }}
+          </div>
+          <div class="normalTabel_value" id="value_side">
+            {{ qualification.institutaion }}
+          </div>
         </div>
       </div>
     </div>
@@ -80,21 +99,31 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
     return {
-      noticelist: [],
+      resumelist: [],
+      education: [],
+      qualification: [],
       detail: {},
     };
   },
   async created() {
-    const noticeText = await this.$axios.get(
-      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/api/notice"
+    const resumeText = await this.$axios.get(
+      "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/resume"
     );
-    this.noticelist = noticeText.data.noticelist;
-    this.detail = this.noticelist.filter(
-      (v) => v.number === +this.$route.params.number
-    )[0];
+    this.resumelist = resumeText.data;
+    this.education = this.resumelist.education;
+    this.qualification = this.resumelist.qualification;
+    console.log();
+  },
+  computed: {
+    ...mapState(["user"]),
+    sliceBirthdate() {
+      return this.user.birthdate.slice(0, 10).split("-").join("");
+    },
   },
 };
 </script>
