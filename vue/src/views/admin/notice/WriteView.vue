@@ -112,24 +112,43 @@ export default {
 
 .notice_adm_write-applybutton {
   display: flex;
-  justify-content: center;
-  padding: 30px 10px;
+  justify-content: right;
+  padding-bottom: 30px;
 }
 .notice_adm_write-applybutton p {
   float: left;
 }
 .notice_adm_write-applybutton-begin {
   /* margin-right: 80px; */
-  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin-right: 20px;
 }
+
+.notice_adm_write-applybutton-begin p {
+  margin-right: 10px;
+}
+
 .notice_adm_write-applybutton-begin input {
   height: 35px;
+  font-family: "noto sans kr";
 }
 .notice_adm_write-applybutton-deadline {
   /* margin-left: 80px; */
-  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
 }
+
+.notice_adm_write-applybutton-deadline p {
+  margin-right: 10px;
+}
+
 .notice_adm_write-applybutton-deadline input {
   height: 35px;
+  font-family: "noto sans kr";
 }
 </style>
