@@ -84,7 +84,7 @@
             {{ qualification.class }}
           </div>
           <div class="normalTabel_value" id="value_side">
-            {{ qualification.institutaion }}
+            {{ qualification.institution }}
           </div>
         </div>
       </div>
