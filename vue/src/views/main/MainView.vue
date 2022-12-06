@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="main_body">
     <HeaderView />
-    <main class="main_body">
+    <main>
       <section class="main-view">
         <div class="main-view__column">
           <router-link to="/notice">
