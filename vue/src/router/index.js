@@ -241,11 +241,27 @@ const routes = [
       ),
   },
   {
+    path: "/admin/notice/detail/:number",
+    name: "admin_notice_list",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/notice/DetailView.vue"
+      ),
+  },
+  {
     path: "/admin/notice/write",
     name: "admin_notice_write",
     component: () =>
       import(
         /* webpackChunkName: "about" */ "../views/admin/notice/WriteView.vue"
+      ),
+  },
+  {
+    path: "/admin/notice/detail/:number/amend",
+    name: "admin_notice_amend",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/notice/AmendView.vue"
       ),
   },
   {
@@ -257,7 +273,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/resume/list",
+    path: "/admin/resume/:interviewId/list",
     name: "admin_interview_resume",
     component: () =>
       import(
@@ -265,7 +281,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/resume/detail",
+    path: "/admin/resume/:interviewId/list/:number/detail",
     name: "admin_interview_resume_detail",
     component: () =>
       import(
@@ -288,14 +304,6 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/admin/progress/ListView.vue"
       ),
   },
-  // {
-  //   path: "/admin/progress/evaluation",
-  //   name: "admin_interview_progress_evaluation",
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "about" */ "../views/admin/progress/InterviewEvaluation.vue"
-  //     ),
-  // },
   {
     path: "/admin/progress/evaluation",
     name: "admin_interview_progress_evaluation",
@@ -323,7 +331,7 @@ const routes = [
     name: "admin_interview_content_detail",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/admin/content/DetailView.vue"
+        /* webpackChunkName: "about" */ "../views/admin/content/InterviewView.vue"
       ),
   },
   {
@@ -331,6 +339,14 @@ const routes = [
     name: "video_meeting",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/VideoMeeting.vue"),
+  },
+  {
+    path: "/meeting/offLine",
+    name: "offLine_meeting",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/content/InterviewView.vue"
+      ),
   },
 ];
 

@@ -82,5 +82,12 @@ export const store = new Vuex.Store({
       // 로그아웃
       commit("removeToken");
     },
+
+    score: async (_, params) => {
+      return await axios
+        .post("/score/test", params)
+        .then((res) => res.status)
+        .catch((e) => e.response.status);
+    },
   },
 });

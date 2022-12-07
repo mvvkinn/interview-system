@@ -18,7 +18,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  마이페이지
+                  <p>마이페이지</p>
                 </li>
               </router-link>
               <router-link to="/passcheck">
@@ -33,7 +33,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  합격자조회
+                  <p>합격자조회</p>
                 </li>
               </router-link>
               <router-link to="/notice">
@@ -48,7 +48,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  면접 공지
+                  <p>면접 공지</p>
                 </li>
               </router-link>
             </ul>
@@ -60,9 +60,7 @@
               <h1>면접 결과</h1>
             </div>
             <hr />
-            <div class="interview__result-content">
-              <p>면접 조회 결과입니다.</p>
-            </div>
+            <div class="interview__result-content">면접 조회 결과입니다.</div>
             <table class="interview__result-table">
               <thead>
                 <tr class="interview__result-table_tb-th-ei">
@@ -90,9 +88,9 @@
               </tbody>
             </table>
             <div class="interview__result-button">
-              <button>
-                <router-link to="/passcheck">뒤로가기</router-link>
-              </button>
+              <router-link to="/passcheck">
+                <button>뒤로가기</button>
+              </router-link>
             </div>
             <hr />
           </article>
