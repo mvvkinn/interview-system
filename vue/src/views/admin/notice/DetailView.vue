@@ -18,7 +18,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  관리자페이지
+                  <p>관리자페이지</p>
                 </li>
               </router-link>
               <router-link to="/success">
@@ -33,7 +33,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  합격자조회
+                  <p>합격자조회</p>
                 </li>
               </router-link>
               <router-link to="/notice">
@@ -48,7 +48,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  면접 공지
+                  <p>면접공지</p>
                 </li>
               </router-link>
             </ul>
@@ -85,14 +85,16 @@
               </p>
             </div>
             <div class="notice__details-button">
-              <button>
-                <router-link :to="`/admin/notice/detail/${detail.number}/amend`"
-                  >수정하기</router-link
-                >
-              </button>
-              <button>
-                <router-link to="/admin/notice">목록</router-link>
-              </button>
+              <router-link :to="`/admin/notice/detail/${detail.number}/amend`">
+                <button class="notice_detailBtn" id="detailBtn_blue">
+                  수정하기
+                </button>
+              </router-link>
+              <router-link to="/admin/notice">
+                <button class="notice_detailBtn" id="detailBtn_black">
+                  목록
+                </button>
+              </router-link>
             </div>
             <hr />
           </article>
@@ -132,4 +134,30 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.notice_detailBtn {
+  width: 200px;
+  height: 50px;
+}
+
+#detailBtn_blue {
+  border: 1px solid #3c62e5;
+  color: #3c62e5;
+  margin-right: 20px;
+}
+
+#detailBtn_blue:hover {
+  background-color: #3c62e5;
+  color: white;
+}
+
+#detailBtn_black {
+  border: 1px solid #333333;
+  color: #333333;
+}
+
+#detailBtn_black:hover {
+  background-color: #333333;
+  color: white;
+}
+</style>
