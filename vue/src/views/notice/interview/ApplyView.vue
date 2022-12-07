@@ -82,13 +82,13 @@
                     <textarea
                       class="tableComponent_value"
                       placeholder="이름을 입력해주세요."
-                      v-bind:value="user.name"
+                      v-bind:value="name"
                     ></textarea>
                     <div class="tableComponent_title">생년월일</div>
                     <textarea
                       class="tableComponent_value"
                       placeholder="생년 6자리를 입력해주세요."
-                      v-bind:value="sliceBirthdate"
+                      v-bind:value="birth"
                     ></textarea>
                   </div>
                   <div class="notice_componet_tableLine">
@@ -96,7 +96,7 @@
                     <textarea
                       class="tableComponent_value"
                       placeholder="'-'제외하고 입력"
-                      v-bind:value="user.phone"
+                      v-bind:value="phone"
                     ></textarea>
                     <div class="tableComponent_title" id="emailTitle">
                       E-mail
@@ -104,7 +104,7 @@
                     <textarea
                       class="tableComponent_value"
                       placeholder="이메일을 입력해주세요."
-                      v-bind:value="user.email"
+                      v-bind:value="email"
                     ></textarea>
                   </div>
                   <div class="notice_componet_tableLine" id="addressLine">
@@ -115,7 +115,7 @@
                       class="tableComponent_value"
                       placeholder="'-'제외하고 입력"
                       id="addressTextArea"
-                      v-bind:value="user.address"
+                      v-bind:value="address"
                     ></textarea>
                   </div>
                 </div>
@@ -135,55 +135,28 @@
                       전공
                     </div>
                   </div>
-                  <div class="notice_componet_tableLine">
+                  <div
+                    class="notice_componet_tableLine"
+                    :key="index"
+                    v-for="(education, index) in education"
+                  >
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
                       placeholder="예)220101 ~ 220101"
+                      v-bind:value="education.period"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_center"
                       placeholder="학교명을 입력해주세요."
+                      v-bind:value="education.schoolname"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
                       placeholder="전공을 입력해주세요."
-                    ></textarea>
-                  </div>
-                  <div class="notice_componet_tableLine">
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_side"
-                      placeholder="예)220101 ~ 220101"
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_center"
-                      placeholder="학교명을 입력해주세요."
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_side"
-                      placeholder="전공을 입력해주세요."
-                    ></textarea>
-                  </div>
-                  <div class="notice_componet_tableLine">
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_side"
-                      placeholder="예)220101 ~ 220101"
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_center"
-                      placeholder="학교명을 입력해주세요."
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_side"
-                      placeholder="전공을 입력해주세요."
+                      v-bind:value="education.major"
                     ></textarea>
                   </div>
                 </div>
@@ -211,26 +184,34 @@
                       발행기관
                     </div>
                   </div>
-                  <div class="notice_componet_tableLine">
+                  <div
+                    class="notice_componet_tableLine"
+                    :key="index"
+                    v-for="(qualification, index) in qualification"
+                  >
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
                       placeholder="예)220101"
+                      v-bind:value="qualification.date"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_classname"
                       placeholder="자격 및 교육명을 입력해주세요."
+                      v-bind:value="qualification.education_name"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_rating"
                       placeholder="등급을 입력해주세요."
+                      v-bind:value="qualification.class"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
                       placeholder="발행기관을 입력해주세요."
+                      v-bind:value="qualification.institution"
                     ></textarea>
                   </div>
                 </div>
@@ -256,7 +237,6 @@
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
 
-import { mapState } from "vuex";
 import { store } from "@/store";
 // import SelectResume from "./SelectResume.vue";
 export default {
@@ -273,6 +253,11 @@ export default {
       detail: {},
       education: [],
       qualification: [],
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      birth: "",
     };
   },
   methods: {
@@ -284,12 +269,6 @@ export default {
         "width=800, height=650, location=no, status=no, scrollbars=yes"
       );
     },
-    // listChange(education, qualification) {
-    //   this.education = education;
-    //   this.qualification = qualification;
-    //   console.log("111education=>" + this.education);
-    //   console.log("1111qualification=>" + this.qualification);
-    // },
     close() {
       window.close();
     },
@@ -328,13 +307,14 @@ export default {
     this.education = this.resumelist.education;
     this.qualification = this.resumelist.qualification;
 
-    console.log(this.$route);
-  },
-  computed: {
-    ...mapState(["user"]),
-    sliceBirthdate() {
-      return this.user.birthdate.slice(0, 10).split("-").join("");
-    },
+    this.name = JSON.parse(localStorage.getItem("user")).name;
+    this.email = JSON.parse(localStorage.getItem("user")).email;
+    this.phone = JSON.parse(localStorage.getItem("user")).phone;
+    this.address = JSON.parse(localStorage.getItem("user")).address;
+    this.birth = JSON.parse(localStorage.getItem("user"))
+      .birthdate.slice(0, 10)
+      .split("-")
+      .join("");
   },
 };
 </script>

@@ -98,17 +98,13 @@
       <!-- <router-link
         :to="`/notice/detail/${$route.params.number}/apply?period=${education[0].period}&period1=${education[1].period}&schoolname=${education[0].schoolname}&schoolname1=${education[1].schoolname}&major=${education[0].major}&major1=${education[1].major}&date=${qualification[0].date}&date1=${qualification[1].date}&date2=${qualification[3].date}&education_name=${qualification[0].education_name}&education_name1=${qualification[1].education_name}&education_name2=${qualification[2].education_name}&class=${qualification[0].class}&class1=${qualification[1].class}&class2=${qualification[2].class}&institution=${qualification[0].institution}&institution1=${qualification[1].institution}&institution2=${qualification[2].institution}`"
       > -->
-      <div class="import_btn" id="btn_blue" @click="setParentText">
-        불러오기
-      </div>
+      <div class="import_btn" id="btn_blue">불러오기</div>
       <!-- </router-link> -->
     </div>
   </body>
 </template>
 
 <script>
-// import { mapState } from "vuex";
-
 export default {
   data() {
     return {
@@ -130,8 +126,7 @@ export default {
     );
     this.resumelist = resumeText.data;
     this.education = this.resumelist.education;
-    console.log(resumeText);
-    console.log(this.education[0].period);
+
     this.qualification = this.resumelist.qualification;
     this.name = JSON.parse(localStorage.getItem("user")).name;
     this.email = JSON.parse(localStorage.getItem("user")).email;
@@ -150,11 +145,6 @@ export default {
       (v) => v.number === +this.$route.params.number
     )[0];
   },
-  methods: {
-    setParentText() {
-      // window.opener.
-    },
-  },
   // methods: {
   //   jfAAAA() {
   //     console.log("education=>" + this.education[0].schoolname);
@@ -165,12 +155,6 @@ export default {
   //     //   this.education[0].schoolname,
   //     //   this.qualification
   //     // );
-  //   },
-  // },
-  // computed: {
-  //   ...mapState(["user"]),
-  //   sliceBirthdate() {
-  //     return this.user.birthdate.slice(0, 10).split("-").join("");
   //   },
   // },
 };
