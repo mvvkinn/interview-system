@@ -30,6 +30,7 @@
               <video
                 autoplay
                 playsinline
+                :ref="myVideoId"
                 :src-object.prop.camel="myVideo"
               ></video>
             </div>
@@ -38,7 +39,8 @@
                 <video
                   autoplay
                   playsinline
-                  :src-object.prop.camel="peer"
+                  :id="peer.id"
+                  :src-object.prop.camel="peer.stream"
                 ></video>
               </div>
             </div>
@@ -154,7 +156,13 @@ export default {
       text_video: "CAMERA OFF",
       onlineTimer: 0,
       myVideo: null,
-      peerVideo: [],
+      myVideoId: "",
+      peerVideo: [
+        // {
+        //   stream: [],
+        //   id: [],
+        // },
+      ],
       isPeer: false,
       myStream: null,
       isMuted: false,
@@ -219,7 +227,7 @@ export default {
 
       this.peerConnection.addEventListener(
         "track",
-        (trackData) => this.paintPeerFace(trackData),
+        (trackData) => this.paintPeerFace(trackData, remoteSocketId),
         false
       );
 
@@ -232,11 +240,23 @@ export default {
     },
 
     // show peerVideo
-    paintPeerFace(peerStream) {
-      if (!this.peerVideo.includes(peerStream.streams[0])) {
-        this.peerVideo.push(peerStream.streams[0]);
+    paintPeerFace(peerStream, remoteSocketId) {
+      if (
+        !this.peerVideo.some((obj) =>
+          Object.entries(obj)[0].includes(peerStream.streams[0])
+        )
+      ) {
+        this.peerVideo.push({
+          stream: peerStream.streams[0],
+          id: remoteSocketId,
+        });
         this.isPeer = true;
       }
+
+      // if (!this.peerVideo.includes(peerStream.streams[0])) {
+      //   this.peerVideo.push(peerStream.streams[0]);
+      //   this.isPeer = true;
+      // }
     },
 
     removeVideo(leavedSocketId) {
@@ -266,9 +286,11 @@ export default {
      * event on join
      * Send local offer to remote
      */
-    this.socket.on("join", async (userObjArr) => {
+    this.socket.on("join", async (userObjArr, mySocketId) => {
       this.myStream = await initCall();
       this.myVideo = this.myStream;
+      // this.$refs.myVideoId.id = mySocketId;
+      console.log(mySocketId);
       const length = userObjArr.length;
       if (length === 1) {
         return;
