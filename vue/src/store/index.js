@@ -92,14 +92,10 @@ export const store = new Vuex.Store({
     //     })
     //     .catch((e) => e.response.status);
     // },
-    score: async ({ commit }, params) => {
+    score: async (_, params) => {
       return await axios
         .post("/score/test", params)
-        .then((res) => {
-          commit("email", res.data.email);
-          router.push("/score");
-          return res.status;
-        })
+        .then((res) => res.status)
         .catch((e) => e.response.status);
     },
   },
