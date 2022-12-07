@@ -25,7 +25,7 @@ export default (db: Sequelize) => {
       question_three: { type: DataTypes.STRING },
       // answer_three: { type: DataTypes.STRING},
       score_three: { type: DataTypes.INTEGER },
-      // opinion: { type: DataTypes.STRING},
+      add_question: { type: DataTypes.STRING },
       id: { type: DataTypes.INTEGER },
       name: { type: DataTypes.STRING },
       email: { type: DataTypes.STRING },
