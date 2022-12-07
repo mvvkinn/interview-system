@@ -80,14 +80,15 @@
             </div>
             <hr />
             <div class="notice__details-text">
-              <p>
+              <img v-bind:src="detail.image" />
+              <!-- <p>
                 {{ detail.detail }}<br /><br /><br /><br />
                 저희 회사는 가족같은 분위기로 혁신을 주도하며 지속 성장하는
                 기업입니다. <br /><br /><br /><br />
                 복리후생으로는 각종 경조사 지원, 자녀 학자금 등이 있으며, 퇴직
                 연금, 인센티브제, 우수사원포상 등이 있습니다.<br /><br /><br /><br />많은
                 지원 부탁드립니다.
-              </p>
+              </p> -->
             </div>
             <div class="notice__details-button">
               <router-link :to="`/notice/detail/${$route.params.number}/apply`">
@@ -131,4 +132,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.notice__details-text {
+  display: flex;
+}
+
+.notice__details-text img {
+  margin: 10px auto 0;
+  width: 960px;
+}
+</style>
