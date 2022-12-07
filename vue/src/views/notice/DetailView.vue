@@ -81,9 +81,12 @@
             <hr />
             <div class="notice__details-text">
               <p>
-                {{ detail.detail }}2022년도 하반기 OOOOO 프론트엔트 개발자를
-                모집합니다.<br />저희와 함께 할 인재를 모집합니다. 많은 지원
-                부탁드립니다<br />지원방법<br />
+                {{ detail.detail }}<br /><br /><br /><br />
+                저희 회사는 가족같은 분위기로 혁신을 주도하며 지속 성장하는
+                기업입니다. <br /><br /><br /><br />
+                복리후생으로는 각종 경조사 지원, 자녀 학자금 등이 있으며, 퇴직
+                연금, 인센티브제, 우수사원포상 등이 있습니다.<br /><br /><br /><br />많은
+                지원 부탁드립니다.
               </p>
             </div>
             <div class="notice__details-button">

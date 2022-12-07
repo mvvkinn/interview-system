@@ -255,6 +255,7 @@
 <script>
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+
 import { mapState } from "vuex";
 import { store } from "@/store";
 // import SelectResume from "./SelectResume.vue";
@@ -270,6 +271,8 @@ export default {
       noticelist: [],
       resumelist: {},
       detail: {},
+      education: [],
+      qualification: [],
     };
   },
   methods: {
@@ -281,6 +284,12 @@ export default {
         "width=800, height=650, location=no, status=no, scrollbars=yes"
       );
     },
+    // listChange(education, qualification) {
+    //   this.education = education;
+    //   this.qualification = qualification;
+    //   console.log("111education=>" + this.education);
+    //   console.log("1111qualification=>" + this.qualification);
+    // },
     close() {
       window.close();
     },
@@ -316,6 +325,10 @@ export default {
       "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/resume"
     );
     this.resumelist = resumeText.data;
+    this.education = this.resumelist.education;
+    this.qualification = this.resumelist.qualification;
+
+    console.log(this.$route);
   },
   computed: {
     ...mapState(["user"]),

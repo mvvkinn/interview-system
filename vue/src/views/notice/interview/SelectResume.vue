@@ -19,26 +19,6 @@
             <div class="import_btn_small" id="btn_blue">불러오기</div>
           </div>
         </div>
-        <!-- <div class="import_resumeObject">
-          <p class="import_resumeTitle">Title</p>
-          <div class="import_resumeBtnArea">
-            <p class="import_resumeDate">2022/01/01</p>
-            <router-link to="/notice/detail/modal/resume"
-              ><div class="import_btn_small" id="btn_black">보기</div>
-            </router-link>
-            <div class="import_btn_small" id="btn_blue">불러오기</div>
-          </div>
-        </div> -->
-        <!-- <div class="import_resumeObject">
-          <p class="import_resumeTitle">Title</p>
-          <div class="import_resumeBtnArea">
-            <p class="import_resumeDate">2022/01/01</p>
-            <router-link to="/notice/detail/modal/resume"
-              ><div class="import_btn_small" id="btn_black">보기</div>
-            </router-link>
-            <div class="import_btn_small" id="btn_blue">불러오기</div>
-          </div>
-        </div> -->
       </div>
       <div class="import_btnArea">
         <div class="import_btn" id="btn_black" @click.prevent="close">닫기</div>
@@ -53,6 +33,8 @@ export default {
     return {
       resumelist: {},
       userName: "",
+      education: [],
+      qualification: [],
     };
   },
   props: {
@@ -64,14 +46,24 @@ export default {
     close() {
       window.close();
     },
+    jfAAAA() {
+      console.log("education=>" + this.education[0].schoolname);
+      console.log("qualification=>" + this.qualification);
+      window.opener.listChange(this.education, this.qualification);
+      // this.$emit(
+      //   "listChange",
+      //   this.education[0].schoolname,
+      //   this.qualification
+      // );
+    },
   },
   async created() {
     const resumeText = await this.$axios.get(
       "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/resume"
     );
     this.resumelist = resumeText.data;
-    console.log(this.resumelist.date);
-    console.log(this.user);
+    this.education = this.resumelist.education;
+    this.qualification = this.resumelist.qualification;
 
     this.userName = JSON.parse(localStorage.getItem("user")).name;
   },
