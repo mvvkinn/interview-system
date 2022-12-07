@@ -94,7 +94,9 @@ vu
                         <p>지원일 : 2022/01/01</p>
                       </div>
                     </router-link>
-                    <button>진행 중인 면접 보기</button>
+                    <router-link to="/meeting">
+                      <button>화상 면접 참가</button>
+                    </router-link>
                   </div>
                 </div>
               </div>
