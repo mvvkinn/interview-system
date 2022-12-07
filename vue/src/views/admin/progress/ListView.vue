@@ -75,6 +75,12 @@ vu
             </ul>
           </nav>
           <article class="re-adm">
+            <!-- <div class="modal" v-show="is_show">
+              <h3>View hi</h3>
+              <p>it is test</p>
+              <p>{{this.score}}</p>
+              <button @click="handel_toggle" type="button">확인</button>
+            </div>   -->
             <div class="re-adm__interview">
               <div class="re-adm__interview-title">
                 <h1>
@@ -118,9 +124,9 @@ vu
                   <p>가능</p>
                 </div>
                 <div class="re-adm__interview-table-text-on">
-                  <router-link to="/admin/progress/evaluation">
+                  <!-- <router-link to="/admin/progress/evaluation"> -->
                     <button>면접 시작</button>
-                  </router-link>
+                  <!-- </router-link> -->
                 </div>
               </div>
 
@@ -138,9 +144,10 @@ vu
                   <p>가능</p>
                 </div>
                 <div class="re-adm__interview-table-text-on">
-                  <router-link to="/admin/progress/evaluation">
+                  <!-- <router-link to="/admin/progress/evaluation">
                     <button>면접 시작</button>
-                  </router-link>
+                  </router-link> -->
+                  <button @click="handel_toggle" type="button">면접 시작</button>
                 </div>
               </div>
 
@@ -301,7 +308,9 @@ vu
           </article>
         </section>
       </div>
+                 
     </main>
+    
     <FooterView />
   </div>
 </template>
@@ -309,12 +318,37 @@ vu
 <script>
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+// import Modal from "@/views/admin/progress/InterviewEvaluation.vue";
 export default {
+  data(){
+    return {
+      is_show: false,
+      score: [],
+    }
+  },
   components: {
     HeaderView,
     FooterView,
   },
+  methods:{
+    handel_toggle: function(){
+      this.is_show = !this.is_show;
+    }
+  },
+  async created(){
+    // const scoreText = await this.$axios.get("http://localhost:3000/score/");
+    // this.score = scoreText.data;
+    // console.log(this.score);
+  }
 };
 </script>
 
-<style></style>
+<style>
+  .modal {
+    position: relative;
+    z-index: 10;
+    /* top: 40px; */
+    background-color: black;
+    color: white;
+  }
+</style>

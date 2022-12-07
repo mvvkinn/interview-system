@@ -5,8 +5,10 @@ import Container from "typedi";
 
 import User from "@models/User";
 import Score from "./Score";
+import sequelize from "@loaders/sequelize";
 
 export default async ( sequelizeInstance :Sequelize) => {
+
     const userModel = User(sequelizeInstance);
     const scoreModel = Score(sequelizeInstance);
     const logger: Logger = Container.get("logger");
