@@ -260,9 +260,12 @@ export default {
     },
 
     removeVideo(leavedSocketId) {
-      console.log("leave", leavedSocketId);
-      console.log(this.myStream);
-      this.peerVideo.splice();
+      const delIndex = this.peerVideo.indexOf(
+        this.peerVideo.find((obj) =>
+          Object.entries(obj)[0].includes(leavedSocketId.toString())
+        )
+      );
+      this.peerVideo.splice(delIndex, 1);
     },
 
     leaveRoom() {
