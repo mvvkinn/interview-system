@@ -176,7 +176,7 @@
                     발행기관
                   </div>
                 </div>
-                <div class="notice_componet_tableLine" :key="index" v-for="(qualification,index) in qualification>
+                <div class="notice_componet_tableLine" :key="index" v-for="(qualification,index) in qualification">
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_side"
