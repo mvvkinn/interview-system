@@ -241,11 +241,27 @@ const routes = [
       ),
   },
   {
+    path: "/admin/notice/detail/:number",
+    name: "admin_notice_list",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/notice/DetailView.vue"
+      ),
+  },
+  {
     path: "/admin/notice/write",
     name: "admin_notice_write",
     component: () =>
       import(
         /* webpackChunkName: "about" */ "../views/admin/notice/WriteView.vue"
+      ),
+  },
+  {
+    path: "/admin/notice/detail/:number/amend",
+    name: "admin_notice_amend",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/notice/AmendView.vue"
       ),
   },
   {
