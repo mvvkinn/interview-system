@@ -69,7 +69,7 @@
             <div class="online_Btn" id="ectBtn">ㆍㆍㆍ</div>
           </div>
         </div>
-        <div id="onMain_rightArea" @click.prevent="submitForm()">
+        <form id="onMain_rightArea" @submit.prevent="submitForm()">
           <div class="scoreBoard_topArea" id="topArea_interviewTitle">
             <div class="scoreBoaed_title">
               <p id="online_boldText">면접명</p>
@@ -108,6 +108,8 @@
                   placeholder="00"
                   v-model="score_one"
                   ref="score_one"
+                  min="1"
+                  max="100"
                   :class="{ error: inputError.score_one }"
                 />
                 <p class="error_txt">{{ inputErrorMsg }}</p>
@@ -133,6 +135,8 @@
                   placeholder="00"
                   v-model="score_two"
                   ref="score_two"
+                  min="1"
+                  max="100"
                   :class="{ error: inputError.score_two }"
                 />
                 <p class="error_txt">{{ inputErrorMsg }}</p>
@@ -158,6 +162,8 @@
                   placeholder="00"
                   v-model="score_three"
                   ref="score_three"
+                  min="1"
+                  max="100"
                   :class="{ error: inputError.score_three }"
                 />
                 <p class="error_txt">{{ inputErrorMsg }}</p>
@@ -169,15 +175,18 @@
             <textarea
               class="questionBox_addQuest"
               placeholder="질문 내용을 입력해주세요."
+              v-model="add_question"
             ></textarea>
           </div>
           <div class="scoreBoard_btnArea">
-            <div class="scoreBoard_btn" id="scoreBoard_whiteBtn">저장</div>
-            <div class="scoreBoard_btn" id="scoreBoard_redBtn" type="submit">
+            <button class="scoreBoard_btn" id="scoreBoard_whiteBtn">
+              저장
+            </button>
+            <button class="scoreBoard_btn" id="scoreBoard_redBtn" type="submit">
               제출
-            </div>
+            </button>
           </div>
-        </div>
+        </form>
       </div>
     </body>
   </div>
@@ -185,6 +194,7 @@
 
 <script>
 import { initCall, toggleMute, toggleCamera, pc } from "@/plugins/stream";
+import { store } from "@/store";
 import router from "@/router";
 
 export default {
@@ -204,6 +214,7 @@ export default {
       score_one: "",
       score_two: "",
       score_three: "",
+      add_question: "",
       email: JSON.parse(localStorage.getItem("user")).email,
       isEmpty: false,
       inputError: {
@@ -284,10 +295,11 @@ export default {
       this.time--;
 
       if (this.time < 0) {
+        this.leaveRoom();
         clearInterval();
       }
     },
-    async submitForm() {
+    submitForm() {
       const data = {
         question_one: this.question_one,
         score_one: this.score_one,
@@ -295,6 +307,10 @@ export default {
         score_two: this.score_two,
         question_three: this.question_three,
         score_three: this.score_three,
+        add_question: this.add_question,
+        id: JSON.parse(localStorage.getItem("user")).id,
+        name: JSON.parse(localStorage.getItem("user")).name,
+        email: JSON.parse(localStorage.getItem("user")).email,
       };
       const arrayValue = Object.values(data);
       focus: {
@@ -332,6 +348,8 @@ export default {
                 this.inputError.score_three = true;
                 this.inputErrorMsg = "점수를 입력해주세요.";
                 break focus;
+              case 6:
+                break focus;
             }
           } else {
             this.isEmpty = false;
@@ -339,14 +357,9 @@ export default {
         }
       }
       if (this.isEmpty === false) {
-        await this.$axios
-          .post("/score/test", JSON.stringify(data), {
-            headers: { "Content-Type": "application/json" },
-          })
-          .then(() => {
-            this.$router.push("/admin/progress");
-            // this.$router.push("/admin/progress/list");
-          });
+        store.dispatch("score", { ...data }).then(() => {
+          this.leaveRoom();
+        });
       }
     },
     /**
@@ -426,7 +439,7 @@ export default {
     leaveRoom() {
       this.socket.disconnect();
       this.myStream.getTracks().forEach((track) => track.stop());
-      router.push("/admin/progress/list");
+      router.push("/admin/progress/");
     },
   },
   destroyed() {
@@ -450,11 +463,9 @@ export default {
      * event on join
      * Send local offer to remote
      */
-    this.socket.on("join", async (userObjArr, mySocketId) => {
+    this.socket.on("join", async (userObjArr) => {
       this.myStream = await initCall();
       this.myVideo = this.myStream;
-      // this.$refs.myVideoId.id = mySocketId;
-      console.log(mySocketId);
       const length = userObjArr.length;
       if (length === 1) {
         return;
@@ -513,10 +524,6 @@ export default {
     setInterval(() => {
       this.count();
     }, 1000);
-  },
-  async created() {
-    const scoreGet = await this.$axios.get("/score/read/1");
-    console.log(scoreGet);
   },
 };
 </script>
