@@ -82,16 +82,7 @@ export const store = new Vuex.Store({
       // 로그아웃
       commit("removeToken");
     },
-    // test: async ({ commit }, params) => {
-    //   return await axios
-    //     .post("/score/test", params)
-    //     .then((res) => {
-    //       commit("id", res.data.id);
-    //       router.push("/test");
-    //       return res.status;
-    //     })
-    //     .catch((e) => e.response.status);
-    // },
+
     score: async (_, params) => {
       return await axios
         .post("/score/test", params)
