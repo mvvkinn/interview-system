@@ -301,6 +301,7 @@ vu
         </section>
       </div>
     </main>
+
     <FooterView />
   </div>
 </template>
@@ -308,7 +309,6 @@ vu
 <script>
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
-
 export default {
   components: {
     HeaderView,

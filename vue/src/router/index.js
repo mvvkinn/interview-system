@@ -304,14 +304,6 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/admin/progress/ListView.vue"
       ),
   },
-  // {
-  //   path: "/admin/progress/evaluation",
-  //   name: "admin_interview_progress_evaluation",
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "about" */ "../views/admin/progress/InterviewEvaluation.vue"
-  //     ),
-  // },
   {
     path: "/admin/progress/evaluation",
     name: "admin_interview_progress_evaluation",
@@ -339,7 +331,7 @@ const routes = [
     name: "admin_interview_content_detail",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/admin/content/DetailView.vue"
+        /* webpackChunkName: "about" */ "../views/admin/content/InterviewView.vue"
       ),
   },
   {

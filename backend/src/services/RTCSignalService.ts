@@ -71,7 +71,7 @@ export default () => {
       console.log(targetRoomObj.user);
       socket.join(roomName);
       // emitting event after join room
-      socket.emit("join", targetRoomObj.user, socket.id);
+      socket.emit("join", targetRoomObj.user);
     });
 
     socket.on("offer", (offer: object, remoteSocketId: string) => {
