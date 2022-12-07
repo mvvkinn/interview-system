@@ -319,7 +319,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/content/list",
+    path: "/admin/content/:interviewId/list",
     name: "admin_interview_content_list",
     component: () =>
       import(
@@ -327,7 +327,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/content/detail",
+    path: "/admin/content/:interviewId/list/:number/detail",
     name: "admin_interview_content_detail",
     component: () =>
       import(
