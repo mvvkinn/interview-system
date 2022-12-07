@@ -111,6 +111,7 @@
                     </div>
                   </div>
                 </router-link>
+                <hr />
             </div>
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">
