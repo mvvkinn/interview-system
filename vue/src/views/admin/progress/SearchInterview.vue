@@ -94,7 +94,7 @@ vu
                     <button @click="errorMessage">조회하기</button>
                   </div>
                   <div v-else>
-                    <router-link :to="`/admin/content/${interviewNum}/list`">
+                    <router-link :to="`/admin/progress/${interviewNum}/list`">
                       <button>조회하기</button>
                     </router-link>
                   </div>
