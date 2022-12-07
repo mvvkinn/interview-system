@@ -103,13 +103,15 @@
               <p class="error_txt">{{ inputErrorMsg }}</p>
               <div class="questionBox_score">
                 <input
-                  type="number"
+                  type="text"
                   class="question_Score"
                   placeholder="00"
-                  v-model="score_one"
+                  :value="score_one"
+                  @input="checkInput($event, '1')"
                   ref="score_one"
                   min="1"
                   max="100"
+                  maxlength="3"
                   :class="{ error: inputError.score_one }"
                 />
                 <p class="error_txt">{{ inputErrorMsg }}</p>
@@ -133,10 +135,12 @@
                   type="text"
                   class="question_Score"
                   placeholder="00"
-                  v-model="score_two"
+                  :value="score_two"
+                  @input="checkInput($event, '2')"
                   ref="score_two"
                   min="1"
                   max="100"
+                  maxlength="3"
                   :class="{ error: inputError.score_two }"
                 />
                 <p class="error_txt">{{ inputErrorMsg }}</p>
@@ -160,10 +164,12 @@
                   type="text"
                   class="question_Score"
                   placeholder="00"
-                  v-model="score_three"
+                  :value="score_three"
+                  @input="checkInput($event, '3')"
                   ref="score_three"
                   min="1"
                   max="100"
+                  maxlength="3"
                   :class="{ error: inputError.score_three }"
                 />
                 <p class="error_txt">{{ inputErrorMsg }}</p>
@@ -420,11 +426,6 @@ export default {
         });
         this.isPeer = true;
       }
-
-      // if (!this.peerVideo.includes(peerStream.streams[0])) {
-      //   this.peerVideo.push(peerStream.streams[0]);
-      //   this.isPeer = true;
-      // }
     },
 
     removeVideo(leavedSocketId) {
@@ -440,6 +441,24 @@ export default {
       this.socket.disconnect();
       this.myStream.getTracks().forEach((track) => track.stop());
       router.push("/admin/progress/");
+    },
+
+    checkInput(e, index) {
+      switch (+index) {
+        case 1:
+          this.score_one = e.target.value.replace(/\D{0,3}$/g, "");
+          e.target.value = this.score_one;
+          console.log(e.target);
+          break;
+        case 2:
+          this.score_two = e.target.value.replace(/\D[0,100]{0,3}$/g, "");
+          e.target.value = this.score_two;
+          break;
+        case 3:
+          this.score_three = e.target.value.replace(/\D[0,100]{0,3}$/g, "");
+          e.target.value = this.score_three;
+          break;
+      }
     },
   },
   destroyed() {
@@ -536,6 +555,18 @@ export default {
   display: none;
 }
 
+textarea.error {
+  border: 2px solid red;
+}
+
+textarea.error:focus {
+  border: 2px solid red;
+}
+
+textarea:focus {
+  outline: none;
+}
+
 input.error {
   border: 2px solid red;
 }
@@ -546,13 +577,9 @@ input.error:focus {
 
 input:focus {
   outline: none;
-  border: 1px solid blue;
 }
 
 .scoreBoard_questionBox > .error + .error_txt {
-  /* display: block;
-  position: absolute;
-  top: 50px; */
   color: red !important;
 }
 .cam_top {
