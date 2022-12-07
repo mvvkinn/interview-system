@@ -126,7 +126,7 @@ export default {
    },
    async created(){
      const interviewText = await this.$axios.get(
-      this.$eMockUp+"/interview"
+      "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io/interview"
      );
      this.interviewList = interviewText.data.interview;
    },
