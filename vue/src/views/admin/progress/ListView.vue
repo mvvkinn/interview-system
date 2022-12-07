@@ -77,7 +77,7 @@ vu
             <div class="re-adm__interview">
               <div class="re-adm__interview-title">
                 <h1>
-                  면접 진행 - 2022년도 하반기 OOOOO 프론트엔드 개발자 모집
+                  {{interviewNumber.title}}
                 </h1>
               </div>
               <hr />
@@ -102,198 +102,45 @@ vu
                   <p>면접 진행</p>
                 </div>
               </div>
-
-              <div class="re-adm__interview-table-text">
-                <div class="re-adm__interview-table-text-no">
-                  <p>1</p>
-                </div>
-                <div class="re-adm__interview-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-                <div class="re-adm__interview-table-text-possible">
-                  <p>가능</p>
-                </div>
-                <div class="re-adm__interview-table-text-on">
-                  <router-link to="/admin/progress/evaluation?roomName=room1">
-                    <button>면접 시작</button>
-                  </router-link>
-                </div>
+              <div v-if="splitList">
+                <router-link
+                  :to="`list/${resume.number}/detail`"
+                  :key="index"
+                  v-for="(resume,index) in splitList"
+                >
+                  <div class="re-adm__interview-table-text">
+                    <div class="re-adm__interview-table-text-no">
+                      <p>{{index+1+(pageNum*pagecount - pagecount)}}</p>
+                    </div>
+                    <div class="re-adm__interview-table-text-title">
+                      <p>{{resume.resumeTitle}}</p>
+                    </div>
+                    <div class="re-adm__interview-table-text-volunteer">
+                      <p>{{resume.person}}</p>
+                    </div>
+                    <div class="re-adm__interview-table-text-possible">
+                      <p>가능</p>
+                    </div>
+                    <div class="re-adm__interview-table-text-on">
+                      <router-link :to="`list/${resume.number}/detail`">
+                        <button>면접 시작</button>
+                      </router-link>
+                    </div>
+                  </div>
+                </router-link>
+                <hr />
               </div>
-
-              <div class="re-adm__interview-table-text">
-                <div class="re-adm__interview-table-text-no">
-                  <p>2</p>
-                </div>
-                <div class="re-adm__interview-table-text-title">
-                  <p>안녕하십니까 프론트엔드 지원자 김명지 입니다!</p>
-                </div>
-                <div class="re-adm__interview-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-                <div class="re-adm__interview-table-text-possible">
-                  <p>가능</p>
-                </div>
-                <div class="re-adm__interview-table-text-on">
-                  <router-link to="/admin/progress/evaluation">
-                    <button>면접 시작</button>
-                  </router-link>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-table-text">
-                <div class="re-adm__interview-table-text-no">
-                  <p>3</p>
-                </div>
-                <div class="re-adm__interview-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-                <div class="re-adm__interview-table-text-impossible">
-                  <p>불가능</p>
-                </div>
-                <div class="re-adm__interview-table-text-on">
-                  <button>면접 시작</button>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-table-text">
-                <div class="re-adm__interview-table-text-no">
-                  <p>4</p>
-                </div>
-                <div class="re-adm__interview-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-                <div class="re-adm__interview-table-text-impossible">
-                  <p>불가능</p>
-                </div>
-                <div class="re-adm__interview-table-text-on">
-                  <button>면접 시작</button>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-table-text">
-                <div class="re-adm__interview-table-text-no">
-                  <p>5</p>
-                </div>
-                <div class="re-adm__interview-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-                <div class="re-adm__interview-table-text-impossible">
-                  <p>불가능</p>
-                </div>
-                <div class="re-adm__interview-table-text-on">
-                  <button>면접 시작</button>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-table-text">
-                <div class="re-adm__interview-table-text-no">
-                  <p>6</p>
-                </div>
-                <div class="re-adm__interview-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-                <div class="re-adm__interview-table-text-impossible">
-                  <p>불가능</p>
-                </div>
-                <div class="re-adm__interview-table-text-on">
-                  <button>면접 시작</button>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-table-text">
-                <div class="re-adm__interview-table-text-no">
-                  <p>7</p>
-                </div>
-                <div class="re-adm__interview-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-                <div class="re-adm__interview-table-text-impossible">
-                  <p>불가능</p>
-                </div>
-                <div class="re-adm__interview-table-text-on">
-                  <button>면접 시작</button>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-table-text">
-                <div class="re-adm__interview-table-text-no">
-                  <p>8</p>
-                </div>
-                <div class="re-adm__interview-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-                <div class="re-adm__interview-table-text-impossible">
-                  <p>불가능</p>
-                </div>
-                <div class="re-adm__interview-table-text-on">
-                  <button>면접 시작</button>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-table-text">
-                <div class="re-adm__interview-table-text-no">
-                  <p>9</p>
-                </div>
-                <div class="re-adm__interview-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-                <div class="re-adm__interview-table-text-impossible">
-                  <p>불가능</p>
-                </div>
-                <div class="re-adm__interview-table-text-on">
-                  <button>면접 시작</button>
-                </div>
-              </div>
-
-              <div class="re-adm__interview-table-text">
-                <div class="re-adm__interview-table-text-no">
-                  <p>10</p>
-                </div>
-                <div class="re-adm__interview-table-text-title">
-                  <p>이력서 제목</p>
-                </div>
-                <div class="re-adm__interview-table-text-volunteer">
-                  <p>김명지</p>
-                </div>
-                <div class="re-adm__interview-table-text-impossible">
-                  <p>불가능</p>
-                </div>
-                <div class="re-adm__interview-table-text-on">
-                  <button>면접 시작</button>
-                </div>
-              </div>
-
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">
-                  <a href="#">&laquo;</a>
-                  <a class="active" href="#">1</a>
-                  <a href="#">2</a>
-                  <a href="#">3</a>
-                  <a href="#">&raquo;</a>
+                  <a>&laquo;</a>
+                  <a
+                    v-for="unit in page"
+                    :key="`page-${unit}`"
+                    @click="pagination(unit)"
+                  >
+                    {{unit}}
+                  </a>
+                  <a>&raquo;</a>
                 </div>
               </div>
             </div>
@@ -314,6 +161,55 @@ export default {
     HeaderView,
     FooterView,
   },
+  data(){
+    return {
+      resumeList: [],
+      interviewList:[],
+      interviewNumber:{},
+      filteredList:[],
+      splitList:[],
+      pagecount:10,
+      pageNum:1,
+    };
+  },
+  computed:{
+    page(){
+      return Math.ceil(this.filteredList.length/10);
+    }
+  },
+  async created(){
+    const resumeText = await this.$axios.get(
+      this.$eMockUp + "/interview/resume"
+    );
+    this.resumeList = resumeText.data.resumelist;
+    const interviewText = await this.$axios.get(
+      this.$eMockUp+"/interview"
+    );
+    this.interviewList = interviewText.data.interview;
+    this.interviewNumber = this.interviewList.filter(
+      (v) => v.number === +this.$route.params.interviewId
+    )[0];
+    this.filteredList = this.resumeList.filter((v)=>v.interviewTitle === this.interviewNumber.title);
+    this.pagination(1);
+  },
+  methods:{
+    pagination(num){
+      let start=0;
+      let end=this.pagecount;
+      if(num===1){
+        this.splitList = this.filteredList.filter(
+          (v,i) => i >= start && i < end
+        );
+      }else {
+        start = this.pagecount * (num-1);
+        end = this.pagecount * num;
+        this.pageNum = num;
+        this.splitList = this.filteredList.filter(
+          (v,i) => i >= start && i < end
+        );
+      }
+    }
+  }
 };
 </script>
 

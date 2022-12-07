@@ -297,7 +297,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/progress/list",
+    path: "/admin/progress/:interviewId/list",
     name: "admin_interview_progress_list",
     component: () =>
       import(
@@ -305,7 +305,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/progress/evaluation",
+    path: "/admin/progress/:interviewId/list/:number/detail",
     name: "admin_interview_progress_evaluation",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/VideoMeeting.vue"),
