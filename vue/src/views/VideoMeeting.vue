@@ -10,7 +10,7 @@
               <p id="applicantName">지원자</p>
             </div>
             <div class="sideObject_value" id="objectValue_gray">
-              <p>김명지</p>
+              <p>{{ userName }}</p>
             </div>
           </div>
           <div class="sideArea_object">
@@ -144,6 +144,7 @@
 
 <script>
 import { initCall, toggleMute, toggleCamera, pc } from "@/plugins/stream";
+import router from "@/router";
 
 export default {
   data() {
@@ -172,6 +173,7 @@ export default {
       pcObj: {},
       videoHeight: 100,
       peerConnection: null,
+      userName: JSON.parse(localStorage.getItem("user")).name,
     };
   },
   methods: {
@@ -271,11 +273,17 @@ export default {
     leaveRoom() {
       this.socket.disconnect();
       this.myStream.getTracks().forEach((track) => track.stop());
+      router.push("/admin/progress/list");
     },
   },
-
   destroyed() {
     this.count();
+  },
+
+  updated() {
+    if (!this.peerVideo.length) {
+      this.isPeer = false;
+    }
   },
 
   async mounted() {
