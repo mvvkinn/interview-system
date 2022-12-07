@@ -117,7 +117,7 @@ vu
                   <p>가능</p>
                 </div>
                 <div class="re-adm__interview-table-text-on">
-                  <router-link to="/admin/progress/evaluation">
+                  <router-link to="/admin/progress/evaluation?roomName=room1">
                     <button>면접 시작</button>
                   </router-link>
                 </div>
@@ -308,6 +308,7 @@ vu
 <script>
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+
 export default {
   components: {
     HeaderView,
