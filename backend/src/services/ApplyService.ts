@@ -12,11 +12,11 @@ export default class ApplyService {
     this.userModel = db.models.User;
   }
 
-  public async create(email: IUser, name: IUser, id: IUser) {
+  public async create(email: IUser, name: IUser, id: IUser, title: IApply) {
     const today = new Date();
     const year = today.getFullYear();
     //19 = 임의의 Announcement.id(면접공고 id)
-    const array = [year, 19, id];
+    const array = [year, title, id];
     const interviewNumber = array.join("");
 
     await this.applyModel.create({

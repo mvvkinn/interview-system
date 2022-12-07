@@ -73,7 +73,7 @@ vu
           </nav>
           <article class="component__content">
             <div class="component__content-div">
-              <h1>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</h1>
+              <h1>{{ detail.title }}</h1>
               <div class="component__content--hr">
                 <div class="component__content-info">
                   <div class="component__content-info--div">
@@ -84,14 +84,14 @@ vu
                   <div class="component__content-info--div">
                     <p>날짜</p>
                     <hr />
-                    <p>2022/01/01</p>
+                    <p>{{ detail.date }}</p>
                     <hr />
                     <p>조회수</p>
                     <hr />
-                    <p>159</p>
+                    <p>{{ detail.view }}</p>
                   </div>
                 </div>
-                <img src="https://via.placeholder.com/1200x2080" alt="" />
+                <img v-bind:src="detail.image" alt="" />
                 <router-link
                   class="component__content-info--button"
                   to="/mypage/interview"
@@ -115,6 +115,23 @@ export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  data() {
+    return {
+      noticelist: [],
+      detail: {},
+    };
+  },
+
+  async created() {
+    const noticeText = await this.$axios.get(
+      "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/notice"
+    );
+    this.noticelist = noticeText.data.noticelist;
+    this.detail = this.noticelist.filter(
+      (v) => v.number === +this.$route.params.number
+    )[0];
+    console.log(this.detail);
   },
 };
 </script>

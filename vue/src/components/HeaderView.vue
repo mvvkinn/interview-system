@@ -11,7 +11,7 @@
     </div>
     <div class="header__column">
       <div class="header__title">
-        <h1>마이페이지</h1>
+        <h1>{{ title }}</h1>
       </div>
     </div>
 
@@ -36,6 +36,8 @@ export default {
   data() {
     return {
       name: "",
+      role: "",
+      title: "",
     };
   },
   computed: {
@@ -43,6 +45,12 @@ export default {
   },
   created() {
     this.name = JSON.parse(localStorage.getItem("user")).name;
+    this.role = JSON.parse(localStorage.getItem("user")).role;
+    if (this.role === "user") {
+      this.title = "마이페이지";
+    } else {
+      this.title = "관리자페이지";
+    }
   },
 };
 </script>
