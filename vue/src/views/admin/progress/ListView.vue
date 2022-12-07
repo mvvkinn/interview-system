@@ -110,7 +110,7 @@ vu
                 >
                   <div class="re-adm__interview-table-text">
                     <div class="re-adm__interview-table-text-no">
-                      <p>{{index+1+(pageNum*pagecount - pagecount)}}</p>
+                      <p>{{index+1+(pageNum*pageCount - pageCount)}}</p>
                     </div>
                     <div class="re-adm__interview-table-text-title">
                       <p>{{resume.resumeTitle}}</p>
@@ -168,7 +168,7 @@ export default {
       interviewNumber:{},
       filteredList:[],
       splitList:[],
-      pagecount:10,
+      pageCount:10,
       pageNum:1,
     };
   },
@@ -195,14 +195,15 @@ export default {
   methods:{
     pagination(num){
       let start=0;
-      let end=this.pagecount;
+      let end=this.pageCount;
       if(num===1){
         this.splitList = this.filteredList.filter(
           (v,i) => i >= start && i < end
         );
+        this.pageNum = num;
       }else {
-        start = this.pagecount * (num-1);
-        end = this.pagecount * num;
+        start = this.pageCount * (num-1);
+        end = this.pageCount * num;
         this.pageNum = num;
         this.splitList = this.filteredList.filter(
           (v,i) => i >= start && i < end
