@@ -58,9 +58,7 @@ export default {
     },
   },
   async created() {
-    const resumeText = await this.$axios.get(
-      "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/resume"
-    );
+    const resumeText = await this.$axios.get(this.$seolmockup + "/api/resume");
     this.resumelist = resumeText.data;
     this.education = this.resumelist.education;
     this.qualification = this.resumelist.qualification;

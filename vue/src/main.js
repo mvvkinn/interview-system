@@ -12,6 +12,8 @@ Vue.use(loadScript);
 Vue.use(VueCookies);
 
 Vue.prototype.$axios = axios;
+Vue.prototype.$seolmockup =
+  "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io";
 
 Vue.config.productionTip = false;
 
@@ -19,5 +21,5 @@ new Vue({
   loadScript,
   router,
   store,
-  render: h => h(App),
+  render: (h) => h(App),
 }).$mount("#app");

@@ -292,17 +292,13 @@ export default {
   },
 
   async created() {
-    const noticeText = await this.$axios.get(
-      "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/notice"
-    );
+    const noticeText = await this.$axios.get(this.$seolmockup + "/api/notice");
     this.noticelist = noticeText.data.noticelist;
     this.detail = this.noticelist.filter(
       (v) => v.number === +this.$route.params.number
     )[0];
 
-    const resumeText = await this.$axios.get(
-      "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/resume"
-    );
+    const resumeText = await this.$axios.get(this.$seolmockup + "/api/resume");
     this.resumelist = resumeText.data;
     this.education = this.resumelist.education;
     this.qualification = this.resumelist.qualification;
