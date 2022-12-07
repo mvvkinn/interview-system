@@ -198,19 +198,37 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/notice/interview/ApplySuccess.vue"
       ),
   },
-  // success
   {
-    path: "/success",
-    name: "success_search",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/success/SearchView.vue"),
-  },
-  {
-    path: "/success/result",
-    name: "success_result",
+    path: "/notice/detail/modal",
+    name: "notice_view_myResumeList",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/success/InterviewResult.vue"
+        /* webpackChunkName: "about" */ "../views/notice/interview/SelectResume.vue"
+      ),
+  },
+  {
+    path: "/notice/detail/modal/resume",
+    name: "notice_view_myResumeList_detail",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/notice/interview/ResumePriview.vue"
+      ),
+  },
+  // passcheck
+  {
+    path: "/passcheck",
+    name: "passcheck_search",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/passcheck/SearchView.vue"
+      ),
+  },
+  {
+    path: "/passcheck/result/:id",
+    name: "passcheck_result",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/passcheck/InterviewResult.vue"
       ),
   },
   // admin
@@ -223,11 +241,27 @@ const routes = [
       ),
   },
   {
+    path: "/admin/notice/detail/:number",
+    name: "admin_notice_list",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/notice/DetailView.vue"
+      ),
+  },
+  {
     path: "/admin/notice/write",
     name: "admin_notice_write",
     component: () =>
       import(
         /* webpackChunkName: "about" */ "../views/admin/notice/WriteView.vue"
+      ),
+  },
+  {
+    path: "/admin/notice/detail/:number/amend",
+    name: "admin_notice_amend",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/notice/AmendView.vue"
       ),
   },
   {
@@ -270,13 +304,19 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/admin/progress/ListView.vue"
       ),
   },
+  // {
+  //   path: "/admin/progress/evaluation",
+  //   name: "admin_interview_progress_evaluation",
+  //   component: () =>
+  //     import(
+  //       /* webpackChunkName: "about" */ "../views/admin/progress/InterviewEvaluation.vue"
+  //     ),
+  // },
   {
     path: "/admin/progress/evaluation",
     name: "admin_interview_progress_evaluation",
     component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../views/admin/progress/InterviewEvaluation.vue"
-      ),
+      import(/* webpackChunkName: "about" */ "../views/VideoMeeting.vue"),
   },
   {
     path: "/admin/content",
@@ -300,6 +340,20 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "about" */ "../views/admin/content/DetailView.vue"
+      ),
+  },
+  {
+    path: "/meeting",
+    name: "video_meeting",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/VideoMeeting.vue"),
+  },
+  {
+    path: "/meeting/offLine",
+    name: "offLine_meeting",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/content/InterviewView.vue"
       ),
   },
 ];

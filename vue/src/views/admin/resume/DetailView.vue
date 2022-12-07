@@ -18,10 +18,11 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>관리자 페이지</p>
+                  <p>관리자페이지</p>
                 </li>
               </router-link>
-              <router-link to="/success">
+              <!-- router link to = /success -->
+              <router-link to="/passcheck">
                 <li class="adm_nav__menu--li">
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -33,7 +34,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>합격자 조회</p>
+                  <p>합격자조회</p>
                 </li>
               </router-link>
               <router-link to="/admin/notice">
@@ -68,9 +69,7 @@
               <li class="adm__menu-ci">
                 <router-link to="/admin/progress">면접 진행</router-link>
               </li>
-              <li class="adm__menu-empty"></li>
-              <li class="adm__menu-empty"></li>
-              <li class="adm__menu-empty"></li>
+              <li></li>
             </ul>
           </nav>
           <article class="adm__rsm-content">
@@ -97,120 +96,118 @@
                   </div>
                 </div>
               </div>
-              <div class="adm__rsm-content-img">
-                <img v-bind:src="resumeDetail.img" alt="" />
+            </div>
+            <div class="adm_contentArea">
+              <img v-bind:src="resumeDetail.img" alt="" />
+              <div class="notice_component_tableArea">
+                <div class="notice_component_tableTitle">인적사항</div>
+                <div class="notice_componet_tableLine">
+                  <div class="tableComponent_title">이름</div>
+                  <div class="adm_tableComponent_value">{{resumeDetail.name}}</div>
+                  <div class="tableComponent_title">생년월일</div>
+                  <div class="adm_tableComponent_value">{{resumeDetail.birth}}</div>
+                </div>
+                <div class="notice_componet_tableLine">
+                  <div class="tableComponent_title">휴대폰</div>
+                  <div class="adm_tableComponent_value">{{resumeDetail.phone}}</div>
+                  <div class="tableComponent_title" id="emailTitle">E-mail</div>
+                  <div class="adm_tableComponent_value">{{resumeDetail.email}}</div>
+                </div>
+                <div class="notice_componet_tableLine" id="addressLine">
+                  <div class="tableComponent_title" id="addressTitle">주소</div>
+                  <div
+                    class="adm_tableComponent_value"
+                    id="adm_addressTextArea"
+                  >
+                    {{resumeDetail.address}}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="adm__rsm-content-pd">
-              <p class="adm__rsm-content-pd--title">인적사항</p>
-              <table class="adm__rsm-content-pd--table">
-                <tbody>
-                  <tr class="adm__rsm-content-pd--table-top">
-                    <th class="adm__rsm-content-pd--table--section-1">이름</th>
-                    <td class="adm__rsm-content-pd--table--section-2">
-                      {{resumeDetail.name}}
-                    </td>
-                    <th class="adm__rsm-content-pd--table--section-3">
-                      생년월일
-                    </th>
-                    <td class="adm__rsm-content-pd--table--section-4">
-                      {{resumeDetail.birth}}
-                    </td>
-                  </tr>
-                  <tr class="adm__rsm-content-pd--table-middle">
-                    <th class="adm__rsm-content-pd--table--section-1">
-                      휴대폰
-                    </th>
-                    <td class="adm__rsm-content-pd--table--section-2">
-                      {{resumeDetail.phone}}
-                    </td>
-                    <th class="adm__rsm-content-pd--table--section-3">
-                      E-mail
-                    </th>
-                    <td class="adm__rsm-content-pd--table--section-4">
-                      {{resumeDetail.email}}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="adm__rsm-content-pd--table--section-5">주소</th>
-                    <td class="adm__rsm-content-pd--table--section-6">
-                      {{resumeDetail.address}}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="adm__rsm-content-ei">
-              <p class="adm__rsm-content-ei--title">학력사항</p>
-              <table class="adm__rsm-content-ei--table">
-                <thead>
-                  <tr>
-                    <th class="adm__rsm-content-ei--table--section-1">기간</th>
-                    <th class="adm__rsm-content-ei--table--section-2">
-                      학교명
-                    </th>
-                    <th class="adm__rsm-content-ei--table--section-3">전공</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    :key="index"
-                    v-for="(education,index) in education"
+              <div class="notice_component_tableArea">
+                <div class="notice_component_tableTitle">학력사항</div>
+                <div class="notice_componet_tableLine">
+                  <div class="tableComponent_titleBlack" id="titleBlack_side">
+                    기간
+                  </div>
+                  <div class="tableComponent_titleBlack" id="titleBlack_center">
+                    학교명
+                  </div>
+                  <div class="tableComponent_titleBlack" id="titleBlack_side">
+                    전공
+                  </div>
+                </div>
+                <div class="notice_componet_tableLine" :key="index" v-for="(education,index) in education">
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
                   >
-                    <td class="adm__rsm-content-ei--table--section-1">
-                      {{education.period}}
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-2">
-                      {{education.schoolname}}
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-3">
-                      {{education.major}}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="adm__rsm-content-et">
-              <p class="adm__rsm-content-et--title">자격 및 교육 사항</p>
-              <table class="adm__rsm-content-et--table">
-                <thead>
-                  <tr>
-                    <th class="adm__rsm-content-et--table--section-1">기간</th>
-                    <th class="adm__rsm-content-et--table--section-2">
-                      자격 및 교육명
-                    </th>
-                    <th class="adm__rsm-content-et--table--section-3">등급</th>
-                    <th class="adm__rsm-content-et--table--section-4">
-                      발행기관
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    :key="index"
-                    v-for="(qualification,index) in qualification"
+                    {{education.period}}
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_center"
                   >
-                    <td class="adm__rsm-content-et--table--section-1">
-                      {{qualification.date}}
-                    </td>
-                    <td class="adm__rsm-content-et--table--section-2">
-                      {{qualification.education_name}}
-                    </td>
-                    <td class="adm__rsm-content-et--table--section-3">
-                      {{qualification.class}}
-                    </td>
-                    <td class="adm__rsm-content-et--table--section-4">
-                      {{qualification.institution}}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="adm__rsm-content-btn">
-              <router-link :to="`/admin/resume/${interviewId}/list`">
-                <button>목록으로</button>
-              </router-link>
-              <hr class="adm__rsm-content-hr" />
+                    {{education.schoolname}}
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    {{education.major}}
+                  </div>
+                </div>
+              </div>
+              <div class="notice_component_tableArea">
+                <div class="notice_component_tableTitle">자격 및 교육사항</div>
+                <div class="notice_componet_tableLine">
+                  <div class="tableComponent_titleBlack" id="titleBlack_side">
+                    취득일자
+                  </div>
+                  <div
+                    class="tableComponent_titleBlack"
+                    id="titleBlack_classname"
+                  >
+                    자격 및 교육명
+                  </div>
+                  <div class="tableComponent_titleBlack" id="titleBlack_rating">
+                    등급
+                  </div>
+                  <div class="tableComponent_titleBlack" id="titleBlack_side">
+                    발행기관
+                  </div>
+                </div>
+                <div class="notice_componet_tableLine" :key="index" v-for="(qualification,index) in qualification>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    {{qualification.date}}
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_classname"
+                  >
+                    {{qualification.education_name}}
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_rating"
+                  >
+                    {{qualification.class}}
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    {{qualification.institution}}
+                  </div>
+                </div>
+              </div>
+              <div class="component__content-column-notice">
+                <router-link :to="`/admin/resume/${interviewId}/list`">
+                  <button id="notice_blackBtn">목록으로</button>
+                </router-link>
+              </div>
             </div>
           </article>
         </section>

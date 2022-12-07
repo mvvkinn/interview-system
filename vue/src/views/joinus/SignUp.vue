@@ -12,18 +12,17 @@
             <form class="info_area" v-on:submit.prevent="submitForm">
               <div class="info_line">
                 <div class="info_empty"></div>
-                <div class="info_name_area"><p>아이디*</p></div>
+                <div class="info_name_area"><p>이메일*</p></div>
                 <div class="info_input_area">
                   <input
-                    v-model="username"
-                    ref="username"
+                    v-model="email"
+                    ref="email"
                     type="text"
-                    class="info_input_text"
-                    :class="{ error: inputError.username }"
-                    placeholder="아이디를 입력해주세요."
+                    class="info_input_text_2"
+                    :class="{ error: inputError.email }"
+                    @blur="isEmail"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
-                  <div class="info_value_btn">중복 확인</div>
                 </div>
               </div>
               <div class="info_line">
@@ -117,36 +116,6 @@
               </div>
               <div class="info_line">
                 <div class="info_empty"></div>
-                <div class="info_name_area"><p>이메일*</p></div>
-                <div class="info_input_area">
-                  <input
-                    v-model="email"
-                    ref="email"
-                    type="text"
-                    class="info_input_text_2"
-                    :class="{ error: inputError.email }"
-                  />
-                  <p class="error_txt">{{ inputErrorMsg }}</p>
-                  <p class="email_center">@</p>
-                  <input
-                    type="text"
-                    class="info_input_text_2"
-                    :value="domain"
-                  />
-                  <select
-                    name="email_back"
-                    class="email_select"
-                    @change="changeDomain"
-                  >
-                    <option value="">직접입력</option>
-                    <option value="naver.com">naver.com</option>
-                    <option value="daum.net">daum.net</option>
-                    <option value="gmail.com">gmail.com</option>
-                  </select>
-                </div>
-              </div>
-              <div class="info_line">
-                <div class="info_empty"></div>
                 <div class="info_name_area"><p>주소*</p></div>
                 <div class="info_input_area">
                   <input
@@ -156,9 +125,12 @@
                     class="info_input_text"
                     maxlength="5"
                     :class="{ error: inputError.zipcode }"
+                    @input="checkInput($event, 'number')"
                   />
                   <p class="error_txt">{{ inputErrorMsg }}</p>
-                  <div class="info_value_btn">우편번호</div>
+                  <button class="info_value_btn" @click="execDaumPostcode">
+                    우편번호
+                  </button>
                 </div>
               </div>
               <div class="info_line">
@@ -233,10 +205,16 @@
 <script>
 import HeaderView from "@/components/auth/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+import { store } from "@/store";
 export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  mounted() {
+    this.$loadScript(
+      "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+    );
   },
   data() {
     return {
@@ -247,18 +225,16 @@ export default {
       birthdate: "",
       phone: "",
       email: "",
-      domain: "",
       zipcode: "",
       address: "",
       isAgree: true,
       isEmpty: false,
       inputError: {
-        username: false,
+        email: false,
         password: false,
         name: false,
         birthdate: false,
         phone: false,
-        email: false,
         zipcode: false,
         address: false,
       },
@@ -274,11 +250,6 @@ export default {
     };
   },
   watch: {
-    username() {
-      if (this.username.trim() !== "") {
-        this.inputError.username = false;
-      }
-    },
     password() {
       if (this.password.trim() !== "") {
         this.inputError.password = false;
@@ -322,13 +293,12 @@ export default {
   methods: {
     async submitForm() {
       const data = {
-        username: this.username,
+        email: this.email,
         password: this.password,
         name: this.name,
         gender: this.gender,
         birthdate: this.birthdate,
         phone: this.phone,
-        email: this.email === "" ? this.email : this.email + "@" + this.domain,
         zipcode: this.zipcode,
         address: this.address,
         recieve_info: this.isAgree,
@@ -341,9 +311,9 @@ export default {
             this.isEmpty = true;
             switch (+i) {
               case 0:
-                this.$refs.username.focus();
-                this.inputError.username = true;
-                this.inputErrorMsg = "아이디를 확인해주세요.";
+                this.$refs.email.focus();
+                this.inputError.email = true;
+                this.inputErrorMsg = "이메일을 확인해주세요.";
                 break focus;
               case 1:
                 this.$refs.password.focus();
@@ -366,16 +336,11 @@ export default {
                 this.inputErrorMsg = "전화번호를 확인해주세요.";
                 break focus;
               case 6:
-                this.$refs.email.focus();
-                this.inputError.email = true;
-                this.inputErrorMsg = "이메일을 확인해주세요.";
-                break focus;
-              case 7:
                 this.$refs.zipcode.focus();
                 this.inputError.zipcode = true;
                 this.inputErrorMsg = "우편번호를 확인해주세요.";
                 break focus;
-              case 8:
+              case 7:
                 this.$refs.address.focus();
                 this.inputError.address = true;
                 this.inputErrorMsg = "주소를 확인해주세요.";
@@ -392,12 +357,8 @@ export default {
           .post("/auth/signup", JSON.stringify(data), {
             headers: { "Content-Type": "application/json" },
           })
-          .then((res) => {
-            console.log(res);
+          .then(() => {
             this.$router.push("/signup/success");
-          })
-          .catch((error) => {
-            console.log(error);
           });
       }
     },
@@ -408,12 +369,44 @@ export default {
       }
 
       if (role === "dash") {
-        this.phone = e.target.value.replace(/-/g, "");
+        this.phone = e.target.value.replace(/-|\D/g, "");
         e.target.value = this.phone;
       }
+
+      if (role === "number") {
+        this.zipcode = e.target.value.replace(this.regexp.number, "");
+        e.target.value = this.zipcode;
+      }
     },
-    changeDomain(e) {
-      this.domain = e.target.value;
+    isEmail() {
+      const data = {
+        email: this.email,
+      };
+      store.dispatch("isDuplicate", { ...data }).then(res => {
+        if (res) {
+          this.inputError.email = true;
+          this.inputErrorMsg = "이미 사용중인 이메일입니다.";
+        } else {
+          this.inputError.email = false;
+        }
+      });
+    },
+    execDaumPostcode(e) {
+      e.preventDefault();
+      new window.daum.Postcode({
+        oncomplete: data => {
+          if (data.userSelectedType === "R") {
+            // 사용자가 도로명 주소를 선택했을 경우
+            this.address = data.roadAddress;
+          } else {
+            // 사용자가 지번 주소를 선택했을 경우(J)
+            this.address = data.jibunAddress;
+          }
+          // 우편번호를 입력한다.
+          this.zipcode = data.zonecode;
+        },
+      }).open();
+      this.$refs.address.focus();
     },
   },
   computed: {},

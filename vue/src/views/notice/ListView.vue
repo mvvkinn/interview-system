@@ -19,10 +19,11 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  마이페이지
+                  <p>마이페이지</p>
                 </li>
               </router-link>
-              <router-link to="/success">
+              <!-- router link to = /success -->
+              <router-link to="/passcheck">
                 <li>
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -34,7 +35,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  합격자조회
+                  <p>합격자조회</p>
                 </li>
               </router-link>
               <router-link to="/notice">
@@ -49,7 +50,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  면접 공지
+                  <p>면접 공지</p>
                 </li>
               </router-link>
             </ul>
