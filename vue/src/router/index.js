@@ -288,12 +288,6 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/admin/progress/ListView.vue"
       ),
   },
-  // {
-  //   path: "/admin/progress/test",
-  //   name: "admin_interview_progress_test",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/Test.vue"),
-  // },
   {
     path: "/admin/progress/evaluation",
     name: "admin_interview_progress_evaluation",

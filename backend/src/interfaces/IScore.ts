@@ -1,5 +1,4 @@
 export interface IScore {
-  // score_id: number;
   score_id: string;
   question_one: string;
   question_two: string;

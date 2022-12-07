@@ -28,10 +28,8 @@ export default async (sequelizeInstance: Sequelize) => {
     onDelete: "cascade",
     onUpdate: "cascade",
   });
-  //   userModel.hasMany(applyModel, { foreignKey: "user_name", sourceKey: "name" });
 
   applyModel.belongsTo(userModel);
-  //   applyModel.belongsTo(userModel);
 
   await sequelizeInstance.sync();
 };

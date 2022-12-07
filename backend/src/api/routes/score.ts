@@ -1,5 +1,4 @@
 import { Router, Request, Response, NextFunction } from "express";
-// import { IUser } from "@interfaces/IUser";
 import { IScore } from "@interfaces/IScore";
 import ScoreService from "@services/ScoreService";
 import Container from "typedi";
@@ -14,13 +13,9 @@ export default (app: Router) => {
   app.use("/score", route);
 
   route.get("/read/:id", async (req, res, next) => {
-    // const id = req.params;
     try {
       const scoreServiceInstance = new ScoreService();
       const result = await scoreServiceInstance.find(req.params.id);
-      // console.log(result);
-      // console.log(req.params);
-      // logger.info(`${req}`);
       res.status(201).json(result);
     } catch (e) {
       logger.error(e);
@@ -33,11 +28,8 @@ export default (app: Router) => {
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const ScoreDTO: IScore = req.body;
-
         const scoreServiceInstance = new ScoreService();
         const result = await scoreServiceInstance.created(ScoreDTO);
-        console.log(result);
-        logger.info("post는 뜨나 확인");
         res.status(201).send(result);
       } catch (e) {
         logger.error(e);
