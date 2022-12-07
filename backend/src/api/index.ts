@@ -1,4 +1,5 @@
 import { Router } from "express";
+import apply from "./routes/apply";
 import auth from "./routes/auth";
 import score from "./routes/score";
 import test from "./routes/test";
@@ -11,6 +12,7 @@ export default () => {
   views(app);
   auth(app);
   score(app);
+  apply(app);
 
   return app;
 };

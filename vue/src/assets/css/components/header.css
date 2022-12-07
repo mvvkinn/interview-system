@@ -24,6 +24,10 @@ header {
   /* width: 171px; */
 }
 
+#header_logoImg {
+  width: 130px;
+}
+
 .header__column:nth-child(2) {
   display: flex;
   justify-content: center;
@@ -70,4 +74,8 @@ header {
   font-size: 14px;
   border-style: none;
   cursor: pointer;
+}
+
+.component__header-menu--button {
+  margin-left: 20px;
 }

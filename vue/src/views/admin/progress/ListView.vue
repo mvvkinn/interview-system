@@ -22,7 +22,8 @@ vu
                   <p>관리자 페이지</p>
                 </li>
               </router-link>
-              <router-link to="/success">
+              <!-- router link to = /success -->
+              <router-link to="/passcheck">
                 <li class="adm_nav__menu--li">
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -69,9 +70,7 @@ vu
               <li class="adm__menu-ci active">
                 <router-link to="/admin/progress">면접 진행</router-link>
               </li>
-              <li class="adm__menu-empty"></li>
-              <li class="adm__menu-empty"></li>
-              <li class="adm__menu-empty"></li>
+              <li></li>
             </ul>
           </nav>
           <article class="re-adm">
@@ -124,9 +123,9 @@ vu
                   <p>가능</p>
                 </div>
                 <div class="re-adm__interview-table-text-on">
-                  <!-- <router-link to="/admin/progress/evaluation"> -->
+                  <router-link to="/admin/progress/evaluation?roomName=room1">
                     <button>면접 시작</button>
-                  <!-- </router-link> -->
+                  </router-link>
                 </div>
               </div>
 
@@ -147,7 +146,9 @@ vu
                   <!-- <router-link to="/admin/progress/evaluation">
                     <button>면접 시작</button>
                   </router-link> -->
-                  <button @click="handel_toggle" type="button">면접 시작</button>
+                  <button @click="handel_toggle" type="button">
+                    면접 시작
+                  </button>
                 </div>
               </div>
 
@@ -308,9 +309,8 @@ vu
           </article>
         </section>
       </div>
-                 
     </main>
-    
+
     <FooterView />
   </div>
 </template>
@@ -318,37 +318,31 @@ vu
 <script>
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
-// import Modal from "@/views/admin/progress/InterviewEvaluation.vue";
 export default {
-  data(){
+  data() {
     return {
       is_show: false,
       score: [],
-    }
+    };
   },
   components: {
     HeaderView,
     FooterView,
   },
-  methods:{
-    handel_toggle: function(){
+  methods: {
+    handel_toggle: function () {
       this.is_show = !this.is_show;
-    }
+    },
   },
-  async created(){
-    // const scoreText = await this.$axios.get("http://localhost:3000/score/");
-    // this.score = scoreText.data;
-    // console.log(this.score);
-  }
 };
 </script>
 
 <style>
-  .modal {
-    position: relative;
-    z-index: 10;
-    /* top: 40px; */
-    background-color: black;
-    color: white;
-  }
+.modal {
+  position: relative;
+  z-index: 10;
+  /* top: 40px; */
+  background-color: black;
+  color: white;
+}
 </style>

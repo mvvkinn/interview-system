@@ -331,10 +331,12 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/VideoMeeting.vue"),
   },
   {
-    path: "/score",
-    name: "score",
+    path: "/meeting/offLine",
+    name: "offLine_meeting",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/TestView.vue"),
+      import(
+        /* webpackChunkName: "about" */ "../views/admin/content/InterviewView.vue"
+      ),
   },
 ];
 

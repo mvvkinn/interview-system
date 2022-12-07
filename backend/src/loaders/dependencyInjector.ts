@@ -1,6 +1,8 @@
 import { Sequelize } from "sequelize";
 import { Container } from "typedi";
 import LoggerInstance from "./logger";
+import socketIOInstance from "./socket.io";
+import Apply from "@models/Apply";
 import { Server } from "http";
 import models from "@models/index";
 import Score from "@models/Score";
@@ -11,9 +13,11 @@ export default async (sequelizeInstance: Sequelize, httpServer: Server) => {
 
   Container.set("db", sequelizeInstance);
 
-  await models(sequelizeInstance);
+  models(sequelizeInstance);
 
-  Container.set("scoreModel",Score(sequelizeInstance));
-  Container.set("userModel",User(sequelizeInstance));
+  Container.set("applyModel", Apply(sequelizeInstance));
+  Container.set("userModel", User(sequelizeInstance));
 
+  Container.set("scoreModel", Score(sequelizeInstance));
+  Container.set("userModel", User(sequelizeInstance));
 };
