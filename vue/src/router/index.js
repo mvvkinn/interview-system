@@ -146,7 +146,7 @@ const routes = [
       ),
   },
   {
-    path: "/mypage/interview/detail",
+    path: "/mypage/interview/detail/:number",
     name: "mypage_apply_detail",
     component: () =>
       import(

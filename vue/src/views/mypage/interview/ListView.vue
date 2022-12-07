@@ -76,28 +76,26 @@ vu
               <h1>지원한 면접 목록</h1>
               <div class="component__content--hr">
                 <div class="component__list">
-                  <div class="component__list-div">
+                  <div class="component__list-div" v-if="noticelist.length">
                     <router-link
-                      to="/mypage/interview/detail"
+                      :to="`/mypage/interview/detail/${noticelist[6].number}`"
                       class="component__list-column"
                     >
                       <div class="component__list-column--text">
                         <h1>
-                          [추천채용] [허브디앤씨] 웹/앱 개발 신입/경력 개발자
-                          채용
+                          {{ noticelist[6].title }}
                           <p>화상면접 진행가능</p>
                         </h1>
                         <p>지원일 : 2022/11/28</p>
                       </div>
                     </router-link>
                     <router-link
-                      to="/mypage/interview/detail"
+                      :to="`/mypage/interview/detail/${noticelist[3].number}`"
                       class="component__list-column"
                     >
                       <div class="component__list-column--text">
                         <h1>
-                          [추천채용] [패스오더] 급성장중인 스타트업 'Web
-                          Front-End 개발자' 채용
+                          {{ noticelist[3].title }}
                         </h1>
                         <p>지원일 : 2022/12/8</p>
                       </div>
@@ -124,6 +122,18 @@ export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  data() {
+    return {
+      noticelist: [],
+    };
+  },
+  async created() {
+    const noticeText = await this.$axios.get(
+      "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/notice"
+    );
+    this.noticelist = noticeText.data.noticelist;
+    console.log(this.noticelist.length);
   },
 };
 </script>
