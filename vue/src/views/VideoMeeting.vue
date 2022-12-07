@@ -295,7 +295,6 @@ export default {
     this.resumeNumber = this.resumeList.filter(
       (v) => v.number === +this.$route.params.number
     )[0];
-    console.log(+this.$route.params);
   },
   methods: {
     // Interview Timer
@@ -460,7 +459,6 @@ export default {
         case 1:
           this.score_one = e.target.value.replace(/\D{0,3}$/g, "");
           e.target.value = this.score_one;
-          console.log(e.target);
           break;
         case 2:
           this.score_two = e.target.value.replace(/\D[0,100]{0,3}$/g, "");
