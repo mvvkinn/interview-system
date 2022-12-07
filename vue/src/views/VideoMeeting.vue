@@ -10,7 +10,7 @@
               <p id="applicantName">지원자</p>
             </div>
             <div class="sideObject_value" id="objectValue_gray">
-              <p>{{ userName }}</p>
+              <p>{{resumeNumber.person}}</p>
             </div>
           </div>
           <div class="sideArea_object">
@@ -75,7 +75,7 @@
               <p id="online_boldText">면접명</p>
             </div>
             <div class="scoreBoaed_value">
-              <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p>
+              <p>{{resumeNumber.interviewTitle}}</p>
             </div>
           </div>
           <div class="scoreBoard_topArea" id="topArea_standard">
@@ -251,6 +251,8 @@ export default {
       videoHeight: 100,
       peerConnection: null,
       userName: JSON.parse(localStorage.getItem("user")).name,
+      resumeList: [],
+      resumeNumber: [],
     };
   },
   watch: {
@@ -284,6 +286,16 @@ export default {
         this.inputError.score_three = false;
       }
     },
+  },
+  async created(){
+    const resumeText = await this.$axios.get(
+      this.$eMockUp + "/interview/resume"
+    );
+    this.resumeList = resumeText.data.resumelist;
+    this.resumeNumber = this.resumeList.filter(
+      (v) => v.number === +this.$route.params.number
+    )[0];
+    console.log(+this.$route.params);
   },
   methods: {
     // Interview Timer
