@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -75,7 +74,9 @@ vu
           </nav>
           <article class="adm__rsm-content">
             <div class="adm__rsm-content-div">
-              <h1>안녕하십니까 프론트엔드 지원지 김명지 입니다!</h1>
+              <h1>
+                {{resumeNumber.resumeTitle}}
+              </h1>
               <div class="adm__rsm-content--hr">
                 <div class="adm__rsm-content-info">
                   <div class="adm__rsm-content-info--div-1">
@@ -83,7 +84,7 @@ vu
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-2">
-                    <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p>
+                    <p>{{resumeNumber.interviewTitle}}</p>
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-3">
@@ -91,27 +92,26 @@ vu
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-4">
-                    <p>김명지</p>
+                    <p>{{resumeNumber.person}}</p>
                   </div>
-                  <!-- <hr> -->
                 </div>
               </div>
             </div>
             <div class="adm_contentArea">
-              <img src="https://via.placeholder.com/297x358" alt="" />
+              <img v-bind:src="resumeDetail.img" alt="" />
               <div class="notice_component_tableArea">
                 <div class="notice_component_tableTitle">인적사항</div>
                 <div class="notice_componet_tableLine">
                   <div class="tableComponent_title">이름</div>
-                  <div class="adm_tableComponent_value">-</div>
+                  <div class="adm_tableComponent_value">{{resumeDetail.name}}</div>
                   <div class="tableComponent_title">생년월일</div>
-                  <div class="adm_tableComponent_value">-</div>
+                  <div class="adm_tableComponent_value">{{resumeDetail.birth}}</div>
                 </div>
                 <div class="notice_componet_tableLine">
                   <div class="tableComponent_title">휴대폰</div>
-                  <div class="adm_tableComponent_value">-</div>
+                  <div class="adm_tableComponent_value">{{resumeDetail.phone}}</div>
                   <div class="tableComponent_title" id="emailTitle">E-mail</div>
-                  <div class="adm_tableComponent_value">-</div>
+                  <div class="adm_tableComponent_value">{{resumeDetail.email}}</div>
                 </div>
                 <div class="notice_componet_tableLine" id="addressLine">
                   <div class="tableComponent_title" id="addressTitle">주소</div>
@@ -119,7 +119,7 @@ vu
                     class="adm_tableComponent_value"
                     id="adm_addressTextArea"
                   >
-                    -
+                    {{resumeDetail.address}}
                   </div>
                 </div>
               </div>
@@ -136,64 +136,24 @@ vu
                     전공
                   </div>
                 </div>
-                <div class="notice_componet_tableLine">
+                <div class="notice_componet_tableLine" :key="index" v-for="(education,index) in education">
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_side"
                   >
-                    -
+                    {{education.period}}
                   </div>
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_center"
                   >
-                    -
+                    {{education.schoolname}}
                   </div>
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_side"
                   >
-                    -
-                  </div>
-                </div>
-                <div class="notice_componet_tableLine">
-                  <div
-                    class="adm_tableComponent_valueBlack"
-                    id="adm_valueBlack_side"
-                  >
-                    -
-                  </div>
-                  <div
-                    class="adm_tableComponent_valueBlack"
-                    id="adm_valueBlack_center"
-                  >
-                    -
-                  </div>
-                  <div
-                    class="adm_tableComponent_valueBlack"
-                    id="adm_valueBlack_side"
-                  >
-                    -
-                  </div>
-                </div>
-                <div class="notice_componet_tableLine">
-                  <div
-                    class="adm_tableComponent_valueBlack"
-                    id="adm_valueBlack_side"
-                  >
-                    -
-                  </div>
-                  <div
-                    class="adm_tableComponent_valueBlack"
-                    id="adm_valueBlack_center"
-                  >
-                    -
-                  </div>
-                  <div
-                    class="adm_tableComponent_valueBlack"
-                    id="adm_valueBlack_side"
-                  >
-                    -
+                    {{education.major}}
                   </div>
                 </div>
               </div>
@@ -216,35 +176,35 @@ vu
                     발행기관
                   </div>
                 </div>
-                <div class="notice_componet_tableLine">
+                <div class="notice_componet_tableLine" :key="index" v-for="(qualification,index) in qualification>
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_side"
                   >
-                    -
+                    {{qualification.date}}
                   </div>
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_classname"
                   >
-                    -
+                    {{qualification.education_name}}
                   </div>
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_rating"
                   >
-                    -
+                    {{qualification.class}}
                   </div>
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_side"
                   >
-                    -
+                    {{qualification.institution}}
                   </div>
                 </div>
               </div>
               <div class="component__content-column-notice">
-                <router-link to="/admin/resume/list">
+                <router-link :to="`/admin/resume/${interviewId}/list`">
                   <button id="notice_blackBtn">목록으로</button>
                 </router-link>
               </div>
@@ -265,7 +225,54 @@ export default {
     HeaderView,
     FooterView,
   },
+  data(){
+    return {
+      detailList: {},
+      resumeList:{},
+      resumeNumber:{},
+      resumeDetail:[],
+      education: [],
+      qualification: [],
+      interviewList:{},
+      interviewNumber: {},
+      interviewId:{},
+    }
+  },
+  async created(){
+      const detailText = await this.$axios.get(
+         "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io/interview/resume/detail"
+       );
+       this.detailList = detailText.data.detail;
+
+       const resumeText = await this.$axios.get(
+        "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io/interview/resume"
+      );
+      this.resumeList = resumeText.data.resumelist;
+      this.resumeNumber = this.resumeList.filter(
+      (v) => v.number === +this.$route.params.number
+    )[0];
+
+    this.resumeDetail = this.detailList.filter((v)=>v.title === this.resumeNumber.resumeTitle)[0];
+    
+    this.education = this.resumeDetail.education;
+    this.qualification = this.resumeDetail.qualification;
+
+    const interviewText = await this.$axios.get(
+      "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io/interview"
+    );
+
+    this.interviewList = interviewText.data.interview;
+
+    this.interviewNumber = this.interviewList.filter(
+      (v) => v.number === +this.$route.params.interviewId
+    )[0];
+    
+    this.interviewId = this.interviewNumber.number;
+
+    },
+
 };
 </script>
 
 <style></style>
+

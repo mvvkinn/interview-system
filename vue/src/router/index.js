@@ -273,7 +273,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/resume/list",
+    path: "/admin/resume/:interviewId/list",
     name: "admin_interview_resume",
     component: () =>
       import(
@@ -281,7 +281,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/resume/detail",
+    path: "/admin/resume/:interviewId/list/:number/detail",
     name: "admin_interview_resume_detail",
     component: () =>
       import(
