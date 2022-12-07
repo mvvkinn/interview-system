@@ -96,7 +96,7 @@ export const store = new Vuex.Store({
     // },
     score: async ({ commit }, params) => {
       return await axios
-        .post("./score/test", params)
+        .post("/score/test", params)
         .then((res) => {
           commit("email", res.data.email);
           router.push("/score");
