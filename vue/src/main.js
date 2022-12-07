@@ -13,11 +13,14 @@ Vue.use(VueCookies);
 
 Vue.prototype.$axios = axios;
 
+Vue.prototype.$eMockUp =
+  "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io";
+
 Vue.config.productionTip = false;
 
 new Vue({
   loadScript,
   router,
   store,
-  render: h => h(App),
+  render: (h) => h(App),
 }).$mount("#app");

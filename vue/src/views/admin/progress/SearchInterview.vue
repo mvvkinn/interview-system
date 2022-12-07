@@ -79,18 +79,26 @@ vu
               <hr />
               <div class="adm__rsm-form">
                 <p>목록을 불러올 면접을 선택하세요.</p>
-                <select name="rsm" id="rsm-select">
+                <select name="rsm" id="rsm-select" @change="changeValue">
                   <option value="">면접을 선택하세요</option>
-                  <option value="a">a</option>
-                  <option value="b">b</option>
-                  <option value="c">c</option>
-                  <option value="d">d</option>
-                  <option value="e">e</option>
-                  <option value="f">f</option>
+                  <option 
+                    :value="interview.number"
+                    :key="index"
+                    v-for="(interview,index) in interviewList"
+                  >
+                  {{interview.title}}
+                  </option>
                 </select>
-                <router-link to="/admin/progress/list">
-                  <button>조회하기</button></router-link
-                >
+                <div id="btn">
+                  <div v-if="interviewNum===0">
+                    <button @click="errorMessage">조회하기</button>
+                  </div>
+                  <div v-else>
+                    <router-link :to="`/admin/progress/${interviewNum}/list`">
+                      <button>조회하기</button>
+                    </router-link>
+                  </div>
+                </div>
               </div>
               <hr />
             </div>
@@ -110,6 +118,26 @@ export default {
     HeaderView,
     FooterView,
   },
+  data(){
+     return {
+       interviewList: [],
+       interviewNum: 0,
+     };
+   },
+   async created(){
+     const interviewText = await this.$axios.get(
+      this.$eMockUp+"/interview"
+     );
+     this.interviewList = interviewText.data.interview;
+   },
+   methods:{
+    changeValue(e){
+      this.interviewNum = e.target.value;
+    },
+    errorMessage(){
+      alert('면접을 선택해주세요')
+    }
+   }
 };
 </script>
 

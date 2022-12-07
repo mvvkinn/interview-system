@@ -149,6 +149,17 @@
               </div>
               <div class="info_line">
                 <div class="info_empty"></div>
+                <div class="info_name_area"><p>역할*</p></div>
+                <div class="info_input_area">
+                  <select v-model="role">
+                    <option value="user">면접자</option>
+                    <option value="recruiter">면접관</option>
+                    <option value="admin">관리자</option>
+                  </select>
+                </div>
+              </div>
+              <div class="info_line">
+                <div class="info_empty"></div>
                 <div class="info_name_area"><p>수신 동의*</p></div>
                 <div class="info_input_area">
                   <label class="label_agree">
@@ -227,6 +238,7 @@ export default {
       email: "",
       zipcode: "",
       address: "",
+      role: "",
       isAgree: true,
       isEmpty: false,
       inputError: {
@@ -302,6 +314,7 @@ export default {
         zipcode: this.zipcode,
         address: this.address,
         recieve_info: this.isAgree,
+        role: this.role,
       };
 
       const arrayValue = Object.values(data);
@@ -351,8 +364,11 @@ export default {
           }
         }
       }
+      console.log(this.isEmpty);
+      console.log(this.role);
 
       if (this.isEmpty === false) {
+        console.log("hi");
         await this.$axios
           .post("/auth/signup", JSON.stringify(data), {
             headers: { "Content-Type": "application/json" },
@@ -382,7 +398,7 @@ export default {
       const data = {
         email: this.email,
       };
-      store.dispatch("isDuplicate", { ...data }).then(res => {
+      store.dispatch("isDuplicate", { ...data }).then((res) => {
         if (res) {
           this.inputError.email = true;
           this.inputErrorMsg = "이미 사용중인 이메일입니다.";
@@ -394,7 +410,7 @@ export default {
     execDaumPostcode(e) {
       e.preventDefault();
       new window.daum.Postcode({
-        oncomplete: data => {
+        oncomplete: (data) => {
           if (data.userSelectedType === "R") {
             // 사용자가 도로명 주소를 선택했을 경우
             this.address = data.roadAddress;
@@ -439,5 +455,9 @@ input:focus {
   position: absolute;
   top: 50px;
   color: red !important;
+}
+
+.info_input_area select {
+  height: 35px;
 }
 </style>

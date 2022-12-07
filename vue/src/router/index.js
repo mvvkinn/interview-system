@@ -297,23 +297,15 @@ const routes = [
       ),
   },
   {
-    path: "/admin/progress/list",
+    path: "/admin/progress/:interviewId/list",
     name: "admin_interview_progress_list",
     component: () =>
       import(
         /* webpackChunkName: "about" */ "../views/admin/progress/ListView.vue"
       ),
   },
-  // {
-  //   path: "/admin/progress/evaluation",
-  //   name: "admin_interview_progress_evaluation",
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "about" */ "../views/admin/progress/InterviewEvaluation.vue"
-  //     ),
-  // },
   {
-    path: "/admin/progress/evaluation",
+    path: "/admin/progress/:interviewId/list/:number/detail",
     name: "admin_interview_progress_evaluation",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/VideoMeeting.vue"),
@@ -339,7 +331,7 @@ const routes = [
     name: "admin_interview_content_detail",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/admin/content/DetailView.vue"
+        /* webpackChunkName: "about" */ "../views/admin/content/InterviewView.vue"
       ),
   },
   {
