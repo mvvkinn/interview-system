@@ -6,6 +6,8 @@ import { Router } from "express";
 import jwt from "jsonwebtoken";
 import { Logger } from "winston";
 import Container from "typedi";
+import { stringify } from "querystring";
+import { token } from "morgan";
 
 const ACCESS_SECRET = "accesssecret";
 const REFRESH_SECRET = "refreshsecret";
@@ -19,7 +21,7 @@ route.use(express.urlencoded({ extended: true }));
 export default (app: Router) => {
   const logger: Logger = Container.get("logger");
   app.use("/auth", route);
-  route.post("/getQr", async (req: Request, res: Response) => {
+  route.post("/TokenIssued", async (req: Request, res: Response) => {
     try {
       const input_text = req.body;
 
@@ -52,7 +54,7 @@ export default (app: Router) => {
     }
   });
 
-  route.post("/getQr1", (req: Request, res: Response, next: NextFunction) => {
+  route.post("/QrIssued", (req: Request, res: Response, next: NextFunction) => {
     QRCode.toDataURL(accessToken, (err: any, src: string) => {
       console.log(src);
       res.sendFile(__dirname + "/views/home.html", {
@@ -64,4 +66,25 @@ export default (app: Router) => {
       res.end(img);
     });
   });
+
+  //토큰 일치 검사 api
+  route.get(
+    "/MatchCheck",
+    (req: Request, res: Response, next: NextFunction) => {
+      //const token = req.headers[accessToken] || req.query.token;
+      //const pullToken = Buffer.from(req.body.text, "base64")
+      try {
+        const check = jwt.verify(req.body.text, ACCESS_SECRET);
+
+        if (check) {
+          console.log("확인 완료", check);
+          //면접번호
+          res.send("12041-51-5");
+          next();
+        }
+      } catch (e) {
+        logger.error(e);
+      }
+    }
+  );
 };
