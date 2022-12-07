@@ -21,7 +21,8 @@
                   <p>관리자 페이지</p>
                 </li>
               </router-link>
-              <router-link to="/success">
+              <!-- router link to = /success -->
+              <router-link to="/passcheck">
                 <li class="adm_nav__menu--li">
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -68,9 +69,7 @@
               <li class="adm__menu-ci">
                 <router-link to="/admin/progress">면접 진행</router-link>
               </li>
-              <li class="adm__menu-empty"></li>
-              <li class="adm__menu-empty"></li>
-              <li class="adm__menu-empty"></li>
+              <li></li>
             </ul>
           </nav>
           <article class="re-adm">
@@ -111,6 +110,7 @@
                     </div>
                   </div>
                 </router-link>
+                <hr/>
               </div>
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">

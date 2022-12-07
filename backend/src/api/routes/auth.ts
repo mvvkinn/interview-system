@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import { IUser } from "@interfaces/IUser";
 import AuthService from "@services/AuthService";
 import Container from "typedi";
+import { celebrate, Joi } from "celebrate";
 import { Logger } from "winston";
 
 const route = Router();
@@ -34,15 +35,32 @@ export default (app: Router) => {
       try {
         const authServiceInstance = new AuthService();
 
-        const { user, token } = await authServiceInstance.SignIn(
-          req.body.username,
+        const { userDTO, token } = await authServiceInstance.SignIn(
+          req.body.email,
           req.body.password
         );
-        return res.json({ user, token }).status(200);
-      } catch (e) {
+        return res.json({ userDTO, token }).status(200);
+      } catch (e: any) {
+        console.log(e);
         logger.error(e);
+        e.status = 401;
         next(e);
       }
     }
   );
+
+  route.post("/emailDuplication", async (req, res, next) => {
+    try {
+      const authServiceInstance = new AuthService();
+
+      const isDuplicate = await authServiceInstance.isEmailExist(
+        req.body.email
+      );
+
+      return res.json({ emailDuplication: isDuplicate });
+    } catch (e) {
+      logger.error(e);
+      next(e);
+    }
+  });
 };

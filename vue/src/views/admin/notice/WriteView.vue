@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -19,10 +18,11 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>관리자 페이지</p>
+                  <p>관리자페이지</p>
                 </li>
               </router-link>
-              <router-link to="/success">
+              <!-- router link to = /success -->
+              <router-link to="/passcheck">
                 <li class="adm_nav__menu--li">
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -34,7 +34,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>합격자 조회</p>
+                  <p>합격자조회</p>
                 </li>
               </router-link>
               <router-link to="/admin/notice">
@@ -59,29 +59,35 @@ vu
           <article class="notice_adm__write">
             <div class="notice_adm__write-title">
               <h1>글쓰기</h1>
-              <button>불러오기</button>
+              <!-- <button>불러오기</button> -->
             </div>
             <hr />
             <div class="notice_adm_write-content">
               <textarea id="title" type="text" placeholder="글제목"></textarea>
-              <textarea
-                id="interview_title"
-                type="text"
-                placeholder="면접명"
-              ></textarea>
               <textarea id="content" type="text" placeholder="내용"></textarea>
+            </div>
+            <div class="notice_adm_write-applybutton">
+              <div class="notice_adm_write-applybutton-begin">
+                <p>모집 시작일시</p>
+                <input id="begin" type="datetime-local" />
+              </div>
+              <div class="notice_adm_write-applybutton-deadline">
+                <p>모집 마감일시</p>
+                <input id="deadline" type="datetime-local" />
+              </div>
             </div>
             <div class="notice_adm_write-filebutton">
               <label for="input-file">파일 첨부</label>
               <input type="file" id="input-file" style="display: none" />
             </div>
-            <div class="notice_adm_write-button">
-              <button>업로드</button>
-              <button>임시저장</button>
-
-              <button>
-                <router-link to="/admin/notice">취소</router-link>
-              </button>
+            <div class="component__content-column">
+              <div class="component__content-column--button">
+                <button id="blueBtn">업로드</button>
+                <button id="blackBtn">임시저장</button>
+                <router-link to="/admin/notice">
+                  <button id="grayBtn">취소</button>
+                </router-link>
+              </div>
             </div>
             <hr />
           </article>
@@ -103,4 +109,50 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.notice_adm_write-content textarea:nth-child(2) {
+  height: 550px;
+}
+
+.notice_adm_write-applybutton {
+  display: flex;
+  justify-content: right;
+  padding-bottom: 30px;
+}
+.notice_adm_write-applybutton p {
+  float: left;
+}
+.notice_adm_write-applybutton-begin {
+  /* margin-right: 80px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin-right: 20px;
+}
+
+.notice_adm_write-applybutton-begin p {
+  margin-right: 10px;
+}
+
+.notice_adm_write-applybutton-begin input {
+  height: 35px;
+  font-family: "noto sans kr";
+}
+.notice_adm_write-applybutton-deadline {
+  /* margin-left: 80px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.notice_adm_write-applybutton-deadline p {
+  margin-right: 10px;
+}
+
+.notice_adm_write-applybutton-deadline input {
+  height: 35px;
+  font-family: "noto sans kr";
+}
+</style>

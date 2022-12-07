@@ -1,0 +1,86 @@
+<template>
+  <body>
+    <div class="import_titleArea">
+      <p class="import_title">Title</p>
+    </div>
+    <div class="import_resumeArea">
+      <div class="resume_pictureArea">
+        <img
+          src="https://via.placeholder.com/297x358"
+          alt=""
+          class="resume_picture"
+        />
+      </div>
+      <div class="resume_tableArea">
+        <p>인적사항</p>
+        <div class="resumeTable_line">
+          <div class="personalInfoTable_label" id="label_top">이름</div>
+          <div class="personalInfoTable_value">-</div>
+          <div class="personalInfoTable_label" id="label_top">생년월일</div>
+          <div class="personalInfoTable_value">-</div>
+        </div>
+        <div class="resumeTable_line">
+          <div class="personalInfoTable_label">휴대폰</div>
+          <div class="personalInfoTable_value">-</div>
+          <div class="personalInfoTable_label">E-mail</div>
+          <div class="personalInfoTable_value">-</div>
+        </div>
+        <div class="resumeTable_line" id="tableLine_large">
+          <div class="personalInfoTable_label">주소</div>
+          <div class="personalInfoTable_value" id="label_address">-</div>
+        </div>
+      </div>
+      <div class="resume_tableArea">
+        <p>학력사항</p>
+        <div class="resumeTable_line">
+          <div class="normalTable_label" id="label_side">기간</div>
+          <div class="normalTable_label" id="label_center">학교명</div>
+          <div class="normalTable_label" id="label_side">전공</div>
+        </div>
+        <div class="resumeTable_line">
+          <div class="normalTabel_value" id="value_side">-</div>
+          <div class="normalTabel_value" id="value_center">-</div>
+          <div class="normalTabel_value" id="value_side">-</div>
+        </div>
+        <div class="resumeTable_line">
+          <div class="normalTabel_value" id="value_side">-</div>
+          <div class="normalTabel_value" id="value_center">-</div>
+          <div class="normalTabel_value" id="value_side">-</div>
+        </div>
+      </div>
+      <div class="resume_tableArea">
+        <p>자격 및 교육사항</p>
+        <div class="resumeTable_line">
+          <div class="normalTable_label" id="label_side">취득일자</div>
+          <div class="normalTable_label" id="label_leftCenter">자격/교육명</div>
+          <div class="normalTable_label" id="label_rightCenter">등급</div>
+          <div class="normalTable_label" id="label_side">발행기관</div>
+        </div>
+        <div class="resumeTable_line">
+          <div class="normalTabel_value" id="value_side">-</div>
+          <div class="normalTabel_value" id="value_leftCenter">-</div>
+          <div class="normalTabel_value" id="value_rightCenter">-</div>
+          <div class="normalTabel_value" id="value_side">-</div>
+        </div>
+        <div class="resumeTable_line">
+          <div class="normalTabel_value" id="value_side">-</div>
+          <div class="normalTabel_value" id="value_leftCenter">-</div>
+          <div class="normalTabel_value" id="value_rightCenter">-</div>
+          <div class="normalTabel_value" id="value_side">-</div>
+        </div>
+      </div>
+    </div>
+    <div class="import_btnArea">
+      <router-link to="/notice/detail/modal">
+        <div class="import_btn" id="btn_black">목록으로</div>
+      </router-link>
+      <div class="import_btn" id="btn_blue">불러오기</div>
+    </div>
+  </body>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style></style>

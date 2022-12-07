@@ -19,10 +19,11 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  마이페이지
+                  <p>마이페이지</p>
                 </li>
               </router-link>
-              <router-link to="/success">
+              <!-- router link to = /success -->
+              <router-link to="/passcheck">
                 <li>
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -34,7 +35,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  합격자조회
+                  <p>합격자조회</p>
                 </li>
               </router-link>
               <router-link to="/notice">
@@ -49,7 +50,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  면접 공지
+                  <p>면접 공지</p>
                 </li>
               </router-link>
             </ul>
@@ -82,18 +83,15 @@ vu
               <p>
                 2022년도 하반기 OOOOO 프론트엔트 개발자를 모집합니다.<br />저희와
                 함께 할 인재를 모집합니다. 많은 지원 부탁드립니다<br />지원방법<br />
-                .<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />
-                .<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />
-                .<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />.<br />
               </p>
             </div>
             <div class="notice__details-button">
-              <button>
-                <router-link to="/notice/detail/apply">지원하기</router-link>
-              </button>
-              <button>
-                <router-link to="/notice">목록</router-link>
-              </button>
+              <router-link to="/notice/detail/apply">
+                <button id="notice_blueBtn">지원하기</button>
+              </router-link>
+              <router-link to="/notice">
+                <button id="notice_blackBtn">목록</button>
+              </router-link>
             </div>
             <hr />
           </article>

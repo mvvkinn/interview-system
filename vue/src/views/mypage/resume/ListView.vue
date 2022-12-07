@@ -22,7 +22,8 @@ vu
                   마이페이지
                 </li>
               </router-link>
-              <router-link to="/success">
+              <!-- router link to = /success -->
+              <router-link to="/passcheck">
                 <li>
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -88,11 +89,9 @@ vu
                         <p>작성일 : 2022/01/01</p>
                       </div>
                     </div>
-                    <button>
-                      <router-link to="/mypage/resume/detail"
-                        >이력서 등록</router-link
-                      >
-                    </button>
+                    <router-link to="/mypage/resume/detail">
+                      <button>이력서 등록</button>
+                    </router-link>
                   </div>
                 </div>
               </div>

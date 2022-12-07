@@ -22,7 +22,8 @@ vu
                   <p>관리자 페이지</p>
                 </li>
               </router-link>
-              <router-link to="/success">
+              <!-- router link to = /success -->
+              <router-link to="/passcheck">
                 <li class="adm_nav__menu--li">
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -69,9 +70,7 @@ vu
               <li class="adm__menu-ci">
                 <router-link to="/admin/progress">면접 진행</router-link>
               </li>
-              <li class="adm__menu-empty"></li>
-              <li class="adm__menu-empty"></li>
-              <li class="adm__menu-empty"></li>
+              <li></li>
             </ul>
           </nav>
           <article class="adm__rsm-content">
@@ -102,110 +101,75 @@ vu
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="adm__rsm-content-checklist">
-              <table class="adm__rsm-content-criteria--table">
-                <tbody>
-                  <tr>
-                    <th class="adm__rsm-content-criteria--table--section-1">
-                      평가 기준
-                    </th>
-                    <td class="adm__rsm-content-criteria--table--section-2">
-                      {{checklist.criterion}}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <table class="adm__rsm-content-checklist--table">
-                <thead>
-                  <tr>
-                    <th class="adm__rsm-content-checklist--table--section-1">
-                      질문 목록
-                    </th>
-                    <th class="adm__rsm-content-checklist--table--section-2">
-                      추가 질문
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="adm__rsm-content-checklist--table--section-1">
-                      {{mainQuestion.first}}
-                    </td>
-                    <td
-                      class="adm__rsm-content-checklist--table--section-2"
-                      rowspan="4"
-                    >
-                      {{additionalQuestion.first}}
-                      <br>
-                      {{additionalQuestion.second}}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="adm__rsm-content-checklist--table--section-1">
-                      {{mainQuestion.second}}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="adm__rsm-content-checklist--table--section-1">
-                      {{mainQuestion.third}}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="adm__rsm-content-checklist--table--section-1">
-                      {{mainQuestion.fourth}}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="adm__rsm-content-checklist">
-              <h3>평가 준거</h3>
-              <table class="adm__rsm-content-score--table">
-                <thead>
-                  <tr>
-                    <th class="adm__rsm-content-score--table--section-1">
-                      주 질문
-                    </th>
-                    <th class="adm__rsm-content-score--table--section-2">
-                      점수 (100점 만점)
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    :key="index"
-                    v-for="(check,index) in check"
+              <div class="adm_interviewResultArea">
+                <div class="interviewResult_titleArea">
+                  <div class="interviewResult_title"><p>면접명</p></div>
+                  <div class="interviewResult_value">
+                    <p id="interviewResult_valueText">
+                      2022년도 하반기 OOOOO 프론트엔드 개발자 모집
+                    </p>
+                  </div>
+                </div>
+                <div class="interviewResult_titleArea">
+                  <div class="interviewResult_title"><p>평가기준</p></div>
+                  <div class="interviewResult_value">
+                    <p id="interviewResult_valueText">
+                      프론트엔드 업무에 대한 전반적인 이해 및 업무능력 평가.
+                      관련 자격 및 업무 커뮤니케이션 능력 평가.
+                    </p>
+                  </div>
+                </div>
+                <div class="interviewResult_tabletitleArea">
+                  <div class="interviewResult_tableTitle"><p>질문</p></div>
+                  <div class="interviewResult_tableTitle"><p>답변</p></div>
+                  <div class="interviewResult_tableTitle" id="scoreTitle">
+                    <p>점수</p>
+                  </div>
+                </div>
+                <div class="interviewResult_tablevalueArea_1">
+                  <div class="interviewResult_tableValue"><p>-</p></div>
+                  <div class="interviewResult_tableValue"><p>-</p></div>
+                  <div class="interviewResult_tableValue" id="scoreValue">
+                    <p>-</p>
+                  </div>
+                </div>
+                <div class="interviewResult_tablevalueArea_2">
+                  <div class="interviewResult_tableValue"><p>-</p></div>
+                  <div class="interviewResult_tableValue"><p>-</p></div>
+                  <div class="interviewResult_tableValue" id="scoreValue">
+                    <p>-</p>
+                  </div>
+                </div>
+                <div class="interviewResult_tablevalueArea_3">
+                  <div
+                    class="interviewResult_tableValue"
+                    id="table_bottomValue"
                   >
-                    <td class="adm__rsm-content-score--table--section-1">
-                      {{check.question}}
-                    </td>
-                    <td class="adm__rsm-content-score--table--section-2">
-                        {{check.score}}
-                      점
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <table class="adm__rsm-content-opinion--table">
-                <tbody>
-                  <tr>
-                    <th class="adm__rsm-content-opinion--table--section-1">
-                      기타 의견
-                    </th>
-                    <td class="adm__rsm-content-opinion--table--section-2">
-                      {{checklist.opinion}}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="adm__rsm-content-btn">
-              <hr class="adm__rsm-content-hr" />
-              <router-link to="/admin/content/list">
-                <button>목록으로</button>
-              </router-link>
+                    <p>-</p>
+                  </div>
+                  <div
+                    class="interviewResult_tableValue"
+                    id="table_bottomValue"
+                  >
+                    <p>-</p>
+                  </div>
+                  <div class="interviewResult_tableValue" id="scoreValue2">
+                    <p>-</p>
+                  </div>
+                </div>
+                <div class="table_bottomLine"></div>
+                <div class="interviewResult_tabletitleArea">
+                  <div class="interviewResult_tableTitle" id="opinionTitle">
+                    <p>기타의견</p>
+                  </div>
+                </div>
+                <div class="interviewResult_tablevalueArea_4"><p>-</p></div>
+              </div>
+              <div class="component__content-column-notice">
+                <router-link to="/admin/content/list">
+                  <button id="notice_blackBtn">목록으로</button>
+                </router-link>
+              </div>
             </div>
           </article>
         </section>
