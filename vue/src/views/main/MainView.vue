@@ -80,17 +80,17 @@
                 <span>#후회는_없다</span>
               </div>
             </div>
+            <div class="main-view__column-out-1"></div>
+            <div class="main-view__column-in-1"></div>
+            <div class="main-view__column-out-2"></div>
+            <div class="main-view__column-in-2"></div>
+            <div class="main-view__column-left-corner-1"></div>
+            <div class="main-view__column-left-corner-2"></div>
+            <div class="main-view__column-right-corner-1"></div>
+            <div class="main-view__column-right-corner-2"></div>
+            <div class="main-view__column-left-box"></div>
+            <div class="main-view__column-right-box"></div>
           </div>
-          <div class="main-view__column-out-1"></div>
-          <div class="main-view__column-in-1"></div>
-          <div class="main-view__column-out-2"></div>
-          <div class="main-view__column-in-2"></div>
-          <div class="main-view__column-left-corner-1"></div>
-          <div class="main-view__column-left-corner-2"></div>
-          <div class="main-view__column-right-corner-1"></div>
-          <div class="main-view__column-right-corner-2"></div>
-          <div class="main-view__column-left-box"></div>
-          <div class="main-view__column-right-box"></div>
         </div>
       </section>
       <section class="main-view" v-else>
