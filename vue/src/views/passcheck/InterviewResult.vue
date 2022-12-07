@@ -117,7 +117,7 @@ export default {
   },
   async created() {
     const passcheckText = await this.$axios.get(
-      "https://667e891c-ab9d-4b30-b8f7-37bd394933f3.mock.pstmn.io/passcheck"
+      "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/passcheck"
     );
     this.passcheck = passcheckText.data.passcheck;
     this.result = this.passcheck.filter(
