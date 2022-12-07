@@ -5,34 +5,14 @@
         <p class="import_title">내 이력서</p>
       </div>
       <div class="import_textArea">
-        <p class="import_Username">김명지</p>
+        <p class="import_Username">{{ userName }}</p>
         <p class="import_text">님의 현재 보유한 이력서 목록입니다.</p>
       </div>
       <div class="import_listArea">
         <div class="import_resumeObject">
-          <p class="import_resumeTitle">Title</p>
+          <p class="import_resumeTitle">{{ resumelist.title }}</p>
           <div class="import_resumeBtnArea">
-            <p class="import_resumeDate">2022/01/01</p>
-            <router-link to="/notice/detail/modal/resume"
-              ><div class="import_btn_small" id="btn_black">보기</div>
-            </router-link>
-            <div class="import_btn_small" id="btn_blue">불러오기</div>
-          </div>
-        </div>
-        <div class="import_resumeObject">
-          <p class="import_resumeTitle">Title</p>
-          <div class="import_resumeBtnArea">
-            <p class="import_resumeDate">2022/01/01</p>
-            <router-link to="/notice/detail/modal/resume"
-              ><div class="import_btn_small" id="btn_black">보기</div>
-            </router-link>
-            <div class="import_btn_small" id="btn_blue">불러오기</div>
-          </div>
-        </div>
-        <div class="import_resumeObject">
-          <p class="import_resumeTitle">Title</p>
-          <div class="import_resumeBtnArea">
-            <p class="import_resumeDate">2022/01/01</p>
+            <p class="import_resumeDate">{{ resumelist.date }}</p>
             <router-link to="/notice/detail/modal/resume"
               ><div class="import_btn_small" id="btn_black">보기</div>
             </router-link>
@@ -49,6 +29,14 @@
 
 <script>
 export default {
+  data() {
+    return {
+      resumelist: {},
+      userName: "",
+      education: [],
+      qualification: [],
+    };
+  },
   props: {
     active: {
       type: Boolean,
@@ -58,6 +46,14 @@ export default {
     close() {
       window.close();
     },
+  },
+  async created() {
+    const resumeText = await this.$axios.get(this.$seolmockup + "/api/resume");
+    this.resumelist = resumeText.data;
+    this.education = this.resumelist.education;
+    this.qualification = this.resumelist.qualification;
+
+    this.userName = JSON.parse(localStorage.getItem("user")).name;
   },
 };
 </script>
@@ -71,7 +67,9 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
+.modalArea {
+  top: 30%;
+}
 .active {
   display: none;
   position: fixed;

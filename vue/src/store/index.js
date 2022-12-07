@@ -91,6 +91,13 @@ export const store = new Vuex.Store({
       commit("removeToken");
     },
 
+    apply: async (_, params) => {
+      return await axios
+        .post("/apply", params)
+        .then((res) => res.status)
+        .catch((e) => e.response.status);
+    },
+
     score: async (_, params) => {
       return await axios
         .post("/score/test", params)
