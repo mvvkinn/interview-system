@@ -162,7 +162,6 @@ export default {
   async created() {
     const noticeText = await this.$axios.get(this.$seolmockup + "/api/notice");
     this.noticelist = noticeText.data.noticelist;
-    console.log(this.noticelist);
     this.pagination(1);
   },
   methods: {
@@ -185,14 +184,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* .notice-adm__interview-table-text:nth-last-child(1) {
-  border-bottom: 1px solid #333333;
-} */
-/* .notice-adm__interview-table-text:nth-last-child(2) {
-  border-bottom: none;
-} */
-/* .notice-adm__interview-table-text:hover {
-  border-bottom: 1px solid #3c62e5;
-} */
-</style>
+<style scoped></style>

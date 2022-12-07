@@ -18,10 +18,10 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>마이페이지</p>
+                  <p>관리자페이지</p>
                 </li>
               </router-link>
-              <router-link to="/passcheck">
+              <router-link to="/success">
                 <li>
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -48,7 +48,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>면접 공지</p>
+                  <p>면접공지</p>
                 </li>
               </router-link>
             </ul>
@@ -80,14 +80,20 @@
             </div>
             <hr />
             <div class="notice__details-text">
-              <img v-bind:src="detail.image" />
+              <p>
+                {{ detail.detail }}
+              </p>
             </div>
             <div class="notice__details-button">
-              <router-link :to="`/notice/detail/${$route.params.number}/apply`">
-                <button id="notice_blueBtn">지원하기</button>
+              <router-link :to="`/admin/notice/detail/${detail.number}/amend`">
+                <button class="notice_detailBtn" id="detailBtn_blue">
+                  수정하기
+                </button>
               </router-link>
-              <router-link to="/notice">
-                <button id="notice_blackBtn">목록</button>
+              <router-link to="/admin/notice">
+                <button class="notice_detailBtn" id="detailBtn_black">
+                  목록
+                </button>
               </router-link>
             </div>
             <hr />
@@ -115,22 +121,43 @@ export default {
   },
 
   async created() {
-    const noticeText = await this.$axios.get(this.$seolmockup + "/api/notice");
+    const noticeText = await this.$axios.get(
+      "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/notice"
+    );
     this.noticelist = noticeText.data.noticelist;
     this.detail = this.noticelist.filter(
       (v) => v.number === +this.$route.params.number
     )[0];
+    // console.log(this.detail[0]);
+    console.log(this.detail.number);
   },
 };
 </script>
 
 <style>
-.notice__details-text {
-  display: flex;
+.notice_detailBtn {
+  width: 200px;
+  height: 50px;
 }
 
-.notice__details-text img {
-  margin: 10px auto 0;
-  width: 960px;
+#detailBtn_blue {
+  border: 1px solid #3c62e5;
+  color: #3c62e5;
+  margin-right: 20px;
+}
+
+#detailBtn_blue:hover {
+  background-color: #3c62e5;
+  color: white;
+}
+
+#detailBtn_black {
+  border: 1px solid #333333;
+  color: #333333;
+}
+
+#detailBtn_black:hover {
+  background-color: #333333;
+  color: white;
 }
 </style>

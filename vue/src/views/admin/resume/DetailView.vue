@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -19,10 +18,11 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>관리자 페이지</p>
+                  <p>관리자페이지</p>
                 </li>
               </router-link>
-              <router-link to="/success">
+              <!-- router link to = /success -->
+              <router-link to="/passcheck">
                 <li class="adm_nav__menu--li">
                   <img
                     src="@/assets/images/icons/menuIcon_search.png"
@@ -34,7 +34,7 @@ vu
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>합격자 조회</p>
+                  <p>합격자조회</p>
                 </li>
               </router-link>
               <router-link to="/admin/notice">
@@ -69,14 +69,14 @@ vu
               <li class="adm__menu-ci">
                 <router-link to="/admin/progress">면접 진행</router-link>
               </li>
-              <li class="adm__menu-empty"></li>
-              <li class="adm__menu-empty"></li>
-              <li class="adm__menu-empty"></li>
+              <li></li>
             </ul>
           </nav>
           <article class="adm__rsm-content">
             <div class="adm__rsm-content-div">
-              <h1>안녕하십니까 프론트엔드 지원지 김명지 입니다!</h1>
+              <h1>
+                {{resumeNumber.resumeTitle}}
+              </h1>
               <div class="adm__rsm-content--hr">
                 <div class="adm__rsm-content-info">
                   <div class="adm__rsm-content-info--div-1">
@@ -84,7 +84,7 @@ vu
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-2">
-                    <p>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</p>
+                    <p>{{resumeNumber.interviewTitle}}</p>
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-3">
@@ -92,133 +92,122 @@ vu
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-4">
-                    <p>김명지</p>
+                    <p>{{resumeNumber.person}}</p>
                   </div>
-                  <!-- <hr> -->
                 </div>
               </div>
-              <div class="adm__rsm-content-img">
-                <img src="https://via.placeholder.com/297x358" alt="" />
+            </div>
+            <div class="adm_contentArea">
+              <img v-bind:src="resumeDetail.img" alt="" />
+              <div class="notice_component_tableArea">
+                <div class="notice_component_tableTitle">인적사항</div>
+                <div class="notice_componet_tableLine">
+                  <div class="tableComponent_title">이름</div>
+                  <div class="adm_tableComponent_value">{{resumeDetail.name}}</div>
+                  <div class="tableComponent_title">생년월일</div>
+                  <div class="adm_tableComponent_value">{{resumeDetail.birth}}</div>
+                </div>
+                <div class="notice_componet_tableLine">
+                  <div class="tableComponent_title">휴대폰</div>
+                  <div class="adm_tableComponent_value">{{resumeDetail.phone}}</div>
+                  <div class="tableComponent_title" id="emailTitle">E-mail</div>
+                  <div class="adm_tableComponent_value">{{resumeDetail.email}}</div>
+                </div>
+                <div class="notice_componet_tableLine" id="addressLine">
+                  <div class="tableComponent_title" id="addressTitle">주소</div>
+                  <div
+                    class="adm_tableComponent_value"
+                    id="adm_addressTextArea"
+                  >
+                    {{resumeDetail.address}}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="adm__rsm-content-pd">
-              <p class="adm__rsm-content-pd--title">인적사항</p>
-              <table class="adm__rsm-content-pd--table">
-                <tbody>
-                  <tr class="adm__rsm-content-pd--table-top">
-                    <th class="adm__rsm-content-pd--table--section-1">이름</th>
-                    <td class="adm__rsm-content-pd--table--section-2">
-                      김명지
-                    </td>
-                    <th class="adm__rsm-content-pd--table--section-3">
-                      생년월일
-                    </th>
-                    <td class="adm__rsm-content-pd--table--section-4">
-                      20010101
-                    </td>
-                  </tr>
-                  <tr class="adm__rsm-content-pd--table-middle">
-                    <th class="adm__rsm-content-pd--table--section-1">
-                      휴대폰
-                    </th>
-                    <td class="adm__rsm-content-pd--table--section-2">
-                      01012345678
-                    </td>
-                    <th class="adm__rsm-content-pd--table--section-3">
-                      E-mail
-                    </th>
-                    <td class="adm__rsm-content-pd--table--section-4">
-                      mjc1234@itc.mjc.ac.kr
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="adm__rsm-content-pd--table--section-5">주소</th>
-                    <td class="adm__rsm-content-pd--table--section-6">
-                      서울시 서대문구 어딘가 123-45 101호
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="adm__rsm-content-ei">
-              <p class="adm__rsm-content-ei--title">학력사항</p>
-              <table class="adm__rsm-content-ei--table">
-                <thead>
-                  <tr>
-                    <th class="adm__rsm-content-ei--table--section-1">기간</th>
-                    <th class="adm__rsm-content-ei--table--section-2">
-                      학교명
-                    </th>
-                    <th class="adm__rsm-content-ei--table--section-3">전공</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="adm__rsm-content-ei--table--section-1">
-                      08/03/01 - 15/02/01
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-2">
-                      명지초등학교
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-3">-</td>
-                  </tr>
-                  <tr>
-                    <td class="adm__rsm-content-ei--table--section-1">
-                      15/03/01 - 18/02/01
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-2">
-                      명지중학교
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-3">-</td>
-                  </tr>
-                  <tr>
-                    <td class="adm__rsm-content-ei--table--section-1">
-                      18/03/01 - 21/02/01
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-2">
-                      명지고등학교
-                    </td>
-                    <td class="adm__rsm-content-ei--table--section-3">-</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="adm__rsm-content-et">
-              <p class="adm__rsm-content-et--title">자격 및 교육 사항</p>
-              <table class="adm__rsm-content-et--table">
-                <thead>
-                  <tr>
-                    <th class="adm__rsm-content-et--table--section-1">기간</th>
-                    <th class="adm__rsm-content-et--table--section-2">
-                      자격 및 교육명
-                    </th>
-                    <th class="adm__rsm-content-et--table--section-3">등급</th>
-                    <th class="adm__rsm-content-et--table--section-4">
-                      발행기관
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="adm__rsm-content-et--table--section-1">
-                      2018/05/16
-                    </td>
-                    <td class="adm__rsm-content-et--table--section-2">
-                      워드프로세서
-                    </td>
-                    <td class="adm__rsm-content-et--table--section-3">1급</td>
-                    <td class="adm__rsm-content-et--table--section-4">
-                      대한상공회의소
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="adm__rsm-content-btn">
-              <router-link to="/admin/resume/list">
-                <button>목록으로</button>
-              </router-link>
-              <hr class="adm__rsm-content-hr" />
+              <div class="notice_component_tableArea">
+                <div class="notice_component_tableTitle">학력사항</div>
+                <div class="notice_componet_tableLine">
+                  <div class="tableComponent_titleBlack" id="titleBlack_side">
+                    기간
+                  </div>
+                  <div class="tableComponent_titleBlack" id="titleBlack_center">
+                    학교명
+                  </div>
+                  <div class="tableComponent_titleBlack" id="titleBlack_side">
+                    전공
+                  </div>
+                </div>
+                <div class="notice_componet_tableLine" :key="index" v-for="(education,index) in education">
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    {{education.period}}
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_center"
+                  >
+                    {{education.schoolname}}
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    {{education.major}}
+                  </div>
+                </div>
+              </div>
+              <div class="notice_component_tableArea">
+                <div class="notice_component_tableTitle">자격 및 교육사항</div>
+                <div class="notice_componet_tableLine">
+                  <div class="tableComponent_titleBlack" id="titleBlack_side">
+                    취득일자
+                  </div>
+                  <div
+                    class="tableComponent_titleBlack"
+                    id="titleBlack_classname"
+                  >
+                    자격 및 교육명
+                  </div>
+                  <div class="tableComponent_titleBlack" id="titleBlack_rating">
+                    등급
+                  </div>
+                  <div class="tableComponent_titleBlack" id="titleBlack_side">
+                    발행기관
+                  </div>
+                </div>
+                <div class="notice_componet_tableLine" :key="index" v-for="(qualification,index) in qualification">
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    {{qualification.date}}
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_classname"
+                  >
+                    {{qualification.education_name}}
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_rating"
+                  >
+                    {{qualification.class}}
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    {{qualification.institution}}
+                  </div>
+                </div>
+              </div>
+              <div class="component__content-column-notice">
+                <router-link :to="`/admin/resume/${interviewId}/list`">
+                  <button id="notice_blackBtn">목록으로</button>
+                </router-link>
+              </div>
             </div>
           </article>
         </section>
@@ -236,7 +225,54 @@ export default {
     HeaderView,
     FooterView,
   },
+  data(){
+    return {
+      detailList: {},
+      resumeList:{},
+      resumeNumber:{},
+      resumeDetail:[],
+      education: [],
+      qualification: [],
+      interviewList:{},
+      interviewNumber: {},
+      interviewId:{},
+    }
+  },
+  async created(){
+      const detailText = await this.$axios.get(
+         "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io/interview/resume/detail"
+       );
+       this.detailList = detailText.data.detail;
+
+       const resumeText = await this.$axios.get(
+        "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io/interview/resume"
+      );
+      this.resumeList = resumeText.data.resumelist;
+      this.resumeNumber = this.resumeList.filter(
+      (v) => v.number === +this.$route.params.number
+    )[0];
+
+    this.resumeDetail = this.detailList.filter((v)=>v.title === this.resumeNumber.resumeTitle)[0];
+    
+    this.education = this.resumeDetail.education;
+    this.qualification = this.resumeDetail.qualification;
+
+    const interviewText = await this.$axios.get(
+      "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io/interview"
+    );
+
+    this.interviewList = interviewText.data.interview;
+
+    this.interviewNumber = this.interviewList.filter(
+      (v) => v.number === +this.$route.params.interviewId
+    )[0];
+    
+    this.interviewId = this.interviewNumber.number;
+
+    },
+
 };
 </script>
 
 <style></style>
+

@@ -5,11 +5,11 @@
 
 /* navbar */
 .adm_navbar {
-  padding-top: 38px;
+  padding-top: 23px;
   background-color: white;
   border-radius: 15px;
   border: 1px solid #c6c6c6;
-  width: 8.14%;
+  width: 7%;
   margin-right: 30px;
 }
 
@@ -25,8 +25,8 @@
 
 .adm_nav__menu li {
   font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 50px;
+  margin-top: 10.5px;
+  margin-bottom: 35px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -34,13 +34,13 @@
 
 .adm_nav__menu img {
   margin: 0 auto 0;
-  width: 40.5%;
-  height: 40.5%;
+  width: 40px;
   cursor: pointer;
 }
 
 .adm_nav__menu p {
-  padding-top: 7px;
+  padding-top: 13px;
+  font-size: 12px;
 }
 
 .adm_nav__menu--li:hover {
@@ -71,22 +71,21 @@
 
 .adm {
   position: relative;
-  width: 88.5%;
+  width: 100%;
 }
 
 .adm__menu {
   display: flex;
-  position: relative;
 }
 
 .adm__menu li {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  height: 85px;
-  font-size: 20px;
-  font-weight: 700;
+  width: 17.85%;
+  height: 60px;
+  font-size: 16px;
+  color: #555555;
   border-radius: 15px 15px 0px 0px;
   border: 1px solid #c6c6c6;
 }
@@ -95,7 +94,14 @@
   background-color: white;
   border: 1px solid #c6c6c6;
   border-bottom: none;
+  font-weight: 700;
   color: #3c62e5;
+}
+
+.adm__menu li:last-child {
+  width: 46.45%;
+  border-style: none;
+  border-bottom: 1px solid #c6c6c6;
 }
 
 li.adm__menu-empty {
@@ -106,7 +112,7 @@ li.adm__menu-empty {
 /* adm_rsm*/
 
 .adm__rsm {
-  padding: 126px 0px;
+  padding: 95px 0px 61.5px 0;
   background-color: white;
   border-radius: 0px 0px 15px 15px;
   border: 1px solid #c6c6c6;
@@ -125,13 +131,15 @@ li.adm__menu-empty {
   display: flex;
   font-size: 24px;
   font-weight: 700;
-  margin: 0 14.28% 25px 14.28%;
+  margin: 0 14.28% 12px 14.28%;
 }
 
 /* adm_rsm-form */
 
 .adm__rsm hr {
   width: 71.44%;
+  border: 0;
+  border-top: 1px solid #8e8e8e;
 }
 
 .adm__rsm-form {
@@ -139,27 +147,28 @@ li.adm__menu-empty {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 50px 393px 50px 423px;
+  padding: 112.7px 0;
 }
 
 .adm__rsm-form p {
   white-space: nowrap;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .adm__rsm-form select {
-  padding: 19px 169px 10px 20px;
+  width: 300px;
+  height: 35px;
   margin-top: 30px;
-  border-style: none;
-  border: 1px solid #c6c6c6;
-  font-size: 18px;
+  padding: 0 0 0 10px;
+  border: 1px solid #8e8e8e;
+  font-size: 14px;
   /* background: url("/src/public/assets/images/arrowDown.png") no-repeat right */
   background: url("../../images/arrowDown.png") no-repeat right 20px center;
   background-size: 25px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  color: #c6c6c6;
+  color: #8e8e8e;
 }
 
 /* adm_rsm-list*/
@@ -283,9 +292,16 @@ td:first-child {
 }
 
 .adm__rsm-list,
-.adm__rsm-content,
 .adm__rsm-itv {
   padding: 126px 0px;
+  background-color: white;
+  border-radius: 0px 0px 15px 15px;
+  border: 1px solid #c6c6c6;
+  border-top: none;
+}
+
+.adm__rsm-content {
+  padding: 76px 0px;
   background-color: white;
   border-radius: 0px 0px 15px 15px;
   border: 1px solid #c6c6c6;
@@ -298,7 +314,7 @@ td:first-child {
 .adm__rsm-content-checklist--title {
   display: flex;
   flex-direction: column;
-  margin: 0 14.74%;
+  margin: 0 14.5%;
   justify-content: center;
 }
 
@@ -322,7 +338,7 @@ td:first-child {
   display: flex;
   font-size: 24px;
   font-weight: 700;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .adm__rsm-list-info,
@@ -330,9 +346,10 @@ td:first-child {
 .adm__rsm-itv-info {
   width: 100%;
   display: flex;
-  font-size: 18px;
-  border-top: 2px solid #333333;
-  border-bottom: 2px solid #333333;
+  font-size: 16px;
+  font-weight: 700;
+  border-top: 1px solid #8e8e8e;
+  border-bottom: 1px solid #8e8e8e;
 }
 
 .adm__rsm-list-info,
@@ -341,14 +358,26 @@ td:first-child {
 }
 
 .adm__rsm-content-info {
-  padding: 22px 0;
+  padding: 10px 0;
   align-items: center;
 }
 
 .adm__rsm-content-info hr {
   width: 0px;
-  height: 30px;
+  height: 24px;
   margin: 0 10px;
+}
+
+.adm_contentArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adm_contentArea img {
+  margin-top: 20px;
+  width: 200px;
+  align-items: center;
 }
 
 /* adm__rsm-list-info--div */
@@ -526,15 +555,15 @@ td.adm__rsm-content-pd--table--section-6 {
 }
 
 .adm__rsm-content--hr {
-  margin-bottom: 31px;
+  margin-bottom: 20px;
 }
 
 /* adm__rsm-content-info--table--section */
 .adm__rsm-content-info--table {
   height: 50px;
   width: 100%;
-  border: 1px solid #333333;
-  border-bottom: none;
+  border: none;
+  border-top: 1px solid #8e8e8e;
 }
 
 .adm__rsm-content-info--table td {
@@ -803,13 +832,20 @@ text.score {
 /* btn */
 
 .adm__rsm-form button {
-  padding: 16px 60px;
-  background-color: #3c62e5;
-  color: white;
-  font-size: 20px;
-  border-style: none;
+  width: 200px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid #3c62e5;
+  color: #3c62e5;
+  font-size: 14px;
+  font-weight: 700;
   margin-top: 30px;
   cursor: pointer;
+}
+
+.adm__rsm-form button:hover {
+  background-color: #3c62e5;
+  color: white;
 }
 
 .adm__rsm-tb button {
@@ -890,13 +926,13 @@ li.header__menu-timer {
 }
 
 .re-adm__interview {
-  width: 72.9%;
+  width: 70.9%;
 }
 
 .re-adm__interview hr {
   width: 100%;
   border: none;
-  border-top: 1px solid #333333;
+  border-top: 1px solid #8e8e8e;
 }
 
 .re-adm__interview-title {
@@ -908,8 +944,8 @@ li.header__menu-timer {
 .re-adm__interview-title h1 {
   font-weight: 700;
   font-size: 24px;
-  margin-top: 102px;
-  margin-bottom: 23px;
+  margin-top: 95px;
+  margin-bottom: 12px;
 }
 
 .re-adm__interview-tab-header {
@@ -920,22 +956,24 @@ li.header__menu-timer {
 
 .re-adm__interview-tab-header {
   width: 100%;
+  height: 28px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .re-adm__interview-tab-header p {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
   text-align: center;
 }
 
 .re-adm__interview-tab-header hr {
   width: 1px;
-  height: 30px;
+  height: 22px;
   margin: 0;
   border: none;
-  border-left: 1px solid #333333;
+  border-left: 1px solid #707070;
 }
 
 .re-adm__interview-tab-header-div {
@@ -945,7 +983,7 @@ li.header__menu-timer {
   font-weight: 700;
   align-items: center;
   text-align: center;
-  height: 30px;
+  height: 25px;
   margin: 0 auto;
 }
 
@@ -967,11 +1005,11 @@ li.header__menu-timer {
 .re-adm__interview-table-text-possible
   + .re-adm__interview-table-text-on
   button {
-  width: 120px;
-  height: 35px;
+  width: 80px;
+  height: 25px;
   background-color: #3c62e5;
   color: white;
-  font-size: 16px;
+  font-size: 12px;
   border: none;
   cursor: pointer;
 }
@@ -979,11 +1017,11 @@ li.header__menu-timer {
 .re-adm__interview-table-text-impossible
   + .re-adm__interview-table-text-on
   button {
-  width: 120px;
-  height: 35px;
+  width: 80px;
+  height: 25px;
   background-color: #c6c6c6;
   color: white;
-  font-size: 16px;
+  font-size: 12px;
   border: none;
   cursor: pointer;
 }
@@ -1018,7 +1056,7 @@ li.header__menu-timer {
   font-weight: 700;
   font-size: 18px;
   align-items: center;
-  padding: 15px 0px 15px;
+  padding: 10px 0px 10px 0;
   margin-top: 8px;
   border: 1px solid white;
   border-top: 1px solid #333333;
@@ -1050,7 +1088,7 @@ li.header__menu-timer {
   align-items: center;
   border: 1px solid white;
   border-top: 1px solid #c6c6c6;
-  padding: 15px 0px;
+  padding: 10px 0px;
   align-items: center;
   vertical-align: middle;
 }
@@ -1063,19 +1101,19 @@ li.header__menu-timer {
   font-size: 18px;
   align-items: center;
   border: 1px solid white;
-  border-top: 1px solid #333333;
+  border-top: 1px solid #8e8e8e;
   margin-top: 8px;
-  padding: 15px 0px;
+  padding: 10px 0px;
   align-items: center;
   vertical-align: middle;
 }
 
 .re-adm__interview-table-text:nth-last-child(2) {
-  border-bottom: 1px solid #333333;
+  border-bottom: 1px solid #8e8e8e;
 }
 
 .re-adm__interview-table-text:hover {
-  border: 1px solid #3c62e5;
+  background-color: #f3f3f3;
 }
 
 .adm-interview {
@@ -1096,13 +1134,13 @@ li.header__menu-timer {
   font-weight: 700;
   align-items: center;
   text-align: center;
-  height: 30px;
+  height: 25px;
   margin: 0 auto;
 }
 
 .re-adm__interview-content-tab-header-div:nth-child(3),
 .re-adm__interview-content-table-text-title {
-  width: calc(934 / 1198 * 100%);
+  width: 78.5%;
 }
 
 .re-adm__interview-content-table-text-title {
@@ -1124,10 +1162,10 @@ li.header__menu-timer {
   font-weight: 700;
   font-size: 18px;
   align-items: center;
-  padding: 15px 0px 15px;
+  padding: 10px 0;
   margin-top: 8px;
   border: 1px solid white;
-  border-top: 1px solid #333333;
+  border-top: 1px solid #8e8e8e;
 }
 
 .re-adm__interview-content-table-notice:hover {
@@ -1156,7 +1194,7 @@ li.header__menu-timer {
   align-items: center;
   border: 1px solid white;
   border-top: 1px solid #c6c6c6;
-  padding: 15px 0px;
+  padding: 10px 0px;
   align-items: center;
   vertical-align: middle;
 }
@@ -1169,9 +1207,9 @@ li.header__menu-timer {
   font-size: 18px;
   align-items: center;
   border: 1px solid white;
-  border-top: 1px solid #333333;
+  border-top: 1px solid #8e8e8e;
   margin-top: 8px;
-  padding: 15px 0px;
+  padding: 10px 0px;
   align-items: center;
   vertical-align: middle;
 }
@@ -1181,7 +1219,7 @@ li.header__menu-timer {
 }
 
 .re-adm__interview-content-table-text:hover {
-  border: 1px solid #3c62e5;
+  background-color: #f3f3f3;
 }
 
 .adm-interview {
@@ -1196,17 +1234,198 @@ li.header__menu-timer {
 .re-adm-content-btn {
   display: flex;
   justify-content: center;
-  margin-top: -130px;
-  margin-bottom: 150px;
+  margin-top: -110px;
+  margin-bottom: 100px;
 }
 
 .re-adm-content-btn button {
-  width: 250px;
-  height: 67px;
+  width: 200px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid #333333;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.re-adm-content-btn button:hover {
   background-color: #333333;
   color: white;
-  font-size: 20px;
-  border-style: none;
+}
 
-  cursor: pointer;
+.adm_tableComponent_value {
+  width: 35%;
+  height: 100%;
+  border: 1px solid #333333;
+  border-bottom: none;
+  padding-left: 10px;
+  font-family: "noto sans kr";
+  font-size: 14px;
+  color: #333333;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+}
+
+#adm_addressTextArea {
+  width: 85%;
+  border-bottom: 1px solid #333333;
+}
+
+.adm_tableComponent_valueBlack {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "noto sans kr";
+  font-size: 14px;
+  color: #333333;
+  line-height: 3.2vh;
+  font-weight: 300;
+  text-align: center;
+  border: 1px solid #333333;
+  border-top: none;
+}
+
+#adm_valueBlack_side {
+  width: 20%;
+}
+
+#adm_valueBlack_center {
+  width: 60%;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+#adm_valueBlack_classname {
+  width: 45%;
+  border-left: none;
+  border-right: none;
+}
+
+#adm_valueBlack_rating {
+  width: 15%;
+  border-right: none;
+}
+
+.adm_interviewResultArea {
+  width: 100%;
+  padding: 50px 0;
+}
+
+.adm_interviewResultArea p {
+  font-family: "noto sans kr";
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 1vh;
+}
+
+.interviewResult_titleArea {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 4vh 0;
+}
+
+.interviewResult_tabletitleArea {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 4vh 0 1vh 0;
+}
+
+.interviewResult_tablevalueArea_1 {
+  width: 100%;
+  display: flex;
+  padding: 1vh 0 0 0;
+}
+
+.interviewResult_tablevalueArea_2 {
+  width: 100%;
+  display: flex;
+  border-top: 1px solid #c6c6c6;
+  border-bottom: 1px solid #c6c6c6;
+}
+
+.interviewResult_tablevalueArea_3 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-bottom: 1vh;
+}
+
+.interviewResult_tablevalueArea_4 {
+  width: 100%;
+  height: 10vh;
+  padding-left: 1.5vw;
+  border-bottom: 1px solid #8e8e8e;
+}
+
+.interviewResult_title {
+  width: 10%;
+  border-bottom: 1px solid #8e8e8e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1vh;
+}
+
+.interviewResult_value {
+  width: 90%;
+  border-bottom: 1px solid #8e8e8e;
+  display: flex;
+  align-items: center;
+  padding-bottom: 1vh;
+}
+
+#interviewResult_valueText {
+  font-weight: 400;
+}
+
+.interviewResult_tableTitle {
+  width: 40%;
+  border-bottom: 1px solid #8e8e8e;
+  display: flex;
+  align-items: center;
+  padding-bottom: 1vh;
+  padding-left: 1.5vw;
+}
+
+#scoreTitle {
+  width: 20%;
+}
+
+.interviewResult_tableValue {
+  width: 40%;
+  height: 10vh;
+  border-right: 1px solid #c6c6c6;
+  display: flex;
+  padding-bottom: 1vh;
+  padding-left: 1.5vw;
+}
+
+#scoreValue {
+  width: 20%;
+  border-right: none;
+}
+
+#scoreValue2 {
+  width: 20%;
+  border-right: none;
+  border-bottom: none;
+}
+
+#table_bottomValue {
+  border-bottom: none;
+}
+
+.table_bottomLine {
+  width: 100%;
+  border-bottom: 1px solid #8e8e8e;
+  margin-bottom: 4vh;
+}
+
+#opinionTitle {
+  width: 100%;
 }

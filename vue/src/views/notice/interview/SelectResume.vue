@@ -46,16 +46,6 @@ export default {
     close() {
       window.close();
     },
-    jfAAAA() {
-      console.log("education=>" + this.education[0].schoolname);
-      console.log("qualification=>" + this.qualification);
-      window.opener.listChange(this.education, this.qualification);
-      // this.$emit(
-      //   "listChange",
-      //   this.education[0].schoolname,
-      //   this.qualification
-      // );
-    },
   },
   async created() {
     const resumeText = await this.$axios.get(this.$seolmockup + "/api/resume");

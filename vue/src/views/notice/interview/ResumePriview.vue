@@ -95,11 +95,7 @@
       <router-link :to="`/notice/detail/${$route.params.number}/modal`">
         <div class="import_btn" id="btn_black">목록으로</div>
       </router-link>
-      <!-- <router-link
-        :to="`/notice/detail/${$route.params.number}/apply?period=${education[0].period}&period1=${education[1].period}&schoolname=${education[0].schoolname}&schoolname1=${education[1].schoolname}&major=${education[0].major}&major1=${education[1].major}&date=${qualification[0].date}&date1=${qualification[1].date}&date2=${qualification[3].date}&education_name=${qualification[0].education_name}&education_name1=${qualification[1].education_name}&education_name2=${qualification[2].education_name}&class=${qualification[0].class}&class1=${qualification[1].class}&class2=${qualification[2].class}&institution=${qualification[0].institution}&institution1=${qualification[1].institution}&institution2=${qualification[2].institution}`"
-      > -->
       <div class="import_btn" id="btn_blue">불러오기</div>
-      <!-- </router-link> -->
     </div>
   </body>
 </template>
@@ -143,18 +139,6 @@ export default {
       (v) => v.number === +this.$route.params.number
     )[0];
   },
-  // methods: {
-  //   jfAAAA() {
-  //     console.log("education=>" + this.education[0].schoolname);
-  //     console.log("qualification=>" + this.qualification);
-  //     window.parent.listChange(this.education, this.qualification);
-  //     // this.$emit(
-  //     //   "listChange",
-  //     //   this.education[0].schoolname,
-  //     //   this.qualification
-  //     // );
-  //   },
-  // },
 };
 </script>
 

@@ -1,7 +1,6 @@
 <template>
   <div>
     <HeaderView />
-    <!-- <SelectResume :active="isClick" @close="close" /> -->
     <main>
       <div class="notice_container">
         <div class="notice_navbar">
@@ -71,8 +70,6 @@
                   </div>
                   <div class="notice_component__content-column--img">
                     <img v-bind:src="resumelist.image" alt="" />
-                    <!-- <img src="https://via.placeholder.com/297x358" alt="" /> -->
-                    <!-- <button>이미지 업로드</button> -->
                   </div>
                 </div>
                 <div class="notice_component_tableArea">
@@ -238,12 +235,10 @@ import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
 
 import { store } from "@/store";
-// import SelectResume from "./SelectResume.vue";
 export default {
   components: {
     HeaderView,
     FooterView,
-    // SelectResume,
   },
   data() {
     return {
@@ -277,17 +272,19 @@ export default {
         email: JSON.parse(localStorage.getItem("user")).email,
         id: JSON.parse(localStorage.getItem("user")).id,
         name: JSON.parse(localStorage.getItem("user")).name,
+        title: this.detail.number,
       };
-
-      store.dispatch("apply", { ...data }).then((res) => {
-        console.log("success");
-        console.log(this.data);
-        if (res == 201) {
-          this.inputError.email = false;
-        } else {
-          alert("이미 지원하였습니다");
-        }
-      });
+      console.log(this.detail.number);
+      store
+        .dispatch("apply", { ...data })
+        .then((res) => {
+          if (res == 201) {
+            this.$router.push("/notice/apply/success");
+          } else {
+            alert("이미 지원하였습니다");
+          }
+        })
+        .catch((e) => console.log(e));
     },
   },
 

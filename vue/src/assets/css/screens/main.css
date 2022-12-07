@@ -101,7 +101,7 @@ html {
 
 /* main_2 */
 
-.main-body {
+.main_body {
   background-color: #ffffff;
   width: 100%;
 }
@@ -264,6 +264,13 @@ html {
 
 .main-view__column-content img {
   margin-bottom: 24px;
+  width: 75px;
+  height: 75px;
+}
+
+#content_img {
+  width: 75px;
+  height: 75px;
 }
 
 .main-view__column-content-text {
