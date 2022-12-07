@@ -56,6 +56,14 @@ export const store = new Vuex.Store({
         Token: Token,
       };
     },
+
+    getUser() {
+      let user = JSON.parse(localStorage.getItem("user"));
+
+      return {
+        user: user,
+      };
+    },
   },
 
   actions: {

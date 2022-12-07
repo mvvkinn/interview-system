@@ -2,7 +2,7 @@
   <div class="main_body">
     <HeaderView />
     <main>
-      <section class="main-view">
+      <section class="main-view" v-if="role === 'user'">
         <div class="main-view__column">
           <router-link to="/notice">
             <div class="main-view__column-content">
@@ -93,6 +93,69 @@
           <div class="main-view__column-right-box"></div>
         </div>
       </section>
+      <section class="main-view" v-else>
+        <div class="main-view__column">
+          <router-link to="/admin/notice">
+            <div class="main-view__column-content">
+              <img
+                id="content_img"
+                src="@/assets/images/icons/icon_notice.png"
+                alt=""
+              />
+              <div class="main-view__column-content-text">
+                <h1>공지사항</h1>
+                <h2>NOTICE</h2>
+                <div class="main-view__column-content-tag">
+                  <span>#오늘의 공지</span>
+                  <span>#필수확인</span>
+                  <span>#대학공지</span>
+                </div>
+              </div>
+            </div>
+            <div class="main-view__column-out-1"></div>
+            <div class="main-view__column-in-1"></div>
+            <div class="main-view__column-out-2"></div>
+            <div class="main-view__column-in-2"></div>
+            <div class="main-view__column-left-corner-1"></div>
+            <div class="main-view__column-left-corner-2"></div>
+            <div class="main-view__column-right-corner-1"></div>
+            <div class="main-view__column-right-corner-2"></div>
+            <div class="main-view__column-left-box"></div>
+            <div class="main-view__column-right-box"></div>
+          </router-link>
+        </div>
+        <div class="main-view__column">
+          <router-link to="/admin/resume">
+            <div class="main-view__column-content">
+              <img
+                id="content_img"
+                src="@/assets/images/icons/icon_mypage.png"
+                alt=""
+              />
+              <div class="main-view__column-content-text">
+                <h1>관리자페이지</h1>
+                <h2>Admin PAGE</h2>
+                <div class="main-view__column-content-tag">
+                  <span>#관리자</span>
+                  <span>#지원자 조회</span>
+                  <span>#면접 조회</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="main-view__column-out-1"></div>
+            <div class="main-view__column-in-1"></div>
+            <div class="main-view__column-out-2"></div>
+            <div class="main-view__column-in-2"></div>
+            <div class="main-view__column-left-corner-1"></div>
+            <div class="main-view__column-left-corner-2"></div>
+            <div class="main-view__column-right-corner-1"></div>
+            <div class="main-view__column-right-corner-2"></div>
+            <div class="main-view__column-left-box"></div>
+            <div class="main-view__column-right-box"></div>
+          </router-link>
+        </div>
+      </section>
     </main>
     <FooterView />
   </div>
@@ -101,10 +164,36 @@
 <script>
 import HeaderView from "@/components/main/HeaderView.vue";
 import FooterView from "@/components/main/FooterView.vue";
+import { store } from "@/store";
 export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  data() {
+    return {
+      role: "",
+    };
+  },
+  beforeRouteEnter(to, from, next) {
+    const role = store.state.user.role;
+    switch (role) {
+      case "user":
+        next((vm) => {
+          vm.role = role;
+        });
+        break;
+      case "recruiter":
+        next((vm) => {
+          vm.role = role;
+        });
+        break;
+      case "admin":
+        next((vm) => {
+          vm.role = role;
+        });
+        break;
+    }
   },
 };
 </script>
