@@ -182,7 +182,7 @@ export default {
     );
     this.resumeList = resumeText.data.resumelist;
     const interviewText = await this.$axios.get(
-      this.$eMockUp +"/interview"
+      this.$eMockUp+"/interview"
     );
     this.interviewList = interviewText.data.interview;
     this.interviewNumber = this.interviewList.filter(
