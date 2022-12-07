@@ -352,7 +352,7 @@
 .notice_adm_write-filebutton {
   width: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .notice_adm_write-filebutton label {
   background-color: #3c62e5;

@@ -327,7 +327,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  border: none;
+  background-color: inherit;
 }
 
 #scoreBoard_whiteBtn {
