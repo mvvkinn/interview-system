@@ -122,7 +122,7 @@ vu
                       <p>가능</p>
                     </div>
                     <div class="re-adm__interview-table-text-on">
-                      <router-link to="/admin/progress/evaluation?roomName=room1">
+                      <router-link :to="`list/${resume.number}/detail`">
                         <button>면접 시작</button>
                       </router-link>
                     </div>
