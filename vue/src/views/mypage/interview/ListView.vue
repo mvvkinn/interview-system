@@ -82,8 +82,12 @@ vu
                       class="component__list-column"
                     >
                       <div class="component__list-column--text">
-                        <h1>2022년도 하반기 OOOOO 프론트엔드 개발자 모집</h1>
-                        <p>지원일 : 2022/01/01</p>
+                        <h1>
+                          [추천채용] [허브디앤씨] 웹/앱 개발 신입/경력 개발자
+                          채용
+                          <p>화상면접 진행가능</p>
+                        </h1>
+                        <p>지원일 : 2022/11/28</p>
                       </div>
                     </router-link>
                     <router-link
@@ -91,8 +95,11 @@ vu
                       class="component__list-column"
                     >
                       <div class="component__list-column--text">
-                        <h1>면접 제목1</h1>
-                        <p>지원일 : 2022/01/01</p>
+                        <h1>
+                          [추천채용] [패스오더] 급성장중인 스타트업 'Web
+                          Front-End 개발자' 채용
+                        </h1>
+                        <p>지원일 : 2022/12/8</p>
                       </div>
                     </router-link>
                     <router-link to="/meeting">
