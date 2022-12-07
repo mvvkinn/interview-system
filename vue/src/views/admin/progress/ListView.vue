@@ -110,7 +110,7 @@ vu
                 >
                   <div class="re-adm__interview-table-text">
                     <div class="re-adm__interview-table-text-no">
-                      <p>{{index+1}}</p>
+                      <p>{{index+1+(pageNum*pagecount - pagecount)}}</p>
                     </div>
                     <div class="re-adm__interview-table-text-title">
                       <p>{{resume.resumeTitle}}</p>
@@ -132,7 +132,7 @@ vu
               </div>
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">
-                  <a href="#">&laquo;</a>
+                  <a>&laquo;</a>
                   <a
                     v-for="unit in page"
                     :key="`page-${unit}`"
@@ -140,7 +140,7 @@ vu
                   >
                     {{unit}}
                   </a>
-                  <a href="#">&raquo;</a>
+                  <a>&raquo;</a>
                 </div>
               </div>
             </div>
@@ -169,6 +169,7 @@ export default {
       filteredList:[],
       splitList:[],
       pagecount:10,
+      pageNum:1,
     };
   },
   computed:{
@@ -202,6 +203,7 @@ export default {
       }else {
         start = this.pagecount * (num-1);
         end = this.pagecount * num;
+        this.pageNum = num;
         this.splitList = this.filteredList.filter(
           (v,i) => i >= start && i < end
         );
