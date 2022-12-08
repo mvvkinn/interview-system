@@ -12,10 +12,14 @@ export default (app: Router) => {
 
   app.use("/score", route);
 
-  route.get("/read/:id", async (req, res, next) => {
+  route.get("/read/", async (req, res, next) => {
     try {
       const scoreServiceInstance = new ScoreService();
-      const result = await scoreServiceInstance.find(req.params.id);
+      const result = await scoreServiceInstance.find(
+        req.query.id,
+        req.query.email,
+        req.query.name
+      );
       res.status(201).json(result);
     } catch (e) {
       logger.error(e);
