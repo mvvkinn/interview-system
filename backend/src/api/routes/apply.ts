@@ -15,7 +15,19 @@ export default (app: Router) => {
   app.use("/apply", route);
 
   //Read All
-  route.get("", (req: Request, res: Response, next: NextFunction) => {});
+  route.get("/", async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const applyServiceInstance = new ApplyService();
+      const result = await applyServiceInstance.find(
+        req.query.title,
+        req.query.user_name
+      );
+      res.status(201).json(result);
+    } catch (e) {
+      logger.error(e);
+      next(e);
+    }
+  });
 
   //Create new Apply
   route.post("", async (req: Request, res: Response, next: NextFunction) => {
@@ -23,10 +35,17 @@ export default (app: Router) => {
       const email: IUser = req.body.email;
       const name: IUser = req.body.name;
       const id: IUser = req.body.id;
-      const title: IApply = req.body.title;
+      const title_id: string = req.body.title_id;
+      const title: string = req.body.title;
 
       const applyServiceInstance = new ApplyService();
-      const result = await applyServiceInstance.create(email, name, id, title);
+      const result = await applyServiceInstance.create(
+        email,
+        name,
+        id,
+        title,
+        title_id
+      );
 
       res.status(201).send(result);
     } catch (e) {

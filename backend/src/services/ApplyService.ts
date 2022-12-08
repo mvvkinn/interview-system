@@ -12,11 +12,17 @@ export default class ApplyService {
     this.userModel = db.models.User;
   }
 
-  public async create(email: IUser, name: IUser, id: IUser, title: IApply) {
+  public async create(
+    email: IUser,
+    name: IUser,
+    id: IUser,
+    title: string,
+    title_id: string
+  ) {
     const today = new Date();
     const year = today.getFullYear();
     //19 = 임의의 Announcement.id(면접공고 id)
-    const array = [year, title, id];
+    const array = [year, title_id, id];
     const interviewNumber = array.join("");
 
     await this.applyModel.create({
@@ -24,6 +30,17 @@ export default class ApplyService {
       interview_number: interviewNumber,
       user_id: id,
       user_name: name,
+      title: title,
     });
+  }
+
+  public async find(title: any, name: any) {
+    const record = await this.applyModel.findOne({
+      where: {
+        title: title,
+        user_name: name,
+      },
+    });
+    return record;
   }
 }
