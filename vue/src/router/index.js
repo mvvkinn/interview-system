@@ -305,7 +305,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/progress/:interviewId/list/:number/detail",
+    path: "/admin/progress/:interviewId/list/:number/:roomName",
     name: "admin_interview_progress_evaluation",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/VideoMeeting.vue"),

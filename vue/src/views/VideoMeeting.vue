@@ -10,7 +10,7 @@
               <p id="applicantName">지원자</p>
             </div>
             <div class="sideObject_value" id="objectValue_gray">
-              <p>{{resumeNumber.person}}</p>
+              <p>{{ resumeNumber.person }}</p>
             </div>
           </div>
           <div class="sideArea_object">
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="onMain">
-        <div id="onMain_leftArea">
+        <div id="onMain_leftArea" :class="{ addForm: role !== 'user' }">
           <div class="mainLeft_camArea">
             <div class="cam_top" :class="{ addPeer: isPeer }">
               <video
@@ -69,13 +69,17 @@
             <div class="online_Btn" id="ectBtn">ㆍㆍㆍ</div>
           </div>
         </div>
-        <form id="onMain_rightArea" @submit.prevent="submitForm()">
+        <form
+          id="onMain_rightArea"
+          @submit.prevent="submitForm()"
+          v-if="role !== 'user'"
+        >
           <div class="scoreBoard_topArea" id="topArea_interviewTitle">
             <div class="scoreBoaed_title">
               <p id="online_boldText">면접명</p>
             </div>
             <div class="scoreBoaed_value">
-              <p>{{resumeNumber.interviewTitle}}</p>
+              <p>{{ resumeNumber.interviewTitle }}</p>
             </div>
           </div>
           <div class="scoreBoard_topArea" id="topArea_standard">
@@ -202,6 +206,7 @@
 import { initCall, toggleMute, toggleCamera, pc } from "@/plugins/stream";
 import { store } from "@/store";
 import router from "@/router";
+// import axios from "axios";
 
 export default {
   data() {
@@ -222,6 +227,7 @@ export default {
       score_three: "",
       add_question: "",
       email: JSON.parse(localStorage.getItem("user")).email,
+      role: JSON.parse(localStorage.getItem("user")).role,
       isEmpty: false,
       inputError: {
         question_one: false,
@@ -246,7 +252,7 @@ export default {
       isMuted: false,
       isCameraOn: true,
       socket: null,
-      roomName: this.$route.query.roomName,
+      roomName: this.$route.params.roomName,
       pcObj: {},
       videoHeight: 100,
       peerConnection: null,
@@ -287,7 +293,7 @@ export default {
       }
     },
   },
-  async created(){
+  async created() {
     const resumeText = await this.$axios.get(
       this.$eMockUp + "/interview/resume"
     );
@@ -326,7 +332,7 @@ export default {
         score_three: this.score_three,
         add_question: this.add_question,
         id: JSON.parse(localStorage.getItem("user")).id,
-        name: JSON.parse(localStorage.getItem("user")).name,
+        name: this.resumeNumber.person,
         email: JSON.parse(localStorage.getItem("user")).email,
       };
       const arrayValue = Object.values(data);
@@ -618,5 +624,12 @@ input:focus {
   width: 100%;
   height: 100%;
   margin: auto;
+}
+
+#onMain_leftArea {
+  width: 100%;
+}
+.addForm {
+  width: 63.5%;
 }
 </style>

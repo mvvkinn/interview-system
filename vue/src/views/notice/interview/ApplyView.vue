@@ -272,7 +272,8 @@ export default {
         email: JSON.parse(localStorage.getItem("user")).email,
         id: JSON.parse(localStorage.getItem("user")).id,
         name: JSON.parse(localStorage.getItem("user")).name,
-        title: this.detail.number,
+        title_id: this.detail.number,
+        title: this.detail.title,
       };
       console.log(this.detail.number);
       store

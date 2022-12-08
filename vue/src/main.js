@@ -16,7 +16,7 @@ Vue.prototype.$seolmockup =
   "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io";
 
 Vue.prototype.$eMockUp =
-  "https://8b9634c1-85ba-4027-9009-702300573ece.mock.pstmn.io";
+  "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io";
 
 Vue.config.productionTip = false;
 

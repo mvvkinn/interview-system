@@ -104,5 +104,9 @@ export const store = new Vuex.Store({
         .then((res) => res.status)
         .catch((e) => e.response.status);
     },
+
+    // applyGet: async (params) => {
+    //   return await axios.get("/apply")
+    // }
   },
 });

@@ -76,7 +76,7 @@
             <div class="re-adm__interview">
               <div class="re-adm__interview-title">
                 <h1>
-                  {{interviewNumber.title}}
+                  {{ interviewNumber.title }}
                 </h1>
               </div>
               <hr />
@@ -97,20 +97,21 @@
                 <router-link
                   :to="`list/${resume.number}/detail`"
                   :key="index"
-                  v-for="(resume,index) in splitList">
+                  v-for="(resume, index) in splitList"
+                >
                   <div class="re-adm__interview-content-table-text">
                     <div class="re-adm__interview-content-table-text-no">
-                      <p>{{index+1+(pageNum*pageCount-pageCount)}}</p>
+                      <p>{{ index + 1 + (pageNum * pageCount - pageCount) }}</p>
                     </div>
                     <div class="re-adm__interview-content-table-text-title">
-                      <p>{{resume.resumeTitle}}</p>
+                      <p>{{ resume.resumeTitle }}</p>
                     </div>
                     <div class="re-adm__interview-content-table-text-volunteer">
-                      <p>{{resume.person}}</p>
+                      <p>{{ resume.person }}</p>
                     </div>
                   </div>
                 </router-link>
-                <hr/>
+                <hr />
               </div>
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">
@@ -120,7 +121,7 @@
                     :key="`page-${unit}`"
                     @click="pagination(unit)"
                   >
-                    {{unit}}
+                    {{ unit }}
                   </a>
                   <a>&raquo;</a>
                 </div>
@@ -147,23 +148,23 @@ export default {
     HeaderView,
     FooterView,
   },
-  data(){
+  data() {
     return {
       resumeList: [],
-      interviewList:[],
-      interviewNumber:{},
-      filteredList:[],
-      splitList:[],
-      pageCount:10,
-      pageNum:1,
+      interviewList: [],
+      interviewNumber: {},
+      filteredList: [],
+      splitList: [],
+      pageCount: 10,
+      pageNum: 1,
     };
   },
-  computed:{
-    page(){
-      return Math.ceil(this.filteredList.length/10);
-    }
+  computed: {
+    page() {
+      return Math.ceil(this.filteredList.length / 10);
+    },
   },
-  async created(){
+  async created() {
     const resumeText = await this.$axios.get(
       "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io/interview/resume"
     );
@@ -178,28 +179,30 @@ export default {
       (v) => v.number === +this.$route.params.interviewId
     )[0];
 
-    this.filteredList = this.resumeList.filter((v)=>v.interviewTitle === this.interviewNumber.title);
+    this.filteredList = this.resumeList.filter(
+      (v) => v.interviewTitle === this.interviewNumber.title
+    );
     this.pagination(1);
-
   },
-  methods:{
-    pagination(num){
-      let start=0;
-      let end=this.pageCount;
-      if(num===1){
+  methods: {
+    pagination(num) {
+      let start = 0;
+      let end = this.pageCount;
+      if (num === 1) {
         this.splitList = this.filteredList.filter(
-          (v,i) => i >= start && i < end
+          (v, i) => i >= start && i < end
         );
         this.pageNum = num;
-      }else {
-        start = this.pageCount * (num-1);
+      } else {
+        start = this.pageCount * (num - 1);
         end = this.pageCount * num;
         this.pageNum = num;
         this.splitList = this.filteredList.filter(
-          (v,i) => i >= start && i < end
+          (v, i) => i >= start && i < end
         );
       }
-    }
-  }
+    },
+  },
 };
 </script>
+<style scoped></style>

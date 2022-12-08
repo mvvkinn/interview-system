@@ -100,7 +100,7 @@ vu
                         <p>지원일 : 2022/12/8</p>
                       </div>
                     </router-link>
-                    <router-link to="/meeting">
+                    <router-link :to="`/admin/progress/3/lsit/8/2022811`">
                       <button>화상 면접 참가</button>
                     </router-link>
                   </div>
@@ -126,6 +126,9 @@ export default {
   data() {
     return {
       noticelist: [],
+      resumeList: [],
+      interviewList: [],
+      resume: {},
     };
   },
   async created() {
@@ -133,7 +136,18 @@ export default {
       "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/notice"
     );
     this.noticelist = noticeText.data.noticelist;
-    console.log(this.noticelist.length);
+
+    const resumeText = await this.$axios.get(
+      "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io/interview/resume"
+    );
+    this.resumeList = resumeText.data.resumelist;
+
+    const interviewText = await this.$axios.get(
+      "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io/interview"
+    );
+    this.interviewList = interviewText.data.interview;
+
+    // this.resume = this.resumeList.filter((v) => v.number === index)[0];
   },
 };
 </script>
