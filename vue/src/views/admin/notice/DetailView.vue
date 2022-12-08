@@ -80,9 +80,7 @@
             </div>
             <hr />
             <div class="notice__details-text">
-              <p>
-                {{ detail.detail }}
-              </p>
+              <img v-bind:src="detail.image" />
             </div>
             <div class="notice__details-button">
               <router-link :to="`/admin/notice/detail/${detail.number}/amend`">
@@ -122,7 +120,7 @@ export default {
 
   async created() {
     const noticeText = await this.$axios.get(
-      "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/notice"
+      "https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/notice"
     );
     this.noticelist = noticeText.data.noticelist;
     this.detail = this.noticelist.filter(
@@ -159,5 +157,13 @@ export default {
 #detailBtn_black:hover {
   background-color: #333333;
   color: white;
+}
+.notice__details-text {
+  display: flex;
+}
+
+.notice__details-text img {
+  margin: 10px auto 0;
+  width: 960px;
 }
 </style>

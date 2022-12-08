@@ -160,7 +160,7 @@ export default {
   },
 
   async created() {
-    const noticeText = await this.$axios.get(this.$seolmockup + "/api/notice");
+    const noticeText = await this.$axios.get("https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/notice");
     this.noticelist = noticeText.data.noticelist;
     this.pagination(1);
   },

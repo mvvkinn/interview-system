@@ -3,7 +3,7 @@
     <div class="header__column">
       <div class="header__logo">
         <div class="header__logo--image">
-          <router-link :to="`/main`">
+          <router-link to="/main">
             <img id="header_logoImg" src="@/assets/images/logo4.png" alt="" />
           </router-link>
         </div>
