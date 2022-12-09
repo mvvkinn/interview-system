@@ -348,6 +348,12 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/admin/content/InterviewView.vue"
       ),
   },
+  {
+    path: "/:interviewId/list/:number/:roomName",
+    name: "admin_interview_progress_evaluation",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/VideoMeeting.vue"),
+  },
 ];
 
 const router = new VueRouter({

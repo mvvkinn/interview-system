@@ -223,8 +223,11 @@ export default {
           `/apply/?title=${this.resume.interviewTitle}&user_name=${this.resume.person}`
         )
         .then((res) => {
+          // this.$router.push(
+          //   `list/${this.resume.number}/${res.data.interview_number}`
+          // );
           this.$router.push(
-            `list/${this.resume.number}/${res.data.interview_number}`
+            `/${this.$route.params.interviewId}/list/${this.resume.number}/${res.data.interview_number}`
           );
         });
     },
