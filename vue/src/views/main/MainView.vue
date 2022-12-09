@@ -51,7 +51,6 @@
                 </div>
               </div>
             </div>
-
             <div class="main-view__column-out-1"></div>
             <div class="main-view__column-in-1"></div>
             <div class="main-view__column-out-2"></div>
@@ -65,19 +64,21 @@
           </router-link>
         </div>
         <div class="main-view__column">
-          <div class="main-view__column-content">
-            <img
-              id="content_img"
-              src="@/assets/images/icons/icon_lookup.png"
-              alt=""
-            />
-            <div class="main-view__column-content-text">
-              <h1>합격자조회</h1>
-              <h2>LOOK UP</h2>
-              <div class="main-view__column-content-tag">
-                <span>#면접결과</span>
-                <span>#두근두근</span>
-                <span>#후회는_없다</span>
+          <router-link to="/passcheck">
+            <div class="main-view__column-content">
+              <img
+                id="content_img"
+                src="@/assets/images/icons/icon_lookup.png"
+                alt=""
+              />
+              <div class="main-view__column-content-text">
+                <h1>합격자조회</h1>
+                <h2>LOOK UP</h2>
+                <div class="main-view__column-content-tag">
+                  <span>#면접결과</span>
+                  <span>#두근두근</span>
+                  <span>#후회는_없다</span>
+                </div>
               </div>
             </div>
             <div class="main-view__column-out-1"></div>
@@ -90,7 +91,7 @@
             <div class="main-view__column-right-corner-2"></div>
             <div class="main-view__column-left-box"></div>
             <div class="main-view__column-right-box"></div>
-          </div>
+          </router-link>
         </div>
       </section>
       <section class="main-view" v-else>
@@ -134,7 +135,7 @@
               />
               <div class="main-view__column-content-text">
                 <h1>관리자페이지</h1>
-                <h2>Admin PAGE</h2>
+                <h2>ADMIN PAGE</h2>
                 <div class="main-view__column-content-tag">
                   <span>#관리자</span>
                   <span>#지원자 조회</span>
@@ -142,7 +143,6 @@
                 </div>
               </div>
             </div>
-
             <div class="main-view__column-out-1"></div>
             <div class="main-view__column-in-1"></div>
             <div class="main-view__column-out-2"></div>
@@ -164,7 +164,6 @@
 <script>
 import HeaderView from "@/components/main/HeaderView.vue";
 import FooterView from "@/components/main/FooterView.vue";
-import { store } from "@/store";
 export default {
   components: {
     HeaderView,
@@ -176,7 +175,7 @@ export default {
     };
   },
   beforeRouteEnter(to, from, next) {
-    const role = store.state.user.role;
+    const role = JSON.parse(localStorage.getItem("user")).role;
     switch (role) {
       case "user":
         next((vm) => {
@@ -198,4 +197,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+template {
+  height: 99vh;
+  background-color: white;
+}
+</style>
