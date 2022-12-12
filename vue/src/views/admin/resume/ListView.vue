@@ -166,12 +166,12 @@ export default {
   },
   async created(){
     const resumeText = await this.$axios.get(
-      "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io/interview/resume"
+      "https://0a63635f-c39c-48f9-ae69-e3d5beb9de7a.mock.pstmn.io/interview/resume"
     );
     this.resumeList = resumeText.data.resumelist;
 
     const interviewText = await this.$axios.get(
-      "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io/interview"
+      "https://0a63635f-c39c-48f9-ae69-e3d5beb9de7a.mock.pstmn.io/interview"
     );
 
     this.interviewList = interviewText.data.interview;
