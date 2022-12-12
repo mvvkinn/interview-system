@@ -133,7 +133,7 @@ export default {
   },
   async created() {
     const noticeText = await this.$axios.get(
-      "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/notice"
+      "https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/notice"
     );
     this.noticelist = noticeText.data.noticelist;
 

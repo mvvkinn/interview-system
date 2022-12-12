@@ -118,7 +118,7 @@ export default {
   },
   async created() {
     const resumeText = await this.$axios.get(
-      "https://c9be7795-dba6-43e3-b014-c14cda040542.mock.pstmn.io/api/resume"
+      "https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/resume"
     );
     this.resumelist = resumeText.data;
     this.education = this.resumelist.education;
@@ -133,7 +133,9 @@ export default {
       .split("-")
       .join("");
 
-    const noticeText = await this.$axios.get("https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/notice");
+    const noticeText = await this.$axios.get(
+      "https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/notice"
+    );
     this.noticelist = noticeText.data.noticelist;
     this.detail = this.noticelist.filter(
       (v) => v.number === +this.$route.params.number
