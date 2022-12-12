@@ -335,7 +335,7 @@ const routes = [
       ),
   },
   {
-    path: "/meeting",
+    path: "/meeting/:roomName",
     name: "video_meeting",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/VideoMeeting.vue"),

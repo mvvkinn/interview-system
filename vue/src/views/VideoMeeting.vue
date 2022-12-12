@@ -10,7 +10,7 @@
               <p id="applicantName">지원자</p>
             </div>
             <div class="sideObject_value" id="objectValue_gray">
-              <p>{{ resumeNumber.person }}</p>
+              <p>{{ applicant.user_name }}</p>
             </div>
           </div>
           <div class="sideArea_object">
@@ -79,7 +79,7 @@
               <p id="online_boldText">면접명</p>
             </div>
             <div class="scoreBoaed_value">
-              <p>{{ resumeNumber.interviewTitle }}</p>
+              <p>{{ applicant.title }}</p>
             </div>
           </div>
           <div class="scoreBoard_topArea" id="topArea_standard">
@@ -206,7 +206,7 @@
 import { initCall, toggleMute, toggleCamera, pc } from "@/plugins/stream";
 import { store } from "@/store";
 import router from "@/router";
-// import axios from "axios";
+import axios from "axios";
 
 export default {
   data() {
@@ -257,9 +257,16 @@ export default {
       videoHeight: 100,
       peerConnection: null,
       userName: JSON.parse(localStorage.getItem("user")).name,
-      resumeList: [],
-      resumeNumber: [],
+      applicant: {},
     };
+  },
+  async beforeRouteEnter(to, from, next) {
+    const applicant = await axios.get(
+      `/apply/applicant?intereview_number=${to.params.roomName}`
+    );
+    next((vm) => {
+      vm.applicant = applicant.data;
+    });
   },
   watch: {
     question_one() {
@@ -293,15 +300,6 @@ export default {
       }
     },
   },
-  async created() {
-    const resumeText = await this.$axios.get(
-      this.$eMockUp + "/interview/resume"
-    );
-    this.resumeList = resumeText.data.resumelist;
-    this.resumeNumber = this.resumeList.filter(
-      (v) => v.number === +this.$route.params.number
-    )[0];
-  },
   methods: {
     // Interview Timer
     count() {
@@ -332,7 +330,7 @@ export default {
         score_three: this.score_three,
         add_question: this.add_question,
         id: JSON.parse(localStorage.getItem("user")).id,
-        name: this.resumeNumber.person,
+        name: this.applicant.user_name,
         email: JSON.parse(localStorage.getItem("user")).email,
       };
       const arrayValue = Object.values(data);
