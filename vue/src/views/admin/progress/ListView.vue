@@ -226,9 +226,7 @@ export default {
           // this.$router.push(
           //   `list/${this.resume.number}/${res.data.interview_number}`
           // );
-          this.$router.push(
-            `/${this.$route.params.interviewId}/list/${this.resume.number}/${res.data.interview_number}`
-          );
+          this.$router.push(`/${res.data.interview_number}`);
         });
     },
   },

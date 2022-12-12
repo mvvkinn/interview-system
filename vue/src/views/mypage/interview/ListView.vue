@@ -100,7 +100,7 @@ vu
                         <p>지원일 : 2022/12/8</p>
                       </div>
                     </router-link>
-                    <router-link to="/3/lsit/8/202281">
+                    <router-link to="/meeting/2022811">
                       <button>화상 면접 참가</button>
                     </router-link>
                   </div>
