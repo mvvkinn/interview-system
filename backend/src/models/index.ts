@@ -22,14 +22,5 @@ export default async (sequelizeInstance: Sequelize) => {
 
   scoreModel.belongsTo(userModel);
 
-  userModel.hasMany(applyModel, {
-    foreignKey: "user_id",
-    sourceKey: "id",
-    onDelete: "cascade",
-    onUpdate: "cascade",
-  });
-
-  applyModel.belongsTo(userModel);
-
   await sequelizeInstance.sync();
 };
