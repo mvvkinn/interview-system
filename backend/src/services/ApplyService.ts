@@ -34,11 +34,20 @@ export default class ApplyService {
     });
   }
 
-  public async find(title: any, name: any) {
+  public async findInterviewNumber(title: any, name: any) {
     const record = await this.applyModel.findOne({
       where: {
         title: title,
         user_name: name,
+      },
+    });
+    return record;
+  }
+
+  public async findApplicant(interview_number: any) {
+    const record = await this.applyModel.findOne({
+      where: {
+        interview_number: interview_number,
       },
     });
     return record;

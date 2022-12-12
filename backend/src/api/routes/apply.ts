@@ -18,7 +18,7 @@ export default (app: Router) => {
   route.get("/", async (req: Request, res: Response, next: NextFunction) => {
     try {
       const applyServiceInstance = new ApplyService();
-      const result = await applyServiceInstance.find(
+      const result = await applyServiceInstance.findInterviewNumber(
         req.query.title,
         req.query.user_name
       );
@@ -28,6 +28,22 @@ export default (app: Router) => {
       next(e);
     }
   });
+
+  route.get(
+    "/applicant",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const applyServiceInstance = new ApplyService();
+        const result = await applyServiceInstance.findApplicant(
+          req.query.intereview_number
+        );
+        res.status(201).json(result);
+      } catch (e) {
+        logger.error(e);
+        next(e);
+      }
+    }
+  );
 
   //Create new Apply
   route.post("", async (req: Request, res: Response, next: NextFunction) => {
