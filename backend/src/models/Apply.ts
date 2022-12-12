@@ -13,10 +13,11 @@ export default (db: Sequelize) => {
         autoIncrement: true,
       },
       qrcode: { type: DataTypes.STRING },
-      date: { type: DataTypes.INTEGER },
+      date: { type: DataTypes.DATE },
       user_name: { type: DataTypes.STRING },
       notice_title: { type: DataTypes.STRING },
       resume_id: { type: DataTypes.INTEGER },
+      user_email: { type: DataTypes.STRING },
     },
     { tableName: "Apply", timestamps: false }
   );
