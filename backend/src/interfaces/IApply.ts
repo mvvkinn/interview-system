@@ -1,8 +1,9 @@
 export interface IApply {
-  id: number;
+  interview_number: number;
+  qrcode?: string;
+  date?: Date;
   user_name?: string;
-  interview_number?: number;
-  title?: string;
-  user_id: number;
-  token?: string;
+  user_email?: string;
+  notice_title?: string;
+  resume_id?: number;
 }

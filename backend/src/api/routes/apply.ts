@@ -5,6 +5,8 @@ import { Router, Request, Response, NextFunction } from "express";
 import { ModelCtor } from "sequelize";
 import Container from "typedi";
 import { Logger } from "winston";
+import { IResume } from "@interfaces/IResume";
+import { INotice } from "@interfaces/INotice";
 
 const route = Router();
 
@@ -48,19 +50,15 @@ export default (app: Router) => {
   //Create new Apply
   route.post("", async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const email: IUser = req.body.email;
-      const name: IUser = req.body.name;
-      const id: IUser = req.body.id;
-      const title_id: string = req.body.title_id;
-      const title: string = req.body.title;
+      const user_email: IApply = req.body.user_email;
+      const resume_id: IResume = req.body.resume_id;
+      const notice_id: INotice = req.body.notice_id;
 
       const applyServiceInstance = new ApplyService();
       const result = await applyServiceInstance.create(
-        email,
-        name,
-        id,
-        title,
-        title_id
+        user_email,
+        resume_id,
+        notice_id
       );
 
       res.status(201).send(result);
