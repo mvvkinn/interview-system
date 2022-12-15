@@ -136,7 +136,11 @@ vu
                       전공
                     </div>
                   </div>
-                  <div class="notice_componet_tableLine">
+                  <div
+                    class="notice_componet_tableLine"
+                    v-for="index in eduNumber"
+                    :key="index"
+                  >
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
@@ -153,41 +157,13 @@ vu
                       placeholder="전공을 입력해주세요."
                     ></textarea>
                   </div>
-                  <div class="notice_componet_tableLine">
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_side"
-                      placeholder="예)220101 ~ 220101"
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_center"
-                      placeholder="학교명을 입력해주세요."
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_side"
-                      placeholder="전공을 입력해주세요."
-                    ></textarea>
-                  </div>
-                  <div class="notice_componet_tableLine">
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_side"
-                      placeholder="예)220101 ~ 220101"
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_center"
-                      placeholder="학교명을 입력해주세요."
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_side"
-                      placeholder="전공을 입력해주세요."
-                    ></textarea>
-                  </div>
-                  <div class="notice_componet_tableLine" id="addLine">+</div>
+                  <button
+                    class="notice_componet_tableLine"
+                    id="addLine"
+                    @click.prevent="addLine('1')"
+                  >
+                    +
+                  </button>
                 </div>
                 <div class="notice_component_tableArea">
                   <div class="notice_component_tableTitle">
@@ -213,7 +189,11 @@ vu
                       발행기관
                     </div>
                   </div>
-                  <div class="notice_componet_tableLine">
+                  <div
+                    class="notice_componet_tableLine"
+                    v-for="index in certificaNumber"
+                    :key="index"
+                  >
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
@@ -235,53 +215,90 @@ vu
                       placeholder="발행기관을 입력해주세요."
                     ></textarea>
                   </div>
-                  <div class="notice_componet_tableLine" id="addLine">+</div>
+                  <button
+                    class="notice_componet_tableLine"
+                    id="addLine"
+                    @click.prevent="addLine('2')"
+                  >
+                    +
+                  </button>
                 </div>
                 <div class="notice_component_tableArea">
-                  <div class="notice_component_tableTitle">경력사항</div>
+                  <div class="notice_component_tableTitle">대외활동</div>
                   <div class="notice_componet_tableLine">
                     <div class="tableComponent_titleBlack" id="titleBlack_side">
-                      근무기간
+                      기간
                     </div>
                     <div
-                      class="tableComponent_titleBlack"
+                      class="tableComponent_titleBlack gubun"
                       id="titleBlack_classname"
                     >
-                      근무처
+                      구분
                     </div>
                     <div
                       class="tableComponent_titleBlack"
                       id="titleBlack_rating"
                     >
-                      직위
+                      기관/장소
                     </div>
-                    <div class="tableComponent_titleBlack" id="titleBlack_side">
-                      부서
+                    <div
+                      class="tableComponent_titleBlack content"
+                      id="titleBlack_side"
+                    >
+                      활동 내용
                     </div>
                   </div>
-                  <div class="notice_componet_tableLine">
+                  <div
+                    class="notice_componet_tableLine"
+                    v-for="index in activityNumber"
+                    :key="index"
+                  >
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      placeholder="예)220101 ~ 220102"
+                      placeholder="예)2022.09 ~ 2023.01"
                     ></textarea>
                     <textarea
-                      class="tableComponent_valueBlack"
+                      class="tableComponent_valueBlack gubun"
                       id="valueBlack_classname"
-                      placeholder="근무처를 입력해주세요."
+                      placeholder="동아리"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_rating"
-                      placeholder="직위를 입력해주세요."
+                      placeholder="명지전문대학"
                     ></textarea>
                     <textarea
-                      class="tableComponent_valueBlack"
+                      class="tableComponent_valueBlack content"
                       id="valueBlack_side"
-                      placeholder="부서를 입력해주세요."
+                      placeholder="활동한 내용을 입력해주세요."
                     ></textarea>
                   </div>
-                  <div class="notice_componet_tableLine" id="addLine">+</div>
+                  <button
+                    class="notice_componet_tableLine"
+                    id="addLine"
+                    @click.prevent="addLine('3')"
+                  >
+                    +
+                  </button>
+                </div>
+                <div class="notice_component_tableArea">
+                  <div class="notice_component_tableTitle">자기소개서</div>
+                  <div class="notice_componet_tableLine">
+                    <div
+                      class="tableComponent_titleBlack resume"
+                      id="titleBlack_side"
+                    >
+                      자유형식
+                    </div>
+                  </div>
+                  <div class="notice_componet_tableLine_resume">
+                    <textarea
+                      class="resume_textarea"
+                      id="valueBlack_side"
+                      placeholder="자유롭게 작성해주세요."
+                    ></textarea>
+                  </div>
                 </div>
                 <div class="component__content-column">
                   <div class="component__content-column--button">
@@ -310,7 +327,65 @@ export default {
     HeaderView,
     FooterView,
   },
+  data() {
+    return {
+      eduNumber: 1,
+      certificaNumber: 1,
+      activityNumber: 1,
+    };
+  },
+  methods: {
+    addLine(i) {
+      switch (+i) {
+        case 1:
+          this.eduNumber++;
+          break;
+        case 2:
+          this.certificaNumber++;
+          break;
+        case 3:
+          this.activityNumber++;
+          break;
+      }
+    },
+  },
 };
 </script>
 
-<style></style>
+<style scoped>
+.resume {
+  width: 100% !important;
+}
+
+.notice_componet_tableLine_resume {
+  width: 100%;
+  display: flex;
+}
+
+.resume_textarea {
+  width: 100% !important;
+  min-height: 400px;
+  height: 100%;
+  border: 1px solid #333;
+  padding-left: 10px;
+  font-family: noto sans kr;
+  font-size: 14px;
+  color: #333;
+  font-weight: 300;
+  resize: none;
+  outline: none;
+  line-height: 3.2vh;
+}
+
+.gubun {
+  width: 15% !important;
+}
+
+.content {
+  width: 50% !important;
+}
+
+#addLine {
+  border: none;
+}
+</style>
