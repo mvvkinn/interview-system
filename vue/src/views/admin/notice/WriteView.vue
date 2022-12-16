@@ -77,13 +77,13 @@
               </div>
             </div>
             <div class="notice_adm_write-filebutton">
-              <label for="input-file">파일 첨부</label>
-              <input type="file" id="input-file" style="display: none" />
+              <!-- <label for="file">파일 첨부</label> -->
+              <input type="file" id="file" accept=".png, .jpg, .jpeg" />
             </div>
             <div class="component__content-column">
               <div class="component__content-column--button">
                 <button id="blueBtn">업로드</button>
-                <button id="blackBtn">임시저장</button>
+                <!-- <button id="blackBtn">임시저장</button> -->
                 <router-link to="/admin/notice">
                   <button id="grayBtn">취소</button>
                 </router-link>
@@ -155,4 +155,49 @@ export default {
   height: 35px;
   font-family: "noto sans kr";
 }
+.notice_adm_write-filebutton input::file-selector-button {
+  background-color: #3c62e5;
+  color: white;
+  border: 0;
+  height: 25px;
+  cursor: pointer;
+  /* width: 100px;
+  height: 25px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  margin: 0; */
+}
+.notice_adm_write-filebutton {
+  display: flex;
+  justify-content: flex-end;
+}
+#file {
+  border: none;
+  width: 15.7%;
+}
+/* #file[type="file"]::file-selector-button {
+  background-color: #3c62e5;
+  color: white;
+  width: 100px;
+  height: 25px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+} */
+/* 
+.notice_adm_write-filebutton input[type="file"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+} */
 </style>
