@@ -73,12 +73,20 @@ vu
           </nav>
           <article class="component__content">
             <div class="component__content-div">
-              <h1>이력서 제목1</h1>
+              <!-- <h1>이력서 제목1</h1> -->
+              <input type="text" v-model="data.title" placeholder="이력서 1" />
               <form class="component__content--hr">
                 <div class="component__content-column">
                   <div class="component__content-column--img">
-                    <img src="https://via.placeholder.com/297x358" alt="" />
+                    <img :src="uploadImg" alt="" />
                     <button>이미지 업로드</button>
+                    <input
+                      type="file"
+                      id="file"
+                      accept="image/*"
+                      @change="upload"
+                    />
+                    <label for="file">이미지 업로드</label>
                   </div>
                 </div>
                 <div class="notice_component_tableArea">
@@ -87,11 +95,13 @@ vu
                     <div class="tableComponent_title">이름</div>
                     <textarea
                       class="tableComponent_value"
+                      v-model="user_name"
                       placeholder="이름을 입력해주세요."
                     ></textarea>
                     <div class="tableComponent_title">생년월일</div>
                     <textarea
                       class="tableComponent_value"
+                      v-model="user_birthdate"
                       placeholder="생년 6자리를 입력해주세요."
                     ></textarea>
                   </div>
@@ -99,6 +109,7 @@ vu
                     <div class="tableComponent_title">휴대폰</div>
                     <textarea
                       class="tableComponent_value"
+                      v-model="user_phone"
                       placeholder="'-'제외하고 입력"
                     ></textarea>
                     <div class="tableComponent_title" id="emailTitle">
@@ -106,6 +117,7 @@ vu
                     </div>
                     <textarea
                       class="tableComponent_value"
+                      v-model="data.user_email"
                       placeholder="이메일을 입력해주세요."
                     ></textarea>
                   </div>
@@ -115,6 +127,7 @@ vu
                     </div>
                     <textarea
                       class="tableComponent_value"
+                      v-model="user_address"
                       placeholder="'-'제외하고 입력"
                       id="addressTextArea"
                     ></textarea>
@@ -144,16 +157,19 @@ vu
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
+                      v-model="data.period"
                       placeholder="예)220101 ~ 220101"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_center"
+                      v-model="data.school"
                       placeholder="학교명을 입력해주세요."
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
+                      v-model="data.major"
                       placeholder="전공을 입력해주세요."
                     ></textarea>
                   </div>
@@ -197,21 +213,25 @@ vu
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
+                      v-model="data.acquisition_date"
                       placeholder="예)220101"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_classname"
+                      v-model="data.certificate"
                       placeholder="자격 및 교육명을 입력해주세요."
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_rating"
+                      v-model="data.rating"
                       placeholder="등급을 입력해주세요."
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
+                      v-model="data.issuer"
                       placeholder="발행기관을 입력해주세요."
                     ></textarea>
                   </div>
@@ -302,7 +322,9 @@ vu
                 </div>
                 <div class="component__content-column">
                   <div class="component__content-column--button">
-                    <button id="blueBtn">수정하기</button>
+                    <button id="blueBtn" @click.prevent="regist">
+                      저장하기
+                    </button>
                     <button id="blackBtn">삭제</button>
                     <router-link to="/mypage/resume/list">
                       <button id="grayBtn">목록</button>
@@ -322,6 +344,8 @@ vu
 <script>
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+import { store } from "@/store";
+// import { read } from "fs";
 export default {
   components: {
     HeaderView,
@@ -332,6 +356,23 @@ export default {
       eduNumber: 1,
       certificaNumber: 1,
       activityNumber: 1,
+      changeImage: "",
+      data: {
+        title: "",
+        image: "",
+        period: null,
+        school: "",
+        major: "",
+        acquisition_date: null,
+        certificate: "",
+        rating: "",
+        issuer: "",
+        user_email: JSON.parse(localStorage.getItem("user")).email,
+      },
+      user_name: JSON.parse(localStorage.getItem("user")).name,
+      user_birthdate: JSON.parse(localStorage.getItem("user")).birthdate,
+      user_phone: JSON.parse(localStorage.getItem("user")).phone,
+      user_address: JSON.parse(localStorage.getItem("user")).address,
     };
   },
   methods: {
@@ -347,6 +388,36 @@ export default {
           this.activityNumber++;
           break;
       }
+    },
+    regist() {
+      const resume = this.data;
+      store.dispatch("registResume", { ...resume }).then((res) => {
+        console.log(res);
+      });
+    },
+    upload(e) {
+      let file = e.target.files;
+      let reader = new FileReader();
+      let formData = new FormData();
+
+      reader.readAsDataURL(file[0]);
+      // 사진 띄우기
+      reader.onload = (e) => {
+        this.changeImage = e.target.result;
+      };
+      // formData에 사진 추가
+      formData.append("image", file[0]);
+      store.dispatch("upload", formData).then((res) => {
+        // 서버 uploads폴더 사진 경로를 저장
+        this.data.image = res;
+      });
+    },
+  },
+  computed: {
+    uploadImg() {
+      return this.changeImage === ""
+        ? "https://via.placeholder.com/297x358"
+        : this.changeImage;
     },
   },
 };
