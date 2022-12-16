@@ -4,6 +4,7 @@ import ResumeService from "@services/ResumeService";
 import Container from "typedi";
 import { celebrate, Joi } from "celebrate";
 import { Logger } from "winston";
+import { upload } from "@controllers/resumeController";
 
 const route = Router();
 
@@ -14,7 +15,7 @@ export default (app: Router) => {
   route.post("", async (req: Request, res: Response, next: NextFunction) => {
     try {
       const ResumeDTO: IResume = req.body;
-      const email: string = req.body.email;
+      const email: string = req.body.user_email;
 
       const resumeServiceInstance = new ResumeService();
       const result = await resumeServiceInstance.RegistResume(ResumeDTO, email);
@@ -25,4 +26,14 @@ export default (app: Router) => {
       next(e);
     }
   });
+
+  route.post(
+    "/upload",
+    upload.single("image"),
+    async (req: Request, res: Response, next: NextFunction) => {
+      console.log(req.file?.path);
+
+      res.send(req.file?.path);
+    }
+  );
 };
