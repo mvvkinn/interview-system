@@ -108,5 +108,12 @@ export const store = new Vuex.Store({
     // applyGet: async (params) => {
     //   return await axios.get("/apply")
     // }
+
+    notice: async (_, params) => {
+      return await axios
+        .post("/notice", params)
+        .then((res) => res.status)
+        .catch((e) => e.response.status);
+    },
   },
 });
