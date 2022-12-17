@@ -8,6 +8,9 @@ import Score from "@models/Score";
 import User from "@models/User";
 import Resume from "@models/Resume";
 import Notice from "@models/Notice";
+import Education from "@models/Education";
+import Activity from "@models/Activity";
+import Certificate from "@models/Certificate";
 import { Server } from "http";
 import RTCSignalService from "@services/RTCSignalService";
 
@@ -23,6 +26,9 @@ export default async (sequelizeInstance: Sequelize, httpServer: Server) => {
   Container.set("userModel", User(sequelizeInstance));
   Container.set("resumeModel", Resume(sequelizeInstance));
   Container.set("noticeModel", Notice(sequelizeInstance));
+  Container.set("educationModel", Education(sequelizeInstance));
+  Container.set("ActivityModel", Activity(sequelizeInstance));
+  Container.set("CertificateModel", Certificate(sequelizeInstance));
 
   Container.set("socketIO", socketIOInstance(httpServer));
   RTCSignalService();

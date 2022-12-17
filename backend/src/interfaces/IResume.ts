@@ -2,10 +2,10 @@ export interface IResume {
   id: number;
   title?: string;
   image?: string;
-  period?: Date;
+  period?: string;
   school?: string;
   major?: string;
-  acquisition_date?: Date;
+  acquisition_date?: string;
   certificate?: string;
   rating?: string;
   issuer?: string;
@@ -18,9 +18,29 @@ export interface IResume {
 
 export interface IEducation {
   id: number;
-  period?: Date;
+  period?: string;
   school?: string;
   major?: string;
+  resume_title?: string;
+  user_email: string;
+}
+
+export interface IActivity {
+  id: number;
+  period?: string;
+  gubun?: string;
+  location?: string;
+  content?: string;
+  resume_title?: string;
+  user_email: string;
+}
+
+export interface ICertificate {
+  id: number;
+  acquisition_date?: string;
+  certificate?: string;
+  rating?: string;
+  issuer?: string;
   resume_title?: string;
   user_email: string;
 }
