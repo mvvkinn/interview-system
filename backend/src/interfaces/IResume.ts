@@ -15,3 +15,12 @@ export interface IResume {
   user_phone: string;
   user_address: string;
 }
+
+export interface IEducation {
+  id: number;
+  period?: Date;
+  school?: string;
+  major?: string;
+  resume_title?: string;
+  user_email: string;
+}
