@@ -12,7 +12,7 @@ export default (db: Sequelize) => {
         unique: true,
         autoIncrement: true,
       },
-      period: { type: DataTypes.DATE },
+      period: { type: DataTypes.STRING },
       school: { type: DataTypes.STRING },
       major: { type: DataTypes.STRING },
       user_email: { type: DataTypes.STRING },
