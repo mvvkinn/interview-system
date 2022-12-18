@@ -107,14 +107,14 @@ export const store = new Vuex.Store({
 
     registResume: async (_, params) => {
       return await axios
-        .post("/interview", params)
+        .post("/resume", params)
         .then((res) => res.status)
         .catch((e) => e.response.status);
     },
 
     upload: async (_, params) => {
       return await axios
-        .post("/interview/upload", params)
+        .post("/resume/upload", params)
         .then((res) => res.data)
         .catch((e) => e.response.status);
     },
