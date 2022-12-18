@@ -309,7 +309,7 @@ export default {
         password: this.password,
         name: this.name,
         gender: this.gender,
-        birthdate: this.birthdate,
+        birthdate: this.birthdate.slice(2, 10).split("-").join(""),
         phone: this.phone,
         zipcode: this.zipcode,
         address: this.address,
