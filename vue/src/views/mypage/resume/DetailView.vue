@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -160,19 +159,19 @@ vu
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      :v-model="resume.education[index - 1]?.period"
+                      v-model="resume.education[index - 1].period"
                       placeholder="예)220101 ~ 220101"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_center"
-                      :v-model="resume.education[index - 1]?.school"
+                      v-model="resume.education[index - 1].school"
                       placeholder="학교명을 입력해주세요."
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      :v-model="resume.education[index - 1]?.major"
+                      v-model="resume.education[index - 1].major"
                       placeholder="전공을 입력해주세요."
                     ></textarea>
                   </div>
@@ -216,25 +215,25 @@ vu
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      :v-model="resume.certificate[index - 1]?.acquisition_date"
+                      v-model="resume.certificate[index - 1].acquisition_date"
                       placeholder="예)220101"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_classname"
-                      :v-model="resume.certificate[index - 1]?.certificate"
+                      v-model="resume.certificate[index - 1].certificate"
                       placeholder="자격 및 교육명을 입력해주세요."
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_rating"
-                      :v-model="resume.certificate[index - 1]?.rating"
+                      v-model="resume.certificate[index - 1].rating"
                       placeholder="등급을 입력해주세요."
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      :v-model="resume.certificate[index - 1]?.issuer"
+                      v-model="resume.certificate[index - 1].issuer"
                       placeholder="발행기관을 입력해주세요."
                     ></textarea>
                   </div>
@@ -279,25 +278,25 @@ vu
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      :v-model="resume.activity[index - 1]?.period"
+                      v-model="resume.activity[index - 1].period"
                       placeholder="예)2022.09 ~ 2023.01"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack gubun"
                       id="valueBlack_classname"
-                      :v-model="resume.activity[index - 1]?.gubun"
+                      v-model="resume.activity[index - 1].gubun"
                       placeholder="동아리"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_rating"
-                      :v-model="resume.activity[index - 1]?.location"
+                      v-model="resume.activity[index - 1].location"
                       placeholder="명지전문대학"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack content"
                       id="valueBlack_side"
-                      :v-model="resume.activity[index - 1]?.content"
+                      v-model="resume.activity[index - 1].content"
                       placeholder="활동한 내용을 입력해주세요."
                     ></textarea>
                   </div>
@@ -762,6 +761,12 @@ export default {
           school: this.resume.education.school[this.eduNumber - 1],
           major: this.resume.education.major[this.eduNumber - 1],
         });
+      } else {
+        this.education.push({
+          period: "",
+          school: "",
+          major: "",
+        });
       }
 
       // 자격 및 교육사항에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
@@ -779,6 +784,13 @@ export default {
           rating: this.resume.certificate.rating[this.certificaNumber - 1],
           issuer: this.resume.certificate.issuer[this.certificaNumber - 1],
         });
+      } else {
+        this.certificate.push({
+          acquisition_date: "",
+          certificate: "",
+          rating: "",
+          issuer: "",
+        });
       }
 
       // 대외활동에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
@@ -793,6 +805,13 @@ export default {
           gubun: this.resume.activity.gubun[this.activityNumber - 1],
           location: this.resume.activity.location[this.activityNumber - 1],
           content: this.resume.activity.content[this.activityNumber - 1],
+        });
+      } else {
+        this.activity.push({
+          period: "",
+          gubun: "",
+          location: "",
+          content: "",
         });
       }
 

@@ -134,6 +134,14 @@
   margin: 95px 0 70px 0;
 }
 
+.component__content-div > h1 {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 24px;
+  font-weight: 700;
+}
+
 .component__content-div > input {
   width: 100%;
   display: flex;
