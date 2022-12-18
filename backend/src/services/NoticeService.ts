@@ -24,4 +24,13 @@ export default class AuthService {
     });
     return findRecord;
   }
+
+  public async detail(id: string) {
+    const findRecord = await this.noticeModel.findOne({
+      where: {
+        id: +id,
+      },
+    });
+    return findRecord;
+  }
 }

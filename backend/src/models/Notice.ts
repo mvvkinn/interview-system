@@ -14,7 +14,7 @@ export default (db: Sequelize) => {
       },
       title: { type: DataTypes.STRING },
       content: { type: DataTypes.STRING },
-      image: { type: DataTypes.BLOB },
+      image: { type: DataTypes.STRING },
       start_recruit: { type: DataTypes.DATE },
       end_recruit: { type: DataTypes.DATE },
     },
