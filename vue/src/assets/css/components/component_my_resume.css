@@ -188,14 +188,21 @@
   width: 220px;
 }
 
-.component__content-column--img button {
+.component__content-column--img > input {
+  display: none;
+}
+
+.component__content-column--img label {
   background-color: #3c62e5;
   font-family: "noto sans kr";
   border-style: none;
   height: 55px;
-  font-size: 14px;
+  font-size: 16px;
   color: white;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .component__content-column h2 {

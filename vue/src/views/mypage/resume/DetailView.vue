@@ -83,14 +83,13 @@ vu
                 <div class="component__content-column">
                   <div class="component__content-column--img">
                     <img :src="`/${resume.image.split('\\')[1]}`" alt="" />
-                    <button>이미지 업로드</button>
+                    <label for="file">이미지 업로드</label>
                     <input
                       type="file"
                       id="file"
                       accept="image/*"
                       @change="upload"
                     />
-                    <label for="file">이미지 업로드</label>
                   </div>
                 </div>
                 <div class="notice_component_tableArea">
@@ -355,14 +354,13 @@ vu
                 <div class="component__content-column">
                   <div class="component__content-column--img">
                     <img :src="uploadImg" alt="" />
-                    <button>이미지 업로드</button>
+                    <label for="file">이미지 업로드</label>
                     <input
                       type="file"
                       id="file"
                       accept="image/*"
                       @change="upload"
                     />
-                    <label for="file">이미지 업로드</label>
                   </div>
                 </div>
                 <div class="notice_component_tableArea">
