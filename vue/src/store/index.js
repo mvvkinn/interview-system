@@ -105,18 +105,12 @@ export const store = new Vuex.Store({
         .catch((e) => e.response.status);
     },
 
-<<<<<<< HEAD
-    // applyGet: async (params) => {
-    //   return await axios.get("/apply")
-    // }
-
     notice: async (_, params) => {
       return await axios
         .post("/notice", params)
         .then((res) => res.status)
         .catch((e) => e.response.status);
     },
-=======
     registResume: async (_, params) => {
       return await axios
         .post("/resume", params)
@@ -130,6 +124,12 @@ export const store = new Vuex.Store({
         .then((res) => res.data)
         .catch((e) => e.response.status);
     },
->>>>>>> 41119b9dc67fd2d9271f386cf046488b91f13f3f
+
+    uploadNotice: async (_, params) => {
+      return await axios
+        .post("/notice/upload/notice", params)
+        .then((res) => res.data)
+        .catch((e) => e.response.status);
+    },
   },
 });

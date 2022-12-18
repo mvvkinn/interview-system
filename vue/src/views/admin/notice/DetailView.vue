@@ -57,7 +57,7 @@
         <section class="notice">
           <article class="notice__details">
             <div class="notice__details-h1">
-              <h1>{{ detail.title }}</h1>
+              <h1>{{ noticelist.title }}</h1>
             </div>
             <hr />
             <div class="notice__details-header">
@@ -69,21 +69,21 @@
               <div class="notice__details-header-div"><p>날짜</p></div>
               <hr />
               <div class="notice__details-header-div">
-                <p>{{ detail.date }}</p>
+                <p>{{ noticelist.date }}</p>
               </div>
               <hr />
               <div class="notice__details-header-div"><p>조회수</p></div>
               <hr />
               <div class="notice__details-header-div">
-                <p>{{ detail.view }}</p>
+                <p>156</p>
               </div>
             </div>
             <hr />
             <div class="notice__details-text">
-              <img v-bind:src="detail.image" />
+              <img v-bind:src="`/notice/${noticelist.image.split('\\')[2]}`" />
             </div>
             <div class="notice__details-button">
-              <router-link :to="`/admin/notice/detail/${detail.number}/amend`">
+              <router-link :to="`/admin/notice/detail/${detail.id}/amend`">
                 <button class="notice_detailBtn" id="detailBtn_blue">
                   수정하기
                 </button>
@@ -119,15 +119,10 @@ export default {
   },
 
   async created() {
-    const noticeText = await this.$axios.get(
-      "https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/notice"
+    const noticeGet = await this.$axios.get(
+      `/notice/read/${this.$route.params.id}`
     );
-    this.noticelist = noticeText.data.noticelist;
-    this.detail = this.noticelist.filter(
-      (v) => v.number === +this.$route.params.number
-    )[0];
-    // console.log(this.detail[0]);
-    console.log(this.detail.number);
+    this.noticelist = noticeGet.data;
   },
 };
 </script>

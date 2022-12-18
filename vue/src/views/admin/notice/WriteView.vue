@@ -94,7 +94,7 @@
               </div>
             </div>
             <div class="notice_adm_write-filebutton">
-              <input type="file" id="file" accept=".png, .jpg, .jpeg" />
+              <input type="file" id="file" accept="image/*" @change="upload" />
             </div>
             <div class="component__content-column">
               <div class="component__content-column--button">
@@ -128,6 +128,7 @@ export default {
       content: "",
       start_recruit: "",
       end_recruit: "",
+      image: "",
     };
   },
   methods: {
@@ -137,8 +138,8 @@ export default {
         content: this.content,
         start_recruit: this.start_recruit,
         end_recruit: this.end_recruit,
+        image: this.image,
       };
-      console.log(this.start_recruit);
       store
         .dispatch("notice", { ...data })
         .then((res) => {
@@ -149,6 +150,20 @@ export default {
           }
         })
         .catch((e) => console.log(e));
+    },
+    upload(e) {
+      let file = e.target.files;
+      let reader = new FileReader();
+      let formData = new FormData();
+
+      reader.readAsDataURL(file[0]);
+      // formData에 사진 추가
+      formData.append("image", file[0]);
+      store.dispatch("uploadNotice", formData).then((res) => {
+        // 서버 uploads폴더 사진 경로를 저장
+        this.image = res;
+        console.log(this.image);
+      });
     },
   },
 };

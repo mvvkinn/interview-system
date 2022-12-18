@@ -98,7 +98,7 @@
             </div>
             <div v-if="splitlist">
               <router-link
-                to="/admin/notice"
+                :to="`/admin/notice/detail/${notice.id}`"
                 :key="index"
                 v-for="(notice, index) in splitlist"
               >
@@ -160,9 +160,6 @@ export default {
   computed: {
     page() {
       return Math.ceil(this.noticeData.length / 10);
-    },
-    createdate() {
-      return this.noticeData.createdAt.slice(0, 10);
     },
   },
   async created() {
