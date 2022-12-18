@@ -216,7 +216,7 @@
                   <button id="notice_blueBtn" @click.prevent="applyForm">
                     지원하기
                   </button>
-                  <router-link :to="`/notice/detail/${$route.params.number}`">
+                  <router-link :to="`/notice/detail/${$route.params.id}`">
                     <button id="notice_blackBtn">취소하기</button>
                   </router-link>
                 </div>
@@ -243,7 +243,6 @@ export default {
   data() {
     return {
       isClick: false,
-      noticelist: [],
       resumelist: {},
       detail: {},
       education: [],
@@ -253,6 +252,8 @@ export default {
       phone: "",
       address: "",
       birth: "",
+
+      noticelist: [],
     };
   },
   methods: {
@@ -269,11 +270,9 @@ export default {
     },
     async applyForm() {
       const data = {
-        email: JSON.parse(localStorage.getItem("user")).email,
-        id: JSON.parse(localStorage.getItem("user")).id,
-        name: JSON.parse(localStorage.getItem("user")).name,
-        title_id: this.detail.number,
-        title: this.detail.title,
+        user_email: JSON.parse(localStorage.getItem("user")).email,
+        resume_id: 1,
+        notice_id: this.$route.params.id,
       };
       console.log(this.detail.number);
       store
@@ -290,13 +289,14 @@ export default {
   },
 
   async created() {
-    const noticeText = await this.$axios.get("https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/notice");
-    this.noticelist = noticeText.data.noticelist;
-    this.detail = this.noticelist.filter(
-      (v) => v.number === +this.$route.params.number
-    )[0];
+    const noticeGet = await this.$axios.get(
+      `/notice/read/${this.$route.params.id}`
+    );
+    this.noticelist = noticeGet.data;
 
-    const resumeText = await this.$axios.get("https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/resume");
+    const resumeText = await this.$axios.get(
+      "https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/resume"
+    );
     this.resumelist = resumeText.data;
     this.education = this.resumelist.education;
     this.qualification = this.resumelist.qualification;
