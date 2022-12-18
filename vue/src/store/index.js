@@ -105,6 +105,7 @@ export const store = new Vuex.Store({
         .catch((e) => e.response.status);
     },
 
+<<<<<<< HEAD
     // applyGet: async (params) => {
     //   return await axios.get("/apply")
     // }
@@ -115,5 +116,20 @@ export const store = new Vuex.Store({
         .then((res) => res.status)
         .catch((e) => e.response.status);
     },
+=======
+    registResume: async (_, params) => {
+      return await axios
+        .post("/resume", params)
+        .then((res) => res.status)
+        .catch((e) => e.response.status);
+    },
+
+    upload: async (_, params) => {
+      return await axios
+        .post("/resume/upload", params)
+        .then((res) => res.data)
+        .catch((e) => e.response.status);
+    },
+>>>>>>> 41119b9dc67fd2d9271f386cf046488b91f13f3f
   },
 });

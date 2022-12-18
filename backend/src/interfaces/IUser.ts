@@ -4,7 +4,7 @@ export interface IUser {
   password: string;
   name: string;
   gender: string; // char
-  birthdate: Date;
+  birthdate: string;
   phone?: string;
   zipcode?: string;
   address?: string;

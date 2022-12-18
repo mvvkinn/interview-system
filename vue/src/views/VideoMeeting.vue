@@ -604,6 +604,9 @@ input:focus {
   margin: auto;
   width: 100%;
   height: 100%;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
 }
 
 .addPeer {
@@ -622,6 +625,9 @@ input:focus {
   width: 100%;
   height: 100%;
   margin: auto;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
 }
 
 #onMain_leftArea {
