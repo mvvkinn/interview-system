@@ -215,7 +215,7 @@ const routes = [
       ),
   },
   {
-    path: "/notice/detail/modal/resume",
+    path: "/notice/detail/modal/resume/:id",
     name: "notice_view_myResumeList_detail",
     component: () =>
       import(
