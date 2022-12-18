@@ -76,19 +76,33 @@ vu
               <h1>이력서 목록</h1>
               <div class="component__content--hr">
                 <div class="component__list">
-                  <div class="component__list-div">
-                    <div class="component__list-column">
-                      <div class="component__list-column--text">
-                        <h1>이력서 제목1</h1>
-                        <p>작성일 : 2022/01/01</p>
-                      </div>
+                  <div class="component__list-div" v-if="resumeList.length">
+                    <div
+                      class="component__list-column"
+                      v-for="(resume, index) in resumeList"
+                      :key="index"
+                    >
+                      <router-link :to="`/mypage/resume/detail/${resume.id}`">
+                        <div class="component__list-column--text">
+                          <h1>{{ resume.title }}</h1>
+                          <p>
+                            작성일 :
+                            {{
+                              resume.createdAt
+                                .toString()
+                                .slice(0, 10)
+                                .split("-")
+                                .join("/")
+                            }}
+                          </p>
+                        </div>
+                      </router-link>
                     </div>
-                    <div class="component__list-column">
-                      <div class="component__list-column--text">
-                        <h1>이력서 제목2</h1>
-                        <p>작성일 : 2022/01/01</p>
-                      </div>
-                    </div>
+                    <router-link to="/mypage/resume/detail">
+                      <button>이력서 등록</button>
+                    </router-link>
+                  </div>
+                  <div class="component__list-div" v-else>
                     <router-link to="/mypage/resume/detail">
                       <button>이력서 등록</button>
                     </router-link>
@@ -111,6 +125,16 @@ export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  data() {
+    return {
+      user_email: JSON.parse(localStorage.getItem("user")).email,
+      resumeList: [],
+    };
+  },
+  async created() {
+    const resume = await this.$axios.get(`/resume?email=${this.user_email}`);
+    this.resumeList = resume.data;
   },
 };
 </script>

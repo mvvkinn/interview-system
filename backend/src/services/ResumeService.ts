@@ -9,6 +9,7 @@ import { ModelCtor, Sequelize } from "sequelize";
 export default class AuthService {
   userModel: ModelCtor<any>;
   resumeModel: ModelCtor<any>;
+
   constructor() {
     const db: Sequelize = Container.get("db");
     this.userModel = db.models.User;
@@ -30,5 +31,26 @@ export default class AuthService {
     });
 
     return resumeRecord;
+  }
+
+  public async getResume(resumeDTO: any) {
+    let resumeRecord;
+    if (resumeDTO?.email) {
+      resumeRecord = await this.resumeModel.findAll({
+        where: { user_email: resumeDTO?.email },
+      });
+    } else if (resumeDTO?.id) {
+      resumeRecord = await this.resumeModel.findAll({
+        where: { id: resumeDTO?.id },
+      });
+    }
+
+    return resumeRecord;
+  }
+
+  public async deleteResume(id: string) {
+    await this.resumeModel.destroy({
+      where: { id: +id },
+    });
   }
 }

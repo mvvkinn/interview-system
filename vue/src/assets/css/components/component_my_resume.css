@@ -141,6 +141,21 @@
   font-size: 24px;
   font-weight: 700;
 }
+
+.component__content-div > input {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 24px;
+  font-weight: 700;
+  border: none;
+  outline: none;
+}
+
+.component__content-div > input:focus {
+  outline: none;
+}
+
 .component__content-div hr {
   width: 100%;
   margin: 0px;
@@ -181,14 +196,21 @@
   width: 220px;
 }
 
-.component__content-column--img button {
+.component__content-column--img > input {
+  display: none;
+}
+
+.component__content-column--img label {
   background-color: #3c62e5;
   font-family: "noto sans kr";
   border-style: none;
   height: 55px;
-  font-size: 14px;
+  font-size: 16px;
   color: white;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .component__content-column h2 {
