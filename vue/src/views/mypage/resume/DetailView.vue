@@ -161,19 +161,19 @@ vu
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      v-model="resume.education[index - 1].period"
+                      :v-model="resume.education[index - 1]?.period"
                       placeholder="예)220101 ~ 220101"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_center"
-                      v-model="resume.education[index - 1].school"
+                      :v-model="resume.education[index - 1]?.school"
                       placeholder="학교명을 입력해주세요."
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      v-model="resume.education[index - 1].major"
+                      :v-model="resume.education[index - 1]?.major"
                       placeholder="전공을 입력해주세요."
                     ></textarea>
                   </div>
@@ -217,25 +217,25 @@ vu
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      v-model="resume.certificate[index - 1].acquisition_date"
+                      :v-model="resume.certificate[index - 1]?.acquisition_date"
                       placeholder="예)220101"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_classname"
-                      v-model="resume.certificate[index - 1].certificate"
+                      :v-model="resume.certificate[index - 1]?.certificate"
                       placeholder="자격 및 교육명을 입력해주세요."
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_rating"
-                      v-model="resume.certificate[index - 1].rating"
+                      :v-model="resume.certificate[index - 1]?.rating"
                       placeholder="등급을 입력해주세요."
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      v-model="resume.certificate[index - 1].issuer"
+                      :v-model="resume.certificate[index - 1]?.issuer"
                       placeholder="발행기관을 입력해주세요."
                     ></textarea>
                   </div>
@@ -280,25 +280,25 @@ vu
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      v-model="resume.activity[index - 1].period"
+                      :v-model="resume.activity[index - 1]?.period"
                       placeholder="예)2022.09 ~ 2023.01"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack gubun"
                       id="valueBlack_classname"
-                      v-model="resume.activity[index - 1].gubun"
+                      :v-model="resume.activity[index - 1]?.gubun"
                       placeholder="동아리"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_rating"
-                      v-model="resume.activity[index - 1].location"
+                      :v-model="resume.activity[index - 1]?.location"
                       placeholder="명지전문대학"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack content"
                       id="valueBlack_side"
-                      v-model="resume.activity[index - 1].content"
+                      :v-model="resume.activity[index - 1]?.content"
                       placeholder="활동한 내용을 입력해주세요."
                     ></textarea>
                   </div>
@@ -334,7 +334,9 @@ vu
                     <button id="blueBtn" @click.prevent="regist">
                       저장하기
                     </button>
-                    <button id="blackBtn">삭제</button>
+                    <button id="blackBtn" @click.prevent="deleteResume">
+                      삭제
+                    </button>
                     <router-link to="/mypage/resume/list">
                       <button id="grayBtn">목록</button>
                     </router-link>
@@ -604,7 +606,7 @@ vu
                     <button id="blueBtn" @click.prevent="regist">
                       저장하기
                     </button>
-                    <button id="blackBtn">삭제</button>
+                    <p class="button-gubun"></p>
                     <router-link to="/mypage/resume/list">
                       <button id="grayBtn">목록</button>
                     </router-link>
@@ -679,8 +681,10 @@ export default {
         vm.resume = data.data[0];
         vm.activityNumber =
           vm.resume.activity.length === 0 ? 1 : vm.resume.activity.length;
-        vm.certificaNumber = vm.resume.certificate.length;
-        vm.eduNumber = vm.resume.education.length;
+        vm.certificaNumber =
+          vm.resume.certificate.length === 0 ? 1 : vm.resume.certificate.length;
+        vm.eduNumber =
+          vm.resume.education.length === 0 ? 1 : vm.resume.education.length;
         vm.currentId = id;
         console.log(vm.activityNumber, vm.certificaNumber, vm.eduNumber);
         console.log(vm.resume);
@@ -691,12 +695,14 @@ export default {
   },
   methods: {
     addLine(i) {
+      console.log(this.resume);
       switch (+i) {
         case 1:
           if (
-            this.resume.education.period[this.eduNumber - 1] &&
-            this.resume.education.school[this.eduNumber - 1] &&
-            this.resume.education.major[this.eduNumber - 1]
+            // 이력서 등록할 때
+            this.resume.education.period?.[this.eduNumber - 1] &&
+            this.resume.education.school?.[this.eduNumber - 1] &&
+            this.resume.education.major?.[this.eduNumber - 1]
           ) {
             this.education.push({
               period: this.resume.education.period[this.eduNumber - 1],
@@ -708,12 +714,12 @@ export default {
           break;
         case 2:
           if (
-            this.resume.certificate.acquisition_date[
+            this.resume.certificate.acquisition_date?.[
               this.certificaNumber - 1
             ] &&
-            this.resume.certificate.certificate[this.certificaNumber - 1] &&
-            this.resume.certificate.rating[this.certificaNumber - 1] &&
-            this.resume.certificate.issuer[this.certificaNumber - 1]
+            this.resume.certificate.certificate?.[this.certificaNumber - 1] &&
+            this.resume.certificate.rating?.[this.certificaNumber - 1] &&
+            this.resume.certificate.issuer?.[this.certificaNumber - 1]
           ) {
             this.certificate.push({
               acquisition_date:
@@ -730,10 +736,10 @@ export default {
           break;
         case 3:
           if (
-            this.resume.activity.period[this.activityNumber - 1] &&
-            this.resume.activity.gubun[this.activityNumber - 1] &&
-            this.resume.activity.location[this.activityNumber - 1] &&
-            this.resume.activity.content[this.activityNumber - 1]
+            this.resume.activity.period?.[this.activityNumber - 1] &&
+            this.resume.activity.gubun?.[this.activityNumber - 1] &&
+            this.resume.activity.location?.[this.activityNumber - 1] &&
+            this.resume.activity.content?.[this.activityNumber - 1]
           ) {
             this.activity.push({
               period: this.resume.activity.period[this.activityNumber - 1],
@@ -822,6 +828,13 @@ export default {
         this.resume.image = res;
       });
     },
+    async deleteResume() {
+      await axios.delete(`/resume/${this.currentId}`).then((res) => {
+        if (res.status === 201) {
+          this.$router.push("/mypage/resume/list");
+        }
+      });
+    },
   },
   computed: {
     uploadImg() {
@@ -860,6 +873,10 @@ export default {
 
 .gubun {
   width: 15% !important;
+}
+
+.button-gubun {
+  margin: 0 10px;
 }
 
 .content {
