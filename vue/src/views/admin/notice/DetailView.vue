@@ -70,7 +70,7 @@
               <hr />
               <div class="notice__details-header-div">
                 <p>
-                  {{ noticelist.createdAt.slice(0, 10).split("-").join("/") }}
+                  {{ date }}
                 </p>
               </div>
               <hr />
@@ -82,7 +82,7 @@
             </div>
             <hr />
             <div class="notice__details-text">
-              <img v-bind:src="`/notice/${noticelist.image.split('\\')[2]}`" />
+              <img v-bind:src="sliceImage" />
             </div>
             <div class="notice__details-button">
               <router-link :to="`/admin/notice/detail/${noticelist.id}/amend`">
@@ -124,6 +124,14 @@ export default {
       `/notice/read/${this.$route.params.id}`
     );
     this.noticelist = noticeGet.data;
+  },
+  computed: {
+    sliceImage() {
+      return `/notice/${this.noticelist.image?.split("\\")[2]}`;
+    },
+    date() {
+      return this.noticelist.createdAt?.slice(0, 10).split("-").join("/");
+    },
   },
 };
 </script>
