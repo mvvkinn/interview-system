@@ -7,9 +7,6 @@ import Apply from "./Apply";
 import Score from "./Score";
 import Resume from "./Resume";
 import Notice from "./Notice";
-import Education from "./Education";
-import Activity from "./Activity";
-import Certificate from "./Certificate";
 import sequelize from "@loaders/sequelize";
 
 export default async (sequelizeInstance: Sequelize) => {
@@ -18,9 +15,6 @@ export default async (sequelizeInstance: Sequelize) => {
   const applyModel = Apply(sequelizeInstance);
   const resumeModel = Resume(sequelizeInstance);
   const noticeModel = Notice(sequelizeInstance);
-  const educationModel = Education(sequelizeInstance);
-  const activityModel = Activity(sequelizeInstance);
-  const certificateModel = Certificate(sequelizeInstance);
   const logger: Logger = Container.get("logger");
 
   await sequelizeInstance.sync();

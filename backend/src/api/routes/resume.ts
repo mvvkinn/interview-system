@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { IResume, IEducation } from "@interfaces/IResume";
+import { IResume } from "@interfaces/IResume";
 import ResumeService from "@services/ResumeService";
 import Container from "typedi";
 import { celebrate, Joi } from "celebrate";
@@ -10,7 +10,7 @@ const route = Router();
 
 export default (app: Router) => {
   const logger: Logger = Container.get("logger");
-  app.use("/interview", route);
+  app.use("/resume", route);
 
   route.post("", async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -37,26 +37,14 @@ export default (app: Router) => {
     }
   );
 
-  route.post(
-    "/education",
-    async (req: Request, res: Response, next: NextFunction) => {
-      try {
-        const EducationDTO: IEducation = req.body;
-        const email: string = req.body.user_email;
-        const id: string = req.body.resume_id;
-
-        const resumeServiceInstance = new ResumeService();
-        const result = await resumeServiceInstance.RegistEducation(
-          EducationDTO,
-          email,
-          id
-        );
-
-        res.status(201).send(result);
-      } catch (e) {
-        logger.error(e);
-        next(e);
-      }
+  route.get("", async (req, res, next) => {
+    try {
+      const resumeServiceInstance = new ResumeService();
+      const result = await resumeServiceInstance.getResume(req.query);
+      res.status(201).send(result);
+    } catch (e) {
+      logger.error(e);
+      next(e);
     }
-  );
+  });
 };
