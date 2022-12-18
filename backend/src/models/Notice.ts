@@ -18,7 +18,7 @@ export default (db: Sequelize) => {
       start_recruit: { type: DataTypes.DATE },
       end_recruit: { type: DataTypes.DATE },
     },
-    { tableName: "Notice", timestamps: false }
+    { tableName: "Notice", timestamps: true }
   );
 
   return noticeModel;
