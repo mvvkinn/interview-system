@@ -17,9 +17,9 @@ export default class ScoreService {
     return scoreRecord;
   }
 
-  public async find(id: any, email: any, name: any) {
+  public async find(email: any, name: any, notice_title:any) {
     const findRecord = await this.scoreModel.findOne({
-      where: { id: parseInt(id), email: email, name: name },
+      where: {email: email, name: name, notice_title:notice_title},
     });
     return findRecord;
   }

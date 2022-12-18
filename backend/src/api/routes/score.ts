@@ -16,9 +16,9 @@ export default (app: Router) => {
     try {
       const scoreServiceInstance = new ScoreService();
       const result = await scoreServiceInstance.find(
-        req.query.id,
         req.query.email,
-        req.query.name
+        req.query.name,
+        req.query.notice_title,
       );
       res.status(201).json(result);
     } catch (e) {

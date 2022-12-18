@@ -22,6 +22,8 @@ export default (db: Sequelize) => {
       id: { type: DataTypes.INTEGER },
       name: { type: DataTypes.STRING },
       email: { type: DataTypes.STRING },
+      notice_title : {type: DataTypes.STRING},
+      success: {type: DataTypes.INTEGER},
     },
     { tableName: "Score", timestamps: false }
   );

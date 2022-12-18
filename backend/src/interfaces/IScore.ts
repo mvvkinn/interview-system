@@ -10,4 +10,6 @@ export interface IScore {
   name: string;
   add_question: string;
   email: string;
+  notice_title: string;
+  success: number;
 }
