@@ -82,7 +82,7 @@
             </div>
             <hr />
             <div class="notice__details-text">
-              <img v-bind:src="`/notice/${noticelist.image.split('\\')[2]}`" />
+              <img v-bind:src="sliceImage" />
             </div>
             <div class="notice__details-button">
               <router-link :to="`/notice/detail/${$route.params.id}/apply`">
@@ -114,16 +114,19 @@ export default {
       noticelist: [],
     };
   },
-  computed: {
-    date() {
-      return this.noticelist.createdAt.slice(0, 10).split("-").join("/");
-    },
-  },
   async created() {
     const noticeGet = await this.$axios.get(
       `/notice/read/${this.$route.params.id}`
     );
     this.noticelist = noticeGet.data;
+  },
+  computed: {
+    sliceImage() {
+      return `/notice/${this.noticelist.image?.split("\\")[2]}`;
+    },
+    date() {
+      return this.noticelist.createdAt?.slice(0, 10).split("-").join("/");
+    },
   },
 };
 </script>
