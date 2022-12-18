@@ -166,7 +166,6 @@ export default {
     this.noticeGet = await this.$axios.get("/notice/read");
     this.noticeData = this.noticeGet.data;
     this.pagination(1);
-    console.log(this.createdate());
   },
   methods: {
     pagination(num) {

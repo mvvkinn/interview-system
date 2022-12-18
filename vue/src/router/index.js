@@ -185,13 +185,13 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/notice/ListView.vue"),
   },
   {
-    path: "/notice/detail/:number",
+    path: "/notice/detail/:id",
     name: "notice_detail",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/notice/DetailView.vue"),
   },
   {
-    path: "/notice/detail/:number/apply",
+    path: "/notice/detail/:id/apply",
     name: "notice_apply",
     component: () =>
       import(
@@ -207,7 +207,7 @@ const routes = [
       ),
   },
   {
-    path: "/notice/detail/:number/modal",
+    path: "/notice/detail/:id/modal",
     name: "notice_view_myResumeList",
     component: () =>
       import(
