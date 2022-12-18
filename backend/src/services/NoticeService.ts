@@ -18,4 +18,10 @@ export default class AuthService {
 
     return resumeRecord;
   }
+  public async find() {
+    const findRecord = await this.noticeModel.findAll({
+      order: [["id", "DESC"]],
+    });
+    return findRecord;
+  }
 }
