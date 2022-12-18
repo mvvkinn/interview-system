@@ -8,7 +8,7 @@ export interface IResume {
   cover_letter?: Text;
   user_name: string;
   user_email: string;
-  user_birthdate: Date;
+  user_birthdate: string;
   user_phone: string;
   user_address: string;
 }

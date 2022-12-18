@@ -19,7 +19,7 @@ export default (db: Sequelize) => {
       activity: { type: DataTypes.JSON },
       cover_letter: { type: DataTypes.TEXT },
       user_name: { type: DataTypes.STRING },
-      user_birthdate: { type: DataTypes.DATE },
+      user_birthdate: { type: DataTypes.STRING },
       user_phone: { type: DataTypes.STRING },
       user_email: { type: DataTypes.STRING },
       user_address: { type: DataTypes.STRING },

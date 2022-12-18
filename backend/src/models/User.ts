@@ -27,7 +27,7 @@ export default (db: Sequelize) => {
           isIn: { args: [["m", "f"]], msg: "set 'm' as male, 'f' as female" },
         },
       },
-      birthdate: { type: DataTypes.DATE, allowNull: false },
+      birthdate: { type: DataTypes.STRING, allowNull: false },
       phone: { type: DataTypes.STRING, unique: true },
       zipcode: DataTypes.STRING,
       address: DataTypes.STRING,
