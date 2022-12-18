@@ -22,6 +22,7 @@ export default (app: express.Application) => {
   app.use(express.urlencoded({ extended: true }));
 
   app.use(express.static(__dirname + "/../public"));
+  app.use(express.static("uploads"));
 
   app.use(routes());
 
