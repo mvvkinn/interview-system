@@ -47,4 +47,15 @@ export default (app: Router) => {
       next(e);
     }
   });
+
+  route.delete("/:id", async (req, res, next) => {
+    try {
+      const resumeServiceInstance = new ResumeService();
+      const result = await resumeServiceInstance.deleteResume(req.params.id);
+      res.status(201).send(201);
+    } catch (e) {
+      logger.error(e);
+      next(e);
+    }
+  });
 };

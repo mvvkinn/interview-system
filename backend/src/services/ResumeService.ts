@@ -47,4 +47,10 @@ export default class AuthService {
 
     return resumeRecord;
   }
+
+  public async deleteResume(id: string) {
+    await this.resumeModel.destroy({
+      where: { id: +id },
+    });
+  }
 }
