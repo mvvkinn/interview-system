@@ -1002,7 +1002,7 @@ li.header__menu-timer {
   text-align: center;
 }
 
-.re-adm__interview-table-text-possible
+.re-adm__interview-table-text-success 
   + .re-adm__interview-table-text-on
   button {
   width: 80px;
@@ -1011,6 +1011,16 @@ li.header__menu-timer {
   color: white;
   font-size: 12px;
   border: none;
+  cursor: pointer;
+}
+
+.re-adm__interview-table-text-success button {
+  width: 80px;
+  height: 25px;
+  background-color: white;
+  color: #333333;
+  font-size: 12px;
+  border: 1px solid #333333;
   cursor: pointer;
 }
 
@@ -1028,12 +1038,14 @@ li.header__menu-timer {
 
 .re-adm__interview-tab-header-div:nth-child(7),
 .re-adm__interview-table-text-possible,
+.re-adm__interview-table-text-success,
 .re-adm__interview-table-text-impossible {
   width: calc(188 / 1198 * 100%);
   text-align: center;
 }
 
-.re-adm__interview-table-text-possible {
+.re-adm__interview-table-text-possible,
+.re-adm__interview-table-text-success{
   color: #3c62e5;
 }
 

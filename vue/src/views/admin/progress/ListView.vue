@@ -94,8 +94,12 @@ vu
                   <p>지원자</p>
                 </div>
                 <hr />
-                <div class="re-adm__interview-tab-header-div">
+                <!-- <div class="re-adm__interview-tab-header-div">
                   <p>면접 가능 여부</p>
+                </div> -->
+                <!-- <hr /> -->
+                <div class="re-adm__interview-tab-header-div">
+                  <p>합격 여부</p>
                 </div>
                 <hr />
                 <div class="re-adm__interview-tab-header-div">
@@ -122,17 +126,32 @@ vu
                   <div class="re-adm__interview-table-text-volunteer">
                     <p>{{ resume.person }}</p>
                   </div>
-                  <div class="re-adm__interview-table-text-possible">
-                    <p>가능</p>
+                  <div class="re-adm__interview-table-text-success">
+                    <!-- <p>합격</p> -->
+                    <button 
+                      @click.prevent="successPost(resume.number)" 
+                      :class="{background:backgroundBtn, color:colorBtn}"
+                      type="submit"
+                    >
+                    합격
+                    </button>
                   </div>
                   <div class="re-adm__interview-table-text-on">
                     <button @click.prevent="applyGet(resume.number)">
-                      면접 시작
+                      온라인 면접
+                    </button>
+                    <button @click.prevent="applyGet(resume.number)">
+                      오프라인 면접
                     </button>
                   </div>
+                  <!-- <div class="re-adm__interview-table-text-success">
+                    <button>
+                      합격
+                    </button>
+                  </div> -->
                 </div>
                 <!-- </router-link> -->
-                <hr />
+                <!-- <hr /> -->
               </div>
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">
@@ -175,6 +194,10 @@ export default {
       pagecount: 10,
       pageNum: 1,
       resume: {},
+      // -- score result --
+      backgroundBtn: false,
+      colorBtn: false,
+      success: 0,
     };
   },
   computed: {
@@ -184,11 +207,11 @@ export default {
   },
   async created() {
     const resumeText = await this.$axios.get(
-      "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io/interview/resume"
+      "https://1f7e8739-9ff7-4489-b58c-08e6d4bb6681.mock.pstmn.io/interview/resume"
     );
     this.resumeList = resumeText.data.resumelist;
     const interviewText = await this.$axios.get(
-      "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io/interview"
+      "https://1f7e8739-9ff7-4489-b58c-08e6d4bb6681.mock.pstmn.io/interview"
     );
     this.interviewList = interviewText.data.interview;
     this.interviewNumber = this.interviewList.filter(
@@ -229,8 +252,41 @@ export default {
           this.$router.push(`/meeting/${res.data.interview_number}`);
         });
     },
+    async successPost(index){
+      this.backgroundBtn =!this.backgroundBtn;
+      this.colorBtn =! this.colorBtn;
+      this.resume = this.resumeList.filter((v) => v.number === index)[0];
+      
+      this.scoreGet = await this.$axios.get(
+        // `/score/read?id=${this.id}&email=${this.email}&name=${this.name}`
+        "/score/read/?id=1&email=admin&name=이설아&notice_title=[추천채용] [패스오더] 급성장중인 스타트업 'Web Front-End 개발자' 채용"
+        // `/score/read/?email=${this.email}&name=${this.name}&notice_title=${this.notice_title}`
+      );
+      this.scoreData = this.scoreGet.data;
+      // console.log(this.scoreGet);
+      this.success = (this.scoreData.success)+1;
+      console.log(this.success);
+    }
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.re-adm__interview-table-text-on button {
+  margin: 0 5px;
+}
+
+.re-adm__interview-table-text-success button:active {
+  background-color: #3c62e5;
+  color: white;
+  border: none;
+}
+
+.background {
+  background-color: #3c62e5;
+}
+
+.color {
+  color: white;
+}
+</style>
