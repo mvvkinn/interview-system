@@ -138,6 +138,14 @@ const routes = [
       ),
   },
   {
+    path: "/mypage/resume/detail/:id",
+    name: "mypage_resume_detail",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/mypage/resume/DetailView.vue"
+      ),
+  },
+  {
     path: "/mypage/interview",
     name: "mypage_apply",
     component: () =>
