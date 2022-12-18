@@ -69,7 +69,9 @@
               <div class="notice__details-header-div"><p>날짜</p></div>
               <hr />
               <div class="notice__details-header-div">
-                <p>{{ noticelist.date }}</p>
+                <p>
+                  {{ noticelist.createdAt.slice(0, 10).split("-").join("/") }}
+                </p>
               </div>
               <hr />
               <div class="notice__details-header-div"><p>조회수</p></div>
@@ -83,7 +85,7 @@
               <img v-bind:src="`/notice/${noticelist.image.split('\\')[2]}`" />
             </div>
             <div class="notice__details-button">
-              <router-link :to="`/admin/notice/detail/${detail.id}/amend`">
+              <router-link :to="`/admin/notice/detail/${noticelist.id}/amend`">
                 <button class="notice_detailBtn" id="detailBtn_blue">
                   수정하기
                 </button>
@@ -114,7 +116,6 @@ export default {
   data() {
     return {
       noticelist: [],
-      detail: {},
     };
   },
 
