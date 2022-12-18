@@ -95,7 +95,7 @@
               </div>
               <div v-if="splitList">
                 <router-link
-                  :to="`list/${resume.number}/detail`"
+                  :to="`list/${resume.id}/detail`"
                   :key="index"
                   v-for="(resume, index) in splitList"
                 >
@@ -166,12 +166,12 @@ export default {
   },
   async created() {
     const resumeText = await this.$axios.get(
-      "https://0a63635f-c39c-48f9-ae69-e3d5beb9de7a.mock.pstmn.io/interview/resume"
+      "https://1f7e8739-9ff7-4489-b58c-08e6d4bb6681.mock.pstmn.io/interview/resume"
     );
     this.resumeList = resumeText.data.resumelist;
 
     const interviewText = await this.$axios.get(
-      "https://0a63635f-c39c-48f9-ae69-e3d5beb9de7a.mock.pstmn.io/interview"
+      "https://1f7e8739-9ff7-4489-b58c-08e6d4bb6681.mock.pstmn.io/interview"
     );
     this.interviewList = interviewText.data.interview;
 
