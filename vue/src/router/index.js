@@ -249,7 +249,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/notice/detail/:number",
+    path: "/admin/notice/detail/:id",
     name: "admin_notice_list",
     component: () =>
       import(
@@ -265,7 +265,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/notice/detail/:number/amend",
+    path: "/admin/notice/detail/:id/amend",
     name: "admin_notice_amend",
     component: () =>
       import(

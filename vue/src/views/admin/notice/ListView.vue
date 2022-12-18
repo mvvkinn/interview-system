@@ -21,7 +21,7 @@
                   <p>관리자페이지</p>
                 </li>
               </router-link>
-              <!-- router link to = /success -->
+
               <router-link to="/passcheck">
                 <li class="adm_nav__menu--li">
                   <img
@@ -98,22 +98,25 @@
             </div>
             <div v-if="splitlist">
               <router-link
-                :to="`/admin/notice/detail/${notice.number}`"
+                :to="`/admin/notice/detail/${notice.id}`"
                 :key="index"
                 v-for="(notice, index) in splitlist"
               >
+                <!-- :to="`/admin/notice/detail/${notice.id}`" -->
                 <div class="notice-adm__interview-table-text">
                   <div class="notice-adm__interview-table-text-no">
-                    <p>{{ notice.number }}</p>
+                    <p>{{ notice.id }}</p>
                   </div>
                   <div class="notice-adm__interview-table-text-title">
                     <p>{{ notice.title }}</p>
                   </div>
                   <div class="notice-adm__interview-table-text-date">
-                    <p>{{ notice.date }}</p>
+                    <p>
+                      {{ notice.createdAt.slice(0, 10).split("-").join("/") }}
+                    </p>
                   </div>
                   <div class="notice-adm__interview-table-text-views">
-                    <p>{{ notice.view }}</p>
+                    <p>156</p>
                   </div>
                 </div>
               </router-link>
@@ -149,35 +152,34 @@ export default {
   },
   data() {
     return {
-      noticelist: [],
       splitlist: [],
       pagecount: 10,
+      noticeData: [],
     };
   },
   computed: {
     page() {
-      return Math.ceil(this.noticelist.length / 10);
+      return Math.ceil(this.noticeData.length / 10);
     },
   },
   async created() {
-    const noticeText = await this.$axios.get(
-      "https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/notice"
-    );
-    this.noticelist = noticeText.data.noticelist;
+    this.noticeGet = await this.$axios.get("/notice/read");
+    this.noticeData = this.noticeGet.data;
     this.pagination(1);
+    console.log(this.createdate());
   },
   methods: {
     pagination(num) {
       let start = 0;
       let end = this.pagecount;
       if (num === 1) {
-        this.splitlist = this.noticelist.filter(
+        this.splitlist = this.noticeData.filter(
           (v, i) => i >= start && i < end
         );
       } else {
         start = this.pagecount * (num - 1);
         end = this.pagecount * num;
-        this.splitlist = this.noticelist.filter(
+        this.splitlist = this.noticeData.filter(
           (v, i) => i >= start && i < end
         );
       }
