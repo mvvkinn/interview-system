@@ -79,7 +79,7 @@
               <p id="online_boldText">면접명</p>
             </div>
             <div class="scoreBoaed_value">
-              <p>{{ applicant.title }}</p>
+              <p>{{ applicant.notice_title }}</p>
             </div>
           </div>
           <div class="scoreBoard_topArea" id="topArea_standard">
@@ -261,6 +261,7 @@ export default {
     };
   },
   async beforeRouteEnter(to, from, next) {
+    console.log(to);
     const applicant = await axios.get(
       `/apply/applicant?intereview_number=${to.params.roomName}`
     );
@@ -332,6 +333,8 @@ export default {
         id: JSON.parse(localStorage.getItem("user")).id,
         name: this.applicant.user_name,
         email: JSON.parse(localStorage.getItem("user")).email,
+        notice_title: this.applicant.notice_title,
+        success: 0,
       };
       const arrayValue = Object.values(data);
       focus: {
