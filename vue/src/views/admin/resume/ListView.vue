@@ -76,7 +76,7 @@
             <div class="re-adm__interview">
               <div class="re-adm__interview-title">
                 <h1>
-                  {{interviewNumber.title}}
+                  {{ noticeList.title }}
                 </h1>
               </div>
               <hr />
@@ -93,26 +93,26 @@
                   <p>지원자</p>
                 </div>
               </div>
-              <div v-if="splitList">
-                <router-link 
-                  :to="`list/${resume.number}/detail`"
+              <div v-if="applyResumeList">
+                <router-link
+                  :to="`list/${resume.id}/detail`"
                   :key="index"
-                  v-for="(resume,index) in splitList"
-                  >
-                  <div class="re-adm__interview-content-table-text" >
+                  v-for="(resume, index) in applyResumeList"
+                >
+                  <div class="re-adm__interview-content-table-text">
                     <div class="re-adm__interview-content-table-text-no">
-                      <p>{{index + 1 + (pageNum * pageCount - pageCount)}}</p>
+                      <p>{{ index + 1 + (pageNum * pageCount - pageCount) }}</p>
                     </div>
                     <div class="re-adm__interview-content-table-text-title">
-                      <p>{{resume.resumeTitle}}</p>
+                      <p>{{ resume.title }}</p>
                     </div>
                     <div class="re-adm__interview-content-table-text-volunteer">
-                      <p>{{resume.person}}</p>
+                      <p>{{ resume.user_name }}</p>
                     </div>
                   </div>
                 </router-link>
                 <hr />
-            </div>
+              </div>
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">
                   <a>&laquo;</a>
@@ -121,7 +121,7 @@
                     :key="`page-${unit}`"
                     @click="pagination(unit)"
                   >
-                    {{unit}}
+                    {{ unit }}
                   </a>
                   <a>&raquo;</a>
                 </div>
@@ -148,61 +148,57 @@ export default {
     HeaderView,
     FooterView,
   },
-  data(){
+  data() {
     return {
-      resumeList: [],
-      interviewList:[],
-      interviewNumber: {},
-      filteredList:[],
-      splitList:[],
       pageCount: 10,
       pageNum: 1,
+
+      noticeList: {},
+      applyList: [],
+      applyResumeList: [],
     };
   },
   computed: {
-    page(){
-      return Math.ceil(this.filteredList.length / 10);
+    page() {
+      return Math.ceil(this.applyResumeList.length / 10);
     },
   },
-  async created(){
-    const resumeText = await this.$axios.get(
-      "https://0a63635f-c39c-48f9-ae69-e3d5beb9de7a.mock.pstmn.io/interview/resume"
+  async created() {
+    const notice = await this.$axios.get(
+      `/notice/read/${this.$route.params.interviewId}`
     );
-    this.resumeList = resumeText.data.resumelist;
+    this.noticeList = notice.data;
 
-    const interviewText = await this.$axios.get(
-      "https://0a63635f-c39c-48f9-ae69-e3d5beb9de7a.mock.pstmn.io/interview"
+    const applyResume = await this.$axios.get(
+      `/apply/list?title=${this.noticeList.title}`
     );
+    this.applyList = applyResume.data;
 
-    this.interviewList = interviewText.data.interview;
-
-    this.interviewNumber = this.interviewList.filter(
-      (v) => v.number === +this.$route.params.interviewId
-    )[0];
-
-    this.filteredList = this.resumeList.filter((v) => v.interviewTitle === this.interviewNumber.title);
+    this.applyList.filter(async (v) => {
+      let resume = await this.$axios.get(`/resume?id=${v.resume_id}`);
+      this.applyResumeList.push(resume.data[0]);
+    });
     this.pagination(1);
-
   },
   methods: {
-    pagination(num){
+    pagination(num) {
       let start = 0;
       let end = this.pageCount;
-      if(num===1){
-        this.splitList = this.filteredList.filter(
-          (v,i) => i >= start && i < end
+      if (num === 1) {
+        this.applyResumeList = this.applyResumeList.filter(
+          (v, i) => i >= start && i < end
         );
         this.pageNum = num;
       } else {
-        start = this.pageCount * (num-1);
+        start = this.pageCount * (num - 1);
         end = this.pageCount * num;
         this.pageNum = num;
-        this.splitList = this.filteredList.filter(
-          (v,i) => i >= start && i < end
+        this.applyResumeList = this.applyResumeList.filter(
+          (v, i) => i >= start && i < end
         );
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
