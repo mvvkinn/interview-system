@@ -6,10 +6,10 @@ export interface IScore {
   score_one: number;
   score_two: number;
   score_three: number;
-  id?: number;
-  name: string;
   add_question: string;
-  email: string;
+  user_interview_number?: number;
+  user_name: string;
+  user_email: string;
   notice_title: string;
-  success: number;
+  success: boolean;
 }
