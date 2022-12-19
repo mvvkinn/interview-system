@@ -89,7 +89,7 @@
                   </option>
                 </select>
                 <div id="btn">
-                  <div v-if="interviewNum === 0">
+                  <div v-if="interviewId === 0">
                     <button @click="errorMessage">조회하기</button>
                   </div>
                   <div v-else>
@@ -125,7 +125,6 @@ export default {
   },
   async created() {
     const interviewText = await this.$axios.get("/notice/read");
-    console.log(interviewText);
     this.interviewList = interviewText.data;
   },
   methods: {
