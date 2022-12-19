@@ -6,17 +6,18 @@
         <div class="interview_subObject">
           <div class="subObject_title" id="subObjectTitle_black">지원자</div>
           <div class="interview_content" id="interview_applicantName">
-            <!-- {{ applicant.user_name  }} -->
-            <textarea class="interview_applicantName_value" :value="scoreData.name"></textarea>
-            <!-- <p :value="scoreData.name"></p> -->
+            <input
+              class="interview_applicantName_value"
+              :value="scoreData.user_name"
+              readonly
+            />
           </div>
         </div>
       </div>
       <div class="interview_format_line">
         <div class="fotmat_line_title">면접명</div>
         <div class="fotmat_line_value">
-          <!-- <p>{{ applicant.notice_title }}</p> -->
-          <textarea :value="scoreData.notice_title"></textarea>
+          <input :value="scoreData.notice_title" readonly />
         </div>
       </div>
       <div class="interview_format_line">
@@ -39,6 +40,7 @@
             id="cell_normal"
             :value="scoreData.question_one"
             placeholder="질문을 입력해주세요."
+            readonly
           ></textarea>
           <div class="interview_cell_value" id="cell_scoreArea">
             <input
@@ -46,6 +48,7 @@
               id="cell_scoreValue"
               placeholder="00"
               :value="scoreData.score_one"
+              readonly
             />
           </div>
         </div>
@@ -55,6 +58,7 @@
             id="cell_normal"
             :value="scoreData.question_two"
             placeholder="질문을 입력해주세요."
+            readonly
           ></textarea>
           <div class="interview_cell_value" id="cell_scoreArea">
             <input
@@ -62,6 +66,7 @@
               id="cell_scoreValue"
               placeholder="00"
               :value="scoreData.score_two"
+              readonly
             />
           </div>
         </div>
@@ -71,6 +76,7 @@
             id="cell_normal"
             :value="scoreData.question_three"
             placeholder="질문을 입력해주세요."
+            readonly
           ></textarea>
           <div class="interview_cell_value" id="cell_scoreArea">
             <input
@@ -78,6 +84,7 @@
               id="cell_scoreValue"
               placeholder="00"
               :value="scoreData.score_three"
+              readonly
             />
           </div>
         </div>
@@ -91,6 +98,7 @@
           id="cell_opinion"
           :value="scoreData.add_question"
           placeholder="기타의견을 입력해주세요."
+          readonly
         ></textarea>
       </div>
       <div class="inverview_btnArea">
@@ -103,24 +111,23 @@
 </template>
 
 <script>
-import axios from 'axios';
-// import { initCall} from "@/plugins/stream";
+import axios from "axios";
 
 export default {
   data() {
     return {
       // -- score --
-      applicant:{},
+      applicant: {},
       scoreGet: {},
       scoreData: {},
       id: "",
       email: "",
       name: "",
-      notice_title:"",
+      notice_title: "",
       roomName: this.$route.params.roomName,
     };
   },
-  async beforeRouteEnter(to,from,next){
+  async beforeRouteEnter(to, from, next) {
     console.log(to);
     const applicant = await axios.get(
       `/apply/applicant?intereview_number=${to.params.roomName}`
@@ -130,97 +137,13 @@ export default {
     });
   },
   async created() {
-
-    // const resumeText = await this.$axios.get(
-    //   "https://1f7e8739-9ff7-4489-b58c-08e6d4bb6681.mock.pstmn.io/interview/resume"
-    // );
-    // this.resumeList = resumeText.data.resumelist;
-
-    // this.resumeDetail = this.resumeList.filter(
-    //   (v) => v.number === +this.$route.params.number
-    // )[0];
-
     this.scoreGet = await this.$axios.get(
-      // `/score/read?id=${this.id}&email=${this.email}&name=${this.name}`
-      // "/score/read/?id=1&email=admin&name=&notice_title="
-      `/score/read/?email=${this.email}&name=${this.name}&notice_title=${this.notice_title}`
+      `/score/read?user_interview_number=${this.$route.params.roomName}`
     );
     this.scoreData = this.scoreGet.data;
     console.log(this.scoreGet);
+    console.log(this.scoreData);
   },
-  // async mounted() {
-  //   await this.$loadScript("/socket.io/socket.io.js");
-
-  //   // eslint-disable-next-line no-undef
-  //   this.socket = io();
-  //   this.socket.emit("joinRoom", this.roomName);
-
-  //   /**
-  //    * event on join
-  //    * Send local offer to remote
-  //    */
-  //   this.socket.on("join", async (userObjArr) => {
-  //     this.myStream = await initCall();
-  //     this.myVideo = this.myStream;
-  //     const length = userObjArr.length;
-  //     if (length === 1) {
-  //       return;
-  //     }
-
-  //     for (let i = 0; i < length - 1; ++i) {
-  //       try {
-  //         const newPC = this.createConnection(userObjArr[i].socketId);
-  //         const offer = await newPC.createOffer();
-
-  //         newPC.setLocalDescription(offer);
-  //         this.socket.emit("offer", offer, userObjArr[i].socketId);
-  //       } catch (err) {
-  //         console.error(err);
-  //       }
-  //     }
-  //   });
-
-  //   /**
-  //    * event on recieved offer
-  //    * set remote peer offer
-  //    */
-  //   this.socket.on("offer", async (offer, remoteSocketId) => {
-  //     try {
-  //       const newPC = this.createConnection(remoteSocketId);
-  //       await newPC.setRemoteDescription(offer);
-
-  //       const answer = await newPC.createAnswer();
-  //       newPC.setLocalDescription(answer);
-  //       this.socket.emit("answer", answer, remoteSocketId);
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   });
-
-  //   this.socket.on("answer", (answer, remoteSocketId) => {
-  //     this.pcObj[remoteSocketId].setRemoteDescription(answer);
-  //   });
-
-  //   /**
-  //    * set remote ICECandidate
-  //    */
-  //   this.socket.on("candidate", (ice, remoteSocketId) => {
-  //     this.pcObj[remoteSocketId].addIceCandidate(ice);
-  //   });
-
-  //   this.socket.on("leave_room", (leavedSocketId) => {
-  //     this.removeVideo(leavedSocketId);
-  //   });
-
-  //   this.socket.on("reject_join", () => {
-  //     // Erase names
-  //     this.roomName = "";
-  //   });
-
-  //   // setInterval(() => {
-  //   //   this.count();
-  //   // }, 1000);
-  // },
 };
 </script>
 
@@ -232,13 +155,13 @@ export default {
   width: 95%;
 }
 .interview_applicantName_value {
-  border:none;
-  padding-top: 20px;
+  border: none;
+
   background: none;
   text-align: center;
   overflow: hidden;
 }
-.fotmat_line_value textarea {
+.fotmat_line_value input {
   border: none;
   overflow: hidden;
   width: inherit;

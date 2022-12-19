@@ -22,7 +22,6 @@ vu
                   <p>관리자 페이지</p>
                 </li>
               </router-link>
-              <!-- router link to = /success -->
               <router-link to="/passcheck">
                 <li class="adm_nav__menu--li">
                   <img
@@ -78,23 +77,23 @@ vu
             <div>
               <hr />
               <div class="adm__rsm-form">
-                <p>목록을 불러올 면접을 선택하세요.</p>
+                <p>이력서를 조회할 면접을 선택하세요.</p>
                 <select name="rsm" id="rsm-select" @change="changeValue">
                   <option value="">면접을 선택하세요</option>
-                  <option 
-                    :value="interview.number"
+                  <option
+                    :value="interview.id"
                     :key="index"
-                    v-for="(interview,index) in interviewList"
+                    v-for="(interview, index) in interviewList"
                   >
-                  {{interview.title}}
+                    {{ interview.title }}
                   </option>
                 </select>
                 <div id="btn">
-                  <div v-if="interviewNum===0">
+                  <div v-if="interviewId === 0">
                     <button @click="errorMessage">조회하기</button>
                   </div>
                   <div v-else>
-                    <router-link :to="`/admin/progress/${interviewNum}/list`">
+                    <router-link :to="`/admin/progress/${interviewId}/list`">
                       <button>조회하기</button>
                     </router-link>
                   </div>
@@ -118,26 +117,24 @@ export default {
     HeaderView,
     FooterView,
   },
-  data(){
-     return {
-       interviewList: [],
-       interviewNum: 0,
-     };
-   },
-   async created(){
-     const interviewText = await this.$axios.get(
-      "https://1f7e8739-9ff7-4489-b58c-08e6d4bb6681.mock.pstmn.io/interview"
-     );
-     this.interviewList = interviewText.data.interview;
-   },
-   methods:{
-    changeValue(e){
-      this.interviewNum = e.target.value;
+  data() {
+    return {
+      interviewList: [],
+      interviewId: 0,
+    };
+  },
+  async created() {
+    const interviewText = await this.$axios.get("/notice/read");
+    this.interviewList = interviewText.data;
+  },
+  methods: {
+    changeValue(e) {
+      this.interviewId = e.target.value;
     },
-    errorMessage(){
-      alert('면접을 선택해주세요')
-    }
-   }
+    errorMessage() {
+      alert("면접을 선택해주세요");
+    },
+  },
 };
 </script>
 
