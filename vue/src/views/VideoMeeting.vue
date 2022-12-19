@@ -60,7 +60,23 @@
               />
               {{ text_video }}
             </div>
-            <div class="online_Btn" id="scoreBtn" @click="leaveRoom()">
+            <div
+              class="online_Btn"
+              id="scoreBtn"
+              @click="leaveRoom()"
+              v-if="role !== 'user'"
+            >
+              <img
+                src="../assets/images/icons/icon_checkscore.png"
+                class="icon_checkscore"
+              />
+            </div>
+            <div
+              class="online_Btn"
+              id="scoreBtn"
+              @click="userLeaveRoom()"
+              v-else
+            >
               <img
                 src="../assets/images/icons/icon_checkscore.png"
                 class="icon_checkscore"
@@ -457,6 +473,12 @@ export default {
       this.socket.disconnect();
       this.myStream.getTracks().forEach((track) => track.stop());
       router.push("/admin/progress/");
+    },
+
+    userLeaveRoom() {
+      this.socket.disconnect();
+      this.myStream.getTracks().forEach((track) => track.stop());
+      router.push("/mypage/interview");
     },
 
     checkInput(e, index) {
