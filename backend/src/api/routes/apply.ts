@@ -32,6 +32,22 @@ export default (app: Router) => {
   });
 
   route.get(
+    "/list",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const applyServiceInstance = new ApplyService();
+        const result = await applyServiceInstance.findInterviewList(
+          req.query.title
+        );
+        res.status(201).json(result);
+      } catch (e) {
+        logger.error(e);
+        next(e);
+      }
+    }
+  );
+
+  route.get(
     "/applicant",
     async (req: Request, res: Response, next: NextFunction) => {
       try {

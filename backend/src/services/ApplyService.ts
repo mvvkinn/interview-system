@@ -67,4 +67,13 @@ export default class ApplyService {
     });
     return record;
   }
+
+  public async findInterviewList(notice_title: any) {
+    const record = await this.applyModel.findAll({
+      where: {
+        notice_title: notice_title,
+      },
+    });
+    return record;
+  }
 }
