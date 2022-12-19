@@ -22,7 +22,13 @@
             <router-link :to="`/notice/detail/modal/resume/${resume.id}`"
               ><div class="import_btn_small" id="btn_black">보기</div>
             </router-link>
-            <div class="import_btn_small" id="btn_blue">불러오기</div>
+            <div
+              class="import_btn_small"
+              id="btn_blue"
+              @click.prevent="callUp(resume.id)"
+            >
+              불러오기
+            </div>
           </div>
         </div>
       </div>
@@ -51,12 +57,18 @@ export default {
     close() {
       window.close();
     },
+    callUp(id) {
+      localStorage.setItem("resumeId", id);
+      this.close();
+    },
   },
   async created() {
     console.log("hi");
     const resume = await this.$axios.get(`/resume?email=${this.user_email}`);
     this.resumeList = resume.data;
     console.log(this.resumeList);
+
+    window.addEventListener("beforeunload", (e) => console.log(e));
   },
 };
 </script>
