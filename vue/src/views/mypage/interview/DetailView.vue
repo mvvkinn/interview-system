@@ -22,7 +22,6 @@ vu
                   마이페이지
                 </li>
               </router-link>
-              <!-- router link to = /success -->
               <router-link to="/passcheck">
                 <li>
                   <img
@@ -73,7 +72,7 @@ vu
           </nav>
           <article class="component__content">
             <div class="component__content-div">
-              <h1>{{ detail.title }}</h1>
+              <h1>{{ noticelist.title }}</h1>
               <div class="component__content--hr">
                 <div class="component__content-info">
                   <div class="component__content-info--div">
@@ -84,14 +83,14 @@ vu
                   <div class="component__content-info--div">
                     <p>날짜</p>
                     <hr />
-                    <p>{{ detail.date }}</p>
+                    <p>{{ date }}</p>
                     <hr />
                     <p>조회수</p>
                     <hr />
-                    <p>{{ detail.view }}</p>
+                    <p>156</p>
                   </div>
                 </div>
-                <img v-bind:src="detail.image" alt="" />
+                <img v-bind:src="sliceImage" alt="" />
                 <router-link
                   class="component__content-info--button"
                   to="/mypage/interview"
@@ -119,19 +118,21 @@ export default {
   data() {
     return {
       noticelist: [],
-      detail: {},
     };
   },
-
   async created() {
-    const noticeText = await this.$axios.get(
-      "https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/notice"
+    const noticeGet = await this.$axios.get(
+      `/notice/read/${this.$route.params.number}`
     );
-    this.noticelist = noticeText.data.noticelist;
-    this.detail = this.noticelist.filter(
-      (v) => v.number === +this.$route.params.number
-    )[0];
-    console.log(this.detail);
+    this.noticelist = noticeGet.data;
+  },
+  computed: {
+    sliceImage() {
+      return `/notice/${this.noticelist.image?.split("\\")[2]}`;
+    },
+    date() {
+      return this.noticelist.createdAt?.slice(0, 10).split("-").join("/");
+    },
   },
 };
 </script>
