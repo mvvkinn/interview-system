@@ -75,6 +75,7 @@
               <!-- <h1>이력서 제목1</h1> -->
               <input
                 type="text"
+                ref="resumeTitle"
                 v-model="resume.title"
                 placeholder="이력서 1"
               />
@@ -160,7 +161,7 @@
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
                       v-model="resume.education[index - 1].period"
-                      placeholder="예)220101 ~ 220101"
+                      placeholder="예)2022.09 ~ 2023.01"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
@@ -216,7 +217,7 @@
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
                       v-model="resume.certificate[index - 1].acquisition_date"
-                      placeholder="예)220101"
+                      placeholder="예)2022.09"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
@@ -346,6 +347,7 @@
               <!-- <h1>이력서 제목1</h1> -->
               <input
                 type="text"
+                ref="resumeTitle"
                 v-model="resume.title"
                 placeholder="이력서 1"
               />
@@ -431,7 +433,7 @@
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
                       v-model="resume.education.period[index - 1]"
-                      placeholder="예)220101 ~ 220101"
+                      placeholder="예)2022.09 ~ 2023.01"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
@@ -487,7 +489,7 @@
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
                       v-model="resume.certificate.acquisition_date[index - 1]"
-                      placeholder="예)220101"
+                      placeholder="예)2022.09"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
@@ -604,9 +606,9 @@
                       저장하기
                     </button>
                     <p class="button-gubun"></p>
-                    <router-link to="/mypage/resume/list">
-                      <button id="grayBtn">목록</button>
-                    </router-link>
+                    <button id="grayBtn" @click.prevent="closeButton">
+                      목록
+                    </button>
                   </div>
                 </div>
               </form>
@@ -667,10 +669,10 @@ export default {
       user_birthdate: JSON.parse(localStorage.getItem("user")).birthdate,
       user_phone: JSON.parse(localStorage.getItem("user")).phone,
       user_address: JSON.parse(localStorage.getItem("user")).address,
+      closeBtn: false,
     };
   },
   async beforeRouteEnter(to, from, next) {
-    console.log(to.params.id);
     const id = +to.params.id;
     const data = await axios.get(`/resume?id=${id}`);
     if (id) {
@@ -683,16 +685,30 @@ export default {
         vm.eduNumber =
           vm.resume.education.length === 0 ? 1 : vm.resume.education.length;
         vm.currentId = id;
-        console.log(vm.activityNumber, vm.certificaNumber, vm.eduNumber);
-        console.log(vm.resume);
       });
     } else {
       next((vm) => (vm.currentId = null));
     }
   },
+  beforeRouteLeave(to, from, next) {
+    if (this.closeBtn) {
+      if (
+        confirm(
+          "저장하시지 않으면 현재 작성 한 내용이 사라집니다. \n정말 나가시겠습니까?"
+        )
+      ) {
+        next();
+      }
+    } else {
+      next();
+    }
+  },
   methods: {
+    closeButton() {
+      this.closeBtn = true;
+      this.$router.push("/mypage/resume/list");
+    },
     addLine(i) {
-      console.log(this.resume);
       switch (+i) {
         case 1:
           if (
@@ -750,83 +766,94 @@ export default {
       }
     },
     regist() {
-      // 학력사항에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
-      if (
-        this.resume.education.period[this.eduNumber - 1] &&
-        this.resume.education.school[this.eduNumber - 1] &&
-        this.resume.education.major[this.eduNumber - 1]
-      ) {
-        this.education.push({
-          period: this.resume.education.period[this.eduNumber - 1],
-          school: this.resume.education.school[this.eduNumber - 1],
-          major: this.resume.education.major[this.eduNumber - 1],
+      if (this.resume.title !== "") {
+        // 이력서 제목이 입력되어 있는 경우 진행
+        if (
+          // 학력사항에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
+          this.resume.education.period[this.eduNumber - 1] &&
+          this.resume.education.school[this.eduNumber - 1] &&
+          this.resume.education.major[this.eduNumber - 1]
+        ) {
+          this.education.push({
+            period: this.resume.education.period[this.eduNumber - 1],
+            school: this.resume.education.school[this.eduNumber - 1],
+            major: this.resume.education.major[this.eduNumber - 1],
+          });
+        } else {
+          this.education.push({
+            period: "",
+            school: "",
+            major: "",
+          });
+        }
+
+        // 자격 및 교육사항에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
+        if (
+          this.resume.certificate.acquisition_date[this.certificaNumber - 1] &&
+          this.resume.certificate.certificate[this.certificaNumber - 1] &&
+          this.resume.certificate.rating[this.certificaNumber - 1] &&
+          this.resume.certificate.issuer[this.certificaNumber - 1]
+        ) {
+          this.certificate.push({
+            acquisition_date:
+              this.resume.certificate.acquisition_date[
+                this.certificaNumber - 1
+              ],
+            certificate:
+              this.resume.certificate.certificate[this.certificaNumber - 1],
+            rating: this.resume.certificate.rating[this.certificaNumber - 1],
+            issuer: this.resume.certificate.issuer[this.certificaNumber - 1],
+          });
+        } else {
+          this.certificate.push({
+            acquisition_date: "",
+            certificate: "",
+            rating: "",
+            issuer: "",
+          });
+        }
+
+        // 대외활동에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
+        if (
+          this.resume.activity.period[this.activityNumber - 1] &&
+          this.resume.activity.gubun[this.activityNumber - 1] &&
+          this.resume.activity.location[this.activityNumber - 1] &&
+          this.resume.activity.content[this.activityNumber - 1]
+        ) {
+          this.activity.push({
+            period: this.resume.activity.period[this.activityNumber - 1],
+            gubun: this.resume.activity.gubun[this.activityNumber - 1],
+            location: this.resume.activity.location[this.activityNumber - 1],
+            content: this.resume.activity.content[this.activityNumber - 1],
+          });
+        } else {
+          this.activity.push({
+            period: "",
+            gubun: "",
+            location: "",
+            content: "",
+          });
+        }
+
+        const data = {
+          title: this.resume.title,
+          image: this.resume.image,
+          education: this.education === [] ? null : this.education,
+          certificate: this.certificate === [] ? null : this.certificate,
+          activity: this.activity === [] ? null : this.activity,
+          cover_letter: this.resume.cover_letter,
+          user_email: this.resume.user_email,
+        };
+
+        store.dispatch("registResume", { ...data }).then((res) => {
+          if (res === 201) {
+            this.$router.push("/mypage/resume/list");
+          }
         });
       } else {
-        this.education.push({
-          period: "",
-          school: "",
-          major: "",
-        });
+        this.$refs.resumeTitle.focus();
+        alert("이력서 제목을 입력해주세요!");
       }
-
-      // 자격 및 교육사항에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
-      if (
-        this.resume.certificate.acquisition_date[this.certificaNumber - 1] &&
-        this.resume.certificate.certificate[this.certificaNumber - 1] &&
-        this.resume.certificate.rating[this.certificaNumber - 1] &&
-        this.resume.certificate.issuer[this.certificaNumber - 1]
-      ) {
-        this.certificate.push({
-          acquisition_date:
-            this.resume.certificate.acquisition_date[this.certificaNumber - 1],
-          certificate:
-            this.resume.certificate.certificate[this.certificaNumber - 1],
-          rating: this.resume.certificate.rating[this.certificaNumber - 1],
-          issuer: this.resume.certificate.issuer[this.certificaNumber - 1],
-        });
-      } else {
-        this.certificate.push({
-          acquisition_date: "",
-          certificate: "",
-          rating: "",
-          issuer: "",
-        });
-      }
-
-      // 대외활동에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
-      if (
-        this.resume.activity.period[this.activityNumber - 1] &&
-        this.resume.activity.gubun[this.activityNumber - 1] &&
-        this.resume.activity.location[this.activityNumber - 1] &&
-        this.resume.activity.content[this.activityNumber - 1]
-      ) {
-        this.activity.push({
-          period: this.resume.activity.period[this.activityNumber - 1],
-          gubun: this.resume.activity.gubun[this.activityNumber - 1],
-          location: this.resume.activity.location[this.activityNumber - 1],
-          content: this.resume.activity.content[this.activityNumber - 1],
-        });
-      } else {
-        this.activity.push({
-          period: "",
-          gubun: "",
-          location: "",
-          content: "",
-        });
-      }
-
-      const data = {
-        title: this.resume.title,
-        image: this.resume.image,
-        education: this.education === [] ? null : this.education,
-        certificate: this.certificate === [] ? null : this.certificate,
-        activity: this.activity === [] ? null : this.activity,
-        cover_letter: this.resume.cover_letter,
-        user_email: this.resume.user_email,
-      };
-      store.dispatch("registResume", { ...data }).then((res) => {
-        console.log(res);
-      });
     },
     upload(e) {
       let file = e.target.files;
