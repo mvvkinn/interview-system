@@ -261,9 +261,8 @@ export default {
     };
   },
   async beforeRouteEnter(to, from, next) {
-    console.log(to);
     const applicant = await axios.get(
-      `/apply/applicant?intereview_number=${to.params.roomName}`
+      `/apply/applicant?interview_number=${to.params.roomName}`
     );
     next((vm) => {
       vm.applicant = applicant.data;
@@ -330,11 +329,10 @@ export default {
         question_three: this.question_three,
         score_three: this.score_three,
         add_question: this.add_question,
-        id: JSON.parse(localStorage.getItem("user")).id,
-        name: this.applicant.user_name,
-        email: JSON.parse(localStorage.getItem("user")).email,
+        user_interview_number: this.$route.params.roomName,
+        user_name: this.applicant.user_name,
+        user_email: JSON.parse(localStorage.getItem("user")).email,
         notice_title: this.applicant.notice_title,
-        success: 0,
       };
       const arrayValue = Object.values(data);
       focus: {
