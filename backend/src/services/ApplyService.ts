@@ -73,6 +73,12 @@ export default class ApplyService {
           resume_id: applyDTO?.resume_id,
         },
       });
+    } else if (applyDTO?.email) {
+      record = await this.applyModel.findAll({
+        where: {
+          user_email: applyDTO?.email,
+        },
+      });
     }
     return record;
   }
