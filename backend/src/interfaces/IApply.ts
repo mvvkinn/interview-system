@@ -5,5 +5,5 @@ export interface IApply {
   user_name?: string;
   user_email?: string;
   notice_title?: string;
-  resume_id?: number;
+  resume_id: number;
 }
