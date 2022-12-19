@@ -85,9 +85,11 @@
               <img v-bind:src="sliceImage" />
             </div>
             <div class="notice__details-button">
-              <router-link :to="`/notice/detail/${$route.params.id}/apply`">
-                <button id="notice_blueBtn">지원하기</button>
-              </router-link>
+              <!-- <router-link :to="`/notice/detail/${$route.params.id}/apply`"> -->
+              <button id="notice_blueBtn" v-on:click.prevent="checkDate()">
+                지원하기
+              </button>
+              <!-- </router-link> -->
               <router-link to="/notice">
                 <button id="notice_blackBtn">목록</button>
               </router-link>
@@ -126,6 +128,19 @@ export default {
     },
     date() {
       return this.noticelist.createdAt?.slice(0, 10).split("-").join("/");
+    },
+  },
+  methods: {
+    checkDate() {
+      const today = new Date();
+      const start = new Date(this.noticelist.start_recruit);
+      const end = new Date(this.noticelist.end_recruit);
+
+      if (start <= today && today <= end) {
+        this.$router.push(`/notice/detail/${this.$route.params.id}/apply`);
+      } else {
+        alert("지원기간이 아닙니다");
+      }
     },
   },
 };
