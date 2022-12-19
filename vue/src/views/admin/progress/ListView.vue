@@ -240,7 +240,7 @@ export default {
 
 <style scoped>
 .re-adm__interview-table-text-on button {
-  margin: 0 5px;
+  margin: 5px;
 }
 
 .re-adm__interview-table-text-success button:active {

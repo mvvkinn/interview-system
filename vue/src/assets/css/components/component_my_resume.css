@@ -121,6 +121,7 @@
   border: 1px solid #c6c6c6;
   border-top: none;
   width: 100%;
+  min-height: 68vh;
   /* height: 63.6vh; */
 }
 
@@ -511,11 +512,11 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
 .component__list-column {
-  width: 80%;
+  width: 90%;
   height: 75px;
   border: 1px solid #8e8e8e;
   border-radius: 10px;

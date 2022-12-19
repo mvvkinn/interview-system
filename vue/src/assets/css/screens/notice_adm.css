@@ -84,6 +84,7 @@
   border-radius: 15px;
   display: flex;
   justify-content: center;
+  min-height: 68vh;
 }
 
 .notice-adm__interview {

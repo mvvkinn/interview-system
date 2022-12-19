@@ -88,7 +88,6 @@
                         <h1>
                           {{ apply.notice_title }}
                         </h1>
-                        <p>화상면접 진행가능</p>
                         <p>지원일 : 2022/11/28</p>
                       </div>
                     </div>
@@ -139,4 +138,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.component__list-div {
+  flex-direction: row !important;
+  justify-content: space-between;
+}
+
+.component__list-column {
+  width: 80% !important;
+}
+</style>
