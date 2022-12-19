@@ -132,10 +132,16 @@
       </div>
     </div>
     <div class="import_btnArea">
-      <router-link :to="`/notice/detail/${$route.params.number}/modal`">
+      <router-link :to="`/notice/detail/${$route.params.id}/modal`">
         <div class="import_btn" id="btn_black">목록으로</div>
       </router-link>
-      <div class="import_btn" id="btn_blue">불러오기</div>
+      <div
+        class="import_btn"
+        id="btn_blue"
+        @click.prevent="callUp(resumelist.id)"
+      >
+        불러오기
+      </div>
     </div>
   </body>
 </template>
@@ -165,8 +171,12 @@ export default {
       this.resumelist.activity.length === 0
         ? 1
         : this.resumelist.activity.length;
-    console.log(this.resumelist);
-    console.log(this.eduNumber, this.certificaNumber, this.activityNumber);
+  },
+  methods: {
+    callUp(id) {
+      localStorage.setItem("resumeId", id);
+      window.close();
+    },
   },
 };
 </script>
