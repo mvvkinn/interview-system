@@ -5,23 +5,53 @@
         <p class="import_title">내 이력서</p>
       </div>
       <div class="import_textArea">
-        <p class="import_Username">{{ userName }}</p>
+        <p class="import_Username">{{ user_name }}</p>
         <p class="import_text">님의 현재 보유한 이력서 목록입니다.</p>
       </div>
-      <div class="import_listArea">
-        <div class="import_resumeObject">
-          <p class="import_resumeTitle">{{ resumelist.title }}</p>
-          <div class="import_resumeBtnArea">
-            <p class="import_resumeDate">{{ resumelist.date }}</p>
-            <router-link to="/notice/detail/modal/resume"
-              ><div class="import_btn_small" id="btn_black">보기</div>
-            </router-link>
-            <div class="import_btn_small" id="btn_blue">불러오기</div>
+      <div v-if="resumeList.length">
+        <div class="import_listArea">
+          <div
+            class="import_resumeObject"
+            v-for="(resume, index) in resumeList"
+            :key="index"
+          >
+            <p class="import_resumeTitle">{{ resume.title }}</p>
+            <div class="import_resumeBtnArea">
+              <p class="import_resumeDate">
+                {{ resume.createdAt?.slice(0, 10).split("-").join("/") }}
+              </p>
+              <router-link :to="`/notice/detail/modal/resume/${resume.id}`"
+                ><div class="import_btn_small" id="btn_black">보기</div>
+              </router-link>
+              <div
+                class="import_btn_small"
+                id="btn_blue"
+                @click.prevent="callUp(resume.id)"
+              >
+                불러오기
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="import_btnArea">
+          <div class="import_btn" id="btn_black" @click.prevent="close">
+            닫기
           </div>
         </div>
       </div>
-      <div class="import_btnArea">
-        <div class="import_btn" id="btn_black" @click.prevent="close">닫기</div>
+      <div v-else>
+        <div class="import_btnArea">
+          <div
+            class="import_btn"
+            id="btn_blue"
+            @click.prevent="callUp('false')"
+          >
+            이력서 등록하기
+          </div>
+          <div class="import_btn" id="btn_black" @click.prevent="close">
+            닫기
+          </div>
+        </div>
       </div>
     </div>
   </body>
@@ -31,10 +61,9 @@
 export default {
   data() {
     return {
-      resumelist: {},
-      userName: "",
-      education: [],
-      qualification: [],
+      resumeList: [],
+      user_name: JSON.parse(localStorage.getItem("user")).name,
+      user_email: JSON.parse(localStorage.getItem("user")).email,
     };
   },
   props: {
@@ -46,14 +75,22 @@ export default {
     close() {
       window.close();
     },
+    callUp(id, isResume) {
+      if (id) {
+        localStorage.setItem("resumeId", id);
+      } else {
+        localStorage.setItem("isResume", isResume);
+      }
+      this.close();
+    },
   },
   async created() {
-    const resumeText = await this.$axios.get("https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/resume");
-    this.resumelist = resumeText.data;
-    this.education = this.resumelist.education;
-    this.qualification = this.resumelist.qualification;
+    console.log("hi");
+    const resume = await this.$axios.get(`/resume?email=${this.user_email}`);
+    this.resumeList = resume.data;
+    console.log(this.resumeList);
 
-    this.userName = JSON.parse(localStorage.getItem("user")).name;
+    window.addEventListener("beforeunload", (e) => console.log(e));
   },
 };
 </script>
@@ -63,13 +100,8 @@ export default {
   background-color: #f3f3f3;
   width: 800px;
   position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
-.modalArea {
-  top: 30%;
-}
+
 .active {
   display: none;
   position: fixed;

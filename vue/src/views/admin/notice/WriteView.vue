@@ -59,31 +59,46 @@
           <article class="notice_adm__write">
             <div class="notice_adm__write-title">
               <h1>글쓰기</h1>
-              <!-- <button>불러오기</button> -->
             </div>
             <hr />
             <div class="notice_adm_write-content">
-              <textarea id="title" type="text" placeholder="글제목"></textarea>
-              <textarea id="content" type="text" placeholder="내용"></textarea>
+              <textarea
+                id="title"
+                type="text"
+                placeholder="글제목"
+                v-model="title"
+              ></textarea>
+              <textarea
+                id="content"
+                type="text"
+                placeholder="내용"
+                v-model="content"
+              ></textarea>
             </div>
             <div class="notice_adm_write-applybutton">
               <div class="notice_adm_write-applybutton-begin">
                 <p>모집 시작일시</p>
-                <input id="begin" type="datetime-local" />
+                <input
+                  id="begin"
+                  type="datetime-local"
+                  v-model="start_recruit"
+                />
               </div>
               <div class="notice_adm_write-applybutton-deadline">
                 <p>모집 마감일시</p>
-                <input id="deadline" type="datetime-local" />
+                <input
+                  id="deadline"
+                  type="datetime-local"
+                  v-model="end_recruit"
+                />
               </div>
             </div>
             <div class="notice_adm_write-filebutton">
-              <label for="input-file">파일 첨부</label>
-              <input type="file" id="input-file" style="display: none" />
+              <input type="file" id="file" accept="image/*" @change="upload" />
             </div>
             <div class="component__content-column">
               <div class="component__content-column--button">
-                <button id="blueBtn">업로드</button>
-                <button id="blackBtn">임시저장</button>
+                <button id="blueBtn" @click.prevent="noticeForm">업로드</button>
                 <router-link to="/admin/notice">
                   <button id="grayBtn">취소</button>
                 </router-link>
@@ -101,10 +116,55 @@
 <script>
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+import { store } from "@/store";
 export default {
   components: {
     HeaderView,
     FooterView,
+  },
+  data() {
+    return {
+      title: "",
+      content: "",
+      start_recruit: "",
+      end_recruit: "",
+      image: "",
+    };
+  },
+  methods: {
+    async noticeForm() {
+      const data = {
+        title: this.title,
+        content: this.content,
+        start_recruit: this.start_recruit,
+        end_recruit: this.end_recruit,
+        image: this.image,
+      };
+      store
+        .dispatch("notice", { ...data })
+        .then((res) => {
+          if (res == 201) {
+            this.$router.push("/admin/notice");
+          } else {
+            console.log(this.data);
+          }
+        })
+        .catch((e) => console.log(e));
+    },
+    upload(e) {
+      let file = e.target.files;
+      let reader = new FileReader();
+      let formData = new FormData();
+
+      reader.readAsDataURL(file[0]);
+      // formData에 사진 추가
+      formData.append("image", file[0]);
+      store.dispatch("uploadNotice", formData).then((res) => {
+        // 서버 uploads폴더 사진 경로를 저장
+        this.image = res;
+        console.log(this.image);
+      });
+    },
   },
 };
 </script>
@@ -154,5 +214,20 @@ export default {
 .notice_adm_write-applybutton-deadline input {
   height: 35px;
   font-family: "noto sans kr";
+}
+.notice_adm_write-filebutton input::file-selector-button {
+  background-color: #3c62e5;
+  color: white;
+  border: 0;
+  height: 25px;
+  cursor: pointer;
+}
+.notice_adm_write-filebutton {
+  display: flex;
+  justify-content: flex-end;
+}
+#file {
+  border: none;
+  width: 15.7%;
 }
 </style>

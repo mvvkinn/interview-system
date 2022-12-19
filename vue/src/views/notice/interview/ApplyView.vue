@@ -57,7 +57,7 @@
         <section class="notice">
           <article class="notice_component__content-notice">
             <div class="notice_component__content-div">
-              <h1>{{ detail.title }}</h1>
+              <h1>{{ noticelist.title }}</h1>
               <form
                 class="notice_component__content--hr"
                 v-on:submit.prevent="clickbutton"
@@ -69,7 +69,7 @@
                     </button>
                   </div>
                   <div class="notice_component__content-column--img">
-                    <img v-bind:src="resumelist.image" alt="" />
+                    <img :src="resumeImg" alt="" />
                   </div>
                 </div>
                 <div class="notice_component_tableArea">
@@ -78,30 +78,30 @@
                     <div class="tableComponent_title">이름</div>
                     <textarea
                       class="tableComponent_value"
-                      placeholder="이름을 입력해주세요."
-                      v-bind:value="name"
+                      readonly
+                      v-bind:value="resumeList?.user_name"
                     ></textarea>
                     <div class="tableComponent_title">생년월일</div>
                     <textarea
                       class="tableComponent_value"
-                      placeholder="생년 6자리를 입력해주세요."
-                      v-bind:value="birth"
+                      readonly
+                      v-bind:value="resumeList?.user_birthdate"
                     ></textarea>
                   </div>
                   <div class="notice_componet_tableLine">
                     <div class="tableComponent_title">휴대폰</div>
                     <textarea
                       class="tableComponent_value"
-                      placeholder="'-'제외하고 입력"
-                      v-bind:value="phone"
+                      readonly
+                      v-bind:value="resumeList?.user_phone"
                     ></textarea>
                     <div class="tableComponent_title" id="emailTitle">
                       E-mail
                     </div>
                     <textarea
                       class="tableComponent_value"
-                      placeholder="이메일을 입력해주세요."
-                      v-bind:value="email"
+                      readonly
+                      v-bind:value="resumeList?.user_email"
                     ></textarea>
                   </div>
                   <div class="notice_componet_tableLine" id="addressLine">
@@ -110,9 +110,9 @@
                     </div>
                     <textarea
                       class="tableComponent_value"
-                      placeholder="'-'제외하고 입력"
                       id="addressTextArea"
-                      v-bind:value="address"
+                      readonly
+                      v-bind:value="resumeList?.user_address"
                     ></textarea>
                   </div>
                 </div>
@@ -134,26 +134,26 @@
                   </div>
                   <div
                     class="notice_componet_tableLine"
+                    v-for="index in eduNumber"
                     :key="index"
-                    v-for="(education, index) in education"
                   >
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      placeholder="예)220101 ~ 220101"
-                      v-bind:value="education.period"
+                      readonly
+                      v-bind:value="resumeList?.education[index - 1].period"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_center"
-                      placeholder="학교명을 입력해주세요."
-                      v-bind:value="education.schoolname"
+                      readonly
+                      v-bind:value="resumeList?.education[index - 1].school"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      placeholder="전공을 입력해주세요."
-                      v-bind:value="education.major"
+                      readonly
+                      v-bind:value="resumeList?.education[index - 1].major"
                     ></textarea>
                   </div>
                 </div>
@@ -183,32 +183,111 @@
                   </div>
                   <div
                     class="notice_componet_tableLine"
+                    v-for="index in certificaNumber"
                     :key="index"
-                    v-for="(qualification, index) in qualification"
                   >
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      placeholder="예)220101"
-                      v-bind:value="qualification.date"
+                      readonly
+                      v-bind:value="
+                        resumeList?.certificate[index - 1].acquisition_date
+                      "
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_classname"
-                      placeholder="자격 및 교육명을 입력해주세요."
-                      v-bind:value="qualification.education_name"
+                      readonly
+                      v-bind:value="
+                        resumeList?.certificate[index - 1].certificate
+                      "
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_rating"
-                      placeholder="등급을 입력해주세요."
-                      v-bind:value="qualification.class"
+                      readonly
+                      v-bind:value="resumeList?.certificate[index - 1].rating"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      placeholder="발행기관을 입력해주세요."
-                      v-bind:value="qualification.institution"
+                      readonly
+                      v-bind:value="resumeList?.certificate[index - 1].issuer"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="notice_component_tableArea">
+                  <div class="notice_component_tableTitle">대외활동</div>
+                  <div class="notice_componet_tableLine">
+                    <div class="tableComponent_titleBlack" id="titleBlack_side">
+                      기간
+                    </div>
+                    <div
+                      class="tableComponent_titleBlack gubun"
+                      id="titleBlack_classname"
+                    >
+                      구분
+                    </div>
+                    <div
+                      class="tableComponent_titleBlack"
+                      id="titleBlack_rating"
+                    >
+                      기관/장소
+                    </div>
+                    <div
+                      class="tableComponent_titleBlack content"
+                      id="titleBlack_side"
+                    >
+                      활동 내용
+                    </div>
+                  </div>
+                  <div
+                    class="notice_componet_tableLine"
+                    v-for="index in activityNumber"
+                    :key="index"
+                  >
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_side"
+                      readonly
+                      v-bind:value="resumeList?.activity[index - 1].period"
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack gubun"
+                      id="valueBlack_classname"
+                      readonly
+                      v-bind:value="resumeList?.activity[index - 1].gubun"
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack"
+                      id="valueBlack_rating"
+                      readonly
+                      v-bind:value="resumeList?.activity[index - 1].location"
+                    ></textarea>
+                    <textarea
+                      class="tableComponent_valueBlack content"
+                      id="valueBlack_side"
+                      readonly
+                      v-bind:value="resumeList?.activity[index - 1].content"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="notice_component_tableArea">
+                  <div class="notice_component_tableTitle">자기소개서</div>
+                  <div class="notice_componet_tableLine">
+                    <div
+                      class="tableComponent_titleBlack resume"
+                      id="titleBlack_side"
+                    >
+                      자유형식
+                    </div>
+                  </div>
+                  <div class="notice_componet_tableLine_resume">
+                    <textarea
+                      class="resume_textarea"
+                      id="valueBlack_side"
+                      readonly
+                      v-bind:value="resumeList.cover_letter"
                     ></textarea>
                   </div>
                 </div>
@@ -216,7 +295,7 @@
                   <button id="notice_blueBtn" @click.prevent="applyForm">
                     지원하기
                   </button>
-                  <router-link :to="`/notice/detail/${$route.params.number}`">
+                  <router-link :to="`/notice/detail/${$route.params.id}`">
                     <button id="notice_blackBtn">취소하기</button>
                   </router-link>
                 </div>
@@ -242,40 +321,88 @@ export default {
   },
   data() {
     return {
-      isClick: false,
+      resumeList: {
+        user_name: "",
+        user_birthdate: "",
+        user_phone: "",
+        user_address: "",
+        user_email: "",
+        image: "",
+        education: [
+          {
+            period: "",
+            school: "",
+            major: "",
+          },
+        ],
+        certificate: [
+          {
+            acquisition_date: "",
+            certificate: "",
+            rating: "",
+            issuer: "",
+          },
+        ],
+        activity: [
+          {
+            period: "",
+            gubun: "",
+            location: "",
+            content: "",
+          },
+        ],
+        cover_letter: "",
+      },
+      eduNumber: 1,
+      certificaNumber: 1,
+      activityNumber: 1,
+      popup: null,
       noticelist: [],
-      resumelist: {},
-      detail: {},
-      education: [],
-      qualification: [],
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      birth: "",
+      resumeId: null,
+      isResume: null,
     };
+  },
+  beforeRouteLeave(to, from, next) {
+    localStorage.removeItem("resumeId");
+    localStorage.removeItem("isResume");
+    next();
   },
   methods: {
     selectResume() {
-      this.isClick = true;
-      window.open(
+      this.popup = window.open(
         "modal",
         "blank",
         "width=800, height=650, location=no, status=no, scrollbars=yes"
       );
-    },
-    close() {
-      window.close();
+      this.popup.onbeforeunload = async () => {
+        this.resumeId = JSON.parse(localStorage.getItem("resumeId"));
+        this.isResume = JSON.parse(localStorage.getItem("isResume"));
+        if (this.resumeId) {
+          const resume = await this.$axios.get(`/resume?id=${this.resumeId}`);
+          this.resumeList = resume.data[0];
+          this.eduNumber =
+            this.resumeList.education.length === 0
+              ? 1
+              : this.resumeList.education.length;
+          this.certificaNumber =
+            this.resumeList.certificate.length === 0
+              ? 1
+              : this.resumeList.certificate.length;
+          this.activityNumber =
+            this.resumeList.activity.length === 0
+              ? 1
+              : this.resumeList.activity.length;
+        } else if (!this.isResume) {
+          this.$router.push("/mypage/resume/list");
+        }
+      };
     },
     async applyForm() {
       const data = {
-        email: JSON.parse(localStorage.getItem("user")).email,
-        id: JSON.parse(localStorage.getItem("user")).id,
-        name: JSON.parse(localStorage.getItem("user")).name,
-        title_id: this.detail.number,
-        title: this.detail.title,
+        user_email: JSON.parse(localStorage.getItem("user")).email,
+        resume_id: this.resumeId,
+        notice_id: this.$route.params.id,
       };
-      console.log(this.detail.number);
       store
         .dispatch("apply", { ...data })
         .then((res) => {
@@ -288,29 +415,52 @@ export default {
         .catch((e) => console.log(e));
     },
   },
-
+  computed: {
+    resumeImg() {
+      return this.resumeList.image === ""
+        ? "https://via.placeholder.com/297x358"
+        : `/${this.resumeList.image.split("\\")[1]}`;
+    },
+  },
   async created() {
-    const noticeText = await this.$axios.get("https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/notice");
-    this.noticelist = noticeText.data.noticelist;
-    this.detail = this.noticelist.filter(
-      (v) => v.number === +this.$route.params.number
-    )[0];
-
-    const resumeText = await this.$axios.get("https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/resume");
-    this.resumelist = resumeText.data;
-    this.education = this.resumelist.education;
-    this.qualification = this.resumelist.qualification;
-
-    this.name = JSON.parse(localStorage.getItem("user")).name;
-    this.email = JSON.parse(localStorage.getItem("user")).email;
-    this.phone = JSON.parse(localStorage.getItem("user")).phone;
-    this.address = JSON.parse(localStorage.getItem("user")).address;
-    this.birth = JSON.parse(localStorage.getItem("user"))
-      .birthdate.slice(0, 10)
-      .split("-")
-      .join("");
+    const noticeGet = await this.$axios.get(
+      `/notice/read/${this.$route.params.id}`
+    );
+    this.noticelist = noticeGet.data;
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.resume {
+  width: 100% !important;
+}
+
+.notice_componet_tableLine_resume {
+  width: 100%;
+  display: flex;
+}
+
+.resume_textarea {
+  width: 100% !important;
+  min-height: 400px;
+  height: 100%;
+  border: 1px solid #333;
+  padding-left: 10px;
+  font-family: noto sans kr;
+  font-size: 14px;
+  color: #333;
+  font-weight: 300;
+  resize: none;
+  outline: none;
+  line-height: 3.2vh;
+}
+
+.gubun {
+  width: 15% !important;
+}
+
+.content {
+  width: 50% !important;
+}
+</style>

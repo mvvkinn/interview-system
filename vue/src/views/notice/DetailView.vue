@@ -57,7 +57,7 @@
         <section class="notice">
           <article class="notice__details">
             <div class="notice__details-h1">
-              <h1>{{ detail.title }}</h1>
+              <h1>{{ noticelist.title }}</h1>
             </div>
             <hr />
             <div class="notice__details-header">
@@ -69,21 +69,23 @@
               <div class="notice__details-header-div"><p>날짜</p></div>
               <hr />
               <div class="notice__details-header-div">
-                <p>{{ detail.date }}</p>
+                <p>
+                  {{ date }}
+                </p>
               </div>
               <hr />
               <div class="notice__details-header-div"><p>조회수</p></div>
               <hr />
               <div class="notice__details-header-div">
-                <p>{{ detail.view }}</p>
+                <p>156</p>
               </div>
             </div>
             <hr />
             <div class="notice__details-text">
-              <img v-bind:src="detail.image" />
+              <img v-bind:src="sliceImage" />
             </div>
             <div class="notice__details-button">
-              <router-link :to="`/notice/detail/${$route.params.number}/apply`">
+              <router-link :to="`/notice/detail/${$route.params.id}/apply`">
                 <button id="notice_blueBtn">지원하기</button>
               </router-link>
               <router-link to="/notice">
@@ -110,16 +112,21 @@ export default {
   data() {
     return {
       noticelist: [],
-      detail: {},
     };
   },
-
   async created() {
-    const noticeText = await this.$axios.get("https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/notice");
-    this.noticelist = noticeText.data.noticelist;
-    this.detail = this.noticelist.filter(
-      (v) => v.number === +this.$route.params.number
-    )[0];
+    const noticeGet = await this.$axios.get(
+      `/notice/read/${this.$route.params.id}`
+    );
+    this.noticelist = noticeGet.data;
+  },
+  computed: {
+    sliceImage() {
+      return `/notice/${this.noticelist.image?.split("\\")[2]}`;
+    },
+    date() {
+      return this.noticelist.createdAt?.slice(0, 10).split("-").join("/");
+    },
   },
 };
 </script>

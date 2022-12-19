@@ -138,6 +138,14 @@ const routes = [
       ),
   },
   {
+    path: "/mypage/resume/detail/:id",
+    name: "mypage_resume_detail",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/mypage/resume/DetailView.vue"
+      ),
+  },
+  {
     path: "/mypage/interview",
     name: "mypage_apply",
     component: () =>
@@ -177,13 +185,13 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/notice/ListView.vue"),
   },
   {
-    path: "/notice/detail/:number",
+    path: "/notice/detail/:id",
     name: "notice_detail",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/notice/DetailView.vue"),
   },
   {
-    path: "/notice/detail/:number/apply",
+    path: "/notice/detail/:id/apply",
     name: "notice_apply",
     component: () =>
       import(
@@ -199,7 +207,7 @@ const routes = [
       ),
   },
   {
-    path: "/notice/detail/:number/modal",
+    path: "/notice/detail/:id/modal",
     name: "notice_view_myResumeList",
     component: () =>
       import(
@@ -207,7 +215,7 @@ const routes = [
       ),
   },
   {
-    path: "/notice/detail/modal/resume",
+    path: "/notice/detail/modal/resume/:id",
     name: "notice_view_myResumeList_detail",
     component: () =>
       import(
@@ -241,7 +249,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/notice/detail/:number",
+    path: "/admin/notice/detail/:id",
     name: "admin_notice_list",
     component: () =>
       import(
@@ -257,7 +265,7 @@ const routes = [
       ),
   },
   {
-    path: "/admin/notice/detail/:number/amend",
+    path: "/admin/notice/detail/:id/amend",
     name: "admin_notice_amend",
     component: () =>
       import(
