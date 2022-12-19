@@ -76,7 +76,7 @@
             <div class="re-adm__interview">
               <div class="re-adm__interview-title">
                 <h1>
-                  {{ interviewNumber.title }}
+                  {{ noticeList.title }}
                 </h1>
               </div>
               <hr />
@@ -93,21 +93,21 @@
                   <p>지원자</p>
                 </div>
               </div>
-              <div v-if="splitList">
+              <div v-if="applyResumeList">
                 <router-link
-                  :to="`list/${resume.id}/detail`"
+                  :to="`list/${applyList[index].interview_number}/detail`"
                   :key="index"
-                  v-for="(resume, index) in splitList"
+                  v-for="(resume, index) in applyResumeList"
                 >
                   <div class="re-adm__interview-content-table-text">
                     <div class="re-adm__interview-content-table-text-no">
                       <p>{{ index + 1 + (pageNum * pageCount - pageCount) }}</p>
                     </div>
                     <div class="re-adm__interview-content-table-text-title">
-                      <p>{{ resume.resumeTitle }}</p>
+                      <p>{{ resume.title }}</p>
                     </div>
                     <div class="re-adm__interview-content-table-text-volunteer">
-                      <p>{{ resume.person }}</p>
+                      <p>{{ resume.user_name }}</p>
                     </div>
                   </div>
                 </router-link>
@@ -150,38 +150,34 @@ export default {
   },
   data() {
     return {
-      resumeList: [],
-      interviewList: [],
-      interviewNumber: {},
-      filteredList: [],
-      splitList: [],
       pageCount: 10,
       pageNum: 1,
+
+      noticeList: {},
+      applyList: [],
+      applyResumeList: [],
     };
   },
   computed: {
     page() {
-      return Math.ceil(this.filteredList.length / 10);
+      return Math.ceil(this.applyResumeList.length / 10);
     },
   },
   async created() {
-    const resumeText = await this.$axios.get(
-      "https://1f7e8739-9ff7-4489-b58c-08e6d4bb6681.mock.pstmn.io/interview/resume"
+    const notice = await this.$axios.get(
+      `/notice/read/${this.$route.params.interviewId}`
     );
-    this.resumeList = resumeText.data.resumelist;
+    this.noticeList = notice.data;
 
-    const interviewText = await this.$axios.get(
-      "https://1f7e8739-9ff7-4489-b58c-08e6d4bb6681.mock.pstmn.io/interview"
+    const applyResume = await this.$axios.get(
+      `/apply/list?title=${this.noticeList.title}`
     );
-    this.interviewList = interviewText.data.interview;
+    this.applyList = applyResume.data;
 
-    this.interviewNumber = this.interviewList.filter(
-      (v) => v.number === +this.$route.params.interviewId
-    )[0];
-
-    this.filteredList = this.resumeList.filter(
-      (v) => v.interviewTitle === this.interviewNumber.title
-    );
+    this.applyList.filter(async (v) => {
+      let resume = await this.$axios.get(`/resume?id=${v.resume_id}`);
+      this.applyResumeList.push(resume.data[0]);
+    });
     this.pagination(1);
   },
   methods: {
@@ -189,7 +185,7 @@ export default {
       let start = 0;
       let end = this.pageCount;
       if (num === 1) {
-        this.splitList = this.filteredList.filter(
+        this.applyResumeList = this.applyResumeList.filter(
           (v, i) => i >= start && i < end
         );
         this.pageNum = num;
@@ -197,7 +193,7 @@ export default {
         start = this.pageCount * (num - 1);
         end = this.pageCount * num;
         this.pageNum = num;
-        this.splitList = this.filteredList.filter(
+        this.applyResumeList = this.applyResumeList.filter(
           (v, i) => i >= start && i < end
         );
       }
