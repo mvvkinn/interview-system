@@ -59,12 +59,21 @@ export default class ApplyService {
     return record;
   }
 
-  public async findApplicant(interview_number: any) {
-    const record = await this.applyModel.findOne({
-      where: {
-        interview_number: interview_number,
-      },
-    });
+  public async findApplicant(applyDTO: any) {
+    let record;
+    if (applyDTO?.interview_number) {
+      record = await this.applyModel.findOne({
+        where: {
+          interview_number: applyDTO?.interview_number,
+        },
+      });
+    } else if (applyDTO?.resume_id) {
+      record = await this.applyModel.findOne({
+        where: {
+          resume_id: applyDTO?.resume_id,
+        },
+      });
+    }
     return record;
   }
 

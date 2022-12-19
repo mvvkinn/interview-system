@@ -52,9 +52,7 @@ export default (app: Router) => {
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const applyServiceInstance = new ApplyService();
-        const result = await applyServiceInstance.findApplicant(
-          req.query.intereview_number
-        );
+        const result = await applyServiceInstance.findApplicant(req.query);
         res.status(201).json(result);
       } catch (e) {
         logger.error(e);
