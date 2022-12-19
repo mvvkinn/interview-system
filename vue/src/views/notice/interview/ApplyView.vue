@@ -359,10 +359,12 @@ export default {
       popup: null,
       noticelist: [],
       resumeId: null,
+      isResume: null,
     };
   },
   beforeRouteLeave(to, from, next) {
     localStorage.removeItem("resumeId");
+    localStorage.removeItem("isResume");
     next();
   },
   methods: {
@@ -374,6 +376,7 @@ export default {
       );
       this.popup.onbeforeunload = async () => {
         this.resumeId = JSON.parse(localStorage.getItem("resumeId"));
+        this.isResume = JSON.parse(localStorage.getItem("isResume"));
         if (this.resumeId) {
           const resume = await this.$axios.get(`/resume?id=${this.resumeId}`);
           this.resumeList = resume.data[0];
@@ -389,6 +392,8 @@ export default {
             this.resumeList.activity.length === 0
               ? 1
               : this.resumeList.activity.length;
+        } else if (!this.isResume) {
+          this.$router.push("/mypage/resume/list");
         }
       };
     },
