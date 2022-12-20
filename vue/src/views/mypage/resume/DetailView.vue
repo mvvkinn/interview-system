@@ -331,7 +331,7 @@
                 <div class="component__content-column">
                   <div class="component__content-column--button">
                     <button id="blueBtn" @click.prevent="regist">
-                      저장하기
+                      수정하기
                     </button>
                     <button id="blackBtn" @click.prevent="deleteResume">
                       삭제
