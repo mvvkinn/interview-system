@@ -22,7 +22,6 @@ vu
                   <p>관리자 페이지</p>
                 </li>
               </router-link>
-              <!-- router link to = /success -->
               <router-link to="/passcheck">
                 <li class="adm_nav__menu--li">
                   <img
@@ -77,7 +76,7 @@ vu
             <div class="re-adm__interview">
               <div class="re-adm__interview-title">
                 <h1>
-                  {{ interviewNumber.title }}
+                  {{ noticeList.title }}
                 </h1>
               </div>
               <hr />
@@ -95,44 +94,47 @@ vu
                 </div>
                 <hr />
                 <div class="re-adm__interview-tab-header-div">
-                  <p>면접 가능 여부</p>
+                  <p>합격 여부</p>
                 </div>
                 <hr />
                 <div class="re-adm__interview-tab-header-div">
                   <p>면접 진행</p>
                 </div>
               </div>
-              <div v-if="splitList">
-                <!-- <router-link
-                  :to="`list/${resume.number}`"
-                  :key="index"
-                  v-for="(resume, index) in splitList"
-                > -->
+              <div v-if="applyResumeList">
                 <div
                   class="re-adm__interview-table-text"
                   :key="index"
-                  v-for="(resume, index) in splitList"
+                  v-for="(resume, index) in applyResumeList"
                 >
                   <div class="re-adm__interview-table-text-no">
                     <p>{{ index + 1 + (pageNum * pagecount - pagecount) }}</p>
                   </div>
                   <div class="re-adm__interview-table-text-title">
-                    <p>{{ resume.resumeTitle }}</p>
+                    <p>{{ resume.title }}</p>
                   </div>
                   <div class="re-adm__interview-table-text-volunteer">
-                    <p>{{ resume.person }}</p>
+                    <p>{{ resume.user_name }}</p>
                   </div>
-                  <div class="re-adm__interview-table-text-possible">
-                    <p>가능</p>
+                  <div class="re-adm__interview-table-text-success">
+                    <!-- <p>합격</p> -->
+                    <button
+                      @click.prevent="successPost(resume.id)"
+                      :class="{ background: backgroundBtn, color: colorBtn }"
+                      type="submit"
+                    >
+                      합격
+                    </button>
                   </div>
                   <div class="re-adm__interview-table-text-on">
-                    <button @click.prevent="applyGet(resume.number)">
-                      면접 시작
+                    <button @click.prevent="applyGet(resume.id)">
+                      온라인 면접
+                    </button>
+                    <button @click.prevent="applyGet(resume.id)">
+                      오프라인 면접
                     </button>
                   </div>
                 </div>
-                <!-- </router-link> -->
-                <hr />
               </div>
               <div class="notice__interview-page">
                 <div class="notice__interview-pagination">
@@ -167,70 +169,91 @@ export default {
   },
   data() {
     return {
-      resumeList: [],
-      interviewList: [],
-      interviewNumber: {},
-      filteredList: [],
-      splitList: [],
+      noticeList: {},
+      applyList: [],
+      applyResumeList: [],
       pagecount: 10,
       pageNum: 1,
       resume: {},
+      // -- score result --
+      backgroundBtn: false,
+      colorBtn: false,
+      success: 0,
     };
   },
   computed: {
     page() {
-      return Math.ceil(this.filteredList.length / 10);
+      return Math.ceil(this.applyResumeList.length / 10);
     },
   },
   async created() {
-    const resumeText = await this.$axios.get(
-      "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io/interview/resume"
+    const notice = await this.$axios.get(
+      `/notice/read/${this.$route.params.interviewId}`
     );
-    this.resumeList = resumeText.data.resumelist;
-    const interviewText = await this.$axios.get(
-      "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io/interview"
+    this.noticeList = notice.data;
+
+    const applyResume = await this.$axios.get(
+      `/apply/list?title=${this.noticeList.title}`
     );
-    this.interviewList = interviewText.data.interview;
-    this.interviewNumber = this.interviewList.filter(
-      (v) => v.number === +this.$route.params.interviewId
-    )[0];
-    this.filteredList = this.resumeList.filter(
-      (v) => v.interviewTitle === this.interviewNumber.title
-    );
+    this.applyList = applyResume.data;
+
+    this.applyList.filter(async (v) => {
+      let resume = await this.$axios.get(`/resume?id=${v.resume_id}`);
+      this.applyResumeList.push(resume.data[0]);
+    });
+
     this.pagination(1);
   },
   methods: {
     pagination(num) {
       let start = 0;
-      let end = this.pagecount;
+      let end = this.pageCount;
       if (num === 1) {
-        this.splitList = this.filteredList.filter(
+        this.applyResumeList = this.applyResumeList.filter(
           (v, i) => i >= start && i < end
         );
-      } else {
-        start = this.pagecount * (num - 1);
-        end = this.pagecount * num;
         this.pageNum = num;
-        this.splitList = this.filteredList.filter(
+      } else {
+        start = this.pageCount * (num - 1);
+        end = this.pageCount * num;
+        this.pageNum = num;
+        this.applyResumeList = this.applyResumeList.filter(
           (v, i) => i >= start && i < end
         );
       }
     },
-    async applyGet(index) {
-      this.resume = this.resumeList.filter((v) => v.number === index)[0];
+    async applyGet(resumeId) {
       await this.$axios
-        .get(
-          `/apply/?title=${this.resume.interviewTitle}&user_name=${this.resume.person}`
-        )
+        .get(`/apply/applicant?resume_id=${resumeId}`)
         .then((res) => {
-          // this.$router.push(
-          //   `list/${this.resume.number}/${res.data.interview_number}`
-          // );
           this.$router.push(`/meeting/${res.data.interview_number}`);
         });
+    },
+    async successPost(index) {
+      this.backgroundBtn = !this.backgroundBtn;
+      this.colorBtn = !this.colorBtn;
+      this.resume = this.resumeList.filter((v) => v.number === index)[0];
     },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.re-adm__interview-table-text-on button {
+  margin: 5px;
+}
+
+.re-adm__interview-table-text-success button:active {
+  background-color: #3c62e5;
+  color: white;
+  border: none;
+}
+
+.background {
+  background-color: #3c62e5;
+}
+
+.color {
+  color: white;
+}
+</style>

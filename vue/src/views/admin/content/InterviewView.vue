@@ -6,14 +6,18 @@
         <div class="interview_subObject">
           <div class="subObject_title" id="subObjectTitle_black">지원자</div>
           <div class="interview_content" id="interview_applicantName">
-            {{ resumeDetail.person }}
+            <input
+              class="interview_applicantName_value"
+              :value="scoreData.user_name"
+              readonly
+            />
           </div>
         </div>
       </div>
       <div class="interview_format_line">
         <div class="fotmat_line_title">면접명</div>
         <div class="fotmat_line_value">
-          <p>{{ resumeDetail.interviewTitle }}</p>
+          <input :value="scoreData.notice_title" readonly />
         </div>
       </div>
       <div class="interview_format_line">
@@ -36,6 +40,7 @@
             id="cell_normal"
             :value="scoreData.question_one"
             placeholder="질문을 입력해주세요."
+            readonly
           ></textarea>
           <div class="interview_cell_value" id="cell_scoreArea">
             <input
@@ -43,6 +48,7 @@
               id="cell_scoreValue"
               placeholder="00"
               :value="scoreData.score_one"
+              readonly
             />
           </div>
         </div>
@@ -52,6 +58,7 @@
             id="cell_normal"
             :value="scoreData.question_two"
             placeholder="질문을 입력해주세요."
+            readonly
           ></textarea>
           <div class="interview_cell_value" id="cell_scoreArea">
             <input
@@ -59,6 +66,7 @@
               id="cell_scoreValue"
               placeholder="00"
               :value="scoreData.score_two"
+              readonly
             />
           </div>
         </div>
@@ -68,6 +76,7 @@
             id="cell_normal"
             :value="scoreData.question_three"
             placeholder="질문을 입력해주세요."
+            readonly
           ></textarea>
           <div class="interview_cell_value" id="cell_scoreArea">
             <input
@@ -75,6 +84,7 @@
               id="cell_scoreValue"
               placeholder="00"
               :value="scoreData.score_three"
+              readonly
             />
           </div>
         </div>
@@ -88,6 +98,7 @@
           id="cell_opinion"
           :value="scoreData.add_question"
           placeholder="기타의견을 입력해주세요."
+          readonly
         ></textarea>
       </div>
       <div class="inverview_btnArea">
@@ -100,36 +111,37 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
+      // -- score --
+      applicant: {},
       scoreGet: {},
-      resumeList: [],
-      resumeDetail: {},
+      scoreData: {},
       id: "",
       email: "",
       name: "",
-      scoreData: {},
+      notice_title: "",
+      roomName: this.$route.params.roomName,
     };
   },
-  async created() {
-    this.id = JSON.parse(localStorage.getItem("user")).id;
-    this.email = JSON.parse(localStorage.getItem("user")).email;
-    this.name = JSON.parse(localStorage.getItem("user")).name;
-
-    const resumeText = await this.$axios.get(
-      "https://0a63635f-c39c-48f9-ae69-e3d5beb9de7a.mock.pstmn.io/interview/resume"
+  async beforeRouteEnter(to, from, next) {
+    console.log(to);
+    const applicant = await axios.get(
+      `/apply/applicant?intereview_number=${to.params.roomName}`
     );
-    this.resumeList = resumeText.data.resumelist;
-
-    this.resumeDetail = this.resumeList.filter(
-      (v) => v.number === +this.$route.params.number
-    )[0];
-
+    next((vm) => {
+      vm.applicant = applicant.data;
+    });
+  },
+  async created() {
     this.scoreGet = await this.$axios.get(
-      `/score/read/?id=${this.id}&email=${this.email}&name=${this.name}`
+      `/score/read?user_interview_number=${this.$route.params.roomName}`
     );
     this.scoreData = this.scoreGet.data;
+    console.log(this.scoreGet);
     console.log(this.scoreData);
   },
 };
@@ -141,5 +153,22 @@ export default {
 }
 #cell_title {
   width: 95%;
+}
+.interview_applicantName_value {
+  border: none;
+
+  background: none;
+  text-align: center;
+  overflow: hidden;
+}
+.fotmat_line_value input {
+  border: none;
+  overflow: hidden;
+  width: inherit;
+  color: #333;
+  font-family: noto sans kr;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.3;
 }
 </style>

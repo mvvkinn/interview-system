@@ -81,19 +81,19 @@
                 <select name="rsm" id="rsm-select" @change="changeValue">
                   <option value="">면접을 선택하세요</option>
                   <option
-                  :value="interview.number"
-                  :key="index"
-                  v-for="(interview,index) in interviewList"
+                    :value="interview.id"
+                    :key="index"
+                    v-for="(interview, index) in interviewList"
                   >
-                    {{interview.title}}
+                    {{ interview.title }}
                   </option>
                 </select>
                 <div id="btn">
-                  <div v-if="interviewNum===0">
+                  <div v-if="interviewId === 0">
                     <button @click="errorMessage">조회하기</button>
                   </div>
                   <div v-else>
-                    <router-link :to="`/admin/resume/${interviewNum}/list`">
+                    <router-link :to="`/admin/resume/${interviewId}/list`">
                       <button>조회하기</button>
                     </router-link>
                   </div>
@@ -117,28 +117,25 @@ export default {
     HeaderView,
     FooterView,
   },
-  data(){
+  data() {
     return {
       interviewList: [],
-      interviewNum: 0,
+      interviewId: 0,
     };
   },
-  async created(){
-    const interviewText = await this.$axios.get(
-      "https://0a63635f-c39c-48f9-ae69-e3d5beb9de7a.mock.pstmn.io/interview"
-    );
-    this.interviewList = interviewText.data.interview;
+  async created() {
+    const interviewText = await this.$axios.get("/notice/read");
+    this.interviewList = interviewText.data;
   },
-  methods:{
-    changeValue(e){
-      this.interviewNum=e.target.value;
+  methods: {
+    changeValue(e) {
+      this.interviewId = e.target.value;
     },
-    errorMessage(){
-      alert('면접을 선택해주세요')
-    }
-  }
+    errorMessage() {
+      alert("면접을 선택해주세요");
+    },
+  },
 };
 </script>
 
 <style></style>
-

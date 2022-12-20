@@ -60,13 +60,35 @@
               />
               {{ text_video }}
             </div>
-            <div class="online_Btn" id="scoreBtn" @click="leaveRoom()">
+            <div
+              class="online_Btn"
+              id="scoreBtn"
+              @click="leaveRoom()"
+              v-if="role !== 'user'"
+            >
               <img
                 src="../assets/images/icons/icon_checkscore.png"
                 class="icon_checkscore"
               />
             </div>
-            <div class="online_Btn" id="ectBtn">ㆍㆍㆍ</div>
+            <div
+              class="online_Btn"
+              id="scoreBtn"
+              @click="userLeaveRoom()"
+              v-else
+            >
+              <img
+                src="../assets/images/icons/icon_checkscore.png"
+                class="icon_checkscore"
+              />
+            </div>
+            <div class="online_Btn" id="ectBtn" @click="qrcode()">ㆍㆍㆍ</div>
+            <img
+              :src="image"
+              alt=""
+              style="width: 150px; height: 150px"
+              v-if="isQRcode"
+            />
           </div>
         </div>
         <form
@@ -79,7 +101,7 @@
               <p id="online_boldText">면접명</p>
             </div>
             <div class="scoreBoaed_value">
-              <p>{{ applicant.title }}</p>
+              <p>{{ applicant.notice_title }}</p>
             </div>
           </div>
           <div class="scoreBoard_topArea" id="topArea_standard">
@@ -207,6 +229,7 @@ import { initCall, toggleMute, toggleCamera, pc } from "@/plugins/stream";
 import { store } from "@/store";
 import router from "@/router";
 import axios from "axios";
+import QRCode from "qrcode";
 
 export default {
   data() {
@@ -258,14 +281,20 @@ export default {
       peerConnection: null,
       userName: JSON.parse(localStorage.getItem("user")).name,
       applicant: {},
+      applyResumeList: [],
+      image: "",
+      isQRcode: false,
+      interviewId: null,
     };
   },
   async beforeRouteEnter(to, from, next) {
+    console.log(from);
     const applicant = await axios.get(
-      `/apply/applicant?intereview_number=${to.params.roomName}`
+      `/apply/applicant?interview_number=${to.params.roomName}`
     );
     next((vm) => {
       vm.applicant = applicant.data;
+      vm.interviewId = from.params.interviewId;
     });
   },
   watch: {
@@ -329,9 +358,10 @@ export default {
         question_three: this.question_three,
         score_three: this.score_three,
         add_question: this.add_question,
-        id: JSON.parse(localStorage.getItem("user")).id,
-        name: this.applicant.user_name,
-        email: JSON.parse(localStorage.getItem("user")).email,
+        user_interview_number: this.$route.params.roomName,
+        user_name: this.applicant.user_name,
+        user_email: JSON.parse(localStorage.getItem("user")).email,
+        notice_title: this.applicant.notice_title,
       };
       const arrayValue = Object.values(data);
       focus: {
@@ -458,6 +488,12 @@ export default {
       router.push("/admin/progress/");
     },
 
+    userLeaveRoom() {
+      this.socket.disconnect();
+      this.myStream.getTracks().forEach((track) => track.stop());
+      router.push("/mypage/interview");
+    },
+
     checkInput(e, index) {
       switch (+index) {
         case 1:
@@ -474,7 +510,26 @@ export default {
           break;
       }
     },
+
+    qrcode() {
+      this.isQRcode = !this.isQRcode;
+    },
   },
+  async created() {
+    const applyResume = await this.$axios.get(
+      `/apply/applicant?interview_number=${this.$route.params.roomName}`
+    );
+    this.applyResumeList = applyResume.data;
+    QRCode.toDataURL(
+      `/admin/resume/${this.interviewId}/list/${this.applyResumeList.resume_id}/detail`,
+      (err, src) => {
+        this.image = src;
+        // const blob = new Blob([src], { type: "image/png" });
+        // this.imageURL = URL.createObjectURL(blob);
+      }
+    );
+  },
+
   destroyed() {
     this.count();
   },

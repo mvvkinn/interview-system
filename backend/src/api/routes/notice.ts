@@ -83,4 +83,14 @@ export default (app: Router) => {
       next(e);
     }
   });
+  route.get("/find", async (req, res, next) => {
+    try {
+      const noticeServiceInstance = new NoticeService();
+      const result = await noticeServiceInstance.findOne(req.query);
+      res.status(201).json(result);
+    } catch (e) {
+      logger.error(e);
+      next(e);
+    }
+  });
 };
