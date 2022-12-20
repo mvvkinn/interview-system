@@ -75,7 +75,7 @@
           <article class="adm__rsm-content">
             <div class="adm__rsm-content-div">
               <h1>
-                {{resumeNumber.resumeTitle}}
+                {{ resumeList.title }}
               </h1>
               <div class="adm__rsm-content--hr">
                 <div class="adm__rsm-content-info">
@@ -84,7 +84,7 @@
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-2">
-                    <p>{{resumeNumber.interviewTitle}}</p>
+                    <p>{{ noticeList.title }}</p>
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-3">
@@ -92,26 +92,34 @@
                   </div>
                   <hr />
                   <div class="adm__rsm-content-info--div-4">
-                    <p>{{resumeNumber.person}}</p>
+                    <p>{{ resumeList.user_name }}</p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="adm_contentArea">
-              <img v-bind:src="resumeDetail.img" alt="" />
+              <img v-bind:src="`/${resumeList.image?.split('\\')[1]}`" alt="" />
               <div class="notice_component_tableArea">
                 <div class="notice_component_tableTitle">인적사항</div>
                 <div class="notice_componet_tableLine">
                   <div class="tableComponent_title">이름</div>
-                  <div class="adm_tableComponent_value">{{resumeDetail.name}}</div>
+                  <div class="adm_tableComponent_value">
+                    {{ resumeList.user_name }}
+                  </div>
                   <div class="tableComponent_title">생년월일</div>
-                  <div class="adm_tableComponent_value">{{resumeDetail.birth}}</div>
+                  <div class="adm_tableComponent_value">
+                    {{ resumeList.user_birthdate }}
+                  </div>
                 </div>
                 <div class="notice_componet_tableLine">
                   <div class="tableComponent_title">휴대폰</div>
-                  <div class="adm_tableComponent_value">{{resumeDetail.phone}}</div>
+                  <div class="adm_tableComponent_value">
+                    {{ resumeList.user_phone }}
+                  </div>
                   <div class="tableComponent_title" id="emailTitle">E-mail</div>
-                  <div class="adm_tableComponent_value">{{resumeDetail.email}}</div>
+                  <div class="adm_tableComponent_value">
+                    {{ resumeList.user_email }}
+                  </div>
                 </div>
                 <div class="notice_componet_tableLine" id="addressLine">
                   <div class="tableComponent_title" id="addressTitle">주소</div>
@@ -119,7 +127,7 @@
                     class="adm_tableComponent_value"
                     id="adm_addressTextArea"
                   >
-                    {{resumeDetail.address}}
+                    {{ resumeList.user_address }}
                   </div>
                 </div>
               </div>
@@ -136,24 +144,28 @@
                     전공
                   </div>
                 </div>
-                <div class="notice_componet_tableLine" :key="index" v-for="(education,index) in education">
+                <div
+                  class="notice_componet_tableLine"
+                  v-for="(education, index) in resumeList.education"
+                  :key="index"
+                >
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_side"
                   >
-                    {{education.period}}
+                    {{ education.period }}
                   </div>
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_center"
                   >
-                    {{education.schoolname}}
+                    {{ education.school }}
                   </div>
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_side"
                   >
-                    {{education.major}}
+                    {{ education.major }}
                   </div>
                 </div>
               </div>
@@ -176,35 +188,113 @@
                     발행기관
                   </div>
                 </div>
-                <div class="notice_componet_tableLine" :key="index" v-for="(qualification,index) in qualification">
+                <div
+                  class="notice_componet_tableLine"
+                  v-for="(certificate, index) in resumeList.certificate"
+                  :key="index"
+                >
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_side"
                   >
-                    {{qualification.date}}
+                    {{ certificate.acquisition_date }}
                   </div>
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_classname"
                   >
-                    {{qualification.education_name}}
+                    {{ certificate.certificate }}
                   </div>
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_rating"
                   >
-                    {{qualification.class}}
+                    {{ certificate.rating }}
                   </div>
                   <div
                     class="adm_tableComponent_valueBlack"
                     id="adm_valueBlack_side"
                   >
-                    {{qualification.institution}}
+                    {{ certificate.issuer }}
+                  </div>
+                </div>
+              </div>
+              <div class="notice_component_tableArea">
+                <div class="notice_component_tableTitle">대외활동</div>
+                <div class="notice_componet_tableLine">
+                  <div class="tableComponent_titleBlack" id="titleBlack_side">
+                    기간
+                  </div>
+                  <div
+                    class="tableComponent_titleBlack gubun"
+                    id="titleBlack_classname"
+                  >
+                    구분
+                  </div>
+                  <div class="tableComponent_titleBlack" id="titleBlack_rating">
+                    기관/장소
+                  </div>
+                  <div
+                    class="tableComponent_titleBlack content"
+                    id="titleBlack_side"
+                  >
+                    활동 내용
+                  </div>
+                </div>
+                <div
+                  class="notice_componet_tableLine"
+                  v-for="(activity, index) in resumeList.activity"
+                  :key="index"
+                >
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_side"
+                  >
+                    {{ activity.period }}
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack gubun"
+                    id="adm_valueBlack_classname"
+                  >
+                    {{ activity.gubun }}
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack"
+                    id="adm_valueBlack_rating"
+                  >
+                    {{ activity.location }}
+                  </div>
+                  <div
+                    class="adm_tableComponent_valueBlack content"
+                    id="adm_valueBlack_side"
+                  >
+                    {{ activity.content }}
+                  </div>
+                </div>
+              </div>
+              <div class="notice_component_tableArea">
+                <div class="notice_component_tableTitle">자기소개서</div>
+                <div class="notice_componet_tableLine">
+                  <div
+                    class="tableComponent_titleBlack resume"
+                    id="titleBlack_side"
+                  >
+                    자유형식
+                  </div>
+                </div>
+                <div class="notice_componet_tableLine_resume">
+                  <div
+                    class="adm_tableComponent_valueBlack resume_textarea"
+                    id="adm_valueBlack_side"
+                  >
+                    {{ resumeList.cover_letter }}
                   </div>
                 </div>
               </div>
               <div class="component__content-column-notice">
-                <router-link :to="`/admin/resume/${interviewId}/list`">
+                <router-link
+                  :to="`/admin/resume/${this.$route.params.interviewId}/list`"
+                >
                   <button id="notice_blackBtn">목록으로</button>
                 </router-link>
               </div>
@@ -225,54 +315,48 @@ export default {
     HeaderView,
     FooterView,
   },
-  data(){
+  data() {
     return {
-      detailList: {},
-      resumeList:{},
-      resumeNumber:{},
-      resumeDetail:[],
-      education: [],
-      qualification: [],
-      interviewList:{},
-      interviewNumber: {},
-      interviewId:{},
-    }
+      resumeList: {},
+      noticeList: {},
+    };
   },
-  async created(){
-      const detailText = await this.$axios.get(
-         "https://0a63635f-c39c-48f9-ae69-e3d5beb9de7a.mock.pstmn.io/interview/resume/detail"
-       );
-       this.detailList = detailText.data.detail;
-
-       const resumeText = await this.$axios.get(
-        "https://0a63635f-c39c-48f9-ae69-e3d5beb9de7a.mock.pstmn.io/interview/resume"
-      );
-      this.resumeList = resumeText.data.resumelist;
-      this.resumeNumber = this.resumeList.filter(
-      (v) => v.number === +this.$route.params.number
-    )[0];
-
-    this.resumeDetail = this.detailList.filter((v)=>v.title === this.resumeNumber.resumeTitle)[0];
-    
-    this.education = this.resumeDetail.education;
-    this.qualification = this.resumeDetail.qualification;
-
-    const interviewText = await this.$axios.get(
-      "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io/interview"
+  async created() {
+    const resume = await this.$axios.get(
+      `/resume?id=${this.$route.params.resumeId}`
     );
+    this.resumeList = resume.data[0];
 
-    this.interviewList = interviewText.data.interview;
-
-    this.interviewNumber = this.interviewList.filter(
-      (v) => v.number === +this.$route.params.interviewId
-    )[0];
-    
-    this.interviewId = this.interviewNumber.number;
-
-    },
-
+    const notice = await this.$axios.get(
+      `/notice/read/${this.$route.params.interviewId}`
+    );
+    this.noticeList = notice.data;
+  },
 };
 </script>
 
-<style></style>
+<style scoped>
+.gubun {
+  width: 20% !important;
+}
 
+.content {
+  width: 45% !important;
+}
+
+.resume {
+  width: 100% !important;
+}
+.notice_componet_tableLine_resume {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.resume_textarea {
+  width: 100% !important;
+  min-height: 400px;
+  height: 100%;
+  display: block !important;
+  padding: 5px;
+}
+</style>

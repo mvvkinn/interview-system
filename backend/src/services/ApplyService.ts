@@ -4,16 +4,20 @@ import { IApply } from "@interfaces/IApply";
 import { IUser, IUserSignInDTO } from "@interfaces/IUser";
 import { IResume } from "@interfaces/IResume";
 import { INotice } from "@interfaces/INotice";
+import jwt from "jsonwebtoken";
+import config from "@config";
 
 export default class ApplyService {
   applyModel: ModelCtor<any>;
   userModel: ModelCtor<any>;
   noticeModel: any;
+  resumeModel: ModelCtor<any>;
   constructor() {
     const db: Sequelize = Container.get("db");
     this.applyModel = db.models.Apply;
     this.userModel = db.models.User;
     this.noticeModel = db.models.Notice;
+    this.resumeModel = db.models.Resume;
   }
 
   public async create(
@@ -49,6 +53,25 @@ export default class ApplyService {
     });
   }
 
+  public async generateToken(infoDTO: any) {
+    const accessToken = jwt.sign(
+      {
+        id: infoDTO.id,
+        email: infoDTO.email,
+        name: infoDTO.name,
+        interview_number: infoDTO.interview_number,
+      },
+      config.jwtSecret,
+      {
+        subject: "userAuthQRCodeJwt",
+        issuer: "server",
+        expiresIn: "5m",
+      }
+    );
+
+    return accessToken;
+  }
+
   public async findInterviewNumber(title: any, name: any) {
     const record = await this.applyModel.findOne({
       where: {
@@ -59,10 +82,34 @@ export default class ApplyService {
     return record;
   }
 
-  public async findApplicant(interview_number: any) {
-    const record = await this.applyModel.findOne({
+  public async findApplicant(applyDTO: any) {
+    let record;
+    if (applyDTO?.interview_number) {
+      record = await this.applyModel.findOne({
+        where: {
+          interview_number: applyDTO?.interview_number,
+        },
+      });
+    } else if (applyDTO?.resume_id) {
+      record = await this.applyModel.findOne({
+        where: {
+          resume_id: applyDTO?.resume_id,
+        },
+      });
+    } else if (applyDTO?.email) {
+      record = await this.applyModel.findAll({
+        where: {
+          user_email: applyDTO?.email,
+        },
+      });
+    }
+    return record;
+  }
+
+  public async findInterviewList(notice_title: any) {
+    const record = await this.applyModel.findAll({
       where: {
-        interview_number: interview_number,
+        notice_title: notice_title,
       },
     });
     return record;

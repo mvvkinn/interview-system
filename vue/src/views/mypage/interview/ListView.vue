@@ -1,4 +1,3 @@
-vu
 <template>
   <div>
     <HeaderView />
@@ -75,32 +74,24 @@ vu
             <div class="component__content-div">
               <h1>지원한 면접 목록</h1>
               <div class="component__content--hr">
-                <div class="component__list">
-                  <div class="component__list-div" v-if="noticelist.length">
-                    <router-link
-                      :to="`/mypage/interview/detail/${noticelist[6].number}`"
-                      class="component__list-column"
-                    >
-                      <div class="component__list-column--text">
+                <div class="component__list" v-if="applyResumeList.length">
+                  <div
+                    class="component__list-div"
+                    v-for="(apply, index) in applyResumeList"
+                    :key="index"
+                  >
+                    <div class="component__list-column">
+                      <div
+                        class="component__list-column--text"
+                        @click="applyInfo(apply.notice_title)"
+                      >
                         <h1>
-                          {{ noticelist[6].title }}
-                          <p>화상면접 진행가능</p>
+                          {{ apply.notice_title }}
                         </h1>
                         <p>지원일 : 2022/11/28</p>
                       </div>
-                    </router-link>
-                    <router-link
-                      :to="`/mypage/interview/detail/${noticelist[3].number}`"
-                      class="component__list-column"
-                    >
-                      <div class="component__list-column--text">
-                        <h1>
-                          {{ noticelist[3].title }}
-                        </h1>
-                        <p>지원일 : 2022/12/8</p>
-                      </div>
-                    </router-link>
-                    <router-link to="/meeting/2022811">
+                    </div>
+                    <router-link :to="`/meeting/${apply.interview_number}`">
                       <button>화상 면접 참가</button>
                     </router-link>
                   </div>
@@ -125,31 +116,35 @@ export default {
   },
   data() {
     return {
-      noticelist: [],
-      resumeList: [],
-      interviewList: [],
-      resume: {},
+      email: JSON.parse(localStorage.getItem("user")).email,
+      id: JSON.parse(localStorage.getItem("user")).id,
+      applyResumeList: [],
     };
   },
   async created() {
-    const noticeText = await this.$axios.get(
-      "https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/notice"
+    const applyResume = await this.$axios.get(
+      `/apply/applicant?email=${this.email}`
     );
-    this.noticelist = noticeText.data.noticelist;
-
-    const resumeText = await this.$axios.get(
-      "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io/interview/resume"
-    );
-    this.resumeList = resumeText.data.resumelist;
-
-    const interviewText = await this.$axios.get(
-      "https://80f083a6-6900-4471-abc4-2578a12a2af3.mock.pstmn.io/interview"
-    );
-    this.interviewList = interviewText.data.interview;
-
-    // this.resume = this.resumeList.filter((v) => v.number === index)[0];
+    this.applyResumeList = applyResume.data;
+  },
+  methods: {
+    async applyInfo(notice_title) {
+      const notice = await this.$axios.get(
+        `/notice/find?title=${notice_title}`
+      );
+      this.$router.push(`/mypage/interview/detail/${notice.data.id}`);
+    },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.component__list-div {
+  flex-direction: row !important;
+  justify-content: space-between;
+}
+
+.component__list-column {
+  width: 80% !important;
+}
+</style>

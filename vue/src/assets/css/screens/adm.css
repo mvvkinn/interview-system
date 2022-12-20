@@ -117,6 +117,7 @@ li.adm__menu-empty {
   border-radius: 0px 0px 15px 15px;
   border: 1px solid #c6c6c6;
   border-top: none;
+  min-height: 68vh;
 }
 
 .adm__rsm > div {
@@ -923,6 +924,7 @@ li.header__menu-timer {
   border-radius: 0 0 15px 15px;
   display: flex;
   justify-content: center;
+  min-height: 68vh;
 }
 
 .re-adm__interview {
@@ -1002,15 +1004,25 @@ li.header__menu-timer {
   text-align: center;
 }
 
-.re-adm__interview-table-text-possible
+.re-adm__interview-table-text-success
   + .re-adm__interview-table-text-on
   button {
-  width: 80px;
+  width: 88px;
   height: 25px;
   background-color: #3c62e5;
   color: white;
   font-size: 12px;
   border: none;
+  cursor: pointer;
+}
+
+.re-adm__interview-table-text-success button {
+  width: 80px;
+  height: 25px;
+  background-color: white;
+  color: #333333;
+  font-size: 12px;
+  border: 1px solid #333333;
   cursor: pointer;
 }
 
@@ -1028,12 +1040,14 @@ li.header__menu-timer {
 
 .re-adm__interview-tab-header-div:nth-child(7),
 .re-adm__interview-table-text-possible,
+.re-adm__interview-table-text-success,
 .re-adm__interview-table-text-impossible {
   width: calc(188 / 1198 * 100%);
   text-align: center;
 }
 
-.re-adm__interview-table-text-possible {
+.re-adm__interview-table-text-possible,
+.re-adm__interview-table-text-success {
   color: #3c62e5;
 }
 

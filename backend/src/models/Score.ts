@@ -19,9 +19,11 @@ export default (db: Sequelize) => {
       question_three: { type: DataTypes.STRING },
       score_three: { type: DataTypes.INTEGER },
       add_question: { type: DataTypes.STRING },
-      id: { type: DataTypes.INTEGER },
-      name: { type: DataTypes.STRING },
-      email: { type: DataTypes.STRING },
+      user_interview_number: { type: DataTypes.INTEGER },
+      user_name: { type: DataTypes.STRING },
+      user_email: { type: DataTypes.STRING },
+      notice_title: { type: DataTypes.STRING },
+      isSuccess: { type: DataTypes.BOOLEAN },
     },
     { tableName: "Score", timestamps: false }
   );

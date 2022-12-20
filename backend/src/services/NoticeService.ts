@@ -33,4 +33,16 @@ export default class AuthService {
     });
     return findRecord;
   }
+
+  public async findOne(noticeDTO: any) {
+    let findRecord;
+    if (noticeDTO?.title) {
+      findRecord = await this.noticeModel.findOne({
+        where: {
+          title: noticeDTO?.title,
+        },
+      });
+    }
+    return findRecord;
+  }
 }
