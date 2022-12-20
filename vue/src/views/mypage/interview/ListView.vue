@@ -117,6 +117,7 @@ export default {
   data() {
     return {
       email: JSON.parse(localStorage.getItem("user")).email,
+      id: JSON.parse(localStorage.getItem("user")).id,
       applyResumeList: [],
     };
   },
@@ -125,7 +126,6 @@ export default {
       `/apply/applicant?email=${this.email}`
     );
     this.applyResumeList = applyResume.data;
-    console.log(this.applyResumeList);
   },
   methods: {
     async applyInfo(notice_title) {

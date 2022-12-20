@@ -91,13 +91,12 @@ vu
                   </div>
                 </div>
                 <img v-bind:src="sliceImage" alt="" />
-                <router-link
-                  class="component__content-info--button"
-                  to="/mypage/interview"
-                >
-                  <button>목록</button>
-                </router-link>
+                <div class="component__content-info--button">
+                  <button @click="QRcode" id="blueBtn">QRCode</button>
+                  <button @click="moveList">목록</button>
+                </div>
               </div>
+              <img :src="image" alt="" v-if="isQRcode" />
             </div>
           </article>
         </div>
@@ -110,6 +109,7 @@ vu
 <script>
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+import QRCode from "qrcode";
 export default {
   components: {
     HeaderView,
@@ -118,6 +118,10 @@ export default {
   data() {
     return {
       noticelist: [],
+      applyResumeList: [],
+      imageURL: "",
+      image: "",
+      isQRcode: false,
     };
   },
   async created() {
@@ -125,6 +129,28 @@ export default {
       `/notice/read/${this.$route.params.number}`
     );
     this.noticelist = noticeGet.data;
+
+    const applyResume = await this.$axios.get(
+      `/apply/applicant?resume_id=${this.$route.params.number}`
+    );
+    this.applyResumeList = applyResume.data;
+
+    const Token = await this.$axios.get(
+      `/apply/token?id=${this.id}&email=${this.applyResumeList.user_email}&name=${this.applyResumeList.user_name}&interview_number=${this.applyResumeList.interview_number}`
+    );
+    QRCode.toDataURL(Token.data, (err, src) => {
+      this.image = src;
+      // const blob = new Blob([src], { type: "image/png" });
+      // this.imageURL = URL.createObjectURL(blob);
+    });
+  },
+  methods: {
+    QRcode() {
+      this.isQRcode = !this.isQRcode;
+    },
+    moveList() {
+      this.$router.push("/mypage/interview");
+    },
   },
   computed: {
     sliceImage() {
