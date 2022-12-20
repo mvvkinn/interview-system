@@ -67,6 +67,7 @@ export default (app: Router) => {
       const start: Date = req.body.start;
       const end: Date = req.body.end;
       const image: string = req.body.image;
+      const number: number = req.body.number;
 
       const noticeServiceInstance = new NoticeService();
       const result = await noticeServiceInstance.update(
@@ -75,7 +76,8 @@ export default (app: Router) => {
         content,
         start,
         end,
-        image
+        image,
+        number
       );
       res.status(201).send(result);
     } catch (e) {
