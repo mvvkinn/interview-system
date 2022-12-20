@@ -82,14 +82,15 @@
             </div>
             <hr />
             <div class="notice__details-text">
+              <p>{{ noticelist.content }}</p>
+            </div>
+            <div class="notice__details-text">
               <img v-bind:src="sliceImage" />
             </div>
             <div class="notice__details-button">
-              <!-- <router-link :to="`/notice/detail/${$route.params.id}/apply`"> -->
               <button id="notice_blueBtn" v-on:click.prevent="checkDate()">
                 지원하기
               </button>
-              <!-- </router-link> -->
               <router-link to="/notice">
                 <button id="notice_blackBtn">목록</button>
               </router-link>
@@ -149,6 +150,10 @@ export default {
 <style>
 .notice__details-text {
   display: flex;
+}
+
+.notice__details-text p {
+  height: 0;
 }
 
 .notice__details-text img {
