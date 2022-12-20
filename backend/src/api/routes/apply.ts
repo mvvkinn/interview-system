@@ -61,6 +61,20 @@ export default (app: Router) => {
     }
   );
 
+  route.get(
+    "/token",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const applyServiceInstance = new ApplyService();
+        const result = await applyServiceInstance.generateToken(req.query);
+        res.status(201).send(result);
+      } catch (e) {
+        logger.error(e);
+        next(e);
+      }
+    }
+  );
+
   //Create new Apply
   route.post("", async (req: Request, res: Response, next: NextFunction) => {
     try {

@@ -4,16 +4,20 @@ import { IApply } from "@interfaces/IApply";
 import { IUser, IUserSignInDTO } from "@interfaces/IUser";
 import { IResume } from "@interfaces/IResume";
 import { INotice } from "@interfaces/INotice";
+import jwt from "jsonwebtoken";
+import config from "@config";
 
 export default class ApplyService {
   applyModel: ModelCtor<any>;
   userModel: ModelCtor<any>;
   noticeModel: any;
+  resumeModel: ModelCtor<any>;
   constructor() {
     const db: Sequelize = Container.get("db");
     this.applyModel = db.models.Apply;
     this.userModel = db.models.User;
     this.noticeModel = db.models.Notice;
+    this.resumeModel = db.models.Resume;
   }
 
   public async create(
@@ -47,6 +51,25 @@ export default class ApplyService {
       resume_id: resume_id,
       user_email: user_email,
     });
+  }
+
+  public async generateToken(infoDTO: any) {
+    const accessToken = jwt.sign(
+      {
+        id: infoDTO.id,
+        email: infoDTO.email,
+        name: infoDTO.name,
+        interview_number: infoDTO.interview_number,
+      },
+      config.jwtSecret,
+      {
+        subject: "userAuthQRCodeJwt",
+        issuer: "server",
+        expiresIn: "5m",
+      }
+    );
+
+    return accessToken;
   }
 
   public async findInterviewNumber(title: any, name: any) {
