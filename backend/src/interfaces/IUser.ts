@@ -9,6 +9,7 @@ export interface IUser {
   zipcode?: string;
   address?: string;
   recieve_info?: boolean;
+  role?: string;
 }
 
 export interface IUserSignInDTO {
