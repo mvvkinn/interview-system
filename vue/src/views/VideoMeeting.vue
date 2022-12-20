@@ -82,7 +82,13 @@
                 class="icon_checkscore"
               />
             </div>
-            <div class="online_Btn" id="ectBtn">ㆍㆍㆍ</div>
+            <div class="online_Btn" id="ectBtn" @click="qrcode()">ㆍㆍㆍ</div>
+            <img
+              :src="image"
+              alt=""
+              style="width: 150px; height: 150px"
+              v-if="isQRcode"
+            />
           </div>
         </div>
         <form
@@ -223,6 +229,7 @@ import { initCall, toggleMute, toggleCamera, pc } from "@/plugins/stream";
 import { store } from "@/store";
 import router from "@/router";
 import axios from "axios";
+import QRCode from "qrcode";
 
 export default {
   data() {
@@ -274,14 +281,20 @@ export default {
       peerConnection: null,
       userName: JSON.parse(localStorage.getItem("user")).name,
       applicant: {},
+      applyResumeList: [],
+      image: "",
+      isQRcode: false,
+      interviewId: null,
     };
   },
   async beforeRouteEnter(to, from, next) {
+    console.log(from);
     const applicant = await axios.get(
       `/apply/applicant?interview_number=${to.params.roomName}`
     );
     next((vm) => {
       vm.applicant = applicant.data;
+      vm.interviewId = from.params.interviewId;
     });
   },
   watch: {
@@ -497,7 +510,26 @@ export default {
           break;
       }
     },
+
+    qrcode() {
+      this.isQRcode = !this.isQRcode;
+    },
   },
+  async created() {
+    const applyResume = await this.$axios.get(
+      `/apply/applicant?interview_number=${this.$route.params.roomName}`
+    );
+    this.applyResumeList = applyResume.data;
+    QRCode.toDataURL(
+      `/admin/resume/${this.interviewId}/list/${this.applyResumeList.resume_id}/detail`,
+      (err, src) => {
+        this.image = src;
+        // const blob = new Blob([src], { type: "image/png" });
+        // this.imageURL = URL.createObjectURL(blob);
+      }
+    );
+  },
+
   destroyed() {
     this.count();
   },
