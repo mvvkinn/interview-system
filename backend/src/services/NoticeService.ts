@@ -33,4 +33,25 @@ export default class AuthService {
     });
     return findRecord;
   }
+
+  public async update(
+    id: string,
+    title: string,
+    content: string,
+    start: Date,
+    end: Date,
+    image: string
+  ) {
+    const findRecord = await this.noticeModel.update(
+      {
+        title: title,
+        content: content,
+        start_recruit: start,
+        end_recruit: end,
+        image: image,
+      },
+      { where: { id: +id } }
+    );
+    return findRecord;
+  }
 }
