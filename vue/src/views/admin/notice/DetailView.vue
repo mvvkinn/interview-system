@@ -82,6 +82,9 @@
             </div>
             <hr />
             <div class="notice__details-text">
+              <p>{{ noticelist.content }}</p>
+            </div>
+            <div class="notice__details-text">
               <img v-bind:src="sliceImage" />
             </div>
             <div class="notice__details-button">
@@ -164,6 +167,10 @@ export default {
 }
 .notice__details-text {
   display: flex;
+}
+
+.notice__details-text p {
+  height: 0;
 }
 
 .notice__details-text img {

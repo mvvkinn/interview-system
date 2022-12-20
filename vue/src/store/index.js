@@ -111,6 +111,14 @@ export const store = new Vuex.Store({
         .then((res) => res.status)
         .catch((e) => e.response.status);
     },
+
+    amend: async (_, params) => {
+      return await axios
+        .post("/notice/update", params)
+        .then((res) => res.status)
+        .catch((e) => e.response.status);
+    },
+
     registResume: async (_, params) => {
       return await axios
         .post("/resume", params)
@@ -126,6 +134,13 @@ export const store = new Vuex.Store({
     },
 
     uploadNotice: async (_, params) => {
+      return await axios
+        .post("/notice/upload/notice", params)
+        .then((res) => res.data)
+        .catch((e) => e.response.status);
+    },
+
+    amendNotice: async (_, params) => {
       return await axios
         .post("/notice/upload/notice", params)
         .then((res) => res.data)

@@ -291,24 +291,6 @@
                     ></textarea>
                   </div>
                 </div>
-                <div class="notice_component_tableArea">
-                  <div class="notice_component_tableTitle">자기소개서</div>
-                  <div class="notice_componet_tableLine">
-                    <div
-                      class="tableComponent_titleBlack resume"
-                      id="titleBlack_side"
-                    >
-                      자유형식
-                    </div>
-                  </div>
-                  <div class="notice_componet_tableLine_resume">
-                    <textarea
-                      class="resume_textarea"
-                      id="valueBlack_side"
-                      placeholder="자유롭게 작성해주세요."
-                    ></textarea>
-                  </div>
-                </div>
                 <div class="component__content-column-notice">
                   <button id="notice_blueBtn" @click.prevent="applyForm">
                     지원하기

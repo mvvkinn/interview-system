@@ -34,6 +34,26 @@ export default class AuthService {
     return findRecord;
   }
 
+  public async update(
+    id: string,
+    title: string,
+    content: string,
+    start: Date,
+    end: Date,
+    image: string
+  ) {
+    const updateRecord = await this.noticeModel.update(
+      {
+        title: title,
+        content: content,
+        start_recruit: start,
+        end_recruit: end,
+        image: image,
+      },
+      { where: { id: +id } }
+    );
+    return updateRecord;
+  }
   public async findOne(noticeDTO: any) {
     let findRecord;
     if (noticeDTO?.title) {

@@ -58,7 +58,6 @@
           <article class="notice_adm__write">
             <div class="notice_adm__write-title">
               <h1>수정하기</h1>
-              <!-- <button>불러오기</button> -->
             </div>
             <hr />
             <div class="notice_adm_write-content">
@@ -66,42 +65,31 @@
                 id="title"
                 type="text"
                 placeholder="글제목"
-                v-bind:value="detail.title"
+                v-model="title"
               ></textarea>
 
               <textarea
                 id="content"
                 type="text"
                 placeholder="내용"
-                v-bind:value="detail.detail"
+                v-model="content"
               ></textarea>
               <div class="notice_adm_write-applybutton">
                 <div class="notice_adm_write-applybutton-begin">
                   <p>모집 시작일시</p>
-                  <input
-                    id="begin"
-                    type="datetime-local"
-                    v-bind:value="detail.begin"
-                  />
+                  <input id="begin" type="datetime-local" v-model="start" />
                 </div>
                 <div class="notice_adm_write-applybutton-deadline">
                   <p>모집 마감일시</p>
-                  <input
-                    id="deadline"
-                    type="datetime-local"
-                    v-bind:value="detail.deadline"
-                  />
+                  <input id="deadline" type="datetime-local" v-model="end" />
                 </div>
               </div>
             </div>
             <div class="notice_adm_write-filebutton">
-              <label for="input-file">파일 첨부</label>
-              <input type="file" id="input-file" style="display: none" />
+              <input type="file" id="file" accept="image/*" @change="upload" />
             </div>
             <div class="notice_adm_write-button">
-              <button>업로드</button>
-              <!-- <button>임시저장</button> -->
-
+              <button @click.prevent="amendForm">수정하기</button>
               <button>
                 <router-link to="/admin/notice">취소</router-link>
               </button>
@@ -118,6 +106,7 @@
 <script>
 import HeaderView from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+import { store } from "@/store";
 export default {
   components: {
     HeaderView,
@@ -126,19 +115,59 @@ export default {
   data() {
     return {
       noticelist: [],
-      detail: {},
+      title: "",
+      content: "",
+      start: "",
+      end: "",
+      image: "",
     };
   },
+
   async created() {
-    const noticeText = await this.$axios.get(
-      "https://96bf5df2-e991-4e90-a173-c13d159166cf.mock.pstmn.io/api/notice"
+    const noticeGet = await this.$axios.get(
+      `/notice/read/${this.$route.params.id}`
     );
-    this.noticelist = noticeText.data.noticelist;
-    this.detail = this.noticelist.filter(
-      (v) => v.number === +this.$route.params.number
-    )[0];
-    console.log(this.detail.begin);
-    console.log(this.detail.deadline);
+    this.noticelist = noticeGet.data;
+    this.title = this.noticelist.title;
+    this.content = this.noticelist.content;
+    console.log(this.noticelist);
+  },
+  methods: {
+    async amendForm() {
+      const data = {
+        id: this.noticelist.id,
+        title: this.title,
+        content: this.content,
+        start: this.start,
+        end: this.end,
+        image: this.image,
+      };
+      store
+        .dispatch("amend", { ...data })
+        .then((res) => {
+          if (res == 201) {
+            this.$router.push(`/admin/notice/detail/${this.$route.params.id}`);
+            console.log("성공");
+          } else {
+            console.log(this.data);
+          }
+        })
+        .catch((e) => console.log(e));
+    },
+    upload(e) {
+      let file = e.target.files;
+      let reader = new FileReader();
+      let formData = new FormData();
+
+      reader.readAsDataURL(file[0]);
+      // formData에 사진 추가
+      formData.append("image", file[0]);
+      store.dispatch("amendNotice", formData).then((res) => {
+        // 서버 uploads폴더 사진 경로를 저장
+        this.image = res;
+        console.log(this.image);
+      });
+    },
   },
 };
 </script>
@@ -172,6 +201,25 @@ export default {
   height: 35px;
   font-family: "noto sans kr";
 }
+
+.notice_adm_write-filebutton input::file-selector-button {
+  background-color: #3c62e5;
+  color: white;
+  border: 0;
+  height: 25px;
+  cursor: pointer;
+}
+
+.notice_adm_write-filebutton {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#file {
+  border: none;
+  width: 15.7%;
+}
+
 .notice_adm_write-applybutton-deadline {
   /* margin-left: 80px; */
   display: flex;
