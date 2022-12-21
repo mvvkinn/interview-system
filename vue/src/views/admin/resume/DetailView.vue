@@ -98,7 +98,7 @@
               </div>
             </div>
             <div class="adm_contentArea">
-              <img v-bind:src="`/${resumeList.image?.split('\\')[1]}`" alt="" />
+              <img v-bind:src="updateImg" alt="" />
               <div class="notice_component_tableArea">
                 <div class="notice_component_tableTitle">인적사항</div>
                 <div class="notice_componet_tableLine">
@@ -331,6 +331,14 @@ export default {
       `/notice/read/${this.$route.params.interviewId}`
     );
     this.noticeList = notice.data;
+  },
+  computed: {
+    updateImg() {
+      return (
+        // `/${this.resumeList.image?.split("\\")[1]}` ||
+        `/${this.resumeList.image?.split("/")[1]}`
+      );
+    },
   },
 };
 </script>

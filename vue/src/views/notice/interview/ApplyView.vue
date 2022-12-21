@@ -421,7 +421,8 @@ export default {
     resumeImg() {
       return this.resumeList.image === ""
         ? "https://via.placeholder.com/297x358"
-        : `/${this.resumeList.image.split("\\")[1]}`;
+        : // `/${this.resumeList.image?.split("\\")[1]}` ||
+          `/${this.resumeList.image?.split("/")[1]}`;
     },
   },
   async created() {

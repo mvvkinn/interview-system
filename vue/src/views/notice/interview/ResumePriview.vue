@@ -5,11 +5,7 @@
     </div>
     <div class="import_resumeArea">
       <div class="resume_pictureArea">
-        <img
-          :src="`/${resumelist.image?.split('\\')[1]}`"
-          alt=""
-          class="resume_picture"
-        />
+        <img :src="updateImg" alt="" class="resume_picture" />
       </div>
       <div class="resume_tableArea">
         <p>인적사항</p>
@@ -176,6 +172,14 @@ export default {
     callUp(id) {
       localStorage.setItem("resumeId", id);
       window.close();
+    },
+  },
+  computed: {
+    updateImg() {
+      return (
+        // `/${this.resumelist.image?.split("\\")[1]}` ||
+        `/${this.resumelist.image?.split("/")[1]}`
+      );
     },
   },
 };

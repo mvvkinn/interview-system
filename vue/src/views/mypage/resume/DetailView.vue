@@ -82,7 +82,7 @@
               <form class="component__content--hr">
                 <div class="component__content-column">
                   <div class="component__content-column--img" v-if="currentId">
-                    <img :src="`/${resume.image.split('\\')[1]}`" alt="" />
+                    <img :src="updateImg" alt="" />
                     <label for="file">이미지 업로드</label>
                     <input
                       type="file"
@@ -454,7 +454,6 @@ export default {
   async beforeRouteEnter(to, from, next) {
     const id = +to.params.id;
     const data = await axios.get(`/resume?id=${id}`);
-    console.log(data);
 
     if (id) {
       next((vm) => {
@@ -610,6 +609,12 @@ export default {
       return this.changeImage === ""
         ? "https://via.placeholder.com/297x358"
         : this.changeImage;
+    },
+    updateImg() {
+      return (
+        // `/${this.resume.image?.split("\\")[1]}` ||
+        `/${this.resume.image?.split("/")[1]}`
+      );
     },
   },
 };
