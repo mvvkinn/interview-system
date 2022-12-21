@@ -409,9 +409,9 @@ export default {
           if (res === 201) {
             this.$router.push("/notice/apply/success");
           } else if (res === 500) {
-            alert("이력서를 작성해주세요.");
-          } else {
-            alert("이미 지원하였습니다.");
+            this.resumeList?.user_name === ""
+              ? alert("이력서를 작성해주세요.")
+              : alert("이미 지원하였습니다.");
           }
         })
         .catch((e) => console.log(e));
