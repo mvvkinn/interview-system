@@ -134,7 +134,7 @@
                 alt=""
               />
               <div class="main-view__column-content-text">
-                <h1>관리자페이지</h1>
+                <h1>면접관페이지</h1>
                 <h2>ADMIN PAGE</h2>
                 <div class="main-view__column-content-tag">
                   <span>#관리자</span>

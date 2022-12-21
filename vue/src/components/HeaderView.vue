@@ -49,7 +49,7 @@ export default {
     if (this.role === "user") {
       this.title = "마이페이지";
     } else {
-      this.title = "관리자페이지";
+      this.title = "면접관페이지";
     }
   },
 };

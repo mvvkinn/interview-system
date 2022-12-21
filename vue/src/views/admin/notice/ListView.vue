@@ -18,7 +18,7 @@
                     alt=""
                     class="component-column--img-blue"
                   />
-                  <p>관리자페이지</p>
+                  <p>면접관페이지</p>
                 </li>
               </router-link>
               <router-link to="/admin/notice">
