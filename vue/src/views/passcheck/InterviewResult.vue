@@ -128,4 +128,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.success_nav__menu img {
+  margin: 0 auto;
+}
+</style>

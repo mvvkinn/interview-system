@@ -22,21 +22,6 @@ vu
                   <p>관리자 페이지</p>
                 </li>
               </router-link>
-              <router-link to="/passcheck">
-                <li class="adm_nav__menu--li">
-                  <img
-                    src="@/assets/images/icons/menuIcon_search.png"
-                    alt=""
-                    class="component-column--img-black"
-                  />
-                  <img
-                    src="@/assets/images/icons/menuIcon_search_hover.png"
-                    alt=""
-                    class="component-column--img-blue"
-                  />
-                  <p>합격자 조회</p>
-                </li>
-              </router-link>
               <router-link to="/admin/notice">
                 <li class="adm_nav__menu--li">
                   <img
