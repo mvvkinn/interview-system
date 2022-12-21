@@ -125,7 +125,7 @@ export default {
   },
   computed: {
     sliceImage() {
-      return `/notice/${this.noticelist.image?.split("\\")[2]}`;
+      return `/notice/${this.noticelist.image?.split("/")[2]}`;
     },
     date() {
       return this.noticelist.createdAt?.slice(0, 10).split("-").join("/");

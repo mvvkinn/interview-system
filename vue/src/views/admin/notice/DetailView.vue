@@ -6,7 +6,7 @@
         <div class="notice_navbar">
           <div class="notice_nav__menu">
             <ul>
-              <router-link to="/mypage/resume">
+              <router-link to="/admin/resume">
                 <li>
                   <img
                     src="@/assets/images/icons/menuIcon_user.png"
@@ -115,7 +115,7 @@ export default {
   },
   computed: {
     sliceImage() {
-      return `/notice/${this.noticelist.image?.split("\\")[2]}`;
+      return `/notice/${this.noticelist.image?.split("/")[2]}`;
     },
     date() {
       return this.noticelist.createdAt?.slice(0, 10).split("-").join("/");
