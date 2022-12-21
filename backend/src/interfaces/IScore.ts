@@ -1,15 +1,24 @@
 export interface IScore {
   score_id: string;
-  question_one: string;
-  question_two: string;
-  question_three: string;
-  score_one: number;
-  score_two: number;
-  score_three: number;
-  add_question: string;
+  attitude: string;
+  attitude_opinion: string;
+  communication_skills: string;
+  communication_skills_opinion: string;
+  logical: string;
+  logical_opinion: string;
+  reliability: number;
+  reliability_opinion: number;
+  judgment: number;
+  judgment_opinion: number;
+  leadership: number;
+  leadership_opinion: number;
+  business: string;
+  business_opinion: string;
+  opinion: string;
   user_interview_number?: number;
   user_name: string;
-  user_email: string;
+  interviewer_name: string;
   notice_title: string;
-  success: boolean;
+  successNumber: number;
+  isSuccess: boolean;
 }
