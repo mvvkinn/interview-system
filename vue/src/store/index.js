@@ -100,7 +100,7 @@ export const store = new Vuex.Store({
 
     score: async (_, params) => {
       return await axios
-        .post("/score/test", params)
+        .post("/score", params)
         .then((res) => res.status)
         .catch((e) => e.response.status);
     },
