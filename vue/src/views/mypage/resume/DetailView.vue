@@ -110,12 +110,14 @@
                       class="tableComponent_value"
                       v-model="user_name"
                       placeholder="이름을 입력해주세요."
+                      readonly
                     ></textarea>
                     <div class="tableComponent_title">생년월일</div>
                     <textarea
                       class="tableComponent_value"
                       v-model="user_birthdate"
                       placeholder="생년 6자리를 입력해주세요."
+                      readonly
                     ></textarea>
                   </div>
                   <div class="notice_componet_tableLine">
@@ -124,6 +126,7 @@
                       class="tableComponent_value"
                       v-model="user_phone"
                       placeholder="'-'제외하고 입력"
+                      readonly
                     ></textarea>
                     <div class="tableComponent_title" id="emailTitle">
                       E-mail
@@ -132,6 +135,7 @@
                       class="tableComponent_value"
                       v-model="resume.user_email"
                       placeholder="이메일을 입력해주세요."
+                      readonly
                     ></textarea>
                   </div>
                   <div class="notice_componet_tableLine" id="addressLine">
@@ -143,6 +147,7 @@
                       v-model="user_address"
                       placeholder="'-'제외하고 입력"
                       id="addressTextArea"
+                      readonly
                     ></textarea>
                   </div>
                 </div>
@@ -490,7 +495,12 @@ export default {
             this.education[this.education.length - 1].school &&
             this.education[this.education.length - 1].major
           ) {
-            this.education.push({});
+            this.education.push({
+              period: "",
+              school: "",
+              rating: "",
+              issuer: "",
+            });
             this.resume.education = this.education;
           }
           break;
@@ -530,72 +540,10 @@ export default {
     },
     regist() {
       if (this.resume.title !== "") {
-        // 이력서 제목이 입력되어 있는 경우 진행
-        if (
-          // 학력사항에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
-          this.education[this.education.length - 1].period &&
-          this.education[this.education.length - 1].school &&
-          this.education[this.education.length - 1].major
-        ) {
-          this.education.push({
-            period: this.education[this.education.length - 1].period,
-            school: this.education[this.education.length - 1].school,
-            major: this.education[this.education.length - 1].major,
-          });
-        } else {
-          this.education.push({});
-        }
-
-        // 자격 및 교육사항에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
-        if (
-          this.certificate[this.certificate.length - 1].acquisition_date &&
-          this.certificate[this.certificate.length - 1].certificate &&
-          this.certificate[this.certificate.length - 1].rating &&
-          this.certificate[this.certificate.length - 1].issuer
-        ) {
-          this.certificate.push({
-            acquisition_date:
-              this.certificate[this.certificate.length - 1].acquisition_date,
-            certificate:
-              this.certificate[this.certificate.length - 1].certificate,
-            rating: this.certificate[this.certificate.length - 1].rating,
-            issuer: this.certificate[this.certificate.length - 1].issuer,
-          });
-        } else {
-          this.certificate.push({
-            acquisition_date: "",
-            certificate: "",
-            rating: "",
-            issuer: "",
-          });
-        }
-
-        // 대외활동에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
-        if (
-          this.activity[this.activity.length - 1].period &&
-          this.activity[this.activity.length - 1].gubun &&
-          this.activity[this.activity.length - 1].location &&
-          this.activity[this.activity.length - 1].content
-        ) {
-          this.activity.push({
-            period: this.activity[this.activity.length - 1].period,
-            gubun: this.activity[this.activity.length - 1].gubun,
-            location: this.activity[this.activity.length - 1].location,
-            content: this.activity[this.activity.length - 1].content,
-          });
-        } else {
-          this.activity.push({
-            period: "",
-            gubun: "",
-            location: "",
-            content: "",
-          });
-        }
-        console.log(this.education);
         const data = {
           title: this.resume.title,
           image: this.resume.image,
-          education: this.education.length === 1 ? null : this.education,
+          education: this.education,
           certificate: this.certificate,
           activity: this.activity,
           cover_letter: this.resume.cover_letter,
