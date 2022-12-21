@@ -18,10 +18,9 @@ export default class ScoreService {
   }
 
   public async find(scoreDTO: any) {
-    const findRecord = await this.scoreModel.findOne({
+    const findRecord = await this.scoreModel.findAll({
       where: {
         user_interview_number: scoreDTO.user_interview_number,
-        interviewer_name: scoreDTO.interviewer_name,
       },
     });
     return findRecord;
