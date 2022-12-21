@@ -23,21 +23,7 @@ vu
                 </li>
               </router-link>
               <!-- router link to = /success -->
-              <router-link to="/passcheck">
-                <li class="adm_nav__menu--li">
-                  <img
-                    src="@/assets/images/icons/menuIcon_search.png"
-                    alt=""
-                    class="component-column--img-black"
-                  />
-                  <img
-                    src="@/assets/images/icons/menuIcon_search_hover.png"
-                    alt=""
-                    class="component-column--img-blue"
-                  />
-                  <p>합격자 조회</p>
-                </li>
-              </router-link>
+
               <router-link to="/admin/notice">
                 <li class="adm_nav__menu--li">
                   <img
@@ -76,7 +62,7 @@ vu
           <article class="adm__rsm-content">
             <div class="adm__rsm-content-div">
               <h1>
-                {{resumelist.title}}
+                {{ resumelist.title }}
               </h1>
               <div class="adm__rsm-content--hr">
                 <div class="adm__rsm-content-info">
@@ -86,7 +72,7 @@ vu
                   <hr />
                   <div class="adm__rsm-content-info--div-2">
                     <p>
-                      {{number.title}}
+                      {{ number.title }}
                     </p>
                   </div>
                   <hr />
@@ -96,7 +82,7 @@ vu
                   <hr />
                   <div class="adm__rsm-content-info--div-4">
                     <p>
-                      {{resumelist.name}}
+                      {{ resumelist.name }}
                     </p>
                   </div>
                 </div>
@@ -187,17 +173,17 @@ export default {
     HeaderView,
     FooterView,
   },
-  data(){
+  data() {
     return {
       resumelist: [],
-      number:{},
-      checklist:[],
-      mainQuestion:[],
-      additionalQuestion:[],
-      check:[],
+      number: {},
+      checklist: [],
+      mainQuestion: [],
+      additionalQuestion: [],
+      check: [],
     };
   },
-  async created(){
+  async created() {
     const resumeText = await this.$axios.get(
       "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/resume"
     );
@@ -207,7 +193,7 @@ export default {
       "https://c6d0e1b2-5e9a-4d8e-85ec-52bd5bbbd8eb.mock.pstmn.io/noticeapi/list"
     );
     this.noticelist = noticeText.data.noticelist;
-      this.number = this.noticelist.filter(
+    this.number = this.noticelist.filter(
       (v) => v.number === +this.$route.params.number
     )[0];
 
@@ -223,8 +209,8 @@ export default {
 </script>
 
 <style scoped>
-  .adm__rsm-content-checklist h3{
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
+.adm__rsm-content-checklist h3 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
 </style>
