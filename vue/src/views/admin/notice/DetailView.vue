@@ -61,10 +61,10 @@
             </div>
             <hr />
             <div class="notice__details-header">
-              <div class="notice__details-header-div"><p>첨부파일</p></div>
+              <div class="notice__details-header-div"><p>모집 기간</p></div>
               <hr />
               <div class="notice__details-header-div">
-                <p>첨부파일...hwp</p>
+                <p>{{ recruitDate }}</p>
               </div>
               <div class="notice__details-header-div"><p>날짜</p></div>
               <hr />
@@ -134,6 +134,12 @@ export default {
     },
     date() {
       return this.noticelist.createdAt?.slice(0, 10).split("-").join("/");
+    },
+    recruitDate() {
+      return `${this.noticelist.start_recruit
+        ?.slice(0, 16)
+        .split("-")
+        .join("/")}`;
     },
   },
 };

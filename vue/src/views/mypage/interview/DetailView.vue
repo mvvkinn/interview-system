@@ -76,9 +76,9 @@ vu
               <div class="component__content--hr">
                 <div class="component__content-info">
                   <div class="component__content-info--div">
-                    <p>첨부파일</p>
+                    <p>모집 기간</p>
                     <hr />
-                    <p>첨부파일...hwp</p>
+                    <p>{{ recruitDate }}</p>
                   </div>
                   <div class="component__content-info--div">
                     <p>날짜</p>
@@ -158,6 +158,12 @@ export default {
     },
     date() {
       return this.noticelist.createdAt?.slice(0, 10).split("-").join("/");
+    },
+    recruitDate() {
+      return `${this.noticelist.start_recruit
+        ?.slice(0, 16)
+        .split("-")
+        .join("/")}`;
     },
   },
 };
