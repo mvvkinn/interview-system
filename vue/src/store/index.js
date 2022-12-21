@@ -112,10 +112,24 @@ export const store = new Vuex.Store({
         .catch((e) => e.response.status);
     },
 
-    amend: async (_, params) => {
+    uploadNotice: async (_, params) => {
+      return await axios
+        .post("/notice/upload/notice", params)
+        .then((res) => res.data)
+        .catch((e) => e.response.status);
+    },
+
+    amendNotice: async (_, params) => {
       return await axios
         .post("/notice/update", params)
         .then((res) => res.status)
+        .catch((e) => e.response.status);
+    },
+
+    amendNoticeImg: async (_, params) => {
+      return await axios
+        .post("/notice/upload/notice", params)
+        .then((res) => res.data)
         .catch((e) => e.response.status);
     },
 
@@ -126,23 +140,23 @@ export const store = new Vuex.Store({
         .catch((e) => e.response.status);
     },
 
+    amendResume: async (_, params) => {
+      return await axios
+        .post("/resume/update", params)
+        .then((res) => res.status)
+        .catch((e) => e.response.status);
+    },
+
+    amendResumeImg: async (_, params) => {
+      return await axios
+        .post("/resume/upload", params)
+        .then((res) => res.status)
+        .catch((e) => e.response.status);
+    },
+
     upload: async (_, params) => {
       return await axios
         .post("/resume/upload", params)
-        .then((res) => res.data)
-        .catch((e) => e.response.status);
-    },
-
-    uploadNotice: async (_, params) => {
-      return await axios
-        .post("/notice/upload/notice", params)
-        .then((res) => res.data)
-        .catch((e) => e.response.status);
-    },
-
-    amendNotice: async (_, params) => {
-      return await axios
-        .post("/notice/upload/notice", params)
         .then((res) => res.data)
         .catch((e) => e.response.status);
     },

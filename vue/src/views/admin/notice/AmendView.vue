@@ -149,7 +149,7 @@ export default {
         number: +this.number,
       };
       store
-        .dispatch("amend", { ...data })
+        .dispatch("amendNotice", { ...data })
         .then((res) => {
           if (res == 201) {
             this.$router.push(`/admin/notice/detail/${this.$route.params.id}`);
@@ -168,7 +168,7 @@ export default {
       reader.readAsDataURL(file[0]);
       // formData에 사진 추가
       formData.append("image", file[0]);
-      store.dispatch("amendNotice", formData).then((res) => {
+      store.dispatch("amendNoticeImg", formData).then((res) => {
         // 서버 uploads폴더 사진 경로를 저장
         this.image = res;
         console.log(this.image);
