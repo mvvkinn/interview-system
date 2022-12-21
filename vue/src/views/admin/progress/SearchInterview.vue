@@ -77,7 +77,7 @@ vu
             <div>
               <hr />
               <div class="adm__rsm-form">
-                <p>이력서를 조회할 면접을 선택하세요.</p>
+                <p>진행할 면접을 선택하세요.</p>
                 <select name="rsm" id="rsm-select" @change="changeValue">
                   <option value="">면접을 선택하세요</option>
                   <option
