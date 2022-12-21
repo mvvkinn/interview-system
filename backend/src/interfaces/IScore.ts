@@ -21,4 +21,6 @@ export interface IScore {
   notice_title: string;
   successNumber: number;
   isSuccess: boolean;
+
+  email: string;
 }

@@ -32,6 +32,7 @@ export default (db: Sequelize) => {
       notice_title: { type: DataTypes.STRING },
       successNumber: { type: DataTypes.INTEGER },
       isSuccess: { type: DataTypes.BOOLEAN },
+      email: { type: DataTypes.STRING },
     },
     { tableName: "Score", timestamps: false }
   );

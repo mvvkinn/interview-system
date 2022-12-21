@@ -459,6 +459,7 @@ export default {
     },
     submitForm() {
       const data = {
+        email: this.email,
         attitude: this.attitude,
         communication_skills: this.communication_skills,
         logical: this.logical,
