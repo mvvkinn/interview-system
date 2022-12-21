@@ -8,7 +8,7 @@
           <div class="interview_content" id="interview_applicantName">
             <input
               class="interview_applicantName_value"
-              :value="scoreList.user_name"
+              :value="scoreList[scoreIndex]?.user_name"
               readonly
             />
           </div>
@@ -18,7 +18,7 @@
           <div class="interview_content" id="interview_applicantName">
             <input
               class="interview_applicantName_value"
-              :value="scoreList.interviewer_name"
+              :value="scoreList[scoreIndex]?.interviewer_name"
               readonly
             />
           </div>
@@ -27,7 +27,7 @@
       <div class="interview_format_line">
         <div class="fotmat_line_title">면접명</div>
         <div class="fotmat_line_value">
-          <input :value="scoreList.notice_title" readonly />
+          <input :value="scoreList[scoreIndex]?.notice_title" readonly />
         </div>
       </div>
       <div class="interview_format_line">
@@ -49,7 +49,7 @@
           <textarea
             class="interview_cell_value"
             id="cell_normal"
-            :value="scoreList.attitude_opinion"
+            :value="scoreList[scoreIndex]?.attitude_opinion"
             readonly
           ></textarea>
           <div class="interview_cell_value" id="cell_scoreArea">
@@ -57,7 +57,7 @@
               type="text"
               id="cell_scoreValue"
               placeholder="00"
-              :value="scoreList.attitude"
+              :value="scoreList[scoreIndex]?.attitude"
               readonly
             />
           </div>
@@ -67,7 +67,7 @@
           <textarea
             class="interview_cell_value"
             id="cell_normal"
-            :value="scoreList.communication_skills_opinion"
+            :value="scoreList[scoreIndex]?.communication_skills_opinion"
             readonly
           ></textarea>
           <div class="interview_cell_value" id="cell_scoreArea">
@@ -75,7 +75,7 @@
               type="text"
               id="cell_scoreValue"
               placeholder="00"
-              :value="scoreList.communication_skills"
+              :value="scoreList[scoreIndex]?.communication_skills"
               readonly
             />
           </div>
@@ -85,7 +85,7 @@
           <textarea
             class="interview_cell_value"
             id="cell_normal"
-            :value="scoreList.logical_opinion"
+            :value="scoreList[scoreIndex]?.logical_opinion"
             readonly
           ></textarea>
           <div class="interview_cell_value" id="cell_scoreArea">
@@ -93,7 +93,7 @@
               type="text"
               id="cell_scoreValue"
               placeholder="00"
-              :value="scoreList.logical"
+              :value="scoreList[scoreIndex]?.logical"
               readonly
             />
           </div>
@@ -103,7 +103,7 @@
           <textarea
             class="interview_cell_value"
             id="cell_normal"
-            :value="scoreList.reliability_opinion"
+            :value="scoreList[scoreIndex]?.reliability_opinion"
             readonly
           ></textarea>
           <div class="interview_cell_value" id="cell_scoreArea">
@@ -111,7 +111,7 @@
               type="text"
               id="cell_scoreValue"
               placeholder="00"
-              :value="scoreList.reliability"
+              :value="scoreList[scoreIndex]?.reliability"
               readonly
             />
           </div>
@@ -121,7 +121,7 @@
           <textarea
             class="interview_cell_value"
             id="cell_normal"
-            :value="scoreList.judgment_opinion"
+            :value="scoreList[scoreIndex]?.judgment_opinion"
             readonly
           ></textarea>
           <div class="interview_cell_value" id="cell_scoreArea">
@@ -129,7 +129,7 @@
               type="text"
               id="cell_scoreValue"
               placeholder="00"
-              :value="scoreList.judgment"
+              :value="scoreList[scoreIndex]?.judgment"
               readonly
             />
           </div>
@@ -139,7 +139,7 @@
           <textarea
             class="interview_cell_value"
             id="cell_normal"
-            :value="scoreList.leadership_opinion"
+            :value="scoreList[scoreIndex]?.leadership_opinion"
             readonly
           ></textarea>
           <div class="interview_cell_value" id="cell_scoreArea">
@@ -147,7 +147,7 @@
               type="text"
               id="cell_scoreValue"
               placeholder="00"
-              :value="scoreList.leadership"
+              :value="scoreList[scoreIndex]?.leadership"
               readonly
             />
           </div>
@@ -157,7 +157,7 @@
           <textarea
             class="interview_cell_value"
             id="cell_normal"
-            :value="scoreList.business_opinion"
+            :value="scoreList[scoreIndex]?.business_opinion"
             readonly
           ></textarea>
           <div class="interview_cell_value" id="cell_scoreArea">
@@ -165,7 +165,7 @@
               type="text"
               id="cell_scoreValue"
               placeholder="00"
-              :value="scoreList.business"
+              :value="scoreList[scoreIndex]?.business"
               readonly
             />
           </div>
@@ -178,11 +178,15 @@
         <textarea
           class="interview_cell_value"
           id="cell_opinion"
-          :value="scoreList.opinion"
+          :value="scoreList[scoreIndex]?.opinion"
           readonly
         ></textarea>
       </div>
       <div class="inverview_btnArea">
+        <div class="interview_btn">
+          <button id="interview_blackBtn" @click="left">&laquo;</button>
+          <button id="interview_blackBtn" @click="rigth">&raquo;</button>
+        </div>
         <router-link :to="`/admin/content/${$route.params.interviewId}/list`">
           <div class="interview_btn" id="interview_blueBtn">나가기</div>
         </router-link>
@@ -201,6 +205,7 @@ export default {
       applicant: {},
       scoreGet: {},
       scoreList: {},
+      scoreIndex: 0,
       id: "",
       email: "",
       name: "",
@@ -220,11 +225,27 @@ export default {
   },
   async created() {
     this.scoreGet = await this.$axios.get(
-      `/score/read?user_interview_number=${this.$route.params.roomName}&interviewer_name=${this.interviewer_name}`
+      `/score/read?user_interview_number=${this.$route.params.roomName}`
     );
     this.scoreList = this.scoreGet.data;
-    console.log(this.scoreGet);
     console.log(this.scoreList);
+    console.log(this.scoreList[this.scoreIndex].user_name);
+  },
+  methods: {
+    left() {
+      if (this.scoreIndex === 0) {
+        this.scoreIndex = 0;
+      } else {
+        this.scoreIndex--;
+      }
+    },
+    rigth() {
+      if (this.scoreIndex === this.scoreList.length - 1) {
+        this.scoreIndex = this.scoreList.length - 1;
+      } else {
+        this.scoreIndex++;
+      }
+    },
   },
 };
 </script>
