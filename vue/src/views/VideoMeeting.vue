@@ -116,98 +116,193 @@
             </div>
           </div>
           <div class="scoreBoard_question">
-            <p id="online_boldText">질문1</p>
+            <p id="online_boldText">태도/인성</p>
             <div class="scoreBoard_questionBox">
               <textarea
                 class="questionBox_content"
-                placeholder="질문 내용을 입력해주세요."
-                v-model="question_one"
-                ref="question_one"
+                placeholder="의견을 입력해주세요."
+                v-model="attitude_opinion"
+                ref="attitude_opinion"
                 tyep="text"
-                :class="{ error: inputError.question_one }"
               ></textarea>
-              <p class="error_txt">{{ inputErrorMsg }}</p>
               <div class="questionBox_score">
                 <input
                   type="text"
                   class="question_Score"
                   placeholder="00"
-                  :value="score_one"
+                  :value="attitude"
                   @input="checkInput($event, '1')"
-                  ref="score_one"
+                  ref="attitude"
                   min="1"
                   max="100"
                   maxlength="3"
-                  :class="{ error: inputError.score_one }"
+                  :class="{ error: inputError.attitude }"
                 />
-                <p class="error_txt">{{ inputErrorMsg }}</p>
               </div>
             </div>
           </div>
           <div class="scoreBoard_question">
-            <p id="online_boldText">질문2</p>
+            <p id="online_boldText">의사소통 능력</p>
             <div class="scoreBoard_questionBox">
               <textarea
                 class="questionBox_content"
-                placeholder="질문 내용을 입력해주세요."
-                v-model="question_two"
-                ref="question_two"
+                placeholder="의견을 입력해주세요."
+                v-model="communication_skills_opinion"
+                ref="communication_skills_opinion"
                 tyep="text"
-                :class="{ error: inputError.question_two }"
               ></textarea>
-              <p class="error_txt">{{ inputErrorMsg }}</p>
               <div class="questionBox_score">
                 <input
                   type="text"
                   class="question_Score"
                   placeholder="00"
-                  :value="score_two"
+                  :value="communication_skills"
                   @input="checkInput($event, '2')"
-                  ref="score_two"
+                  ref="communication_skills"
                   min="1"
                   max="100"
                   maxlength="3"
-                  :class="{ error: inputError.score_two }"
+                  :class="{ error: inputError.communication_skills }"
                 />
-                <p class="error_txt">{{ inputErrorMsg }}</p>
               </div>
             </div>
           </div>
           <div class="scoreBoard_question">
-            <p id="online_boldText">질문3</p>
+            <p id="online_boldText">논리적 사고</p>
             <div class="scoreBoard_questionBox">
               <textarea
                 class="questionBox_content"
-                placeholder="질문 내용을 입력해주세요."
-                v-model="question_three"
-                ref="question_three"
+                placeholder="의견을 입력해주세요."
+                v-model="logical_opinion"
+                ref="logical_opinion"
                 tyep="text"
-                :class="{ error: inputError.question_three }"
               ></textarea>
-              <p class="error_txt">{{ inputErrorMsg }}</p>
               <div class="questionBox_score">
                 <input
                   type="text"
                   class="question_Score"
                   placeholder="00"
-                  :value="score_three"
+                  :value="logical"
                   @input="checkInput($event, '3')"
-                  ref="score_three"
+                  ref="logical"
                   min="1"
                   max="100"
                   maxlength="3"
-                  :class="{ error: inputError.score_three }"
+                  :class="{ error: inputError.logical }"
                 />
-                <p class="error_txt">{{ inputErrorMsg }}</p>
               </div>
             </div>
           </div>
           <div class="scoreBoard_question">
-            <p id="online_boldText">추가질문</p>
+            <p id="online_boldText">적극성/신뢰성</p>
+            <div class="scoreBoard_questionBox">
+              <textarea
+                class="questionBox_content"
+                placeholder="의견을 입력해주세요."
+                v-model="reliability_opinion"
+                ref="reliability_opinion"
+                tyep="text"
+              ></textarea>
+              <div class="questionBox_score">
+                <input
+                  type="text"
+                  class="question_Score"
+                  placeholder="00"
+                  :value="reliability"
+                  @input="checkInput($event, '4')"
+                  ref="reliability"
+                  min="1"
+                  max="100"
+                  maxlength="3"
+                  :class="{ error: inputError.reliability }"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="scoreBoard_question">
+            <p id="online_boldText">창의력/판단력</p>
+            <div class="scoreBoard_questionBox">
+              <textarea
+                class="questionBox_content"
+                placeholder="의견을 입력해주세요."
+                v-model="judgment_opinion"
+                ref="judgment_opinion"
+                tyep="text"
+              ></textarea>
+              <div class="questionBox_score">
+                <input
+                  type="text"
+                  class="question_Score"
+                  placeholder="00"
+                  :value="judgment"
+                  @input="checkInput($event, '5')"
+                  ref="judgment"
+                  min="1"
+                  max="100"
+                  maxlength="3"
+                  :class="{ error: inputError.judgment }"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="scoreBoard_question">
+            <p id="online_boldText">리더쉽/협동성</p>
+            <div class="scoreBoard_questionBox">
+              <textarea
+                class="questionBox_content"
+                placeholder="의견을 입력해주세요."
+                v-model="leadership_opinion"
+                ref="leadership_opinion"
+                tyep="text"
+              ></textarea>
+              <div class="questionBox_score">
+                <input
+                  type="text"
+                  class="question_Score"
+                  placeholder="00"
+                  :value="leadership"
+                  @input="checkInput($event, '6')"
+                  ref="leadership"
+                  min="1"
+                  max="100"
+                  maxlength="3"
+                  :class="{ error: inputError.leadership }"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="scoreBoard_question">
+            <p id="online_boldText">기업 이해도</p>
+            <div class="scoreBoard_questionBox">
+              <textarea
+                class="questionBox_content"
+                placeholder="의견을 입력해주세요."
+                v-model="business_opinion"
+                ref="business_opinion"
+                tyep="text"
+              ></textarea>
+              <div class="questionBox_score">
+                <input
+                  type="text"
+                  class="question_Score"
+                  placeholder="00"
+                  :value="business"
+                  @input="checkInput($event, '7')"
+                  ref="business"
+                  min="1"
+                  max="100"
+                  maxlength="3"
+                  :class="{ error: inputError.business }"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="scoreBoard_question">
+            <p id="online_boldText">비고</p>
             <textarea
               class="questionBox_addQuest"
-              placeholder="질문 내용을 입력해주세요."
-              v-model="add_question"
+              placeholder="추가로 남길 의견을 입력해주세요."
+              v-model="opinion"
             ></textarea>
           </div>
           <div class="scoreBoard_btnArea">
@@ -242,25 +337,33 @@ export default {
       text_video: "CAMERA OFF",
       onlineTimer: 0,
       //  -- question, score --
-      question_one: "",
-      question_two: "",
-      question_three: "",
-      score_one: "",
-      score_two: "",
-      score_three: "",
-      add_question: "",
+      attitude: "",
+      communication_skills: "",
+      logical: "",
+      reliability: "",
+      judgment: "",
+      leadership: "",
+      business: "",
+      opinion: "",
+      attitude_opinion: "",
+      communication_skills_opinion: "",
+      logical_opinion: "",
+      reliability_opinion: "",
+      judgment_opinion: "",
+      leadership_opinion: "",
+      business_opinion: "",
       email: JSON.parse(localStorage.getItem("user")).email,
       role: JSON.parse(localStorage.getItem("user")).role,
       isEmpty: false,
       inputError: {
-        question_one: false,
-        question_two: false,
-        question_three: false,
-        score_one: false,
-        score_two: false,
-        score_three: false,
+        attitude: false,
+        communication_skills: false,
+        logical: false,
+        reliability: false,
+        judgment: false,
+        leadership: false,
+        business: false,
       },
-      inputErrorMsg: "",
       //  -- video meeting --
       myVideo: null,
       myVideoId: "",
@@ -298,34 +401,39 @@ export default {
     });
   },
   watch: {
-    question_one() {
-      if (this.question_one.trim() !== "") {
-        this.inputError.question_one = false;
+    attitude() {
+      if (this.attitude.trim() !== "") {
+        this.inputError.attitude = false;
       }
     },
-    question_two() {
-      if (this.question_two.trim() !== "") {
-        this.inputError.question_two = false;
+    communication_skills() {
+      if (this.communication_skills.trim() !== "") {
+        this.inputError.communication_skills = false;
       }
     },
-    question_three() {
-      if (this.question_three.trim() !== "") {
-        this.inputError.question_three = false;
+    logical() {
+      if (this.logical.trim() !== "") {
+        this.inputError.logical = false;
       }
     },
-    score_one() {
-      if (this.score_one.trim() !== "") {
-        this.inputError.score_one = false;
+    reliability() {
+      if (this.reliability.trim() !== "") {
+        this.inputError.reliability = false;
       }
     },
-    score_two() {
-      if (this.score_two.trim() !== "") {
-        this.inputError.score_two = false;
+    judgment() {
+      if (this.judgment.trim() !== "") {
+        this.inputError.judgment = false;
       }
     },
-    score_three() {
-      if (this.score_three.trim() !== "") {
-        this.inputError.score_three = false;
+    leadership() {
+      if (this.leadership.trim() !== "") {
+        this.inputError.leadership = false;
+      }
+    },
+    business() {
+      if (this.business.trim() !== "") {
+        this.inputError.business = false;
       }
     },
   },
@@ -351,16 +459,24 @@ export default {
     },
     submitForm() {
       const data = {
-        question_one: this.question_one,
-        score_one: this.score_one,
-        question_two: this.question_two,
-        score_two: this.score_two,
-        question_three: this.question_three,
-        score_three: this.score_three,
-        add_question: this.add_question,
+        attitude: this.attitude,
+        communication_skills: this.communication_skills,
+        logical: this.logical,
+        reliability: this.reliability,
+        judgment: this.judgment,
+        leadership: this.leadership,
+        business: this.business,
+        opinion: this.opinion,
+        attitude_opinion: this.attitude_opinion,
+        communication_skills_opinion: this.communication_skills_opinion,
+        logical_opinion: this.logical_opinion,
+        reliability_opinion: this.reliability_opinion,
+        judgment_opinion: this.judgment_opinion,
+        leadership_opinion: this.leadership_opinion,
+        business_opinion: this.business_opinion,
         user_interview_number: this.$route.params.roomName,
         user_name: this.applicant.user_name,
-        user_email: JSON.parse(localStorage.getItem("user")).email,
+        interviewer_name: JSON.parse(localStorage.getItem("user")).name,
         notice_title: this.applicant.notice_title,
       };
       const arrayValue = Object.values(data);
@@ -370,36 +486,32 @@ export default {
             this.isEmpty = true;
             switch (+i) {
               case 0:
-                this.$refs.question_one.focus();
-                this.inputError.question_one = true;
-                this.inputErrorMsg = "질문을 입력해주세요.";
+                this.$refs.attitude.focus();
+                this.inputError.attitude = true;
                 break focus;
               case 1:
-                this.$refs.score_one.focus();
-                this.inputError.score_one = true;
-                this.inputErrorMsg = "점수를 입력해주세요.";
+                this.$refs.communication_skills.focus();
+                this.inputError.communication_skills = true;
                 break focus;
               case 2:
-                this.$refs.question_two.focus();
-                this.inputError.question_two = true;
-                this.inputErrorMsg = "질문을 입력해주세요.";
+                this.$refs.logical.focus();
+                this.inputError.logical = true;
                 break focus;
               case 3:
-                this.$refs.score_two.focus();
-                this.inputError.score_two = true;
-                this.inputErrorMsg = "점수를 입력해주세요.";
+                this.$refs.reliability.focus();
+                this.inputError.reliability = true;
                 break focus;
               case 4:
-                this.$refs.question_three.focus();
-                this.inputError.question_three = true;
-                this.inputErrorMsg = "질문을 입력해주세요.";
+                this.$refs.judgment.focus();
+                this.inputError.judgment = true;
                 break focus;
               case 5:
-                this.$refs.score_three.focus();
-                this.inputError.score_three = true;
-                this.inputErrorMsg = "점수를 입력해주세요.";
+                this.$refs.leadership.focus();
+                this.inputError.leadership = true;
                 break focus;
               case 6:
+                this.$refs.business.focus();
+                this.inputError.business = true;
                 break focus;
             }
           } else {
@@ -497,16 +609,35 @@ export default {
     checkInput(e, index) {
       switch (+index) {
         case 1:
-          this.score_one = e.target.value.replace(/\D{0,3}$/g, "");
-          e.target.value = this.score_one;
+          this.attitude = e.target.value.replace(/\D{0,3}$/g, "");
+          e.target.value = this.attitude;
           break;
         case 2:
-          this.score_two = e.target.value.replace(/\D[0,100]{0,3}$/g, "");
-          e.target.value = this.score_two;
+          this.communication_skills = e.target.value.replace(
+            /\D[0,100]{0,3}$/g,
+            ""
+          );
+          e.target.value = this.communication_skills;
           break;
         case 3:
-          this.score_three = e.target.value.replace(/\D[0,100]{0,3}$/g, "");
-          e.target.value = this.score_three;
+          this.logical = e.target.value.replace(/\D[0,100]{0,3}$/g, "");
+          e.target.value = this.logical;
+          break;
+        case 4:
+          this.reliability = e.target.value.replace(/\D{0,3}$/g, "");
+          e.target.value = this.reliability;
+          break;
+        case 5:
+          this.judgment = e.target.value.replace(/\D[0,100]{0,3}$/g, "");
+          e.target.value = this.judgment;
+          break;
+        case 6:
+          this.leadership = e.target.value.replace(/\D[0,100]{0,3}$/g, "");
+          e.target.value = this.leadership;
+          break;
+        case 7:
+          this.business = e.target.value.replace(/\D[0,100]{0,3}$/g, "");
+          e.target.value = this.business;
           break;
       }
     },
