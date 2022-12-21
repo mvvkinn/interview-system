@@ -2,8 +2,8 @@ import { DataTypes, Sequelize } from "sequelize";
 import Container from "typedi";
 
 export default (db: Sequelize) => {
-  const scoreModel = db.define(
-    "Score",
+  const successModel = db.define(
+    "success",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -12,13 +12,13 @@ export default (db: Sequelize) => {
         unique: true,
         autoIncrement: true,
       },
-      notice_title : {type: DataTypes.STRING},
-      success: {type: DataTypes.INTEGER},
-      date: {type:DataTypes.DATE},
+      notice_title: { type: DataTypes.STRING },
+      success: { type: DataTypes.INTEGER },
+      date: { type: DataTypes.DATE },
       user_name: { type: DataTypes.STRING },
     },
-    { tableName: "Score", timestamps: false }
+    { tableName: "success", timestamps: false }
   );
 
-  return scoreModel;
+  return successModel;
 };
