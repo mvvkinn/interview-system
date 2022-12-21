@@ -139,7 +139,14 @@ export default {
       return `${this.noticelist.start_recruit
         ?.slice(0, 16)
         .split("-")
-        .join("/")}`;
+        .join("/")
+        .split("T")
+        .join(" ")} ~ ${this.noticelist.end_recruit
+        ?.slice(0, 16)
+        .split("-")
+        .join("/")
+        .split("T")
+        .join(" ")}`;
     },
   },
 };
