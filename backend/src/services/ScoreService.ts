@@ -17,9 +17,12 @@ export default class ScoreService {
     return scoreRecord;
   }
 
-  public async find(user_interview_number: any) {
+  public async find(scoreDTO: any) {
     const findRecord = await this.scoreModel.findOne({
-      where: { user_interview_number: user_interview_number },
+      where: {
+        user_interview_number: scoreDTO.user_interview_number,
+        interviewer_name: scoreDTO.interviewer_name,
+      },
     });
     return findRecord;
   }

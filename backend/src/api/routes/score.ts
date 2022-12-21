@@ -15,9 +15,7 @@ export default (app: Router) => {
   route.get("/read", async (req, res, next) => {
     try {
       const scoreServiceInstance = new ScoreService();
-      const result = await scoreServiceInstance.find(
-        req.query.user_interview_number
-      );
+      const result = await scoreServiceInstance.find(req.query);
       res.status(201).json(result);
     } catch (e) {
       logger.error(e);
@@ -25,18 +23,15 @@ export default (app: Router) => {
     }
   });
 
-  route.post(
-    "/test",
-    async (req: Request, res: Response, next: NextFunction) => {
-      try {
-        const ScoreDTO: IScore = req.body;
-        const scoreServiceInstance = new ScoreService();
-        const result = await scoreServiceInstance.created(ScoreDTO);
-        res.status(201).send(result);
-      } catch (e) {
-        logger.error(e);
-        next(e);
-      }
+  route.post("", async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const ScoreDTO: IScore = req.body;
+      const scoreServiceInstance = new ScoreService();
+      const result = await scoreServiceInstance.created(ScoreDTO);
+      res.status(201).send(result);
+    } catch (e) {
+      logger.error(e);
+      next(e);
     }
-  );
+  });
 };
