@@ -48,6 +48,33 @@ export default (app: Router) => {
     }
   });
 
+  route.post("/update", async (req, res, next) => {
+    try {
+      const id: string = req.body.id;
+      const title: string = req.body.title;
+      const image: string = req.body.image;
+      const education: JSON = req.body.education;
+      const certificate: JSON = req.body.certificate;
+      const activity: JSON = req.body.activity;
+      const cover_letter: Text = req.body.cover_letter;
+
+      const resumeServiceInstance = new ResumeService();
+      const result = await resumeServiceInstance.update(
+        id,
+        title,
+        image,
+        education,
+        certificate,
+        activity,
+        cover_letter
+      );
+      res.status(201).send(result);
+    } catch (e) {
+      logger.error(e);
+      next(e);
+    }
+  });
+
   route.delete("/:id", async (req, res, next) => {
     try {
       const resumeServiceInstance = new ResumeService();

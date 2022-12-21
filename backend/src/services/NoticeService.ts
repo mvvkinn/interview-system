@@ -56,6 +56,7 @@ export default class AuthService {
     );
     return updateRecord;
   }
+
   public async findOne(noticeDTO: any) {
     let findRecord;
     if (noticeDTO?.title) {
