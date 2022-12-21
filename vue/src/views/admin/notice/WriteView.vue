@@ -92,6 +92,10 @@
                   v-model="end_recruit"
                 />
               </div>
+              <div class="notice_adm_write-applybutton-number">
+                <p>채용 할 인원 수</p>
+                <input id="number" type="number" v-model="number" />
+              </div>
             </div>
             <div class="notice_adm_write-filebutton">
               <input type="file" id="file" accept="image/*" @change="upload" />
@@ -129,6 +133,7 @@ export default {
       start_recruit: "",
       end_recruit: "",
       image: "",
+      number: "",
     };
   },
   methods: {
@@ -139,6 +144,7 @@ export default {
         start_recruit: this.start_recruit,
         end_recruit: this.end_recruit,
         image: this.image,
+        number: this.number,
       };
       store
         .dispatch("notice", { ...data })
@@ -205,6 +211,7 @@ export default {
   align-items: center;
   justify-content: center;
   font-size: 14px;
+  margin-right: 20px;
 }
 
 .notice_adm_write-applybutton-deadline p {
@@ -222,6 +229,25 @@ export default {
   height: 25px;
   cursor: pointer;
 }
+
+.notice_adm_write-applybutton-number {
+  /* margin-right: 80px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.notice_adm_write-applybutton-number p {
+  margin-right: 10px;
+}
+
+.notice_adm_write-applybutton-number input {
+  width: 45px;
+  height: 35px;
+  font-family: "noto sans kr";
+}
+
 .notice_adm_write-filebutton {
   display: flex;
   justify-content: flex-end;

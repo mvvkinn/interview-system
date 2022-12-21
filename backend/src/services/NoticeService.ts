@@ -40,7 +40,8 @@ export default class AuthService {
     content: string,
     start: Date,
     end: Date,
-    image: string
+    image: string,
+    number: number
   ) {
     const updateRecord = await this.noticeModel.update(
       {
@@ -49,11 +50,13 @@ export default class AuthService {
         start_recruit: start,
         end_recruit: end,
         image: image,
+        number: number,
       },
       { where: { id: +id } }
     );
     return updateRecord;
   }
+
   public async findOne(noticeDTO: any) {
     let findRecord;
     if (noticeDTO?.title) {

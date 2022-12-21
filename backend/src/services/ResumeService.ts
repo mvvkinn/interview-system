@@ -48,6 +48,29 @@ export default class AuthService {
     return resumeRecord;
   }
 
+  public async update(
+    id: string,
+    title: string,
+    image: string,
+    education: JSON,
+    certificate: JSON,
+    activity: JSON,
+    cover_letter: Text
+  ) {
+    const updateRecord = await this.resumeModel.update(
+      {
+        title: title,
+        image: image,
+        education: education,
+        certificate: certificate,
+        activity: activity,
+        cover_letter: cover_letter,
+      },
+      { where: { id: +id } }
+    );
+    return updateRecord;
+  }
+
   public async deleteResume(id: string) {
     await this.resumeModel.destroy({
       where: { id: +id },

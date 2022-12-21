@@ -71,7 +71,7 @@
             </ul>
           </nav>
           <article class="component__content">
-            <div class="component__content-div" v-if="currentId">
+            <div class="component__content-div">
               <!-- <h1>이력서 제목1</h1> -->
               <input
                 type="text"
@@ -81,7 +81,7 @@
               />
               <form class="component__content--hr">
                 <div class="component__content-column">
-                  <div class="component__content-column--img">
+                  <div class="component__content-column--img" v-if="currentId">
                     <img :src="`/${resume.image.split('\\')[1]}`" alt="" />
                     <label for="file">이미지 업로드</label>
                     <input
@@ -91,269 +91,7 @@
                       @change="upload"
                     />
                   </div>
-                </div>
-                <div class="notice_component_tableArea">
-                  <div class="notice_component_tableTitle">인적사항</div>
-                  <div class="notice_componet_tableLine">
-                    <div class="tableComponent_title">이름</div>
-                    <textarea
-                      class="tableComponent_value"
-                      v-model="user_name"
-                      placeholder="이름을 입력해주세요."
-                    ></textarea>
-                    <div class="tableComponent_title">생년월일</div>
-                    <textarea
-                      class="tableComponent_value"
-                      v-model="user_birthdate"
-                      placeholder="생년 6자리를 입력해주세요."
-                    ></textarea>
-                  </div>
-                  <div class="notice_componet_tableLine">
-                    <div class="tableComponent_title">휴대폰</div>
-                    <textarea
-                      class="tableComponent_value"
-                      v-model="user_phone"
-                      placeholder="'-'제외하고 입력"
-                    ></textarea>
-                    <div class="tableComponent_title" id="emailTitle">
-                      E-mail
-                    </div>
-                    <textarea
-                      class="tableComponent_value"
-                      v-model="resume.user_email"
-                      placeholder="이메일을 입력해주세요."
-                    ></textarea>
-                  </div>
-                  <div class="notice_componet_tableLine" id="addressLine">
-                    <div class="tableComponent_title" id="addressTitle">
-                      주소
-                    </div>
-                    <textarea
-                      class="tableComponent_value"
-                      v-model="user_address"
-                      placeholder="'-'제외하고 입력"
-                      id="addressTextArea"
-                    ></textarea>
-                  </div>
-                </div>
-                <div class="notice_component_tableArea">
-                  <div class="notice_component_tableTitle">학력사항</div>
-                  <div class="notice_componet_tableLine">
-                    <div class="tableComponent_titleBlack" id="titleBlack_side">
-                      기간
-                    </div>
-                    <div
-                      class="tableComponent_titleBlack"
-                      id="titleBlack_center"
-                    >
-                      학교명
-                    </div>
-                    <div class="tableComponent_titleBlack" id="titleBlack_side">
-                      전공
-                    </div>
-                  </div>
-                  <div
-                    class="notice_componet_tableLine"
-                    v-for="index in eduNumber"
-                    :key="index"
-                  >
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_side"
-                      v-model="resume.education[index - 1].period"
-                      placeholder="예)2022.09 ~ 2023.01"
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_center"
-                      v-model="resume.education[index - 1].school"
-                      placeholder="학교명을 입력해주세요."
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_side"
-                      v-model="resume.education[index - 1].major"
-                      placeholder="전공을 입력해주세요."
-                    ></textarea>
-                  </div>
-                  <button
-                    class="notice_componet_tableLine"
-                    id="addLine"
-                    @click.prevent="addLine('1')"
-                  >
-                    +
-                  </button>
-                </div>
-                <div class="notice_component_tableArea">
-                  <div class="notice_component_tableTitle">
-                    자격 및 교육사항
-                  </div>
-                  <div class="notice_componet_tableLine">
-                    <div class="tableComponent_titleBlack" id="titleBlack_side">
-                      취득일자
-                    </div>
-                    <div
-                      class="tableComponent_titleBlack"
-                      id="titleBlack_classname"
-                    >
-                      자격 및 교육명
-                    </div>
-                    <div
-                      class="tableComponent_titleBlack"
-                      id="titleBlack_rating"
-                    >
-                      등급
-                    </div>
-                    <div class="tableComponent_titleBlack" id="titleBlack_side">
-                      발행기관
-                    </div>
-                  </div>
-                  <div
-                    class="notice_componet_tableLine"
-                    v-for="index in certificaNumber"
-                    :key="index"
-                  >
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_side"
-                      v-model="resume.certificate[index - 1].acquisition_date"
-                      placeholder="예)2022.09"
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_classname"
-                      v-model="resume.certificate[index - 1].certificate"
-                      placeholder="자격 및 교육명을 입력해주세요."
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_rating"
-                      v-model="resume.certificate[index - 1].rating"
-                      placeholder="등급을 입력해주세요."
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_side"
-                      v-model="resume.certificate[index - 1].issuer"
-                      placeholder="발행기관을 입력해주세요."
-                    ></textarea>
-                  </div>
-                  <button
-                    class="notice_componet_tableLine"
-                    id="addLine"
-                    @click.prevent="addLine('2')"
-                  >
-                    +
-                  </button>
-                </div>
-                <div class="notice_component_tableArea">
-                  <div class="notice_component_tableTitle">대외활동</div>
-                  <div class="notice_componet_tableLine">
-                    <div class="tableComponent_titleBlack" id="titleBlack_side">
-                      기간
-                    </div>
-                    <div
-                      class="tableComponent_titleBlack gubun"
-                      id="titleBlack_classname"
-                    >
-                      구분
-                    </div>
-                    <div
-                      class="tableComponent_titleBlack"
-                      id="titleBlack_rating"
-                    >
-                      기관/장소
-                    </div>
-                    <div
-                      class="tableComponent_titleBlack content"
-                      id="titleBlack_side"
-                    >
-                      활동 내용
-                    </div>
-                  </div>
-                  <div
-                    class="notice_componet_tableLine"
-                    v-for="index in activityNumber"
-                    :key="index"
-                  >
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_side"
-                      v-model="resume.activity[index - 1].period"
-                      placeholder="예)2022.09 ~ 2023.01"
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack gubun"
-                      id="valueBlack_classname"
-                      v-model="resume.activity[index - 1].gubun"
-                      placeholder="동아리"
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack"
-                      id="valueBlack_rating"
-                      v-model="resume.activity[index - 1].location"
-                      placeholder="명지전문대학"
-                    ></textarea>
-                    <textarea
-                      class="tableComponent_valueBlack content"
-                      id="valueBlack_side"
-                      v-model="resume.activity[index - 1].content"
-                      placeholder="활동한 내용을 입력해주세요."
-                    ></textarea>
-                  </div>
-                  <button
-                    class="notice_componet_tableLine"
-                    id="addLine"
-                    @click.prevent="addLine('3')"
-                  >
-                    +
-                  </button>
-                </div>
-                <div class="notice_component_tableArea">
-                  <div class="notice_component_tableTitle">자기소개서</div>
-                  <div class="notice_componet_tableLine">
-                    <div
-                      class="tableComponent_titleBlack resume"
-                      id="titleBlack_side"
-                    >
-                      자유형식
-                    </div>
-                  </div>
-                  <div class="notice_componet_tableLine_resume">
-                    <textarea
-                      class="resume_textarea"
-                      id="valueBlack_side"
-                      v-model="resume.cover_letter"
-                      placeholder="자유롭게 작성해주세요."
-                    ></textarea>
-                  </div>
-                </div>
-                <div class="component__content-column">
-                  <div class="component__content-column--button">
-                    <button id="blueBtn" @click.prevent="regist">
-                      저장하기
-                    </button>
-                    <button id="blackBtn" @click.prevent="deleteResume">
-                      삭제
-                    </button>
-                    <router-link to="/mypage/resume/list">
-                      <button id="grayBtn">목록</button>
-                    </router-link>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div class="component__content-div" v-else>
-              <!-- <h1>이력서 제목1</h1> -->
-              <input
-                type="text"
-                ref="resumeTitle"
-                v-model="resume.title"
-                placeholder="이력서 1"
-              />
-              <form class="component__content--hr">
-                <div class="component__content-column">
-                  <div class="component__content-column--img">
+                  <div class="component__content-column--img" v-else>
                     <img :src="uploadImg" alt="" />
                     <label for="file">이미지 업로드</label>
                     <input
@@ -372,12 +110,14 @@
                       class="tableComponent_value"
                       v-model="user_name"
                       placeholder="이름을 입력해주세요."
+                      readonly
                     ></textarea>
                     <div class="tableComponent_title">생년월일</div>
                     <textarea
                       class="tableComponent_value"
                       v-model="user_birthdate"
                       placeholder="생년 6자리를 입력해주세요."
+                      readonly
                     ></textarea>
                   </div>
                   <div class="notice_componet_tableLine">
@@ -386,6 +126,7 @@
                       class="tableComponent_value"
                       v-model="user_phone"
                       placeholder="'-'제외하고 입력"
+                      readonly
                     ></textarea>
                     <div class="tableComponent_title" id="emailTitle">
                       E-mail
@@ -394,6 +135,7 @@
                       class="tableComponent_value"
                       v-model="resume.user_email"
                       placeholder="이메일을 입력해주세요."
+                      readonly
                     ></textarea>
                   </div>
                   <div class="notice_componet_tableLine" id="addressLine">
@@ -405,6 +147,7 @@
                       v-model="user_address"
                       placeholder="'-'제외하고 입력"
                       id="addressTextArea"
+                      readonly
                     ></textarea>
                   </div>
                 </div>
@@ -426,25 +169,25 @@
                   </div>
                   <div
                     class="notice_componet_tableLine"
-                    v-for="index in eduNumber"
+                    v-for="(education, index) in education"
                     :key="index"
                   >
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      v-model="resume.education.period[index - 1]"
+                      v-model="education.period"
                       placeholder="예)2022.09 ~ 2023.01"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_center"
-                      v-model="resume.education.school[index - 1]"
+                      v-model="education.school"
                       placeholder="학교명을 입력해주세요."
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      v-model="resume.education.major[index - 1]"
+                      v-model="education.major"
                       placeholder="전공을 입력해주세요."
                     ></textarea>
                   </div>
@@ -482,31 +225,31 @@
                   </div>
                   <div
                     class="notice_componet_tableLine"
-                    v-for="index in certificaNumber"
+                    v-for="(certificate, index) in certificate"
                     :key="index"
                   >
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      v-model="resume.certificate.acquisition_date[index - 1]"
+                      v-model="certificate.acquisition_date"
                       placeholder="예)2022.09"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_classname"
-                      v-model="resume.certificate.certificate[index - 1]"
+                      v-model="certificate.certificate"
                       placeholder="자격 및 교육명을 입력해주세요."
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_rating"
-                      v-model="resume.certificate.rating[index - 1]"
+                      v-model="certificate.rating"
                       placeholder="등급을 입력해주세요."
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      v-model="resume.certificate.issuer[index - 1]"
+                      v-model="certificate.issuer"
                       placeholder="발행기관을 입력해주세요."
                     ></textarea>
                   </div>
@@ -545,31 +288,31 @@
                   </div>
                   <div
                     class="notice_componet_tableLine"
-                    v-for="index in activityNumber"
+                    v-for="(activity, index) in activity"
                     :key="index"
                   >
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_side"
-                      v-model="resume.activity.period[index - 1]"
+                      v-model="activity.period"
                       placeholder="예)2022.09 ~ 2023.01"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack gubun"
                       id="valueBlack_classname"
-                      v-model="resume.activity.gubun[index - 1]"
+                      v-model="activity.gubun"
                       placeholder="동아리"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack"
                       id="valueBlack_rating"
-                      v-model="resume.activity.location[index - 1]"
+                      v-model="activity.location"
                       placeholder="명지전문대학"
                     ></textarea>
                     <textarea
                       class="tableComponent_valueBlack content"
                       id="valueBlack_side"
-                      v-model="resume.activity.content[index - 1]"
+                      v-model="activity.content"
                       placeholder="활동한 내용을 입력해주세요."
                     ></textarea>
                   </div>
@@ -602,13 +345,26 @@
                 </div>
                 <div class="component__content-column">
                   <div class="component__content-column--button">
-                    <button id="blueBtn" @click.prevent="regist">
+                    <button
+                      id="blueBtn"
+                      @click.prevent="amendForm"
+                      v-if="currentId"
+                    >
+                      수정하기
+                    </button>
+                    <button id="blueBtn" @click.prevent="regist" v-else>
                       저장하기
                     </button>
-                    <p class="button-gubun"></p>
-                    <button id="grayBtn" @click.prevent="closeButton">
-                      목록
+                    <button
+                      id="blackBtn"
+                      @click.prevent="deleteResume"
+                      v-if="currentId"
+                    >
+                      삭제
                     </button>
+                    <router-link to="/mypage/resume/list">
+                      <button id="grayBtn">목록</button>
+                    </router-link>
                   </div>
                 </div>
               </form>
@@ -634,34 +390,57 @@ export default {
   },
   data() {
     return {
-      eduNumber: 1,
-      certificaNumber: 1,
-      activityNumber: 1,
       changeImage: "",
       currentId: 0,
-      education: [],
-      certificate: [],
-      activity: [],
+      education: [
+        {
+          period: "",
+          school: "",
+          major: "",
+        },
+      ],
+      certificate: [
+        {
+          acquisition_date: "",
+          certificate: "",
+          rating: "",
+          issuer: "",
+        },
+      ],
+      activity: [
+        {
+          period: "",
+          gubun: "",
+          location: "",
+          content: "",
+        },
+      ],
       resume: {
         title: "",
         image: "",
-        education: {
-          period: [],
-          school: [],
-          major: [],
-        },
-        certificate: {
-          acquisition_date: [],
-          certificate: [],
-          rating: [],
-          issuer: [],
-        },
-        activity: {
-          period: [],
-          gubun: [],
-          location: [],
-          content: [],
-        },
+        education: [
+          {
+            period: "",
+            school: "",
+            major: "",
+          },
+        ],
+        certificate: [
+          {
+            acquisition_date: "",
+            certificate: "",
+            rating: "",
+            issuer: "",
+          },
+        ],
+        activity: [
+          {
+            period: "",
+            gubun: "",
+            location: "",
+            content: "",
+          },
+        ],
         cover_letter: "",
         user_email: JSON.parse(localStorage.getItem("user")).email,
       },
@@ -675,15 +454,14 @@ export default {
   async beforeRouteEnter(to, from, next) {
     const id = +to.params.id;
     const data = await axios.get(`/resume?id=${id}`);
+    console.log(data);
+
     if (id) {
       next((vm) => {
         vm.resume = data.data[0];
-        vm.activityNumber =
-          vm.resume.activity.length === 0 ? 1 : vm.resume.activity.length;
-        vm.certificaNumber =
-          vm.resume.certificate.length === 0 ? 1 : vm.resume.certificate.length;
-        vm.eduNumber =
-          vm.resume.education.length === 0 ? 1 : vm.resume.education.length;
+        vm.education = vm.resume.education;
+        vm.certificate = vm.resume.certificate;
+        vm.activity = vm.resume.activity;
         vm.currentId = id;
       });
     } else {
@@ -713,134 +491,61 @@ export default {
         case 1:
           if (
             // 이력서 등록할 때
-            this.resume.education.period?.[this.eduNumber - 1] &&
-            this.resume.education.school?.[this.eduNumber - 1] &&
-            this.resume.education.major?.[this.eduNumber - 1]
+            this.education[this.education.length - 1].period &&
+            this.education[this.education.length - 1].school &&
+            this.education[this.education.length - 1].major
           ) {
             this.education.push({
-              period: this.resume.education.period[this.eduNumber - 1],
-              school: this.resume.education.school[this.eduNumber - 1],
-              major: this.resume.education.major[this.eduNumber - 1],
+              period: "",
+              school: "",
+              rating: "",
+              issuer: "",
             });
-            this.eduNumber++;
+            this.resume.education = this.education;
           }
           break;
         case 2:
           if (
-            this.resume.certificate.acquisition_date?.[
-              this.certificaNumber - 1
-            ] &&
-            this.resume.certificate.certificate?.[this.certificaNumber - 1] &&
-            this.resume.certificate.rating?.[this.certificaNumber - 1] &&
-            this.resume.certificate.issuer?.[this.certificaNumber - 1]
+            this.certificate[this.certificate.length - 1].acquisition_date &&
+            this.certificate[this.certificate.length - 1].certificate &&
+            this.certificate[this.certificate.length - 1].rating &&
+            this.certificate[this.certificate.length - 1].issuer
           ) {
             this.certificate.push({
-              acquisition_date:
-                this.resume.certificate.acquisition_date[
-                  this.certificaNumber - 1
-                ],
-              certificate:
-                this.resume.certificate.certificate[this.certificaNumber - 1],
-              rating: this.resume.certificate.rating[this.certificaNumber - 1],
-              issuer: this.resume.certificate.issuer[this.certificaNumber - 1],
+              acquisition_date: "",
+              certificate: "",
+              rating: "",
+              issuer: "",
             });
-            this.certificaNumber++;
+            this.resume.certificate = this.certificate;
           }
           break;
         case 3:
           if (
-            this.resume.activity.period?.[this.activityNumber - 1] &&
-            this.resume.activity.gubun?.[this.activityNumber - 1] &&
-            this.resume.activity.location?.[this.activityNumber - 1] &&
-            this.resume.activity.content?.[this.activityNumber - 1]
+            this.activity[this.activity.length - 1].period &&
+            this.activity[this.activity.length - 1].gubun &&
+            this.activity[this.activity.length - 1].location &&
+            this.activity[this.activity.length - 1].content
           ) {
             this.activity.push({
-              period: this.resume.activity.period[this.activityNumber - 1],
-              gubun: this.resume.activity.gubun[this.activityNumber - 1],
-              location: this.resume.activity.location[this.activityNumber - 1],
-              content: this.resume.activity.content[this.activityNumber - 1],
+              period: "",
+              gubun: "",
+              location: "",
+              content: "",
             });
-            this.activityNumber++;
+            this.resume.activity = this.activity;
           }
           break;
       }
     },
     regist() {
       if (this.resume.title !== "") {
-        // 이력서 제목이 입력되어 있는 경우 진행
-        if (
-          // 학력사항에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
-          this.resume.education.period[this.eduNumber - 1] &&
-          this.resume.education.school[this.eduNumber - 1] &&
-          this.resume.education.major[this.eduNumber - 1]
-        ) {
-          this.education.push({
-            period: this.resume.education.period[this.eduNumber - 1],
-            school: this.resume.education.school[this.eduNumber - 1],
-            major: this.resume.education.major[this.eduNumber - 1],
-          });
-        } else {
-          this.education.push({
-            period: "",
-            school: "",
-            major: "",
-          });
-        }
-
-        // 자격 및 교육사항에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
-        if (
-          this.resume.certificate.acquisition_date[this.certificaNumber - 1] &&
-          this.resume.certificate.certificate[this.certificaNumber - 1] &&
-          this.resume.certificate.rating[this.certificaNumber - 1] &&
-          this.resume.certificate.issuer[this.certificaNumber - 1]
-        ) {
-          this.certificate.push({
-            acquisition_date:
-              this.resume.certificate.acquisition_date[
-                this.certificaNumber - 1
-              ],
-            certificate:
-              this.resume.certificate.certificate[this.certificaNumber - 1],
-            rating: this.resume.certificate.rating[this.certificaNumber - 1],
-            issuer: this.resume.certificate.issuer[this.certificaNumber - 1],
-          });
-        } else {
-          this.certificate.push({
-            acquisition_date: "",
-            certificate: "",
-            rating: "",
-            issuer: "",
-          });
-        }
-
-        // 대외활동에 값이 채워져 있을 경우 추가 (+버튼을 안누르면 추가가 안됨)
-        if (
-          this.resume.activity.period[this.activityNumber - 1] &&
-          this.resume.activity.gubun[this.activityNumber - 1] &&
-          this.resume.activity.location[this.activityNumber - 1] &&
-          this.resume.activity.content[this.activityNumber - 1]
-        ) {
-          this.activity.push({
-            period: this.resume.activity.period[this.activityNumber - 1],
-            gubun: this.resume.activity.gubun[this.activityNumber - 1],
-            location: this.resume.activity.location[this.activityNumber - 1],
-            content: this.resume.activity.content[this.activityNumber - 1],
-          });
-        } else {
-          this.activity.push({
-            period: "",
-            gubun: "",
-            location: "",
-            content: "",
-          });
-        }
-
         const data = {
           title: this.resume.title,
           image: this.resume.image,
-          education: this.education === [] ? null : this.education,
-          certificate: this.certificate === [] ? null : this.certificate,
-          activity: this.activity === [] ? null : this.activity,
+          education: this.education,
+          certificate: this.certificate,
+          activity: this.activity,
           cover_letter: this.resume.cover_letter,
           user_email: this.resume.user_email,
         };
@@ -876,6 +581,26 @@ export default {
       await axios.delete(`/resume/${this.currentId}`).then((res) => {
         if (res.status === 201) {
           this.$router.push("/mypage/resume/list");
+        }
+      });
+    },
+
+    async amendForm() {
+      const data = {
+        id: this.currentId,
+        title: this.resume.title,
+        image: this.resume.image,
+        education: this.education,
+        certificate: this.certificate,
+        activity: this.activity,
+        cover_letter: this.resume.cover_letter,
+      };
+
+      store.dispatch("amendResume", { ...data }).then((res) => {
+        if (res === 201) {
+          this.$router.push("/mypage/resume/list");
+        } else {
+          console.log(this.data);
         }
       });
     },

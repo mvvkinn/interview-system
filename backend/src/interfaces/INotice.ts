@@ -5,4 +5,5 @@ export interface INotice {
   image?: string;
   start_recruit?: Date;
   end_recruit?: Date;
+  number: number;
 }

@@ -83,6 +83,10 @@
                   <p>모집 마감일시</p>
                   <input id="deadline" type="datetime-local" v-model="end" />
                 </div>
+                <div class="notice_adm_write-applybutton-number">
+                  <p>채용 할 인원 수</p>
+                  <input id="number" type="number" v-model="number" />
+                </div>
               </div>
             </div>
             <div class="notice_adm_write-filebutton">
@@ -120,6 +124,7 @@ export default {
       start: "",
       end: "",
       image: "",
+      number: "",
     };
   },
 
@@ -130,7 +135,7 @@ export default {
     this.noticelist = noticeGet.data;
     this.title = this.noticelist.title;
     this.content = this.noticelist.content;
-    console.log(this.noticelist);
+    this.number = this.noticelist.number;
   },
   methods: {
     async amendForm() {
@@ -141,9 +146,10 @@ export default {
         start: this.start,
         end: this.end,
         image: this.image,
+        number: +this.number,
       };
       store
-        .dispatch("amend", { ...data })
+        .dispatch("amendNotice", { ...data })
         .then((res) => {
           if (res == 201) {
             this.$router.push(`/admin/notice/detail/${this.$route.params.id}`);
@@ -162,7 +168,7 @@ export default {
       reader.readAsDataURL(file[0]);
       // formData에 사진 추가
       formData.append("image", file[0]);
-      store.dispatch("amendNotice", formData).then((res) => {
+      store.dispatch("amendNoticeImg", formData).then((res) => {
         // 서버 uploads폴더 사진 경로를 저장
         this.image = res;
         console.log(this.image);
@@ -210,6 +216,24 @@ export default {
   cursor: pointer;
 }
 
+.notice_adm_write-applybutton-number {
+  /* margin-right: 80px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.notice_adm_write-applybutton-number p {
+  margin-right: 10px;
+}
+
+.notice_adm_write-applybutton-number input {
+  width: 45px;
+  height: 35px;
+  font-family: "noto sans kr";
+}
+
 .notice_adm_write-filebutton {
   display: flex;
   justify-content: flex-end;
@@ -226,6 +250,7 @@ export default {
   align-items: center;
   justify-content: center;
   font-size: 14px;
+  margin-right: 20px;
 }
 
 .notice_adm_write-applybutton-deadline p {

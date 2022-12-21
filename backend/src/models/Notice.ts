@@ -17,6 +17,7 @@ export default (db: Sequelize) => {
       image: { type: DataTypes.STRING },
       start_recruit: { type: DataTypes.DATE },
       end_recruit: { type: DataTypes.DATE },
+      number: { type: DataTypes.INTEGER },
     },
     { tableName: "Notice", timestamps: true }
   );
