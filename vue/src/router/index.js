@@ -368,6 +368,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/VideoMeeting.vue"),
   },
+  {
+    path: "/qrcode/resume/:id",
+    name: "admin_interview_progress_evaluation",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/QrcodeResume.vue"),
+  },
 ];
 
 const router = new VueRouter({

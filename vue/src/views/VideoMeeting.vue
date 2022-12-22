@@ -652,7 +652,7 @@ export default {
     );
     this.applyResumeList = applyResume.data;
     QRCode.toDataURL(
-      `https://interviewsystem.shop/admin/resume/${this.interviewId}/list/${this.applyResumeList.resume_id}/detail`,
+      `https://interviewsystem.shop/qrcode/resume/${this.applyResumeList.resume_id}`,
       (err, src) => {
         this.image = src;
         // const blob = new Blob([src], { type: "image/png" });
