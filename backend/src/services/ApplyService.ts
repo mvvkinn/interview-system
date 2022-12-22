@@ -101,6 +101,13 @@ export default class ApplyService {
           resume_id: applyDTO?.resume_id,
         },
       });
+    } else if (applyDTO?.notice_title) {
+      record = await this.applyModel.findOne({
+        where: {
+          notice_title: applyDTO?.notice_title,
+          user_email: applyDTO?.email,
+        },
+      });
     } else if (applyDTO?.email) {
       record = await this.applyModel.findAll({
         where: {
