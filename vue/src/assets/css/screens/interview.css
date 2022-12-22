@@ -1,0 +1,669 @@
+/*online_interview.html css */
+.online_body {
+  background-color: #1b1b1b;
+  width: 100%;
+  height: 100%;
+}
+
+.online_body p {
+  color: #ebebeb;
+  font-family: "noto sans kr";
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+.onTitle {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #232323;
+}
+
+.onTitle_centerArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  color: #ebebeb;
+  font-size: 20px;
+}
+
+.onTitle_sideArea {
+  width: 35%;
+  height: 30px;
+  margin-right: 1.5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sideArea_object {
+  width: 49%;
+  height: 100%;
+  display: flex;
+}
+
+.sideObject_title {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ebebeb;
+  font-size: 14px;
+}
+
+#objectTitle_gray {
+  background-color: #ebebeb;
+  border: 1px solid #ebebeb;
+}
+
+#objectTitle_red {
+  background-color: #ed5146;
+  border: 1px solid #ed5146;
+}
+
+.sideObject_value {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ebebeb;
+}
+
+#applicantName {
+  color: #232323;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+#objectValue_gray {
+  border: 1.5px solid #ebebeb;
+}
+
+#objectValue_red {
+  border: 1.5px solid #ed5146;
+}
+
+.onMain {
+  width: 100vw;
+  height: calc(100vh - 80px);
+  display: flex;
+  padding: 1.5%;
+  align-items: center;
+}
+
+#onMain_leftArea {
+  width: 63.5%;
+  height: 100%;
+  margin-right: 1.5%;
+}
+
+.mainLeft_camArea {
+  width: 100%;
+  margin-bottom: 2.5%;
+  display: block;
+}
+
+.cam_top {
+  width: 75%;
+  height: 48vh;
+  margin: 0 auto;
+  background-color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camArea_bottom {
+  width: 75%;
+  height: 17.8vh;
+  display: flex;
+  padding: 0.4% 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.subCam {
+  width: 33%;
+  height: 100%;
+  margin-right: 0.5%;
+  background-color: #333333;
+}
+
+.subCam:nth-of-type(3) {
+  margin-right: 0;
+}
+
+.mainLeft_btnArea {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #232323;
+}
+
+.online_Btn {
+  height: 50px;
+  background-color: #4b4b4b;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+  margin: 0 10px;
+}
+
+.online_Btn:hover {
+  background-color: #3b3b3b;
+}
+
+#micBtn {
+  width: 120px;
+}
+
+#camBtn {
+  width: 180px;
+}
+
+#scoreBtn {
+  width: 50px;
+  background-color: #ed5146;
+}
+
+#scoreBtn:hover {
+  background-color: #c2443b;
+}
+
+#ectBtn {
+  width: 50px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.icon_mic_green {
+  width: 10px;
+  margin-right: 10px;
+}
+
+.icon_cam_green {
+  width: 25px;
+  margin-right: 10px;
+}
+
+.icon_checkscore {
+  width: 25px;
+}
+
+#onMain_rightArea {
+  width: 35%;
+  height: 100%;
+  display: block;
+  padding: 3.5vh;
+  border: 1.5px solid #333333;
+  overflow-y: auto;
+}
+
+#onMain_rightArea::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+#onMain_rightArea::-webkit-scrollbar-track {
+  background-color: #333;
+  border-radius: 5px;
+}
+
+#onMain_rightArea::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
+  border-radius: 5px;
+}
+
+.scoreBoard_topArea {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1.5px solid #333333;
+}
+
+#topArea_interviewTitle {
+  height: 5vh;
+}
+
+#topArea_standard {
+  height: 7vh;
+}
+
+.scoreBoaed_title {
+  width: 20%;
+  font-weight: 700;
+}
+
+.scoreBoaed_value {
+  width: 80%;
+}
+
+.scoreBoard_question {
+  width: 100%;
+  padding-top: 2vh;
+}
+
+.scoreBoard_questionBox {
+  width: 100%;
+  height: 7vh;
+  margin-top: 0.75vh;
+  display: flex;
+  border: 1.5px solid #333333;
+}
+
+.questionBox_content {
+  width: 75%;
+  background-color: #1b1b1b;
+  height: 100%;
+  padding: 0.5vh;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  border-right: 1.5px solid #333333;
+  font-family: "noto sans kr";
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1;
+  color: #ebebeb;
+  resize: none;
+  outline: none;
+}
+
+.questionBox_score {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.question_Score {
+  width: 100%;
+  height: 100%;
+  padding: 4px 0 0 0;
+  background-color: #1b1b1b;
+  border: none;
+  font-size: 25px;
+  font-weight: 700;
+  color: #ebebeb;
+  text-align: center;
+}
+
+.question_Score::placeholder {
+  color: #8e8e8e;
+}
+
+#online_boldText {
+  font-weight: 600;
+}
+
+.questionBox_addQuest {
+  width: 100%;
+  height: 9vh;
+  background-color: #1b1b1b;
+  margin-top: 0.75vh;
+  padding: 0.5vh;
+  border: 1.5px solid #333333;
+  font-family: "noto sans kr";
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1;
+  color: #ebebeb;
+  resize: none;
+  outline: none;
+}
+
+.scoreBoard_btnArea {
+  width: 100%;
+  height: calc(100% - 62.75vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.scoreBoard_btn {
+  width: 14vh;
+  height: 4vh;
+  margin: 0 1.5vh;
+  font-family: "noto sans kr";
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: inherit;
+}
+
+#scoreBoard_whiteBtn {
+  border: 1px solid #ebebeb;
+  color: #ebebeb;
+}
+
+#scoreBoard_whiteBtn:hover {
+  background-color: #ebebeb;
+  color: #1b1b1b;
+}
+
+#scoreBoard_redBtn {
+  border: 1px solid #ed5146;
+  color: #ed5146;
+}
+
+#scoreBoard_redBtn:hover {
+  background-color: #ed5146;
+  color: #1b1b1b;
+}
+
+/* interview.html css */
+
+.interview_body {
+  background-color: #f3f3f3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.interview_area {
+  width: 70%;
+  height: 100vh;
+  background-color: white;
+  border-right: 3px solid #8e8e8e;
+  padding: 0 5vh;
+}
+
+.interview_body p {
+  color: #333333;
+  font-family: "noto sans kr";
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+.interview_title {
+  width: 100%;
+  height: 80px;
+  font-family: "noto sans kr";
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  line-height: 80px;
+}
+
+.interview_subArea {
+  width: 100%;
+  height: 30px;
+}
+
+.interview_subObject {
+  width: 21%;
+  height: 100%;
+  float: right;
+  margin-left: 1vw;
+  display: flex;
+}
+
+.subObject_title {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: "noto sans kr";
+  justify-content: center;
+  font-size: 14px;
+}
+
+.interview_content {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#subObjectTitle_red {
+  font-weight: 500;
+  color: #ed5146;
+  border-bottom: 1px solid #ed5146;
+}
+
+#interview_timer {
+  font-weight: 300;
+  color: #ed5146;
+  border-bottom: 1px solid #ed5146;
+}
+
+#subObjectTitle_black {
+  font-weight: "noto sans kr";
+  font-weight: 500;
+  color: #333333;
+  border-bottom: 1px solid #333333;
+}
+
+#interview_applicantName {
+  font-weight: "noto sans kr";
+  font-weight: 300;
+  font-size: 14px;
+  color: #333333;
+  border-bottom: 1px solid #333333;
+}
+
+.interview_format_line {
+  width: 100%;
+  height: 4vh;
+  margin: 1.5vh 0;
+  border-bottom: 1px solid #333333;
+  display: flex;
+}
+
+.fotmat_line_title {
+  width: 12%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-family: "noto sans kr";
+  color: #333333;
+  padding-left: 0.5vw;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.fotmat_line_value {
+  width: 88%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.format_table_titleArea {
+  width: 100%;
+  height: 4vh;
+  margin-top: 2.5vh;
+  border-bottom: 1px solid #333333;
+  display: flex;
+}
+
+.interview_cell_title {
+  height: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 0.5vw;
+  display: flex;
+  align-items: center;
+}
+
+#cell_title {
+  width: 37.5%;
+}
+
+#cell_title_score {
+  width: 25%;
+}
+
+.interview_format_table {
+  width: 100%;
+  padding: 0.5vw 0;
+  border-bottom: 1px solid #333333;
+}
+
+/* #interview_mainTable {
+  height: 33vh;
+} */
+
+/* #interview_opinionTable {
+  height: 11vh;
+} */
+
+.table_format_line {
+  width: 100%;
+  height: 6.2vh;
+  display: flex;
+  border-bottom: 1px solid #9d9d9d;
+}
+
+.interview_cell_value {
+  border: none;
+  resize: none;
+  outline: none;
+  padding: 0.5vw;
+}
+
+#cell_normal {
+  width: 37.5%;
+  border-right: 1px solid #9d9d9d;
+  font-family: "noto sans kr";
+  font-size: 14px;
+  font-weight: 300;
+}
+
+#cell_scoreArea {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#cell_scoreValue {
+  width: 100%;
+  height: 100%;
+  font-family: "noto sans kr";
+  font-size: 30px;
+  font-weight: 500;
+  text-align: center;
+  padding-right: 0.2vw;
+  border: none;
+  resize: none;
+  outline: none;
+}
+
+#table_line_bottom {
+  border-bottom: none;
+}
+
+#cell_opinion {
+  width: 100%;
+  font-family: "noto sans kr";
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.inverview_btnArea {
+  width: 100%;
+  height: calc(26vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.interview_btn {
+  width: 9vw;
+  height: 4vh;
+  font-family: "noto sans kr";
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1vw;
+}
+
+#interview_blackBtn {
+  border: 1px solid #333333;
+  color: #333333;
+}
+
+#interview_blackBtn:hover {
+  background-color: #333333;
+  color: white;
+}
+
+#interview_blueBtn {
+  border: 1px solid #3c62e5;
+  color: #3c62e5;
+}
+
+#interview_blueBtn:hover {
+  background-color: #3c62e5;
+  color: white;
+}
+
+/* 반응형 css */
+
+@media (max-width: 1400px) {
+  .online_body,
+  .interview_body p {
+    font-size: 12px;
+  }
+
+  .onTitle_centerArea,
+  .interview_title {
+    font-size: 18px;
+  }
+
+  .online_Btn {
+    font-size: 12px;
+  }
+
+  .questionBox_content,
+  .subObject_title,
+  .interview_content,
+  .questionBox_addQuest,
+  .scoreBoard_btn,
+  .sideObject_title,
+  .sideObject_value,
+  .interview_btn,
+  .fotmat_line_title,
+  .interview_cell_title,
+  .sideObject_value > p,
+  .sideObject_title > p,
+  .scoreBoaed_value > p,
+  #cell_normal,
+  #cell_opinion,
+  #applicantName,
+  #interview_applicantName,
+  #online_boldText {
+    font-size: 12px;
+  }
+
+  #cell_scoreValue {
+    font-size: 22px;
+  }
+
+  .question_Score {
+    font-size: 18px;
+  }
+}

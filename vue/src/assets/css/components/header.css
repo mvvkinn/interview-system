@@ -1,0 +1,81 @@
+/* header */
+
+header {
+  width: 100%;
+  padding: 20px 30px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #c6c6c6;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+}
+
+.header__column {
+  width: 33%;
+}
+
+.header__logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* width: 171px; */
+}
+
+#header_logoImg {
+  width: 130px;
+}
+
+.header__column:nth-child(2) {
+  display: flex;
+  justify-content: center;
+}
+
+.header__title {
+  font-family: "noto sans kr";
+  font-size: 22px;
+  font-weight: 700;
+  color: #333333;
+  display: flex;
+  justify-content: center;
+}
+
+.header__column:last-child {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header__menu {
+  font-family: "noto sans kr";
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333333;
+  font-size: 14px;
+  /* width: 412px; */
+}
+
+.header__menu > li {
+  font-family: "noto sans kr";
+  text-align: center;
+  margin-left: 18px;
+}
+
+.header__menu-logout button {
+  font-family: "noto sans kr";
+  width: 101px;
+  height: 27.5px;
+  padding-bottom: 2px;
+  background-color: #ff776d;
+  color: #ffffff;
+  font-size: 14px;
+  border-style: none;
+  cursor: pointer;
+}
+
+.component__header-menu--button {
+  margin-left: 20px;
+}

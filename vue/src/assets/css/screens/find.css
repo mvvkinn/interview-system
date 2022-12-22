@@ -1,0 +1,418 @@
+.find {
+  margin: 30px;
+  position: relative;
+}
+
+.find__menu {
+  display: flex;
+  position: relative;
+}
+
+.find__menu li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 85px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 15px 15px 0px 0px;
+  border-bottom: 1px solid #c6c6c6;
+}
+
+.find__menu .active {
+  background-color: white;
+  border: 1px solid #c6c6c6;
+  border-bottom: none;
+  color: #3c62e5;
+}
+
+.find__password {
+  padding: 70px 0px;
+  background-color: white;
+  border-radius: 0px 0px 15px 15px;
+  border: 1px solid #c6c6c6;
+  border-top: none;
+  padding: 70px 0 62px 0;
+}
+
+.find__password > h1 {
+  width: 72.9%;
+  font-size: 24px;
+  font-weight: 700;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.find__password hr {
+  border: none;
+  border-top: 1px #8e8e8e solid;
+  width: 72.9%;
+  /* margin: 0px; */
+}
+
+.find__password-form {
+  height: 384px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 105px 0 0px 0;
+}
+
+.find__password-form h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+.find__password-form p {
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.find__password-form input {
+  width: 300px;
+  height: 35px;
+  font-family: "noto sans kr";
+  padding: 0 0 0 10px;
+  margin-top: 20px;
+  border: 1px solid #8e8e8e;
+}
+
+.find__password-form button {
+  font-family: "noto sans kr";
+  margin: 40px 0 0 0;
+  line-height: 50px;
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid #3c62e5;
+  color: #3c62e5;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.find__password-form button:hover {
+  background-color: #3c62e5;
+  color: white;
+}
+
+.find__success {
+  padding: 0 0 202px 0;
+  background-color: #ffffff;
+  border: 1px solid #c6c6c6;
+  border-top: none;
+}
+
+.new {
+  padding: 70px 0 62px 0;
+}
+
+.select_area {
+  width: 100%;
+  height: 300px;
+  border: red solid 1px;
+}
+
+.find_id {
+  padding: 70px 0 70px 0;
+  position: relative;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #c6c6c6;
+  border-left: 1px solid #c6c6c6;
+  border-right: 1px solid #c6c6c6;
+  border-radius: 0 0 15px 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.find_id_title {
+  height: 38.51%;
+  width: 72.9%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.find_id_title hr {
+  border: none;
+  border-top: 1px #8e8e8e solid;
+  width: 100%;
+  margin: 0px;
+}
+
+.find_id_title-select h1 {
+  font-family: "noto sans kr";
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+}
+
+.button_area {
+  width: 100%;
+  height: 400px;
+  padding: 50px 0 50px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.select_button {
+  width: 200px;
+  height: 300px;
+  margin-right: 80px;
+  margin-left: 80px;
+  text-align: center;
+  padding: 56px 0 0 0;
+  border: white 1px solid;
+  cursor: pointer;
+}
+
+.select_button:hover {
+  border: #3c62e5 1px solid;
+}
+
+.select_button:hover h2 {
+  color: #3c62e5;
+}
+
+.prove_phone_button {
+  width: 200px;
+  height: 300px;
+  margin-right: 80px;
+  margin-left: 80px;
+  text-align: center;
+  padding: 56px 0 0 0;
+  border: #333333 1px solid;
+  cursor: pointer;
+}
+
+.prove_phone_button:hover {
+  border: #3c62e5 1px solid;
+}
+
+.prove_phone_button:hover h2 {
+  color: #3c62e5;
+}
+
+.btn_title {
+  font-family: "noto sans kr";
+  font-size: 18px;
+  font-weight: 700;
+  margin: 30px 0 20px 0;
+  color: #333333;
+}
+
+.btn_text {
+  font-family: "noto sans kr";
+  font-size: 14px;
+  color: #333333;
+  line-height: 20px;
+}
+
+.vertical_line {
+  width: 1px;
+  height: 200px;
+  margin: 50px 0 0 0;
+  border-left: #c6c6c6 1px solid;
+}
+
+.select_button img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.email_area {
+  width: 100%;
+  height: 400px;
+  padding: 80px 0 80px 0;
+  display: border;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.input_area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 20px 0;
+}
+
+#input_area_top {
+  margin: 30px 0 20px 0;
+}
+
+#input_area_bottom {
+  margin: 30px 0 20px 0;
+}
+
+.input_email {
+  margin: 0 20px 0 0;
+  width: 250px;
+  height: 35px;
+  padding: 0 0 0 10px;
+}
+
+.input_info {
+  width: 300px;
+  height: 35px;
+  font-family: "noto sans kr";
+  padding: 0 0 0 20px;
+}
+
+.input_info::-webkit-input-placeholder {
+  color: #c6c6c6;
+  font-weight: 300;
+  font-family: "noto sans kr";
+}
+
+.input_value_btn {
+  font-size: 14px;
+  font-family: "noto sans kr";
+  width: 150px;
+  height: 35px;
+  line-height: 35px;
+  background-color: #333333;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input_prove_number {
+  width: 53px;
+  height: 53px;
+  font-size: 18px;
+  margin-right: 20px;
+  color: #333333;
+  text-align: center;
+  font-weight: 300;
+  font-family: "noto sans kr";
+  padding: 0;
+}
+
+.input_prove_number:last-child {
+  margin: 0;
+}
+
+.input_prove_number::-webkit-input-placeholder {
+  text-align: center;
+  color: #c6c6c6;
+  font-weight: 300;
+  font-family: "noto sans kr";
+}
+
+.btn_normal {
+  line-height: 50px;
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  background-color: none;
+  border: 1px solid #3c62e5;
+  color: #3c62e5;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn_normal:hover {
+  background-color: #3c62e5;
+  color: white;
+}
+
+.btn_reverse {
+  line-height: 50px;
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  background-color: none;
+  border: 1px solid #333333;
+  color: #333333;
+  font-weight: 500;
+  margin: 0 0 0 20px;
+  cursor: pointer;
+}
+.btn_reverse:hover {
+  background-color: #333333;
+  color: white;
+}
+
+.result_area {
+  width: 100%;
+  height: 400px;
+  padding: 80px 0 20px 0;
+  display: border;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.table_line_area {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.table_line {
+  width: 80%;
+  height: 40px;
+  display: flex;
+  border-bottom: black 1.5px solid;
+  justify-content: center;
+  line-height: 40px;
+}
+
+#table_top {
+  background-color: #8e8e8e;
+  border-top: black 1.5px solid;
+  border-bottom: #c6c6c6 1px solid;
+  color: white;
+  font-weight: 700;
+  margin: 20px 0 0 0;
+}
+
+.table_value_top {
+  text-align: center;
+  font-size: 14px;
+  font-family: "noto sans kr";
+  border-right: #c6c6c6 1px solid;
+}
+
+.table_value {
+  text-align: center;
+  font-size: 14px;
+  font-family: "noto sans kr";
+  border-right: #c6c6c6 1px solid;
+}
+
+#table_num {
+  width: 10%;
+}
+
+#table_date {
+  width: 20%;
+}
+
+#table_id {
+  width: 30%;
+}
+
+#table_name {
+  width: 20%;
+}
+
+#table_birth {
+  width: 20%;
+  border: none;
+}
+
+.find_menu_btn_area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 20px 0;
+}
