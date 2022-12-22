@@ -11,27 +11,27 @@
           <div class="resumeTable_line">
             <div class="personalInfoTable_label" id="label_top">이름</div>
             <div class="personalInfoTable_value">
-              {{ resumelist.user_name }}
+              {{ resumeList.user_name }}
             </div>
             <div class="personalInfoTable_label" id="label_top">생년월일</div>
             <div class="personalInfoTable_value">
-              {{ resumelist.user_birthdate }}
+              {{ resumeList.user_birthdate }}
             </div>
           </div>
           <div class="resumeTable_line">
             <div class="personalInfoTable_label">휴대폰</div>
             <div class="personalInfoTable_value">
-              {{ resumelist.user_phone }}
+              {{ resumeList.user_phone }}
             </div>
             <div class="personalInfoTable_label">E-mail</div>
             <div class="personalInfoTable_value">
-              {{ resumelist.user_email }}
+              {{ resumeList.user_email }}
             </div>
           </div>
           <div class="resumeTable_line" id="tableLine_large">
             <div class="personalInfoTable_label">주소</div>
             <div class="personalInfoTable_value" id="label_address">
-              {{ resumelist.user_address }}
+              {{ resumeList.user_address }}
             </div>
           </div>
         </div>
@@ -42,27 +42,31 @@
             <div class="normalTable_label" id="label_center">학교명</div>
             <div class="normalTable_label" id="label_side">전공</div>
           </div>
-          <div class="resumeTable_line" v-for="index in eduNumber" :key="index">
+          <div
+            class="resumeTable_line"
+            v-for="(education, index) in resumeList.education"
+            :key="index"
+          >
             <div
               class="normalTabel_value"
               id="value_side"
               v-bind:class="education"
             >
-              {{ resumelist.education[index - 1].period }}
+              {{ education.period }}
             </div>
             <div
               class="normalTabel_value"
               id="value_center"
               v-bind:class="education"
             >
-              {{ resumelist.education[index - 1].school }}
+              {{ education.school }}
             </div>
             <div
               class="normalTabel_value"
               id="value_side"
               v-bind:class="education"
             >
-              {{ resumelist.education[index - 1].major }}
+              {{ education.major }}
             </div>
           </div>
         </div>
@@ -78,20 +82,20 @@
           </div>
           <div
             class="resumeTable_line"
-            v-for="index in certificaNumber"
+            v-for="(certificate, index) in resumeList.certificate"
             :key="index"
           >
             <div class="normalTabel_value" id="value_side">
-              {{ resumelist.certificate[index - 1].acquisition_date }}
+              {{ certificate.acquisition_date }}
             </div>
             <div class="normalTabel_value" id="value_leftCenter">
-              {{ resumelist.certificate[index - 1].certificate }}
+              {{ certificate.certificate }}
             </div>
             <div class="normalTabel_value" id="value_rightCenter">
-              {{ resumelist.certificate[index - 1].rating }}
+              {{ certificate.rating }}
             </div>
             <div class="normalTabel_value" id="value_side">
-              {{ resumelist.certificate[index - 1].issuer }}
+              {{ certificate.issuer }}
             </div>
           </div>
         </div>
@@ -111,24 +115,24 @@
           </div>
           <div
             class="resumeTable_line"
-            v-for="index in activityNumber"
+            v-for="(activity, index) in resumeList.activity"
             :key="index"
           >
             <div class="normalTabel_value" id="value_side">
-              {{ resumelist.activity[index - 1].period }}
+              {{ activity.period }}
             </div>
             <div class="normalTabel_value gubun" id="value_leftCenter">
-              {{ resumelist.activity[index - 1].gubun }}
+              {{ activity.gubun }}
             </div>
             <div class="normalTabel_value" id="value_rightCenter">
-              {{ resumelist.activity[index - 1].location }}
+              {{ activity.location }}
             </div>
             <div class="normalTabel_value content" id="value_side">
-              {{ resumelist.activity[index - 1].content }}
+              {{ activity.content }}
             </div>
           </div>
         </div>
-        <div class="resume_tableArea">
+        <!-- <div class="resume_tableArea">
           <p>자기소개서</p>
           <div class="resumeTable_line">
             <div class="normalTable_label resume" id="label_side">자유형식</div>
@@ -137,6 +141,22 @@
             <div class="normalTabel_value resume_textarea" id="value_side">
               {{ resumelist.cover_letter }}
             </div>
+          </div>
+        </div> -->
+        <div class="notice_component_tableArea">
+          <div class="notice_component_tableTitle">자기소개서</div>
+          <div class="notice_componet_tableLine">
+            <div class="tableComponent_titleBlack resume" id="titleBlack_side">
+              자유형식
+            </div>
+          </div>
+          <div class="notice_componet_tableLine_resume">
+            <textarea
+              class="resume_textarea"
+              id="valueBlack_side"
+              v-model="resume.cover_letter"
+              placeholder="자유롭게 작성해주세요."
+            ></textarea>
           </div>
         </div>
       </div>
@@ -154,33 +174,26 @@
 export default {
   data() {
     return {
-      resumelist: {},
-      eduNumber: 1,
-      certificaNumber: 1,
-      activityNumber: 1,
+      resumeList: {},
+      noticeList: {},
     };
   },
   async created() {
-    const resume = await this.$axios.get(`/resume?id=${this.$route.params.id}`);
-    this.resumelist = resume.data[0];
-    this.eduNumber =
-      this.resumelist.education.length === 0
-        ? 1
-        : this.resumelist.education.length;
-    this.certificaNumber =
-      this.resumelist.certificate.length === 0
-        ? 1
-        : this.resumelist.certificate.length;
-    this.activityNumber =
-      this.resumelist.activity.length === 0
-        ? 1
-        : this.resumelist.activity.length;
+    const resume = await this.$axios.get(
+      `/resume?id=${this.$route.params.resumeId}`
+    );
+    this.resumeList = resume.data[0];
+
+    const notice = await this.$axios.get(
+      `/notice/read/${this.$route.params.interviewId}`
+    );
+    this.noticeList = notice.data;
   },
   computed: {
     updateImg() {
       return (
         // `/${this.resumelist.image?.split("\\")[1]}` ||
-        `/${this.resumelist.image?.split("/")[1]}`
+        `/${this.resumeList.image?.split("/")[1]}`
       );
     },
   },
@@ -224,5 +237,44 @@ export default {
 
 input {
   outline: none;
+}
+.resume {
+  width: 100% !important;
+}
+
+.notice_componet_tableLine_resume {
+  width: 100%;
+  display: flex;
+}
+
+.resume_textarea {
+  width: 100% !important;
+  min-height: 400px;
+  height: 100%;
+  border: 1px solid #333;
+  padding-left: 10px;
+  font-family: noto sans kr;
+  font-size: 14px;
+  color: #333;
+  font-weight: 300;
+  resize: none;
+  outline: none;
+  line-height: 3.2vh;
+}
+
+.gubun {
+  width: 15% !important;
+}
+
+.button-gubun {
+  margin: 0 10px;
+}
+
+.content {
+  width: 50% !important;
+}
+
+#addLine {
+  border: none;
 }
 </style>

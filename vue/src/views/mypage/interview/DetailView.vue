@@ -131,10 +131,12 @@ export default {
     this.noticelist = noticeGet.data;
 
     const applyResume = await this.$axios.get(
-      `/apply/applicant?resume_id=${this.$route.params.number}`
+      `/apply/applicant?notice_title=${this.noticelist.title}&email=${
+        JSON.parse(localStorage.getItem("user")).email
+      }`
     );
     this.applyResumeList = applyResume.data;
-
+    console.log(this.applyResumeList);
     const Token = await this.$axios.get(
       `/apply/token?id=${this.id}&email=${this.applyResumeList.user_email}&name=${this.applyResumeList.user_name}&interview_number=${this.applyResumeList.interview_number}`
     );
