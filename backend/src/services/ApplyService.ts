@@ -72,6 +72,11 @@ export default class ApplyService {
     return accessToken;
   }
 
+  public matchToken(text: any) {
+    const check = jwt.verify(text, config.jwtSecret);
+    return check;
+  }
+
   public async findInterviewNumber(title: any, name: any) {
     const record = await this.applyModel.findOne({
       where: {

@@ -95,4 +95,29 @@ export default (app: Router) => {
       next(e);
     }
   });
+
+  //토큰 일치 검사 api
+  route.post(
+    "/MatchCheck",
+    (req: Request, res: Response, next: NextFunction) => {
+      //const TokenRequest = req.body.text;
+      const tokenMatchApi = new ApplyService();
+      //const interNum = tokenMatchApi.record;
+      try {
+        // const check = jwt.verify(req.body.text, config.jwtSecret);
+        const check = tokenMatchApi.matchToken(req.body.text);
+
+        if (check) {
+          console.log("확인 완료", check);
+          next();
+          // const getToken = tokenMatchApi.tokenMatch(req.body.text);
+          res.send("면접번호");
+          // return res.json(getToken).status(200);
+          //면접번호
+        }
+      } catch (e) {
+        logger.error(e);
+      }
+    }
+  );
 };
