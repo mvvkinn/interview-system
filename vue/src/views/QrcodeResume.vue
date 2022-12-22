@@ -154,7 +154,7 @@
             <textarea
               class="resume_textarea"
               id="valueBlack_side"
-              v-model="resume.cover_letter"
+              v-model="resumeList.cover_letter"
               placeholder="자유롭게 작성해주세요."
             ></textarea>
           </div>
@@ -193,7 +193,7 @@ export default {
     updateImg() {
       return (
         // `/${this.resumelist.image?.split("\\")[1]}` ||
-        `/${this.resumeList.image?.split("/")[1]}`
+        `/${this.resumeList?.image?.split("/")[1]}`
       );
     },
   },
