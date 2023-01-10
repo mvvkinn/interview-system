@@ -23,10 +23,14 @@
 # 개발 환경
 
 - HTML, CSS, JS
-- MySQL
+- Sequelize
 - Express
 - node.js
 - Vue.js 2
+- Vuex
+- Vue-routing
+- socket.io
+- WebRTC
 - AWS EC2
 
 ---
